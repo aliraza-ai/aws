@@ -1,4 +1,5 @@
 "use client";
+
 import Link from "next/link";
 import { IoMdNotificationsOff } from "react-icons/io";
 import React, { useState, useRef, useEffect } from "react";
@@ -19,16 +20,8 @@ interface DropdownMenu {
   link: string;
 }
 
-export interface User {
-  name: string;
-  email: string;
-}
 
-interface UserHeaderProps {
-  user: User;
-}
-
-const UserHeader = () => {
+const UserHeader: React.FC = ({}) => {
   const { toggle, setToggle } = useWebContext();
   const router = useRouter();
   const [showNotifications, setShowNotifications] = useState(false);
@@ -39,8 +32,6 @@ const UserHeader = () => {
     typeof window !== "undefined" ? sessionStorage.getItem("nameLetter") : null;
   const sessionName =
     typeof window !== "undefined" ? sessionStorage.getItem("name") : null;
-  const sessionTokens =
-    typeof window !== "undefined" ? sessionStorage.getItem("tokens") : null;
 
   const logout = () => {
     ["tokens", "name", "nameLetter", "userId"].forEach((item) =>
@@ -73,7 +64,11 @@ const UserHeader = () => {
   }, []);
 
   return (
-    <div className={`flex items-center sticky top-0 z-20 justify-between px-2 md:px-8 py-2 sm:h-[80px] h-[60px] lg:ml-[250px] ${isScrolled ? "bg-[rgba(32,45,72,0.4)] backdrop-blur-sm" : "bg-transparent"}`}>
+    <div
+      className={`flex items-center sticky top-0 z-20 justify-between px-2 md:px-8 py-2 sm:h-[80px] h-[60px] lg:ml-[250px] ${
+        isScrolled ? "bg-[rgba(32,45,72,0.41)]" : "bg-transparent"
+      }`}
+    >
       {/* Toggle Button */}
       <div className="flex items-center justify-start gap-3">
         <IoMdMenu
@@ -93,6 +88,14 @@ const UserHeader = () => {
 
       <div className="flex">
         <div className="flex items-center gap-3">
+          {/* Notifications */}
+          {/* <span
+            className="text-[22px] text-white bg-[rgba(32,45,72,0.41)] p-4 rounded-full cursor-pointer"
+            onClick={toggleNotifications}
+          >
+            <IoMdNotificationsOff />
+          </span> */}
+
           {/* User Avatar */}
           <div className="relative">
             <div
@@ -102,10 +105,11 @@ const UserHeader = () => {
               {nameLetter || sessionLetter}
             </div>
             <ul
-              className={`absolute w-40 right-0 bg-primary rounded-md overflow-hidden z-40  ${dropdown
-                ? "visible transition-all duration-200 translate-y-2"
-                : " invisible transition-all duration-200 translate-y-0 pointer-events-none "
-                }`}
+              className={`absolute w-40 right-0 bg-primary rounded-md overflow-hidden z-40  ${
+                dropdown
+                  ? "visible transition-all duration-200 translate-y-2"
+                  : " invisible transition-all duration-200 translate-y-0 pointer-events-none "
+              }`}
             >
               {dropdownMenu.map((item: DropdownMenu) =>
                 item.title !== "Dashbaord" ? (
@@ -152,7 +156,8 @@ const UserHeader = () => {
       {/* Notifications Dropdown */}
       {showNotifications && (
         <div className="absolute right-0 mt-0 mr-2 z-30">
-          {showNotifications && (
+          <span className="py-2">Notification is empty!</span>
+          {/* {showNotifications && (
             <div>
               <div
                 className="w-full h-screen fixed bg-black/40 top-0 left-0"
@@ -166,7 +171,7 @@ const UserHeader = () => {
                 />
               </div>
             </div>
-          )}
+          )} */}
         </div>
       )}
     </div>

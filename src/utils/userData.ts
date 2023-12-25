@@ -1,71 +1,68 @@
-const userData = async (): Promise<{
+const getUserData = async (): Promise<{
   success: boolean;
   message: string;
   name: string;
   email: string;
-  password: string;
   phone_number: string;
   address: string;
 }> => {
-  const tokens =
-    typeof window !== "undefined" ? sessionStorage.getItem("tokens") : null;
-
-  const userId =
-    typeof window !== "undefined" ? sessionStorage.getItem("userId") : null;
-
-  const user = {
-    userId: userId,
-  };
-
   try {
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/users/user`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${tokens}`,
-        },
-        body: JSON.stringify(user),
-      }
-    );
+    const tokens = sessionStorage.getItem("tokens");
+    const userId = sessionStorage.getItem("userId");
 
-    // console.log("Your error" + response);
+    const url = `${process.env.NEXT_PUBLIC_API_URL}/users/user?userId=${userId}`;
+    const headers = new Headers();
+    headers.append("Content-Type", "application/json");
+    headers.append("Authorization", `Bearer ${tokens}`);
+
+    const response = await fetch(url, {
+      method: "GET",
+      headers: headers,
+    });
 
     if (response.ok) {
-      const res = await response.json();
+      const userData = await response.json();
+      const { name, email, phone_number, address } = userData;
       return {
         success: true,
         message: "",
-        name: res.user.name,
-        email: res.user.email,
-        password: res.user.password,
-        phone_number: res.user.phone_number,
-        address: res.user.address,
+        name,
+        email,
+        phone_number,
+        address,
       };
     } else {
+      let errorMessage = "Failed to fetch user data";
+      if (response.status === 401) {
+        errorMessage = "Unauthorized. Please login again.";
+      } else if (response.status >= 500) {
+        errorMessage = "Server error. Please try again later.";
+      }
+
       const errorData = await response.json();
       return {
         success: false,
-        message: errorData.message,
+        message: errorData.message || errorMessage,
         name: "",
         email: "",
-        password: "",
         phone_number: "",
         address: "",
       };
     }
   } catch (error) {
+    let errorMessage = "Something went wrong!";
+    if (error instanceof TypeError && error.message === "Failed to fetch") {
+      errorMessage = "Network error. Please check your connection.";
+    }
     return {
       success: false,
-      message: `Something went wrong!`,
+      message: `${errorMessage} Error: ${error}`,
       name: "",
       email: "",
-      password: "",
       phone_number: "",
       address: "",
     };
   }
 };
 
-export default userData;
+export default getUserData;

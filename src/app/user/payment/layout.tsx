@@ -8,7 +8,6 @@ import {
   useElements,
   Elements,
 } from "@stripe/react-stripe-js";
-import { useRouter } from "next/navigation";
 
 const stripePromise = loadStripe("YOUR_PUBLISHABLE_KEY");
 
@@ -139,21 +138,13 @@ type LayoutProps = {
 };
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
-  const router = useRouter();
-  const sessionTokens = typeof window !== "undefined" ? sessionStorage.getItem("tokens") : null;
   return (
-    <>
-      {sessionTokens ? (
-        <div className="layout">
-          <main>{children}</main>
-          <div className="absolute top-14 right-0 md:px-20 md:py-10 p-6 w-full lg:w-[calc(100%-250px)] mx-auto text-white">
-            <PaymentPage />
-          </div>
-        </div>
-      ) :
-        router.push('/auth/login')
-      }
-    </>
+    <div className="layout">
+      <main>{children}</main>
+      <div className="absolute top-14 right-0 md:px-20 md:py-10 p-6 w-full lg:w-[calc(100%-250px)] mx-auto text-white">
+        <PaymentPage />
+      </div>
+    </div>
   );
 };
 

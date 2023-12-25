@@ -73,7 +73,7 @@ const LoginPageLayout: React.FC<LoginPageLayoutProps | any> = (props) => {
             title: "Success",
             text: "Login Successfully!",
           });
-          router.push("/user/dashbaord");
+          router.push("/user/home");
         } else {
           Swal.fire({
             icon: "error",
