@@ -78,7 +78,7 @@ const OurRoadmap: React.FC = () => {
                   <div className="w-full bg-[#FFFFFF05] shadow sm:px-5 px-2 py-5 rounded-lg text-xl border border-[#FFFFFF14] text-white text-start font-bold ml-2">
                     <p>Algorithmic Enhancement</p>
                     <p className="text-base font-medium pt-2">
-                      We're committed to delivering top-notch services by
+                      We&apos;re committed to delivering top-notch services by
                       perpetually refining AI algorithms, guaranteeing superior
                       content and image generation with improved quality,
                       coherence, and diversity.
@@ -140,7 +140,7 @@ const OurRoadmap: React.FC = () => {
               <div className="w-full bg-[#FFFFFF05] shadow sm:px-5 px-2 py-5 rounded-lg text-xl font-bold border border-[#FFFFFF14]">
                 <p>Multimedia Expansion</p>
                 <p className="text-base font-medium pt-2">
-                  Diversifying our offerings, we're expanding content generation
+                  Diversifying our offerings, we&apos;re expanding content generation
                   to include images, videos, audio, and interactive formats,
                   aiming to elevate user engagement across various multimedia
                   channels.

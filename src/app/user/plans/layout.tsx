@@ -1,3 +1,5 @@
+"use client";
+
 import React, { ReactNode } from "react";
 import { PricingData } from "@/types";
 import { pricingData as defaultPricingData } from "@/constants";
@@ -5,6 +7,7 @@ import Image from "next/image";
 import { CheckIcon } from "../../../../public";
 import Link from "next/link";
 import { FaChevronRight } from "react-icons/fa6";
+import { useRouter } from "next/navigation";
 
 type PricingPlanProps = {
   pricingData?: PricingData[];
@@ -12,8 +15,9 @@ type PricingPlanProps = {
 };
 
 const PricingCard: React.FC<{ card: PricingData }> = ({ card }) => {
+
   return (
-    <div className="bg-[#1C1E31] border-1 border-white text-white text-opacity-70 shadow-lg rounded-xl py-10 px-5 md:px-10 space-y-5">
+    <div className="bg-[rgba(32,45,72,0.41)] border-1 border-white text-white text-opacity-70 shadow-lg rounded-xl py-10 px-5 md:px-10 space-y-5">
       <div className="flex flex-col ">
         <div className="font-semibold text-4xl text-white ">
           {card.price}
@@ -47,7 +51,7 @@ const PricingCard: React.FC<{ card: PricingData }> = ({ card }) => {
               {card.id === 0 ? (
                 <span className="opacity-80">Subscribed</span>
               ) : (
-                <Link href={card.id === 0 ? "#" : "/auth/login"}>
+                <Link href={card.id === 0 ? "#" : "/user/payment"}>
                   Subscribe now
                 </Link>
               )}
@@ -63,26 +67,34 @@ const Layout: React.FC<PricingPlanProps> = ({
   pricingData = defaultPricingData,
   children,
 }) => {
-  return (
-    <div className="layout">
-      <main>{children}</main>
+  const router = useRouter();
+  const sessionTokens = typeof window !== "undefined" ? sessionStorage.getItem("tokens") : null;
 
-      <div className="absolute top-14 right-0 md:px-20 md:py-10 p-6 w-full lg:w-[calc(100%-250px)] mx-auto text-white">
-        <div className="text-base text-slate-400 font-light p-2 flex items-center gap-2">
-          <Link href="/user/home">Home</Link>
-          <FaChevronRight className="text-sm" />
-          <Link href="/user/social-media">Pricing Plans</Link>
-        </div>
-        <h2 className="text-3xl font-semibold p-2 pb-3">Pricing Plans</h2>
-        <div className="flex flex-col items-start justify-center">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mt-4">
-            {pricingData.map((card) => (
-              <PricingCard key={card.id} card={card} />
-            ))}
+  return (
+    <>
+      {sessionTokens ? (
+        <div className="layout">
+          <main>{children}</main>
+          <div className="absolute top-14 right-0 md:px-20 md:py-10 p-6 w-full lg:w-[calc(100%-250px)] mx-auto text-white">
+            <div className="text-base text-slate-400 font-light p-2 flex items-center gap-2">
+              <Link href="/user/home">Home</Link>
+              <FaChevronRight className="text-sm" />
+              <Link href="/user/social-media">Pricing Plans</Link>
+            </div>
+            <h2 className="text-3xl font-semibold p-2 pb-3">Pricing Plans</h2>
+            <div className="flex flex-col items-start justify-center">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mt-4">
+                {pricingData.map((card) => (
+                  <PricingCard key={card.id} card={card} />
+                ))}
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
+      ) :
+        router.push('/auth/login')
+      }
+    </>
   );
 };
 

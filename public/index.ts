@@ -3,7 +3,7 @@ export { default as Logo } from "./Logo.webp";
 export { default as Hero_Circle } from "./hero-circle-min.png";
 export { default as Menu } from "./menu-icon.png";
 
-// Slider
+// Slider 
 export { default as SliderActive } from "./sliderActive.png";
 
 // about-steps
@@ -26,7 +26,7 @@ export { default as Feature8 } from "./feature8.png";
 export { default as CommunityImg } from "./community_img.png";
 export { default as LinkIcon } from "./link.png";
 
-// Banner
+// Banner 
 export { default as CTA_Shape1 } from "./cta-shape-1.png";
 export { default as CTA_Graph } from "./cta-graph.png";
 export { default as CTA_Shape3 } from "./cta-shape-3.png";

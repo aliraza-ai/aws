@@ -7,7 +7,7 @@ import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import IntelliAI from "@/utils/IntelliAI";
 
-interface ContentResponseProps { }
+interface ContentResponseProps {}
 
 interface ExportToPDF {
   (): void;
@@ -21,8 +21,16 @@ interface Margin {
 }
 
 const ContentResponse: React.FC<ContentResponseProps> = () => {
-  const { loading, setLoading, response, emptyResponse, error, courseContent, setResponse, setError } =
-    useWebContext();
+  const {
+    loading,
+    setLoading,
+    response,
+    emptyResponse,
+    error,
+    courseContent,
+    setResponse,
+    setError,
+  } = useWebContext();
 
   const editor = useRef<any>(null);
   const [matches, setMatches] = useState<any[]>([]);
@@ -99,38 +107,40 @@ const ContentResponse: React.FC<ContentResponseProps> = () => {
 
   const handleQuizGenerator = async () => {
     try {
-      const query = { prompt: `I also need quiz questions for same outline on ${courseContent.subject} subject having duration ${courseContent.duration} and level ${courseContent.level}. I want response in html paragraph with strong and bold tag for headings and subheadings represented by size and bullets with numbers. After paragraph, use <br/> for linebreaks.` };
+      const query = {
+        prompt: `I also need quiz questions for same outline on ${courseContent.subject} subject having duration ${courseContent.duration} and level ${courseContent.level}. I want response in html paragraph with strong and bold tag for headings and subheadings represented by size and bullets with numbers. After paragraph, use <br/> for linebreaks.`,
+      };
       setLoading(true);
       const result = await IntelliAI(query);
       if (result.success) {
         setQuiz(result.response);
         setLoading(false);
-      }
-      else {
+      } else {
         setLoading(false);
       }
     } catch (error) {
-      setQuiz('')
+      setQuiz("");
     }
-    setTabs('quiz');
+    setTabs("quiz");
   };
 
   const handleAssignmentGenerator = async () => {
     try {
-      const query = { prompt: `I also need assignment questions for same outline on ${courseContent.subject} subject having duration ${courseContent.duration} and level ${courseContent.level}.I want response in html paragraph with strong and bold tag for headings and subheadings represented by size and bullets with numbers. After paragraph, use <br/> for linebreaks.` };
+      const query = {
+        prompt: `I also need assignment questions for same outline on ${courseContent.subject} subject having duration ${courseContent.duration} and level ${courseContent.level}.I want response in html paragraph with strong and bold tag for headings and subheadings represented by size and bullets with numbers. After paragraph, use <br/> for linebreaks.`,
+      };
       setLoading(true);
       const result = await IntelliAI(query);
       if (result.success) {
         setAssignment(result.response);
         setLoading(false);
-      }
-      else {
+      } else {
         setLoading(false);
       }
     } catch (error) {
-      setAssignment('')
+      setAssignment("");
     }
-    setTabs('assignment');
+    setTabs("assignment");
   };
 
   const editorConfig = {
@@ -205,39 +215,44 @@ const ContentResponse: React.FC<ContentResponseProps> = () => {
           {tabs !== "" ? (
             <div className="flex items-center gap-4 w-full py-2">
               <button
-                className={`text-lg px-3 py-1 text-white border-b rounded-t-md ${tabs === "outline"
-                  ? "border-b-4 border-b-blue-500 bg-[#2830a1]"
-                  : ""
-                  }`}
+                className={`text-lg px-3 py-1 text-white border-b rounded-t-md ${
+                  tabs === "outline"
+                    ? "border-b-4 border-b-blue-500 bg-[#2830a1]"
+                    : ""
+                }`}
                 onClick={() => setTabs("outline")}
               >
                 Outline
               </button>
               {quiz !== "" && (
                 <button
-                  className={`text-lg px-3 py-1 text-white border-b rounded-t-md ${tabs === "quiz"
-                    ? "border-b-4 border-b-blue-500 bg-[#2830a1]"
-                    : ""
-                    }`}
+                  className={`text-lg px-3 py-1 text-white border-b rounded-t-md ${
+                    tabs === "quiz"
+                      ? "border-b-4 border-b-blue-500 bg-[#2830a1]"
+                      : ""
+                  }`}
                   onClick={() => setTabs("quiz")}
                 >
                   Quiz
                 </button>
               )}
-              
+
               {assignment !== "" && (
                 <button
-                  className={`text-lg px-3 py-1 text-white border-b rounded-t-md ${tabs === "assignment"
-                    ? "border-b-4 border-b-blue-500 bg-[#282a45]"
-                    : ""
-                    }`}
+                  className={`text-lg px-3 py-1 text-white border-b rounded-t-md ${
+                    tabs === "assignment"
+                      ? "border-b-4 border-b-blue-500 bg-[#282a45]"
+                      : ""
+                  }`}
                   onClick={() => setTabs("assignment")}
                 >
                   Assignment
                 </button>
               )}
             </div>
-          ) : ""}
+          ) : (
+            ""
+          )}
 
           <div className="w-full h-full">
             <div className="w-full flex items-center justify-end">
@@ -263,14 +278,15 @@ const ContentResponse: React.FC<ContentResponseProps> = () => {
             ) : (
               <CKEditor
                 editor={ClassicEditor as any}
-                data={`<p>${tabs === "outline"
-                  ? outlineResponse
-                  : tabs === "quiz"
+                data={`<p>${
+                  tabs === "outline"
+                    ? outlineResponse
+                    : tabs === "quiz"
                     ? quiz
                     : tabs === "assignment"
-                      ? assignment
-                      : ""
-                  }</p>`}
+                    ? assignment
+                    : ""
+                }</p>`}
                 onChange={(event, editor) => editor.data}
                 config={editorConfig}
                 ref={editor}

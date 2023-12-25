@@ -11,7 +11,7 @@ interface NotificationsProps {
     message: string;
     time: string;
   }[];
-  toggleNotifications: () => void; // Add this line to include the function
+  toggleNotifications: () => void;
 }
 
 const Notifications: React.FC<NotificationsProps> = ({

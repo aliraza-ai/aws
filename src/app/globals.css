@@ -452,3 +452,89 @@ body {
   background-color: #101027 !important;
   color: white !important;
 }
+
+.heroBg {
+  background-repeat: no-repeat;
+  background-image: url(../../public/api/hero-bg.jpeg);
+  background-position: center;
+  background-size: cover;
+}
+
+
+
+.btn-pill-solid {
+  padding: 12px 30px;
+  background-color: white;
+  transition: all 0.4s ease-in;
+}
+
+.btn-pill-solid {
+  color: #04091e;
+  position: relative;
+  overflow: hidden;
+  z-index: 10;
+}
+
+.btn-pill-solid:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: linear-gradient(137deg, #80fcf0, #ac5dfa);
+  transition: all 0.35s;
+  border-radius: 30px;
+  z-index: -1;
+}
+
+.btn-pill-solid:hover {
+  color: white;
+}
+
+.btn-pill-solid:hover:after {
+  width: 100%;
+}
+
+
+.gradient-outline-btn {
+  padding: 12px 30px;
+  color: white;
+  position: relative;
+  display: inline-block;
+  border-radius: 30px;
+  font-size: 18px;
+  transition: all 0.3s;
+  z-index: 10;
+  overflow: hidden;
+}
+
+.gradient-outline-btn:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: linear-gradient(137deg, #80fcf0, #ac5dfa);
+  transition: all 0.35s;
+  border-radius: 30px;
+  z-index: -1;
+}
+
+.gradient-outline-btn:hover:after {
+  width: 100%;
+}
+
+.gradient-outline-btn:before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 30px;
+  padding: 1px;
+  background: linear-gradient(137deg, #80fcf0, #ac5dfa);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}

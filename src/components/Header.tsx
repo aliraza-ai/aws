@@ -74,7 +74,7 @@ const Header = () => {
     <>
       <div className="absolute top-0 left-0 bg-none">
         <Image
-          src={Hero_Circle}
+          src="/hero-circle-min.png"
           alt="Hero Icons Image"
           width={200}
           height={200}
@@ -90,7 +90,7 @@ const Header = () => {
           <div className="px-4">
             <Link href="/" passHref>
               <Image
-                src={Logo}
+                src="/Logo.webp"
                 alt="Logo"
                 width={200}
                 height={18}
@@ -186,7 +186,7 @@ const Header = () => {
               onClick={toggleSidebar}
               className="lg:hidden text-white mr-4 md:mr-0 focus:outline-none"
             >
-              <Image src={Menu} alt="Menu" width={24} height={24} />
+              <Image src="/menu-icon.png" alt="Menu" width={24} height={24} />
             </button>
           </div>
         </nav>

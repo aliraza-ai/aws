@@ -107,7 +107,7 @@ const HelpWanted = ({ type }: Props) => {
 
           <div className="flex flex-col">
             <label htmlFor="location" className="text-white mb-2 font-bold">
-              Company's Location <span className="text-red-500">*</span>
+              Company&apos;s Location <span className="text-red-500">*</span>
             </label>
             <input
               type="text"

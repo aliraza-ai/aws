@@ -8,7 +8,7 @@ import { Logo } from "../../public";
 const Footer: React.FC = () => {
   return (
     <div className="md:pt-0 text-[16px] text-white w-full">
-      <div className="rounded-xl bg-primary-two pb-2 pt-8 px-5 xl:px-10 xl:pt-14">
+      <div className="rounded-t-xl bg-primary-two pb-2 pt-8 px-5 xl:px-10 xl:pt-14">
         <div className="md:flex-row flex-col gap-10 flex justify-between">
           <div className="flex flex-col gap-2 md:w-1/2">
             <div className="w-36">

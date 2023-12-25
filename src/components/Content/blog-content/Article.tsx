@@ -54,11 +54,11 @@ const Article = ({ type }: Props) => {
       const query = `Write article having this title ${title} according to this keywords ${keywords} the subheading is ${subheading}. Now, I want response in html paragraph with strong and bold tag for headings and subheadings represented by size and bullets with numbers. After paragraph, use <br/> for linebreaks.`;
       getResponse(query);
 
-      // setFormData({
-      //   title: "",
-      //   keywords: "",
-      //   subheading: "",
-      // });
+      setFormData({
+        title: "",
+        keywords: "",
+        subheading: "",
+      });
 
     }
   };
@@ -75,7 +75,7 @@ const Article = ({ type }: Props) => {
               Title <span className="text-red-500">*</span>
             </label>
 
-            <input
+            <input 
               type="text"
               name="title"
               placeholder="i.e Ocean, Beach & Hotel"
