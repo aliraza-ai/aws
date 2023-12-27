@@ -12,6 +12,7 @@ export interface PricingData {
   price: string | number;
   currency: string;
   features: string[];
+  link?: string;
 }
 
 export interface IconPlaceholderProps {

@@ -45,15 +45,15 @@ const BlogDesc = ({ type }: Props) => {
 
       let query = "";
       switch (type) {
-        case "Blog post":
+        case "blog-post":
           query = `Write blog post having this keywords ${keyword} and the description is this ${description}. Now, I want response in html paragraph with strong and bold tag for headings and subheadings represented by size and bullets with numbers. After paragraph, use <br/> for linebreaks.`;
           getResponse(query);
           break;
-        case "Paragraph":
+        case "paragraph":
           query = `Write a paragraph having this keyword ${keyword} and the description is this ${description}. Now, I want response in html paragraph with strong and bold tag for headings and subheadings represented by size and bullets with numbers. After paragraph, use <br/> for linebreaks.`;
           getResponse(query);
           break;
-        case "Startup names":
+        case "startup-names":
           query = `Generate creative startup names having this keywords ${keyword} and the description is this ${description}. Now, I want response in html paragraph with strong and bold tag for headings and subheadings represented by size and bullets with numbers. After paragraph, use <br/> for linebreaks.`;
           getResponse(query);
           break;

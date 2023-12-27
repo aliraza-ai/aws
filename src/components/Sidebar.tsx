@@ -67,8 +67,7 @@ export function Sidebar() {
     <div
       className={`sm:w-[250px] w-full border-r z-[999] fixed top-0 lg:left-0 transition-all duration-200 ${
         toggle ? "left-0" : "sm:-left-[250px] -left-full"
-      } border-[#54515b] rounded-none h-screen p-0 py-4 pt-0 shadow-xl md:bg-[rgb(32,45,72)] bg-[rgba(32,45,72,0.41)] overflow-y-auto transition-all duration-200 custom-scrollbar`}
-    >
+      } border-[#54515b] rounded-none h-screen p-0 py-4 pt-0 shadow-xl bg-[rgb(32,45,72)] md:bg-[rgba(32,45,72,0.4)] backdrop-blur-sm overflow-y-auto transition-all duration-200 custom-scrollbar`}>
       {/* Close icon */}
       <IoIosClose
         className="text-white text-4xl absolute top-5 right-2 lg:hidden block"
@@ -89,9 +88,9 @@ export function Sidebar() {
           </p>
 
           <Link
-            href="/user/home"
+            href="/user/dashboard"
             className={`flex items-center border-b-0 p-3 list-item-hover rounded-[6px]  ${
-              pathName == "/user/home" ? "bg-[#640f6c]" : " "
+              pathName == "/user/dashboard" ? "bg-[#640f6c]" : " "
             } `}
             onClick={() => setToggle(!toggle)}
           >
@@ -100,6 +99,7 @@ export function Sidebar() {
                 <LuLayoutDashboard className="h-5 w-5 text-white" />
               </ListItemPrefix>
               <Typography className="text-white">Dashboard</Typography>
+
             </ListItem>
           </Link>
         </div>

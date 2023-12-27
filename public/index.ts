@@ -46,3 +46,6 @@ export { default as Shape2 } from "./shape2.png";
 export { default as Shape3 } from "./shape3.png";
 export { default as Shape4 } from "./shape4.png";
 export { default as Shape5 } from "./shape5.png";
+
+export { default as checked } from "./checked.png";
+

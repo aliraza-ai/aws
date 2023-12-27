@@ -1,10 +1,9 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React from "react";
 import { FaEnvelope } from "react-icons/fa";
 import { BiSolidLock } from "react-icons/bi";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
@@ -54,9 +53,9 @@ const LoginPageLayout: React.FC<LoginPageLayoutProps | any> = (props) => {
         return;
       } else {
         setSignInError({
-          email:"",
+          email: "",
           password: "",
-          error:"",
+          error: "",
           children: null,
         });
         const result = await loginUser(userData);
@@ -73,7 +72,7 @@ const LoginPageLayout: React.FC<LoginPageLayoutProps | any> = (props) => {
             title: "Success",
             text: "Login Successfully!",
           });
-          router.push("/user/home");
+          router.push("/user/dashboard");
         } else {
           Swal.fire({
             icon: "error",

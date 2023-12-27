@@ -6,10 +6,10 @@ import { features } from "../constants";
 
 const Features = () => {
   return (
-    <div className="container mx-auto pt-5 pb-5 ">
+    <div className="container mx-auto pt-5 " id="features">
       <div
-        className="w-full lg:px-10 md:px-8 px-6 py-3 overflow-hidden"
-        id="features"
+        className="w-full lg:px-10 md:px-8 px-6 pt-3 overflow-hidden"
+        
       >
         <div className="w-full flex items-center justify-center flex-col">
           <div className="w-full text-white flex-col flex gap-2 items-center justify-center mb-2">

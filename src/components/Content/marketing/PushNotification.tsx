@@ -60,7 +60,7 @@ const PushNotification = ({ type }: Props) => {
               onChange={(e) =>
                 setFormData((prev) => ({
                   ...prev,
-                  content: e.target.value,
+                  description: e.target.value,
                 }))
               }
               className="contact-textarea bg-gradient-to-b from-[#0F1333] to-[#1D203F]"

@@ -10,6 +10,17 @@ import { IoIosClose } from "react-icons/io";
 
 const Hero = () => {
   const [popup, setPopup] = useState(false);
+  const sessionTokens =
+    typeof window !== "undefined" ? sessionStorage.getItem("tokens") : null;
+  const isLoggedIn = sessionTokens !== null;
+
+  const handleClick = () => {
+    if (isLoggedIn) {
+      window.location.href = "/user/dashboard";
+    } else {
+      setPopup(true);
+    }
+  };
 
   return (
     <>
@@ -26,7 +37,7 @@ const Hero = () => {
       </div>
 
       <div
-        className="xl:py-20 py-10 bg-cover bg-center Hero-bg"
+        className="xl:pt-20 pt-10 bg-cover bg-center Hero-bg"
         // style={{
         //   backgroundImage: `linear-gradient(rgb(20 6 40 / 76%), rgb(20 6 40 / 74%)), url(${HERO_CONTENT.imageUrl})`,
         //   backgroundPosition: "bottom",
@@ -63,7 +74,7 @@ const Hero = () => {
           <div className="relative flex text-white rounded-3xl bg-gradient-to-r from-[rgba(247,15,255,1)] to-[#2C63FF] p-0.5 items-center justify-start w-[90%] md:w-[70%] lg:w-[40%] gap-3">
             <button
               className="bg-black text-[9px] md:text-[13px] md:py-2 md:px-5 py-2 px-2 flex items-center justify-center rounded-3xl hover:opacity-75"
-              onClick={() => setPopup(true)}
+              onClick={handleClick}
             >
               Create Prompt
             </button>

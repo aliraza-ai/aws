@@ -31,35 +31,35 @@ const SocialPages = ({ type }: Props) => {
 
       let query = "";
       switch (type) {
-        case "Hashtags":
+        case "hashtags":
           query = `Generate hashtags according to this description ${description}. Response should be in html paragraph with heading "HashTags:" in bold with linebreak.`;
           getResponse(query);
           break;
-        case "Social post":
+        case "social-post":
           query = `Generate social posts ready to be published on social platforms according to this description ${description}. I need response in html paragraph with bold strong in social media post format with emojis. Use linebreaks after paragraph terminates.`;
           getResponse(query);
           break;
-        case "Social post caption":
+        case "social-post-caption":
           query = `Generate social posts caption ready to grab attention according to this description ${description}. Now, I want response in html paragraph with strong and bold tag for headings and subheadings represented by size and bullets with numbers. After paragraph, use <br/> for linebreaks.`;
           getResponse(query);
           break;
-        case "Tweet":
+        case "tweet":
           query = `Generate engaging tweets according to this description ${description}. Now, I want response in html paragraph with strong and bold tag for headings and subheadings. After paragraph, use <br/> for linebreaks.`;
           getResponse(query);
           break;
-        case "Tweet thread":
+        case "tweet-thread":
           query = `Generate engaging twitter thread according to this description ${description}. Now, I want response in html paragraph with strong and bold tag for headings and subheadings represented by size and bullets with numbers. After paragraph, use <br/> for linebreaks.`;
           getResponse(query);
           break;
-        case "Video description":
+        case "video-description":
           query = `Generate compelling video descriptions according to this description ${description}. Now, I want response in html paragraph with strong and bold tag for headings and subheadings represented by size and bullets with numbers. After paragraph, use <br/> for linebreaks.`;
           getResponse(query);
           break;
-        case "Video script":
+        case "video-script":
           query = `Generate compelling video script according to this description ${description}. Now, I want response in html paragraph with strong and bold tag for headings and subheadings represented by size and bullets with numbers. After paragraph, use <br/> for linebreaks.`;
           getResponse(query);
           break;
-        case "Video title":
+        case "video-title":
           query = `Generate compelling video titles according to this description ${description}. Now, I want response in html paragraph with strong and bold tag for headings and subheadings represented by size and bullets with numbers. After paragraph, use <br/> for linebreaks.`;
           getResponse(query);
           break;

@@ -1,10 +1,13 @@
-import React, { ReactNode } from "react";
+"use client";
+
+import React, { ReactNode, useEffect } from "react";
 import { PricingData } from "@/types";
 import { pricingData as defaultPricingData } from "@/constants";
 import Image from "next/image";
 import { CheckIcon } from "../../../../public";
 import Link from "next/link";
 import { FaChevronRight } from "react-icons/fa6";
+import { useRouter } from "next/navigation";
 
 type PricingPlanProps = {
   pricingData?: PricingData[];
@@ -42,16 +45,20 @@ const PricingCard: React.FC<{ card: PricingData }> = ({ card }) => {
         </div>
 
         <div className="mt-12">
-          <div className="w-full max-w-xs p-0.5 rounded-md flex items-center justify-center bg-gradient-to-r from-[rgba(247,15,255,1)] to-[#2C63FF]">
-            <button className="text-white py-2 hover:opacity-75">
-              {card.id === 0 ? (
+          <div className="">
+            {card.id === 0 ? (
+              <button className="w-full max-w-xs p-0.5 rounded-md flex items-center justify-center bg-gradient-to-r from-[rgba(247,15,255,1)] to-[#2C63FF] text-white py-2 cursor-not-allowed opacity-70">
                 <span className="opacity-80">Subscribed</span>
-              ) : (
-                <Link href={card.id === 0 ? "#" : "/user/payment"}>
+              </button>
+            ) : (
+              <button className="w-full max-w-xs p-0.5 rounded-md flex items-center justify-center bg-gradient-to-r from-[rgba(247,15,255,1)] to-[#2C63FF] text-white py-2 hover:opacity-75">
+                <Link
+                  href={card.id === 0 ? "#" : `/user/payment?planId=${card.id}`}
+                >
                   Subscribe now
                 </Link>
-              )}
-            </button>
+              </button>
+            )}
           </div>
         </div>
       </div>
@@ -63,26 +70,39 @@ const Layout: React.FC<PricingPlanProps> = ({
   pricingData = defaultPricingData,
   children,
 }) => {
-  return (
-    <div className="layout">
-      <main>{children}</main>
+  const router = useRouter();
+  const sessionTokens =
+    typeof window !== "undefined" ? sessionStorage.getItem("tokens") : null;
+  useEffect(() => {
+    if (!sessionTokens) {
+      router.push("/auth/login");
+    }
+  }, [sessionTokens, router]);
+  if (!sessionTokens) {
+    return null;
+  }
 
-      <div className="absolute top-14 right-0 md:px-20 md:py-10 p-6 w-full lg:w-[calc(100%-250px)] mx-auto text-white">
-        <div className="text-base text-slate-400 font-light p-2 flex items-center gap-2">
-          <Link href="/user/home">Home</Link>
-          <FaChevronRight className="text-sm" />
-          <Link href="/user/social-media">Pricing Plans</Link>
-        </div>
-        <h2 className="text-3xl font-semibold p-2 pb-3">Pricing Plans</h2>
-        <div className="flex flex-col items-center justify-center">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mt-4">
-            {pricingData.map((card) => (
-              <PricingCard key={card.id} card={card} />
-            ))}
+  return (
+    <>
+      <div className="layout">
+        <main>{children}</main>
+        <div className="absolute top-14 right-0 md:px-20 md:py-10 p-6 w-full lg:w-[calc(100%-250px)] mx-auto text-white">
+          <div className="text-base text-slate-400 font-light p-2 flex items-center gap-2">
+            <Link href="/user/home">Home</Link>
+            <FaChevronRight className="text-sm" />
+            <Link href="/user/social-media">Pricing Plans</Link>
+          </div>
+          <h2 className="text-3xl font-semibold p-2 pb-3">Pricing Plans</h2>
+          <div className="flex flex-col items-center justify-center">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mt-4">
+              {pricingData.map((card) => (
+                <PricingCard key={card.id} card={card} />
+              ))}
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

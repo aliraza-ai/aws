@@ -1,5 +1,6 @@
 const IntelliAI = async (query: {
   prompt: string;
+  userId: string | null;
 }): Promise<{ success: boolean; response: string }> => {
   const tokens =
     typeof window !== "undefined" ? sessionStorage.getItem("tokens") : null;

@@ -57,7 +57,7 @@ const StartupIdeas = ({ type }: Props) => {
               value={domain}
               onChange={(e) => setFormData((prev) => ({
                 ...prev,
-                content: e.target.value
+                domain: e.target.value
               }))}
               className="contact-textarea bg-gradient-to-b from-[#0F1333] to-[#1D203F] "
             ></textarea>

@@ -42,8 +42,11 @@ const HeroSlider: React.FC<HeroSliderProps> = () => {
             style={{ objectFit: "cover", width: "100%", height: "100%" }}
           />
         </SwiperSlide>
+
       ))}
+
     </Swiper>
+
   );
 };
 

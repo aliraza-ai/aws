@@ -50,27 +50,27 @@ const Audience = ({ type }: Props) => {
 
       let query = '';
       switch (type) {
-        case "About us":
+        case "about-us":
           query = `Write about us having this product ${product} according to this audience ${audience} the description is ${description}. Now, I want response in html paragraph with strong and bold tag for headings and subheadings represented by size and bullets with numbers. After paragraph, use <br/> for linebreaks.`;
           getResponse(query);
           break;
-        case "Call to action":
+        case "call-to-action":
           query = `Write call to action having this product ${product} according to this audience ${audience} the description is ${description}. Now, I want response in html paragraph with strong and bold tag for headings and subheadings represented by size and bullets with numbers. After paragraph, use <br/> for linebreaks.`;
           getResponse(query);
           break;
-        case "Headline":
+        case "headline":
           query = `Write headline having this product ${product} according to this audience ${audience} the description is ${description}. Now, I want response in html paragraph with strong and bold tag for headings and subheadings represented by size and bullets with numbers. After paragraph, use <br/> for linebreaks.`;
           getResponse(query);
           break;
-        case "How it works":
+        case "how-it-works":
           query = `Write how it works having this product ${product} according to this audience ${audience} the description is ${description}. Now, I want response in html paragraph with strong and bold tag for headings and subheadings represented by size and bullets with numbers. After paragraph, use <br/> for linebreaks.`;
           getResponse(query);
           break;
-        case "Subheadline":
+        case "subheadline":
           query = `Write subheadline having this product ${product} according to this audience ${audience} the description is ${description}. Now, I want response in html paragraph with strong and bold tag for headings and subheadings represented by size and bullets with numbers. After paragraph, use <br/> for linebreaks.`;
           getResponse(query);
           break;
-        case "Value proposition":
+        case "value-proposition":
           query = `Generate value propositions of having this product ${product} according to this audience ${audience} the description is ${description}. Now, I want response in html paragraph with strong and bold tag for headings and subheadings represented by size and bullets with numbers. After paragraph, use <br/> for linebreaks.`;
           getResponse(query);
           break;

@@ -43,7 +43,8 @@ export const ContextProvider: React.FC<ContextProviderProps> = ({ children }) =>
     const getResponse = async (prompt: string) => {
         try {
             setLoading(true);
-            const query = { prompt }
+            const userId = typeof window !== "undefined" ? sessionStorage.getItem("userId") : null;
+            const query = { prompt, userId }
             const result = await IntelliAI(query);
             console.log(result)
             if (result.success) {

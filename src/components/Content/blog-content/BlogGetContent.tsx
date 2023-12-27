@@ -30,19 +30,19 @@ const BlogGetContent = ({ type }: Props) => {
 
       let query = "";
       switch (type) {
-        case "Blog title":
+        case "blog-title":
           query = `Write blog title having this content ${content}. Now, I want response in strong tag for headings.`;
           getResponse(query);
           break;
-        case "Content grammar":
+        case "content-grammar":
           query = `Correct the grammar of this ${content}. Now, I want response in html paragraph with strong and bold tag for headings and subheadings represented by size and bullets with numbers. After paragraph, use <br/> for linebreaks.`;
           getResponse(query);
           break;
-        case "Content rewriter":
+        case "content-rewriter":
           query = `Rewrite the this ${content} into something amazing. Now, I want response in html paragraph with strong and bold tag for headings and subheadings represented by size and bullets with numbers. After paragraph, use <br/> for linebreaks.`;
           getResponse(query);
           break;
-        case "Content summary":
+        case "content-summary":
           query = `Write short summary of this ${content}. Now, I want response in html paragraph with strong and bold tag for headings and subheadings represented by size and bullets with numbers. After paragraph, use <br/> for linebreaks.`;
           getResponse(query);
           break;

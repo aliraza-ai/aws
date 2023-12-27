@@ -1,9 +1,24 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { CTA_Shape1, CTA_Shape3, CTA_Graph } from "../../public";
+import { useRouter } from "next/navigation";
+
+const tokens =
+  typeof window !== "undefined" ? sessionStorage.getItem("tokens") : null;
 
 const Banner = () => {
+  const router = useRouter();
+
+  const handleClick = () => {
+    if (tokens) {
+      router.push("/user/dashboard");
+    } else {
+      router.push("/auth/register");
+    }
+  };
   return (
     <div className="container mx-auto w-full p-5 md:px-10 lg:px-24 pb-16 relative">
       <div className="bg-[#54157eec] text-white md:flex items-center justify-center px-2 py-4 md:p-10 rounded-2xl relative">
@@ -28,13 +43,10 @@ const Banner = () => {
             Experience the difference and elevate your content creation with our
             cutting-edge tools and support.
           </p>
-          <button>
-            <Link
-              href="/auth/register"
-              className=" rounded-lg bg-gradient-to-r to-[#61C6FF] from-[#283DFC] px-3 py-2 md:px-7 md:py-3 hover:opacity-90"
-            >
+          <button onClick={handleClick}>
+            <div className=" bg-gradient-to-r from-[rgba(247,15,255,1)] to-[#2C63FF] font-semibold  px-4 py-2 rounded-md h-fit flex justify-between items-center gap-2 hover:opacity-90">
               Get Started
-            </Link>
+            </div>
           </button>
         </div>
       </div>

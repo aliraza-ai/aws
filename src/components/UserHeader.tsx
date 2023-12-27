@@ -1,5 +1,4 @@
 "use client";
-
 import Link from "next/link";
 import { IoMdNotificationsOff } from "react-icons/io";
 import React, { useState, useRef, useEffect } from "react";
@@ -20,8 +19,7 @@ interface DropdownMenu {
   link: string;
 }
 
-
-const UserHeader: React.FC = ({}) => {
+const UserHeader = () => {
   const { toggle, setToggle } = useWebContext();
   const router = useRouter();
   const [showNotifications, setShowNotifications] = useState(false);
@@ -32,6 +30,8 @@ const UserHeader: React.FC = ({}) => {
     typeof window !== "undefined" ? sessionStorage.getItem("nameLetter") : null;
   const sessionName =
     typeof window !== "undefined" ? sessionStorage.getItem("name") : null;
+  const sessionTokens =
+    typeof window !== "undefined" ? sessionStorage.getItem("tokens") : null;
 
   const logout = () => {
     ["tokens", "name", "nameLetter", "userId"].forEach((item) =>
@@ -66,7 +66,9 @@ const UserHeader: React.FC = ({}) => {
   return (
     <div
       className={`flex items-center sticky top-0 z-20 justify-between px-2 md:px-8 py-2 sm:h-[80px] h-[60px] lg:ml-[250px] ${
-        isScrolled ? "bg-[rgba(32,45,72,0.41)]" : "bg-transparent"
+        isScrolled
+          ? "bg-[rgba(32,45,72,0.4)] backdrop-blur-sm"
+          : "bg-transparent"
       }`}
     >
       {/* Toggle Button */}
@@ -80,7 +82,7 @@ const UserHeader: React.FC = ({}) => {
           <h2 className="text-white font-semibold md:text-lg text-sm">
             Hi, {sessionName || "Loading..."}
           </h2>
-          <p className="text-[10px] md:text-sm text-slate-400">
+          <p className="text-[10px] md:text-sm text-[whitesmoke]">
             Welcome to intelliwriter
           </p>
         </div>
@@ -88,14 +90,6 @@ const UserHeader: React.FC = ({}) => {
 
       <div className="flex">
         <div className="flex items-center gap-3">
-          {/* Notifications */}
-          {/* <span
-            className="text-[22px] text-white bg-[rgba(32,45,72,0.41)] p-4 rounded-full cursor-pointer"
-            onClick={toggleNotifications}
-          >
-            <IoMdNotificationsOff />
-          </span> */}
-
           {/* User Avatar */}
           <div className="relative">
             <div
@@ -112,7 +106,7 @@ const UserHeader: React.FC = ({}) => {
               }`}
             >
               {dropdownMenu.map((item: DropdownMenu) =>
-                item.title !== "Dashbaord" ? (
+                item.title !== "dashboard" ? (
                   <Link key={item.id} href={item.link} passHref>
                     <li
                       className="py-3 px-5 flex items-center justify-start gap-2 text-white hover:bg-slate-500 transition duration-200"
@@ -156,8 +150,7 @@ const UserHeader: React.FC = ({}) => {
       {/* Notifications Dropdown */}
       {showNotifications && (
         <div className="absolute right-0 mt-0 mr-2 z-30">
-          <span className="py-2">Notification is empty!</span>
-          {/* {showNotifications && (
+          {showNotifications && (
             <div>
               <div
                 className="w-full h-screen fixed bg-black/40 top-0 left-0"
@@ -171,7 +164,7 @@ const UserHeader: React.FC = ({}) => {
                 />
               </div>
             </div>
-          )} */}
+          )}
         </div>
       )}
     </div>
