@@ -92,11 +92,11 @@ const SubDurLvl = ({ type }: Props) => {
           break;
       }
 
-      setFormData({
-        sub: "",
-        duration: "",
-        courseLevel: "",
-      });
+      // setFormData({
+      //   sub: "",
+      //   duration: "",
+      //   courseLevel: "",
+      // });
       setAsgLevel(null);
     }
   };

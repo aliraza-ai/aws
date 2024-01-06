@@ -38,13 +38,13 @@ const Hero = () => {
 
       <div
         className="xl:pt-20 pt-10 bg-cover bg-center Hero-bg"
-        // style={{
-        //   backgroundImage: `linear-gradient(rgb(20 6 40 / 76%), rgb(20 6 40 / 74%)), url(${HERO_CONTENT.imageUrl})`,
-        //   backgroundPosition: "bottom",
-        // }}
+      // style={{
+      //   backgroundImage: `linear-gradient(rgb(20 6 40 / 76%), rgb(20 6 40 / 74%)), url(${HERO_CONTENT.imageUrl})`,
+      //   backgroundPosition: "bottom",
+      // }}
       >
         <div className="container mx-auto flex flex-col items-center gap-3 px-4 md:px-8 lg:px-12 xl:px-24">
-          <h1 className="text-white text-4xl md:text-5xl lg:text-6xl font-semibold text-center pt-10">
+          <h2 className="text-white text-4xl md:text-5xl lg:text-6xl font-semibold text-center pt-10">
             <span className="bg-clip-text text-transparent bg-gradient-to-tr from-[#ec44ff] to-[#2d46ff]">
               AI Magic
             </span>
@@ -63,10 +63,12 @@ const Hero = () => {
                 </span>
               </p>
             </div>
-          </h1>
+          </h2>
+
+          <h1 className="py-2 text-center text-xl tracking-widest text-white">Free AI Writing Generator & Best AI Image Generator</h1>
 
           <div className="text-white text-base lg:text-lg my-0 mx-auto max-w-2xl">
-            <p className="text-lg text-center mb-6">
+            <p className="text-base text-center mb-6">
               {HERO_CONTENT.description}
             </p>
           </div>

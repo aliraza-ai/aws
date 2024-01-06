@@ -8,3 +8,4 @@ export { default as Banner } from "./Banner";
 export { default as OurRoadmap } from "./OurRoadmap";
 export { default as FAQs } from "./FAQs";
 export { default as Footer } from "./Footer";
+export { default as APISidebar } from "./APISidebar";

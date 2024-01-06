@@ -36,9 +36,9 @@ const PushNotification = ({ type }: Props) => {
       const prompt = `Write a push notification having the description ${description}. Response must be in html paragraph with strong tag for headings and <br/> for linebreaks.`;
       getResponse(prompt);
 
-      setFormData({
-        description: "",
-      });
+      // setFormData({
+      //   description: "",
+      // });
     }
   };
 

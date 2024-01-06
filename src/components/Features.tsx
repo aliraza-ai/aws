@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React from "react";
 import Image from "next/image";
 import { features } from "../constants";
 
@@ -9,7 +9,6 @@ const Features = () => {
     <div className="container mx-auto pt-5 " id="features">
       <div
         className="w-full lg:px-10 md:px-8 px-6 pt-3 overflow-hidden"
-        
       >
         <div className="w-full flex items-center justify-center flex-col">
           <div className="w-full text-white flex-col flex gap-2 items-center justify-center mb-2">

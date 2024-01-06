@@ -4,7 +4,7 @@ export { default as Hero_Circle } from "./hero-circle-min.png";
 export { default as Menu } from "./menu-icon.png";
 
 // Slider 
-export { default as SliderActive } from "./sliderActive.png";
+export const SliderActive = "/sliderActive.png";
 
 // about-steps
 export { default as Step1 } from "./Step1.png";
@@ -49,3 +49,8 @@ export { default as Shape5 } from "./shape5.png";
 
 export { default as checked } from "./checked.png";
 
+export { default as blogCardImage1 } from "./blog_content.png"
+export { default as blogCardImage2 } from "./blog_content_2.png"
+export { default as blogCardImage3 } from "./blog_content_3.png"
+export { default as blogCardImage4 } from "./blog_content_4.png"
+export { default as blogCardImage5 } from "./blog_content_5.png"

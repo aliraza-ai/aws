@@ -67,9 +67,9 @@ const SocialPages = ({ type }: Props) => {
           break;
       }
       
-      setFormData({
-        description: "",
-      });
+      // setFormData({
+      //   description: "",
+      // });
     }
   };
 

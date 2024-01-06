@@ -47,10 +47,10 @@ const NewsLetter = ({ type }: Props) => {
       const prompt = `Write a newsletter having this company name ${company} and related to this subject ${subject}. Response must be in html paragraph with strong tag for headings and <br/> for linebreaks.`;
       getResponse(prompt);
 
-      setFormData({
-        company: "",
-        subject: "",
-      });
+      // setFormData({
+      //   company: "",
+      //   subject: "",
+      // });
     }
   };
 

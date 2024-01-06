@@ -1,14 +1,13 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React from "react";
 import Image from "next/image";
-
 import { ABOUTUS_CONTENT } from "../constants";
 
 const AboutUs = () => {
   const content = ABOUTUS_CONTENT[0];
   return (
-      <div className="container mx-auto text-white text-center w-full pt-24 overflow-hidden" id="about">
+      <div className="container mx-auto text-white text-center w-full pt-24 overflow-hidden">
         <div className=" w-full flex items-center justify-center flex-col">
           <div className="w-full text-white flex-col flex gap-2 items-center justify-center ">
             <h2 className="text-center lg:text-[36px] md:text-3xl sm:text-2xl text-2xl font-semibold">

@@ -1,5 +1,6 @@
 "use client";
-import { useState, useEffect } from "react";
+
+import React, { useState, useEffect } from "react";
 
 const CookiePopup = () => {
   const [showPopup, setShowPopup] = useState(false);
@@ -8,7 +9,6 @@ const CookiePopup = () => {
   useEffect(() => {
     const handleScroll = () => {
       const scrolled = window.scrollY > 0;
-      console.log("Scrolled:", scrolled);
       setIsScrolled(scrolled);
     };
   

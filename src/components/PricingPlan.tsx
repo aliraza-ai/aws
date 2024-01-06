@@ -92,7 +92,7 @@ const PricingPlan: React.FC<PricingPlanProps> = ({
   pricingData = defaultPricingData,
 }) => {
   return (
-    <section className="w-full bg-no-repeat bg-cover pt-20" id="pricing">
+    <section className="w-full bg-no-repeat bg-cover pt-20">
       <div className="container mx-auto text-white lg:max-w-7xl p-5">
         <div className="w-full text-white flex-col flex gap-2 items-center justify-center">
           <h2 className="md:block hidden text-center lg:text-4xl md:text-3xl sm:text-2xl text-2xl font-semibold  ">

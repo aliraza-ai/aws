@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, ReactNode, useState } from "react";
+import { createContext, useContext, ReactNode, useState, useRef } from "react";
 import IntelliAI from "@/utils/IntelliAI";
 
 interface ContextProviderProps {
@@ -23,7 +23,12 @@ interface ContextProviderValue {
         duration: string;
         level: string | undefined;
     };
-    setError: (error: string | null) => void
+    setError: (error: string | null) => void;
+    apiSidebartoggle: boolean;
+    setApiSidebartoggle: (apiSidebartoggle: boolean) => void;
+    aboutRef: React.RefObject<HTMLDivElement> | null;
+    pricingRef: React.RefObject<HTMLDivElement> | null;
+
 };
 
 
@@ -39,6 +44,10 @@ export const ContextProvider: React.FC<ContextProviderProps> = ({ children }) =>
         duration: '',
         level: '',
     });
+
+    const aboutRef = useRef<HTMLDivElement>(null);
+    const pricingRef = useRef<HTMLDivElement>(null);
+    const [apiSidebartoggle, setApiSidebartoggle] = useState<boolean>(false)
 
     const getResponse = async (prompt: string) => {
         try {
@@ -86,7 +95,11 @@ export const ContextProvider: React.FC<ContextProviderProps> = ({ children }) =>
         error,
         setCourseContentInfo,
         courseContent,
-        setError
+        setError,
+        apiSidebartoggle,
+        setApiSidebartoggle,
+        aboutRef,
+        pricingRef,
     };
 
     return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

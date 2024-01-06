@@ -71,10 +71,10 @@ const TitleContent = ({ type }: Props) => {
         default:
           break;
       }
-      setFormData({
-        title: "",
-        content: "",
-      });
+      // setFormData({
+      //   title: "",
+      //   content: "",
+      // });
     }
   };
 

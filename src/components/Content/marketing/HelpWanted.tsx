@@ -54,11 +54,11 @@ const HelpWanted = ({ type }: Props) => {
       const prompt = `Write a Help wanted ad having this title ${title} and the company name is this ${name} also with the company location ${location}. Response must be in html paragraph with strong tag for headings and <br/> for linebreaks.`;
       getResponse(prompt);
 
-      setFormData({
-        title: "",
-        name: "",
-        location: "",
-      });
+      // setFormData({
+      //   title: "",
+      //   name: "",
+      //   location: "",
+      // });
     }
   };
 

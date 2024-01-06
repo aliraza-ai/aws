@@ -2,7 +2,6 @@
 
 import React from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { CTA_Shape1, CTA_Shape3, CTA_Graph } from "../../public";
 import { useRouter } from "next/navigation";
 

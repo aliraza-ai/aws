@@ -54,11 +54,11 @@ const PressRelease = ({ type }: Props) => {
       const prompt = `write Press release having this Company name ${company} with the description  ${description} and having subject ${subject}. Now, I want response in html paragraph with strong and bold tag for headings and subheadings represented by size and bullets with numbers. After paragraph, use <br/> for linebreaks.`;
       getResponse(prompt);
 
-      setFormData({
-        company: "",
-        description: "",
-        subject: "",
-      });
+      // setFormData({
+      //   company: "",
+      //   description: "",
+      //   subject: "",
+      // });
     }
   };
 

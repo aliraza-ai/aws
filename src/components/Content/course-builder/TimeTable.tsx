@@ -108,13 +108,13 @@ const Assignment = ({ type }: Props) => {
       const prompt = `Write a time table having this subject name ${sub} with the given time duration ${timedura} also schedule the hours of the time table having  ${schedhrs} also with the ending hours with ${endhrs} with the time table having this description ${description}. Response must be in html paragraph with strong tag for headings and <br/> for linebreaks.`;
       getResponse(prompt);
 
-      setFormData({
-        sub: "",
-        timedura: "",
-        schedhrs: "",
-        endhrs: "",
-        description: "",
-      });
+      // setFormData({
+      //   sub: "",
+      //   timedura: "",
+      //   schedhrs: "",
+      //   endhrs: "",
+      //   description: "",
+      // });
       settimedura(null);
       setschedhrs(null);
       setendhrs(null);

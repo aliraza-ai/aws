@@ -7,9 +7,6 @@ import Swal from "sweetalert2";
 import resetPasswordUser from "@/utils/resetPassword";
 import { useRouter } from "next/navigation";
 import { BiSolidLock } from "react-icons/bi";
-import dynamic from "next/dynamic";
-const Footer = dynamic(() => import("@/components/Footer"));
-const Header = dynamic(() => import("@/components/Header"));
 
 interface ResetPasswordPageProps {
   children: React.ReactNode;
@@ -89,77 +86,73 @@ const ResetPasswordPageLayout: React.FC<ResetPasswordPageProps | any> = (
   };
 
   return (
-    <>
-      <Header />
-      <section className="w-full bg-contact py-16 bg-bottom bg-no-repeat bg-cover flex items-center justify-center">
-        <div className="container rounded shadow-lg md:max-w-xl mx-3">
-          <div className="h-full border-2 border-white border-opacity-10 w-full bg-slate-800 rounded-3xl bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 space-y-5 px-5 pt-5">
-            <form onSubmit={submitForm} autoComplete="off">
-              <div className="flex flex-col lg:p-5 p-0 gap-y-6 text-white">
-                <div className="text-center font-bold p-3 text-[20px] lg:text-4xl">
-                  Reset Password
-                </div>
-
-                {/* New Password input */}
-                <label className="flex items-center">
-                  <div className="absolute lg:left-14 left-[2.5rem]">
-                    <BiSolidLock size={24} />
-                  </div>
-                  <input
-                    name="newPassword"
-                    placeholder="New Password"
-                    type="password"
-                    className="contact-input bg-gradient-to-b !pl-[48px] from-[#0F1333] to-[#1D203F] "
-                    value={newPassword}
-                    onChange={(e) => setNewPassword(e.target.value)}
-                  />
-                </label>
-                {resetError?.newPassword && (
-                  <p className="text-red-400 text-[16px] p-2">
-                    {resetError.newPassword}
-                  </p>
-                )}
-
-                {/* Confirm Password input */}
-                <label className="flex items-center">
-                  <div className="absolute lg:left-14 left-[2.5rem]">
-                    <BiSolidLock size={24} />
-                  </div>
-                  <input
-                    name="confirmPassword"
-                    placeholder="Confirm Password"
-                    type="password"
-                    className="contact-input bg-gradient-to-b !pl-[48px] from-[#0F1333] to-[#1D203F] "
-                    value={confirmPassword}
-                    onChange={(e) => setConfirmPassword(e.target.value)}
-                  />
-                </label>
-                {resetError?.confirmPassword && (
-                  <p className="text-red-400 text-[16px] p-2">
-                    {resetError.confirmPassword}
-                  </p>
-                )}
-
-                <button
-                  type="submit"
-                  className="bg-gradient-to-r from-[rgba(247,15,255,1)] to-[#2C63FF] py-3 hover:opacity-90 transition-all duration-300 px-[35px] text-white font-semibold rounded-full"
-                >
-                  Reset Password
-                </button>
+    <section className="w-full bg-contact py-16 bg-bottom bg-no-repeat bg-cover flex items-center justify-center">
+      <div className="container rounded shadow-lg md:max-w-xl mx-3">
+        <div className="h-full border-2 border-white border-opacity-10 w-full bg-slate-800 rounded-3xl bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 space-y-5 px-5 pt-5">
+          <form onSubmit={submitForm} autoComplete="off">
+            <div className="flex flex-col lg:p-5 p-0 gap-y-6 text-white">
+              <div className="text-center font-bold p-3 text-[20px] lg:text-4xl">
+                Reset Password
               </div>
-            </form>
 
-            <p className="pb-6 !m-0 text-center text-white lg:pt-0 pt-3">
-              Remember your password?{" "}
-              <span className="text-red-400">
-                <Link href="/auth/login">Login</Link>
-              </span>
-            </p>
-          </div>
+              {/* New Password input */}
+              <label className="flex items-center">
+                <div className="absolute lg:left-14 left-[2.5rem]">
+                  <BiSolidLock size={24} />
+                </div>
+                <input
+                  name="newPassword"
+                  placeholder="New Password"
+                  type="password"
+                  className="contact-input bg-gradient-to-b !pl-[48px] from-[#0F1333] to-[#1D203F] "
+                  value={newPassword}
+                  onChange={(e) => setNewPassword(e.target.value)}
+                />
+              </label>
+              {resetError?.newPassword && (
+                <p className="text-red-400 text-[16px] p-2">
+                  {resetError.newPassword}
+                </p>
+              )}
+
+              {/* Confirm Password input */}
+              <label className="flex items-center">
+                <div className="absolute lg:left-14 left-[2.5rem]">
+                  <BiSolidLock size={24} />
+                </div>
+                <input
+                  name="confirmPassword"
+                  placeholder="Confirm Password"
+                  type="password"
+                  className="contact-input bg-gradient-to-b !pl-[48px] from-[#0F1333] to-[#1D203F] "
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                />
+              </label>
+              {resetError?.confirmPassword && (
+                <p className="text-red-400 text-[16px] p-2">
+                  {resetError.confirmPassword}
+                </p>
+              )}
+
+              <button
+                type="submit"
+                className="bg-gradient-to-r from-[rgba(247,15,255,1)] to-[#2C63FF] py-3 hover:opacity-90 transition-all duration-300 px-[35px] text-white font-semibold rounded-full"
+              >
+                Reset Password
+              </button>
+            </div>
+          </form>
+
+          <p className="pb-6 !m-0 text-center text-white lg:pt-0 pt-3">
+            Remember your password?{" "}
+            <span className="text-red-400">
+              <Link href="/auth/login">Login</Link>
+            </span>
+          </p>
         </div>
-      </section>
-      <Footer />
-    </>
+      </div>
+    </section>
   );
 };
 

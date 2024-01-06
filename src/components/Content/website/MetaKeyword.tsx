@@ -45,10 +45,10 @@ const MetaKeyword = ({ type }: Props) => {
       const query = `Write Meta Keywords having this title ${title} with the description  ${description}. Now, I want response in html paragraph with strong and bold tag for headings and subheadings represented by size and bullets with numbers. After paragraph, use <br/> for linebreaks.`;
       getResponse(query);
 
-      setFormData({
-        title: "",
-        description: "",
-      });
+      // setFormData({
+      //   title: "",
+      //   description: "",
+      // });
     }
   };
 

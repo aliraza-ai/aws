@@ -58,12 +58,12 @@ const FeatureSection = ({ type }: Props) => {
       const query = `Write Feature Section having this title ${title} and having this product ${product} according to this audience ${audience} and also write its description ${description}. Now, I want response in html paragraph with strong and bold tag for headings and subheadings represented by size and bullets with numbers. After paragraph, use <br/> for linebreaks.`;
       getResponse(query);
 
-      setFormData({
-        title: "",
-        product: "",
-        audience: "",
-        description: "",
-      });
+      // setFormData({
+      //   title: "",
+      //   product: "",
+      //   audience: "",
+      //   description: "",
+      // });
     }
   };
 

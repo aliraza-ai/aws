@@ -61,10 +61,10 @@ const BlogDesc = ({ type }: Props) => {
           break;
       }
 
-      setFormData({
-        keyword: "",
-        description: "",
-      });
+      // setFormData({
+      //   keyword: "",
+      //   description: "",
+      // });
     }
   };
 

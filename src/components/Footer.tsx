@@ -1,8 +1,10 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { FOOTER_LINKS, FOOTER_FEATURES, SOCIAL_LINKS } from "@/constants";
-import SocialIcons from "./SocailIcons";
+import SocialIcons from "@/components/SocialIcons";
 import { Logo } from "../../public";
 
 const Footer: React.FC = () => {

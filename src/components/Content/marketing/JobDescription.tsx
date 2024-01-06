@@ -53,11 +53,11 @@ const JobDescription = ({ type }: Props) => {
       const prompt = `Write a job description having this position ${position} and the company name is this ${company} also with the job description ${description}. Response must be in html paragraph with strong tag for headings and <br/> for linebreaks.`;
       getResponse(prompt);
 
-      setFormData({
-        position: "",
-        company: "",
-        description: "",
-      });
+      // setFormData({
+      //   position: "",
+      //   company: "",
+      //   description: "",
+      // });
     }
   };
 

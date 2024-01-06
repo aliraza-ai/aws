@@ -90,15 +90,15 @@ const Assignment = ({ type }: Props) => {
       const prompt = `Write a Assignment having this subject name ${sub} write assignment start date having this start date ${sub} also write assignment due date having this due date ${due} also select assignment level ${asgLevel} for the target audience ${target} for the given number of question ${question} with some learning objective ${objective} . Response must be in html paragraph with strong tag for headings and <br/> for linebreaks.`;
       getResponse(prompt);
 
-      setFormData({
-        sub: "",
-        start: "",
-        due: "",
-        asgLevel: "",
-        target: "",
-        question: "",
-        objective: "",
-      });
+      // setFormData({
+      //   sub: "",
+      //   start: "",
+      //   due: "",
+      //   asgLevel: "",
+      //   target: "",
+      //   question: "",
+      //   objective: "",
+      // });
     }
   };
 

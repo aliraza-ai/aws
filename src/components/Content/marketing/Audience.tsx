@@ -62,10 +62,10 @@ const Audience = ({ type }: Props) => {
         default:
           break;
       }
-      setFormData({
-        product: "",
-        audience: "",
-      });
+      // setFormData({
+      //   product: "",
+      //   audience: "",
+      // });
     }
   };
 

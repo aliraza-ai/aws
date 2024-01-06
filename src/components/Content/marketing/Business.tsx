@@ -48,10 +48,10 @@ const Business = ({ type }: Props) => {
       const prompt = `Write a business tagline having this tagline ${tagline} for the purpose ${purpose}. Response must be in html paragraph with strong tag for headings and <br/> for linebreaks.`;
       getResponse(prompt);
 
-      setFormData({
-        tagline: "",
-        purpose: "",
-      });
+      // setFormData({
+      //   tagline: "",
+      //   purpose: "",
+      // });
     }
   };
 

@@ -63,10 +63,10 @@ const CompDesc = ({ type }: Props) => {
         default:
           break;
       }
-      setFormData({
-        company: "",
-        description: "",
-      });
+      // setFormData({
+      //   company: "",
+      //   description: "",
+      // });
     }
   };
 

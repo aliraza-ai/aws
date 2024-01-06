@@ -1,7 +1,7 @@
 "use client";
+
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { IoMdNotificationsOff } from "react-icons/io";
-import React, { useState, useRef, useEffect } from "react";
 import { IconType } from "react-icons";
 import { BiLogOut } from "react-icons/bi";
 import { dropdownMenu, staticNotifications } from "../constants";
@@ -11,6 +11,7 @@ import { useRouter } from "next/navigation";
 import { IoMdMenu } from "react-icons/io";
 import { useWebContext } from "@/context/ContextProvider";
 import Notifications from "./Notifications";
+// import { IoMdNotificationsOff } from "react-icons/io";
 
 interface DropdownMenu {
   id: number;
@@ -26,17 +27,11 @@ const UserHeader = () => {
   const [dropdown, setDropdown] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const { nameLetter, setTokens, setNameLetter } = useAuth();
-  const sessionLetter =
-    typeof window !== "undefined" ? sessionStorage.getItem("nameLetter") : null;
-  const sessionName =
-    typeof window !== "undefined" ? sessionStorage.getItem("name") : null;
-  const sessionTokens =
-    typeof window !== "undefined" ? sessionStorage.getItem("tokens") : null;
+  const [sessionName, setSessionName] = useState<string | null>("Loading...");
+  const [sessionLetter, setSessionLetter] = useState<string | null>("");
 
   const logout = () => {
-    ["tokens", "name", "nameLetter", "userId"].forEach((item) =>
-      sessionStorage.removeItem(item)
-    );
+    ["tokens", "name", "nameLetter", "userId"].forEach((item) => sessionStorage.removeItem(item));
     setTokens(null);
     setNameLetter("");
     Swal.fire({
@@ -63,13 +58,17 @@ const UserHeader = () => {
     };
   }, []);
 
+  useEffect(() => {
+    setSessionLetter(typeof window !== "undefined" ? sessionStorage.getItem("nameLetter") : null);
+    setSessionName(typeof window !== "undefined" ? sessionStorage.getItem("name") : null);
+  }, [sessionName, sessionLetter]);
+
   return (
-    <div
-      className={`flex items-center sticky top-0 z-20 justify-between px-2 md:px-8 py-2 sm:h-[80px] h-[60px] lg:ml-[250px] ${
-        isScrolled
-          ? "bg-[rgba(32,45,72,0.4)] backdrop-blur-sm"
-          : "bg-transparent"
-      }`}
+    
+    <div className={`flex items-center sticky top-0 z-20 justify-between px-2 md:px-8 py-2 sm:h-[80px] h-[60px] lg:ml-[250px] ${isScrolled
+        ? "bg-[rgba(32,45,72,0.4)] backdrop-blur-sm"
+        : "bg-transparent"
+        }`}
     >
       {/* Toggle Button */}
       <div className="flex items-center justify-start gap-3">
@@ -80,7 +79,7 @@ const UserHeader = () => {
 
         <div>
           <h2 className="text-white font-semibold md:text-lg text-sm">
-            Hi, {sessionName || "Loading..."}
+            Hi, {sessionName}
           </h2>
           <p className="text-[10px] md:text-sm text-[whitesmoke]">
             Welcome to intelliwriter
@@ -99,11 +98,10 @@ const UserHeader = () => {
               {nameLetter || sessionLetter}
             </div>
             <ul
-              className={`absolute w-40 right-0 bg-primary rounded-md overflow-hidden z-40  ${
-                dropdown
-                  ? "visible transition-all duration-200 translate-y-2"
-                  : " invisible transition-all duration-200 translate-y-0 pointer-events-none "
-              }`}
+              className={`absolute w-40 right-0 bg-primary rounded-md overflow-hidden z-40  ${dropdown
+                ? "visible transition-all duration-200 translate-y-2"
+                : " invisible transition-all duration-200 translate-y-0 pointer-events-none "
+                }`}
             >
               {dropdownMenu.map((item: DropdownMenu) =>
                 item.title !== "dashboard" ? (

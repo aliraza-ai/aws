@@ -73,10 +73,10 @@ const ProdDesc = ({ type }: Props) => {
           break;
       }
 
-      setFormData({
-        product: "",
-        description: "",
-      });
+      // setFormData({
+      //   product: "",
+      //   description: "",
+      // });
     }
   };
 

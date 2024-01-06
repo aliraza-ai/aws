@@ -50,9 +50,9 @@ const BlogGetContent = ({ type }: Props) => {
           break;
       }
 
-      setFormData({
-        content: "",
-      });
+      // setFormData({
+      //   content: "",
+      // });
     }
   };
 

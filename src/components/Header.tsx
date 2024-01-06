@@ -11,7 +11,6 @@ import { IoIosClose } from "react-icons/io";
 import { useRouter, usePathname } from "next/navigation";
 import Swal from "sweetalert2";
 import { BiLogOut } from "react-icons/bi";
-import { Logo, Hero_Circle, Menu } from "../../public";
 
 interface DropdownMenu {
   id: number;
@@ -20,8 +19,13 @@ interface DropdownMenu {
   link: string;
 }
 
-const Header = () => {
+interface HeaderProps {
+  aboutRef: React.RefObject<HTMLDivElement> | null;
+  pricingRef: React.RefObject<HTMLDivElement> | null;
+}
+const Header: React.FC<HeaderProps> = ({ aboutRef, pricingRef }) => {
   const router = useRouter();
+  const [activeSection, setActiveSection] = useState<string | null>(null);
   const [isScrolled, setIsScrolled] = useState(false);
   const [dropdown, setDropdown] = useState(false);
   const [showSidebar, setShowSidebar] = useState(false);
@@ -69,6 +73,33 @@ const Header = () => {
   };
 
   const pathname = usePathname();
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+
+      // Check if the scroll position is within the About section
+      if (
+        aboutRef?.current &&
+        scrollPosition >= aboutRef.current.offsetTop &&
+        (pricingRef?.current?.offsetTop ?? Number.MAX_SAFE_INTEGER) > scrollPosition
+        ) {
+        setActiveSection("about");
+      }
+      // Check if the scroll position is within the Pricing section
+      else if (pricingRef?.current && scrollPosition >= pricingRef.current.offsetTop) {
+        setActiveSection("pricing");
+      } else {
+        setActiveSection(null);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    // Cleanup event listener on component unmount
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [aboutRef, pricingRef]);
 
   return (
     <>
@@ -83,9 +114,8 @@ const Header = () => {
 
       <header className="container mx-auto flex items-center xl:pt-4 justify-center sticky top-0 z-50 w-full">
         <nav
-          className={`py-3 md:px-8 shadow-md flex md:text-[14px] lg:text-[14px]  items-center justify-between  md:rounded-[12px] lg:rounded-[12px] w-full lg:w-11/12 md:w-11/12 transition duration-500 ease-in-out ${
-            isScrolled ? "bg-[#640F6C]" : "bg-primary-two"
-          }`}
+          className={`py-3 md:px-8 shadow-md flex md:text-[14px] lg:text-[14px]  items-center justify-between  md:rounded-[12px] lg:rounded-[12px] w-full lg:w-11/12 md:w-11/12 transition duration-500 ease-in-out ${isScrolled ? "bg-[#640F6C]" : "bg-primary-two"
+            }`}
         >
           <div className="px-4">
             <Link href="/" passHref>
@@ -105,20 +135,19 @@ const Header = () => {
                 <Link
                   href={menuItem.route}
                   passHref
-                  className={`py-1 ${
-                    pathname == menuItem.route
-                      ? `${
-                          isScrolled
-                            ? "border-b-[3px] border-white"
-                            : "border-b-[3px] border-[#af4db7]"
-                        }`
+                  className={`py-1 transition-all duration-200 ${(activeSection === menuItem.title.toLowerCase() &&
+                      activeSection !== null) ||
+                      (pathname === menuItem.route && activeSection === null)
+                      ? `${isScrolled
+                        ? "border-b-2 border-white"
+                        : "border-b-2 border-[#af4db7]"
+                      }`
                       : ""
-                  }
-                  ${
-                    isScrolled
-                      ? "hover:border-b-[3px] hover:border-white"
-                      : "hover:border-b-[3px] hover:border-[#af4db7]"
-                  }`}
+                    }
+                  ${isScrolled
+                      ? "hover:border-b-2 hover:border-white"
+                      : "hover:border-b-2 hover:border-[#af4db7]"
+                    }`}
                 >
                   {menuItem.title}
                 </Link>
@@ -136,11 +165,10 @@ const Header = () => {
                   {nameLetter || sessionLetter}
                 </div>
                 <ul
-                  className={`absolute w-40 right-0 bg-primary rounded-md overflow-hidden ${
-                    dropdown
-                      ? "visible transition-all duration-200 translate-y-2"
-                      : " invisible transition-all duration-200 translate-y-0 pointer-events-none "
-                  }`}
+                  className={`absolute w-40 right-0 bg-primary rounded-md overflow-hidden ${dropdown
+                    ? "visible transition-all duration-200 translate-y-2"
+                    : " invisible transition-all duration-200 translate-y-0 pointer-events-none "
+                    }`}
                 >
                   {dropdownMenu.map((item: DropdownMenu) => (
                     <Link key={item.id} href={item.link} passHref>
@@ -196,7 +224,7 @@ const Header = () => {
             className="lg:hidden block fixed inset-0 bg-[#121324] z-50 w-full"
             onClick={closeSidebar}
           >
-            <div className="flex justify-between items-center pr-4">
+            <div className="flex justify-center items-center pr-4">
               <Link href="/">
                 <Image
                   src="/Logo.webp"
@@ -214,7 +242,7 @@ const Header = () => {
               />
             </div>
 
-            <div className="px-8 pt-3">
+            <div className="flex justify-center items-center px-8 pt-3">
               <ul className="text-white">
                 {NAV_LINKS.map((menuItem, index) => (
                   <li key={index} className="py-2">

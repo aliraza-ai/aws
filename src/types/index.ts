@@ -18,3 +18,4 @@ export interface PricingData {
 export interface IconPlaceholderProps {
   className?: string;
 }
+

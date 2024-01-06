@@ -207,7 +207,8 @@ const ContentResponse: React.FC<ContentResponseProps> = () => {
       ) : error ? (
         <div className="flex items-center justify-center border-4 border-dashed w-full h-full text-white/40 border-white/40 rounded">
           <p className="font-medium text-red-600">
-            {error ? "Something went wrong!" : ""}
+            {/* {error} */}
+            {error === "Out of Word limit!" ? error: "Something went wrong!"}
           </p>
         </div>
       ) : response ? (

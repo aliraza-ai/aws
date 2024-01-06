@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, FC } from "react";
+import React, { FC } from "react";
 import { RocketImg } from "../../public";
 import Image from "next/image";
 

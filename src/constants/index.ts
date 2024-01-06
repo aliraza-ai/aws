@@ -25,40 +25,52 @@ import {
   IndustryIntegration,
   RealTimeProcessing,
   Scalability,
+  ComprehensiveDocumentation,
+  DeverseLanguageSupport,
+  EasyIntegration,
+  Support,
 } from "../../public/api/index";
 import {
   AiFillApi,
   AiOutlineBulb,
   AiOutlineCode,
   AiOutlineCheck,
+} from "react-icons/ai";
+import { ReactNode } from "react";
+import {
   AiOutlineVideoCamera,
   AiOutlineRead,
   AiOutlineFileText,
   AiTwotoneTag,
   AiFillProfile,
 } from "react-icons/ai";
-
+import { MdClosedCaption, MdOutlineTitle, MdQuiz,MdSupportAgent } from "react-icons/md";
 import {
-  ComprehensiveDocumentation,
-  DeverseLanguageSupport,
-  EasyIntegration,
-  Support,
-} from "../../public/api/index";
-import { ReactNode } from "react";
+  FaHashtag,
+  FaBuysellads,
+  FaQuora,
+  FaRegObjectGroup,
+} from "react-icons/fa";
+import { IoMdImages } from "react-icons/io";
+import { BsSoundwave } from "react-icons/bs";
+import { CgEditNoise } from "react-icons/cg";
+import { BiMaleFemale, BiSolidFace } from "react-icons/bi";
+import { RiImageEditLine } from "react-icons/ri";
+import { blogCardImage1, blogCardImage2, blogCardImage3, blogCardImage4, blogCardImage5 } from "../../public/index";
+import { StaticImageData } from "next/image";
 
-const tokens =
-  typeof window !== "undefined" ? sessionStorage.getItem("tokens") : null;
+const tokens = typeof window !== "undefined" ? sessionStorage.getItem("tokens") : null;
 
-export const NAV_LINKS = [
-  { id: 1, title: "Home", route: "/" },
-  { id: 2, title: "About", route: "/#about" },
-  { id: 3, title: "Content", route: "/user/dashboard" },
-  { id: 4, title: "Images", route: "/user/image-generator" },
-  { id: 5, title: "APIs", route: "/api" },
-  { id: 6, title: "Pricing", route: "/#pricing" },
-  // { id: 7, title: "Blog", route: "https://intelliwriter.io/blog/" },
-  { id: 8, title: "Contact", route: "/contact" },
-];
+  export const NAV_LINKS = [
+    { id: 1, title: "Home", route: "/" },
+    { id: 2, title: "About", route: "/#about" },
+    { id: 3, title: "Content", route: "/user/dashboard" },
+    { id: 4, title: "Images", route: "/user/image-generator" },
+    { id: 5, title: "APIs", route: "/api" },
+    { id: 6, title: "Pricing", route: "/#pricing" },
+    // { id: 7, title: "Blog", route: "/blogs" },
+    // { id: 8, title: "Contact", route: "/contact" },
+  ];
 
 export const HERO_CONTENT = {
   id: 1,
@@ -98,8 +110,8 @@ export const pricingData = [
     package: "Basic Pack",
     currency: "",
     features: [
-      "3000 Words / month",
-      "10 Images / month",
+      "2000 Words / month",
+      "5 Images / month",
       "10 Chats / month",
       "All access tools",
     ],
@@ -125,7 +137,7 @@ export const pricingData = [
     price: "59.99",
     currency: "USD",
     features: [
-      "50000 words / month",
+      "20000 words / month",
       "Unlimited Images / month",
       "Unlimited Chats / month",
       "All access tools",
@@ -224,42 +236,46 @@ export const FOOTER_LINKS = [
   },
   {
     title: "About us",
-    link: "#about",
-  },
-  {
-    title: "Features",
-    link: "#features",
-  },
-  {
-    title: "APIs",
-    link: "https://api.intelliwriter.io/",
+    link: "/#about",
   },
   {
     title: "Content",
-    link: "/auth/login",
+    link: "/user/dashbaord",
+  },
+  {
+    title: "APIs",
+    link: "/api",
+  },
+  {
+    title: "Blogs",
+    link: "/blogs",
+  },
+  {
+    title: "Contact",
+    link: "/contact",
   },
 ];
 
 export const FOOTER_FEATURES = [
   {
     title: "Social Media Content Generation",
-    link: "/",
+    link: "/user/modules/social-media",
   },
   {
     title: "Blog Content Generation",
-    link: "/",
+    link: "/user/modules/blog-content",
   },
   {
     title: "Website Content Generation",
-    link: "/",
+    link: "/user/modules/website",
   },
   {
     title: "Marketing Content Generation",
-    link: "/",
+    link: "/user/modules/marketing",
   },
   {
     title: "Chatting",
-    link: "/",
+    link: "/user/chat",
   },
 ];
 
@@ -333,23 +349,12 @@ export const dropdownMenu: DropdownMenu[] = [
     title: "Dashboard",
     link: "/user/dashboard",
   },
-];
-
-// sidebar
-export const SIDEBAR_LINKS = [
-  // Start here
-  { text: "Dashboard", url: "/dashboard" },
-  { text: "Blog Content", url: "/dashboard/analytics" },
-  { text: "Social Media", url: "/dashboard/reporting" },
-  { text: "Marketing", url: "/dashboard/projects" },
-
-  // User tool
-  { text: "Website", url: "/ecommerce" },
-  { text: "Course Builder", url: "/ecommerce/products" },
-  { text: "Image Generator", url: "/settings" },
-
-  // Support
-  { text: "Chat", url: "/logout" },
+  {
+    id: 3,
+    icon: MdSupportAgent,
+    title: "Support",
+    link: "/contact",
+  },
 ];
 
 export const staticNotifications = [
@@ -462,6 +467,7 @@ interface apiSectionData {
   icon: ReactNode;
   paragraph: string;
 }
+
 export const trust_api_section_data: apiSectionData[] = [
   {
     id: 1,
@@ -717,5 +723,300 @@ export const pricingCards = [
       "Feature 4 for Premium",
     ],
     price: "$19.99",
+  },
+];
+
+interface sidebarProps {
+  id: number;
+  title: string;
+  submenu: false;
+  link: string;
+  icon: IconType;
+}
+
+export const sidebarLinks: sidebarProps[] = [
+  {
+    id: 0,
+    title: "Documentations",
+    submenu: false,
+    link: "/api",
+    icon: AiOutlineFileText,
+  },
+  {
+    id: 1,
+    title: "Video Description",
+    submenu: false,
+    link: "/api/video-description",
+    icon: AiOutlineVideoCamera,
+  },
+  {
+    id: 2,
+    title: "Article Provider",
+    submenu: false,
+    link: "/api/article-provider",
+    icon: AiOutlineRead,
+  },
+  {
+    id: 3,
+    title: "Tags Provider",
+    submenu: false,
+    link: "/api/tags-provider",
+    icon: AiTwotoneTag,
+  },
+  {
+    id: 4,
+    title: "Title Provider",
+    submenu: false,
+    link: "/api/title-provider",
+    icon: MdOutlineTitle,
+  },
+  {
+    id: 5,
+    title: "Caption Provider",
+    submenu: false,
+    link: "/api/caption-provider",
+    icon: MdClosedCaption,
+  },
+  {
+    id: 6,
+    title: "Description Provider",
+    submenu: false,
+    link: "/api/description-provider",
+    icon: AiFillProfile,
+  },
+  {
+    id: 7,
+    title: "Hashtags Provider",
+    submenu: false,
+    link: "/api/hashtags-provider",
+    icon: FaHashtag,
+  },
+  {
+    id: 8,
+    title: "Wanted Ad Provider",
+    submenu: false,
+    link: "/api/wanted-ad-provider",
+    icon: FaBuysellads,
+  },
+  {
+    id: 9,
+    title: "FAQs Provider",
+    submenu: false,
+    link: "/api/faqs-provider",
+    icon: FaQuora,
+  },
+  {
+    id: 10,
+    title: "Quiz Provider",
+    submenu: false,
+    link: "/api/quiz-provider",
+    icon: MdQuiz,
+  },
+  {
+    id: 11,
+    title: "Dynamic Images",
+    submenu: false,
+    link: "api/dynamic-images",
+    icon: IoMdImages,
+  },
+  {
+    id: 12,
+    title: "Object Detection",
+    submenu: false,
+    link: "/api/object-detection",
+    icon: FaRegObjectGroup,
+  },
+  {
+    id: 13,
+    title: "Gender Recognition",
+    submenu: false,
+    link: "/api/gender-recognition",
+    icon: BiMaleFemale,
+  },
+  {
+    id: 14,
+    title: "Face Hide",
+    submenu: false,
+    link: "/api/gender-recognition",
+    icon: BiSolidFace,
+  },
+  {
+    id: 15,
+    title: "Image to text",
+    submenu: false,
+    link: "/api/image-to-text",
+    icon: RiImageEditLine,
+  },
+  {
+    id: 16,
+    title: "Text to speech",
+    submenu: false,
+    link: "/api/text-to-speech",
+    icon: BsSoundwave,
+  },
+  {
+    id: 17,
+    title: "Noise Remover",
+    submenu: false,
+    link: "/api/noise-remover",
+    icon: CgEditNoise,
+  },
+];
+
+export const IntelliApiData = [
+  {
+    id: 1,
+    heading: "Video Description",
+    paragraph: "Generate video descriptions for content creators.",
+    link: "/api/video-description",
+  },
+  {
+    id: 2,
+    heading: "Article Provider",
+    paragraph: "Generate Articles from Title and Keywords",
+    link: "/api/article-provider ",
+  },
+  {
+    id: 3,
+    heading: "Tags Provider",
+    paragraph: "Auto-Generate Tags from Video Titles",
+    link: "/api/tags-provider ",
+  },
+  {
+    id: 4,
+    heading: "Title Provider",
+    paragraph: "Generate SEO Titles from Descriptions",
+    link: "/api/title-provider ",
+  },
+  {
+    id: 5,
+    heading: "Caption Provider",
+    paragraph: "Auto-Generate Captions from Titles",
+    link: "/api/caption-provider ",
+  },
+  {
+    id: 6,
+    heading: "Description Provider",
+    paragraph: "Auto-Generate Descriptions from Titles",
+    link: "/api/description-provider ",
+  },
+  {
+    id: 7,
+    heading: "Hashtags Provider",
+    paragraph: "Auto-Generate Hashtags from Descriptions",
+    link: "/api/hashtags-provider ",
+  },
+  {
+    id: 8,
+    heading: "Wanted Ad Provider",
+    paragraph: "Auto-Generate Required Ads from Input",
+    link: "/api/wanted-ad-provider ",
+  },
+  {
+    id: 9,
+    heading: "FAQs Provider",
+    paragraph: "Auto-Generate FAQs from Description",
+    link: "/api/faqs-provider ",
+  },
+  {
+    id: 10,
+    heading: "Quiz Provider",
+    paragraph: "Auto-Generate Text-Based Quizzes from Inputs",
+    link: "/api/quiz-provider ",
+  },
+];
+
+export const VoiceApiData = [
+  {
+    id: 1,
+    heading: "Text-to-Speech",
+    paragraph: "Generate audio note from text descriptions for your videos.",
+    link: "/api/text-to-speech",
+  },
+  {
+    id: 2,
+    heading: "Noise Remover",
+    paragraph: "Remove noise from your audio/video.",
+    link: "/api/noise-remover",
+  },
+];
+
+export const ImageApiData = [
+  {
+    id: 1,
+    heading: "Dynamic Images",
+    paragraph: "Generate images with dynamic content.",
+    link: "/api/dynamic-images",
+  },
+  {
+    id: 2,
+    heading: "Object Detection",
+    paragraph: "Automatically detects objects from images.",
+    link: "/api/object-detection",
+  },
+  {
+    id: 3,
+    heading: "Gender Recognition",
+    paragraph: "Create and manipulate images with ease.",
+    link: "/api/gender-recognition",
+  },
+  {
+    id: 4,
+    heading: "Face Hide",
+    paragraph: "Hide face using AI APIs to control your visuals.",
+    link: "/api/face-hide",
+  },
+  {
+    id: 5,
+    heading: "Image to text",
+    paragraph: "Effortlessly generate text for your images.",
+    link: "/api/image-to-text",
+  },
+];
+
+
+export interface BlogPageDataProps {
+  id: number;
+  image: StaticImageData;
+  title: string;
+  date: string;
+}
+
+export const BlogPageData = [
+  {
+    id: 1,
+    image: blogCardImage5,
+    title: "Lights, Camera, Action: Building a Multilingual Movie Recommended!",
+    date: "Thu, 01 Dec 2023",
+  },
+  {
+    id: 2,
+    image: blogCardImage2,
+    title: "Lights, Camera, Action: Building a Multilingual Movie Recommended!",
+    date: "Sat, 31 Oct 2023",
+  },
+  {
+    id: 3,
+    image: blogCardImage3,
+    title: "Lights, Camera, Action: Building a Multilingual Movie Recommended!",
+    date: "Thu, 20 Nov 2023",
+  },
+  {
+    id: 4,
+    image: blogCardImage4,
+    title: "Lights, Camera, Action: Building a Multilingual Movie Recommended!",
+    date: "Mon, 15 Jan 2023",
+  },
+  {
+    id: 5,
+    image: blogCardImage2,
+    title: "Lights, Camera, Action: Building a Multilingual Movie Recommended!",
+    date: "Sat, 20 Sep 2023",
+  },
+  {
+    id: 6,
+    image: blogCardImage1,
+    title: "Lights, Camera, Action: Building a Multilingual Movie Recommended!",
+    date: "Sun, 01 Jun 2023",
   },
 ];

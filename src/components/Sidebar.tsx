@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext } from "react";
+import React from "react";
 import { IconPlaceholderProps } from "@/types";
 import { Logo } from "../../public";
 import Link from "next/link";
@@ -10,35 +10,18 @@ import { RiLogoutBoxRFill } from "react-icons/ri";
 import { MdContactSupport } from "react-icons/md";
 import { CgWebsite } from "react-icons/cg";
 import { IoIosClose } from "react-icons/io";
-import {
-  SiChatbot,
-  SiBloglovin,
-  SiGooglemarketingplatform,
-} from "react-icons/si";
+import { SiChatbot, SiBloglovin, SiGooglemarketingplatform } from "react-icons/si";
 import { BiSolidImageAlt } from "react-icons/bi";
 import Image from "next/image";
 import "@/app/globals.css";
 import Swal from "sweetalert2";
 import { useAuth } from "@/context/AuthContext";
 import { useRouter, usePathname } from "next/navigation";
-
-const IconPlaceholder: React.FC<IconPlaceholderProps> = (props) => {
-  return <div className="h-5 w-5 bg-gray-300" {...props} />;
-};
-
-import {
-  Card,
-  Typography,
-  List,
-  ListItem,
-  ListItemPrefix,
-  Alert,
-} from "@material-tailwind/react";
+import { Typography, List, ListItem, ListItemPrefix, Alert } from "@material-tailwind/react";
 import { useWebContext } from "@/context/ContextProvider";
 
 export function Sidebar() {
   const router = useRouter();
-  const [open, setOpen] = React.useState(0);
   const [openAlert, setOpenAlert] = React.useState(true);
   const { setToggle, toggle } = useWebContext();
   const { setTokens, setNameLetter } = useAuth();
@@ -58,21 +41,13 @@ export function Sidebar() {
     router.push("/");
   };
 
-  const handleOpen = (value: number) => {
-    setOpen(open === value ? 0 : value);
-  };
   const pathName = usePathname();
 
   return (
-    <div
-      className={`sm:w-[250px] w-full border-r z-[999] fixed top-0 lg:left-0 transition-all duration-200 ${
-        toggle ? "left-0" : "sm:-left-[250px] -left-full"
-      } border-[#54515b] rounded-none h-screen p-0 py-4 pt-0 shadow-xl bg-[rgb(32,45,72)] md:bg-[rgba(32,45,72,0.4)] backdrop-blur-sm overflow-y-auto transition-all duration-200 custom-scrollbar`}>
+    <div className={`sm:w-[250px] w-full border-r z-[999] fixed top-0 lg:left-0 transition-all duration-200 ${toggle ? "left-0" : "sm:-left-[250px] -left-full"
+        } border-[#54515b] rounded-none h-screen p-0 py-4 pt-0 shadow-xl bg-[rgb(32,45,72)] md:bg-[rgba(32,45,72,0.4)] backdrop-blur-sm overflow-y-auto transition-all duration-200 custom-scrollbar`}>
       {/* Close icon */}
-      <IoIosClose
-        className="text-white text-4xl absolute top-5 right-2 lg:hidden block"
-        onClick={() => setToggle(!toggle)}
-      />
+      <IoIosClose className="text-white text-4xl absolute top-5 right-2 lg:hidden block" onClick={() => setToggle(!toggle)} />
 
       <div className="mb-0 p-4 border-b border-[#54515b]">
         <Link href="/">
@@ -89,9 +64,8 @@ export function Sidebar() {
 
           <Link
             href="/user/dashboard"
-            className={`flex items-center border-b-0 p-3 list-item-hover rounded-[6px]  ${
-              pathName == "/user/dashboard" ? "bg-[#640f6c]" : " "
-            } `}
+            className={`flex items-center border-b-0 p-3 list-item-hover rounded-[6px]  ${pathName == "/user/dashboard" ? "bg-[#640f6c]" : ""
+              } `}
             onClick={() => setToggle(!toggle)}
           >
             <ListItem className="p-0 ">
@@ -112,9 +86,8 @@ export function Sidebar() {
           {/* Blog Content */}
           <Link
             href="/user/blog-content"
-            className={`flex items-center border-b-0 p-3 list-item-hover rounded-[6px] ${
-              pathName == "/user/blog-content" ? "bg-[#640f6c]" : " "
-            } `}
+            className={`flex items-center border-b-0 p-3 list-item-hover rounded-[6px] ${pathName == "/user/blog-content" ? "bg-[#640f6c]" : " "
+              } `}
             onClick={() => setToggle(!toggle)}
           >
             <ListItem className="p-0 ">
@@ -129,9 +102,8 @@ export function Sidebar() {
           {/* Social Media */}
           <Link
             href="/user/social-media"
-            className={`flex items-center border-b-0 p-3 list-item-hover rounded-[6px] ${
-              pathName == "/user/social-media" ? "bg-[#640f6c]" : " "
-            } `}
+            className={`flex items-center border-b-0 p-3 list-item-hover rounded-[6px] ${pathName == "/user/social-media" ? "bg-[#640f6c]" : " "
+              } `}
             onClick={() => setToggle(!toggle)}
           >
             <ListItem className="p-0 ">
@@ -145,9 +117,8 @@ export function Sidebar() {
           {/* Marketing */}
           <Link
             href="/user/marketing"
-            className={`flex items-center border-b-0 p-3 list-item-hover rounded-[6px] ${
-              pathName == "/user/marketing" ? "bg-[#640f6c]" : " "
-            } `}
+            className={`flex items-center border-b-0 p-3 list-item-hover rounded-[6px] ${pathName == "/user/marketing" ? "bg-[#640f6c]" : " "
+              } `}
             onClick={() => setToggle(!toggle)}
           >
             <ListItem className="p-0 ">
@@ -161,9 +132,8 @@ export function Sidebar() {
           {/* Website */}
           <Link
             href="/user/website"
-            className={`flex items-center border-b-0 p-3 list-item-hover rounded-[6px] ${
-              pathName == "/user/website" ? "bg-[#640f6c]" : " "
-            } `}
+            className={`flex items-center border-b-0 p-3 list-item-hover rounded-[6px] ${pathName == "/user/website" ? "bg-[#640f6c]" : " "
+              } `}
             onClick={() => setToggle(!toggle)}
           >
             <ListItem className="p-0 ">
@@ -177,9 +147,8 @@ export function Sidebar() {
           {/* Course Builder */}
           <Link
             href="/user/course-builder"
-            className={`flex items-center border-b-0 p-3 list-item-hover rounded-[6px] ${
-              pathName == "/user/course-builder" ? "bg-[#640f6c]" : " "
-            } `}
+            className={`flex items-center border-b-0 p-3 list-item-hover rounded-[6px] ${pathName == "/user/course-builder" ? "bg-[#640f6c]" : " "
+              } `}
             onClick={() => setToggle(!toggle)}
           >
             <ListItem className="p-0 ">
@@ -193,9 +162,8 @@ export function Sidebar() {
           {/* Image Generator */}
           <Link
             href="/user/image-generator"
-            className={`flex items-center border-b-0 p-3 list-item-hover rounded-[6px] ${
-              pathName == "/user/image-generator" ? "bg-[#640f6c]" : " "
-            } `}
+            className={`flex items-center border-b-0 p-3 list-item-hover rounded-[6px] ${pathName == "/user/image-generator" ? "bg-[#640f6c]" : " "
+              } `}
             onClick={() => setToggle(!toggle)}
           >
             <ListItem className="p-0 ">
@@ -209,9 +177,8 @@ export function Sidebar() {
           {/* Chat */}
           <Link
             href="/user/chat"
-            className={`flex items-center border-b-0 p-3 list-item-hover rounded-[6px] ${
-              pathName == "/user/chat" ? "bg-[#640f6c]" : " "
-            } `}
+            className={`flex items-center border-b-0 p-3 list-item-hover rounded-[6px] ${pathName == "/user/chat" ? "bg-[#640f6c]" : " "
+              } `}
             onClick={() => setToggle(!toggle)}
           >
             <ListItem className="p-0 ">
@@ -230,9 +197,8 @@ export function Sidebar() {
           {/* Plans */}
           <Link
             href="/user/plans"
-            className={`flex items-center border-b-0 p-3 list-item-hover rounded-[6px] ${
-              pathName == "/user/plans" ? "bg-[#640f6c]" : " "
-            } `}
+            className={`flex items-center border-b-0 p-3 list-item-hover rounded-[6px] ${pathName == "/user/plans" ? "bg-[#640f6c]" : " "
+              } `}
             onClick={() => setToggle(!toggle)}
           >
             <ListItem className="p-0 ">
@@ -246,9 +212,8 @@ export function Sidebar() {
           {/* FAQs & Help */}
           <Link
             href="/user/faqs"
-            className={`flex items-center border-b-0 p-3 list-item-hover rounded-[6px] ${
-              pathName == "/user/faqs" ? "bg-[#640f6c]" : " "
-            } `}
+            className={`flex items-center border-b-0 p-3 list-item-hover rounded-[6px] ${pathName == "/user/faqs" ? "bg-[#640f6c]" : " "
+              } `}
             onClick={() => setToggle(!toggle)}
           >
             <ListItem className="p-0 ">

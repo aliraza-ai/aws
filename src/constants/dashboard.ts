@@ -2,6 +2,7 @@ import { RiArticleFill, RiFilePaper2Fill } from "react-icons/ri";
 import { MdDiamond } from "react-icons/md";
 import { TiSortAlphabeticallyOutline } from "react-icons/ti";
 import { RiChatSmile2Fill } from "react-icons/ri";
+import { IoMdImages } from "react-icons/io";
 
 import {
   BsLayoutTextSidebarReverse,
@@ -81,7 +82,14 @@ export const BasicCardData: BasicCard[] = [
     icon: RiChatSmile2Fill,
     title: "Remaining Chats",
     plan: " ",
-    remaining: 0,
+    remaining: 10,
+  },
+  {
+    id: 4,
+    icon: IoMdImages,
+    title: "Remaining Image Prompts",
+    plan: " ",
+    remaining: 5,
   },
 ];
 

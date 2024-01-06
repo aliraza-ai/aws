@@ -39,9 +39,9 @@ const VideoTags = ({ type }: Props) => {
             const query = `Generate video tags according to this title ${title}. Now, I want response in html paragraph with strong and bold tag for headings and subheadings represented by size and bullets with numbers. After paragraph, use <br/> for linebreaks.`;
             getResponse(query)
 
-            setFormData({
-                title: "",
-            });
+            // setFormData({
+            //     title: "",
+            // });
         }
     };
 

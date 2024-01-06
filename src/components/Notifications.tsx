@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { FaChevronLeft } from "react-icons/fa";
 import { HiDotsVertical } from "react-icons/hi";

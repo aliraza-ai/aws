@@ -78,11 +78,11 @@ const Audience = ({ type }: Props) => {
           break;
       }
 
-      setFormData({
-        product: "",
-        audience: "",
-        description: "",
-      });
+      // setFormData({
+      //   product: "",
+      //   audience: "",
+      //   description: "",
+      // });
     }
   };
 

@@ -54,11 +54,11 @@ const Quiz = ({ type }: Props) => {
       const prompt = `Write a Quiz having this subject name ${sub} with having this quiz topic ${topic} also according to number of question ${question}. Response must be in html paragraph with strong tag for headings and <br/> for linebreaks.`;
       getResponse(prompt);
 
-      setFormData({
-        sub: "",
-        topic: "",
-        question: "",
-      });
+      // setFormData({
+      //   sub: "",
+      //   topic: "",
+      //   question: "",
+      // });
     }
   };
 

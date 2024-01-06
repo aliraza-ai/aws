@@ -37,9 +37,9 @@ const StartupIdeas = ({ type }: Props) => {
       const prompt = `Write a startup ideas having this domain ${domain}. Response must be in html paragraph with strong tag for headings and <br/> for linebreaks.`;
       getResponse(prompt);
 
-      setFormData({
-        domain: "",
-      });
+      // setFormData({
+      //   domain: "",
+      // });
     }
   };
 

@@ -63,10 +63,10 @@ const BlogBody = ({ type }: Props) => {
           break;
       }
 
-      setFormData({
-        title: "",
-        subheading: "",
-      });
+      // setFormData({
+      //   title: "",
+      //   subheading: "",
+      // });
     }
   };
 
