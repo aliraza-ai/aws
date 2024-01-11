@@ -50,9 +50,9 @@ export const ContextProvider: React.FC<ContextProviderProps> = ({ children }) =>
     const [apiSidebartoggle, setApiSidebartoggle] = useState<boolean>(false)
 
     const getResponse = async (prompt: string) => {
+        const userId = typeof window !== "undefined" ? sessionStorage.getItem("userId") : null;
         try {
             setLoading(true);
-            const userId = typeof window !== "undefined" ? sessionStorage.getItem("userId") : null;
             const query = { prompt, userId }
             const result = await IntelliAI(query);
             console.log(result)

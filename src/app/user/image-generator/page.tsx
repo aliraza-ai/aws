@@ -9,7 +9,6 @@ import { FiEye, FiX } from "react-icons/fi";
 import Image from "next/image";
 import { HiOutlineDownload } from "react-icons/hi";
 import axios from "axios";
-import { useRouter } from "next/navigation";
 import { imageCount, updateImageCount } from "@/utils/imageCount";
 
 type Image = {
@@ -24,8 +23,6 @@ type Option = {
 };
 
 const ImageGeneratorPages = () => {
-  const router = useRouter();
-  const sessionTokens = typeof window !== "undefined" ? sessionStorage.getItem("tokens") : null;
   const [messageID, setMessageID] = useState<string>("");
   const [progress, setProgress] = useState<number>(0);
   const [dots, setDots] = useState<number>(1);
@@ -59,16 +56,6 @@ const ImageGeneratorPages = () => {
       setProgressImageUrls(JSON.parse(storedProgressImageUrls));
     }
   }, []);
-
-  useEffect(() => {
-    if (!sessionTokens) {
-      router.push('/auth/login');
-    }
-  }, [sessionTokens, router]);
-
-  if (!sessionTokens) {
-    return null;
-  }
 
   useEffect(() => {
     sessionStorage.setItem(
@@ -243,7 +230,7 @@ const ImageGeneratorPages = () => {
           <Link href="/user/social-media">Image Generator</Link>
         </div>
 
-        <h2 className="text-3xl font-semibold p-2 pb-3">Image Generator</h2>
+        <h1 className="text-3xl font-semibold p-2 pb-3">Image Generator</h1>
 
         <div className=" w-full flex flex-col justify-between items-center gap-5 py-5">
           {/* Prompt Form */}

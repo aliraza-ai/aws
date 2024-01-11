@@ -1,39 +1,37 @@
 "use client";
 
-import React, { useEffect } from "react";
-import Accordion from "@/components/Accordion";
+import React from "react";
+import { Course } from "@/constants/dashboard";
 import Link from "next/link";
 import { FaChevronRight } from "react-icons/fa6";
-import { useRouter } from "next/navigation";
 
 const CourseBuilderPage = () => {
-  const router = useRouter();
-  const sessionTokens = typeof window !== "undefined" ? sessionStorage.getItem("tokens") : null;
-  useEffect(() => {
-    if (!sessionTokens) {
-      router.push('/auth/login');
-    }
-  }, [sessionTokens, router]);
-  if (!sessionTokens) {
-    return null;
-  }
 
   return (
-    <div className="absolute top-14 right-0 md:px-10 md:py-10 p-6 w-full lg:w-[calc(100%-250px)] mx-auto text-white">
-      <div className="w-full flex flex-col justify-center items-center">
-        <div className="w-full container lg:px-10 px-3 pb-5 md:px-8 overflow-hidden ">
-          <div className="w-full flex flex-col items-start justify-center">
-            <div className="text-base text-slate-400 font-light p-2 flex items-center gap-2">
-              <Link href="/user/dashboard">Dashboard</Link>
-              <FaChevronRight className="text-sm" />
-              <Link href="/user/social-media">FAQs & Help</Link>
+    <div className="absolute top-14 right-0 md:px-20 md:py-10 p-6 w-full lg:w-[calc(100%-250px)] mx-auto text-white">
+      <div className="text-base text-slate-400 font-light p-2 flex items-center gap-2">
+        <Link href="/user/dashboard">Dashboard</Link>
+        <FaChevronRight className="text-sm" />
+        <Link href="/user/course-builder">Course Builder</Link>
+      </div>
+
+      <h1 className="text-3xl font-semibold p-2 pb-3">Course Builder</h1>
+      <div className="grid grid-cols-1 gap-5 py-3 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        {Course.map((item) => (
+          <Link
+            href={item.url}
+            key={item.id}
+            className="flex flex-col rounded-lg py-4 px-6 bg-[rgba(32,45,72,0.41)] text-white gap-2 overflow-hidden border border-[#FFFFFF14] cursor-pointer"
+          >
+            <span className=" bg-[#f3e8ff] block w-10 h-10 rounded-md text-[#9333ea] text-2xl  p-2">
+              {React.createElement(item.icon)}
+            </span>
+            <div className="text-lg font-bold">{item.title}</div>
+            <div className="text-sm -mt-2 text-slate-400">
+              {item.description}
             </div>
-            <h2 className="text-3xl font-semibold p-2 pb-3">FAQs & Help</h2>
-            <div className="pt-4 flex items-start justify-center w-full md:w-4/5 lg:w-11/12">
-              <Accordion />
-            </div>
-          </div>
-        </div>
+          </Link>
+        ))}
       </div>
     </div>
   );

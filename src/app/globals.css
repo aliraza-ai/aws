@@ -572,3 +572,31 @@ a.ck.ck-button.ck-on {
 .strength-1 { color: orange; }
 .strength-2 { color: yellow; }
 .strength-3 { color: green; }
+
+
+.endpoint-scrollbar {
+  overflow-x: auto;
+}
+
+.endpoint-scrollbar::-webkit-scrollbar {
+  height: 4px;
+}
+/* Scrollbar thumb */
+.endpoint-scrollbar::-webkit-scrollbar-thumb {
+  background-color: gray !important;
+  border-radius: 8px !important;
+}
+
+/* Scrollbar track */
+.endpoint-scrollbar::-webkit-scrollbar-track {
+  background-color: transparent;
+  border-radius: 8px !important;
+}
+.endpoint-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: gray !important;
+}
+
+.imageContentGeneratorSteps {
+  background: rgb(26, 18, 77);
+  background: radial-gradient(circle, rgba(26, 18, 77, 1) 0%, rgba(45, 41, 73, 1) 43%, #101027);
+}

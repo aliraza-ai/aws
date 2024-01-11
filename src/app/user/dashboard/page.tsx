@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from 'react';
 import { Doughnut } from "react-chartjs-2";
 import Image from "next/image";
 import Link from "next/link";
@@ -11,7 +11,6 @@ import { AiOutlineRight } from "react-icons/ai";
 import { ImageGeneration } from "../../../../public";
 import getWordCount from "@/utils/getWordCount";
 import getChatCount from "@/utils/getChatCount";
-import { useRouter } from "next/navigation";
 import { imageCount } from "@/utils/imageCount";
 Chart.register(ArcElement, Tooltip, Legend);
 
@@ -48,8 +47,6 @@ const DoughnutChart: React.FC<DoughnutChartProps> = ({ data, labels }) => {
 };
 
 const DashboardPage = () => {
-  const router = useRouter();
-  const sessionTokens = typeof window !== "undefined" ? sessionStorage.getItem("tokens") : null;
   const [wordCount, setWordCount] = useState<number | null>(0);
   const [chatCount, setChatCount] = useState<number | null>(0);
   const [imagesCount, setImagesCount] = useState<number | null>(0);
@@ -101,16 +98,6 @@ const DashboardPage = () => {
     fetchChatCount();
     fetchImageCount();
   }, []);
-
-  useEffect(() => {
-    if (!sessionTokens) {
-      router.push("/auth/login");
-    }
-  }, [sessionTokens, router]);
-
-  if (!sessionTokens) {
-    return null;
-  }
 
   const chartLabelsWords = ["Remaining Words", "Total words"];
   const chartLabelsChats = ["Remaining Chats", "Total chats"];
@@ -208,7 +195,7 @@ const DashboardPage = () => {
             {/* <Doughnut data={words} className="mx-auto pt-2" /> */}
             <div className="w-3/4 mx-auto pt-2 ">
               <DoughnutChart
-                data={[wordCount || 0, 3000 - (wordCount || 0)]}
+                data={[wordCount || 0, 2000 - (wordCount || 0)]}
                 labels={chartLabelsWords}
               />
             </div>

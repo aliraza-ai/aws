@@ -31,6 +31,7 @@ import {
   Support,
 } from "../../public/api/index";
 import {
+  AiOutlineHome,
   AiFillApi,
   AiOutlineBulb,
   AiOutlineCode,
@@ -259,19 +260,19 @@ export const FOOTER_LINKS = [
 export const FOOTER_FEATURES = [
   {
     title: "Social Media Content Generation",
-    link: "/user/modules/social-media",
+    link: "/user/social-media",
   },
   {
     title: "Blog Content Generation",
-    link: "/user/modules/blog-content",
+    link: "/user/blog-content",
   },
   {
     title: "Website Content Generation",
-    link: "/user/modules/website",
+    link: "/user/website",
   },
   {
     title: "Marketing Content Generation",
-    link: "/user/modules/marketing",
+    link: "/user/marketing",
   },
   {
     title: "Chatting",
@@ -737,9 +738,16 @@ interface sidebarProps {
 export const sidebarLinks: sidebarProps[] = [
   {
     id: 0,
-    title: "Documentations",
+    title: "Home",
     submenu: false,
     link: "/api",
+    icon: AiOutlineHome,
+  },
+  {
+    id: 0,
+    title: "Documentations",
+    submenu: false,
+    link: "/api/docs",
     icon: AiOutlineFileText,
   },
   {
@@ -812,55 +820,55 @@ export const sidebarLinks: sidebarProps[] = [
     link: "/api/quiz-provider",
     icon: MdQuiz,
   },
-  {
-    id: 11,
-    title: "Dynamic Images",
-    submenu: false,
-    link: "api/dynamic-images",
-    icon: IoMdImages,
-  },
-  {
-    id: 12,
-    title: "Object Detection",
-    submenu: false,
-    link: "/api/object-detection",
-    icon: FaRegObjectGroup,
-  },
-  {
-    id: 13,
-    title: "Gender Recognition",
-    submenu: false,
-    link: "/api/gender-recognition",
-    icon: BiMaleFemale,
-  },
-  {
-    id: 14,
-    title: "Face Hide",
-    submenu: false,
-    link: "/api/gender-recognition",
-    icon: BiSolidFace,
-  },
-  {
-    id: 15,
-    title: "Image to text",
-    submenu: false,
-    link: "/api/image-to-text",
-    icon: RiImageEditLine,
-  },
-  {
-    id: 16,
-    title: "Text to speech",
-    submenu: false,
-    link: "/api/text-to-speech",
-    icon: BsSoundwave,
-  },
-  {
-    id: 17,
-    title: "Noise Remover",
-    submenu: false,
-    link: "/api/noise-remover",
-    icon: CgEditNoise,
-  },
+  // {
+  //   id: 11,
+  //   title: "Dynamic Images",
+  //   submenu: false,
+  //   link: "api/dynamic-images",
+  //   icon: IoMdImages,
+  // },
+  // {
+  //   id: 12,
+  //   title: "Object Detection",
+  //   submenu: false,
+  //   link: "/api/object-detection",
+  //   icon: FaRegObjectGroup,
+  // },
+  // {
+  //   id: 13,
+  //   title: "Gender Recognition",
+  //   submenu: false,
+  //   link: "/api/gender-recognition",
+  //   icon: BiMaleFemale,
+  // },
+  // {
+  //   id: 14,
+  //   title: "Face Hide",
+  //   submenu: false,
+  //   link: "/api/gender-recognition",
+  //   icon: BiSolidFace,
+  // },
+  // {
+  //   id: 15,
+  //   title: "Image to text",
+  //   submenu: false,
+  //   link: "/api/image-to-text",
+  //   icon: RiImageEditLine,
+  // },
+  // {
+  //   id: 16,
+  //   title: "Text to speech",
+  //   submenu: false,
+  //   link: "/api/text-to-speech",
+  //   icon: BsSoundwave,
+  // },
+  // {
+  //   id: 17,
+  //   title: "Noise Remover",
+  //   submenu: false,
+  //   link: "/api/noise-remover",
+  //   icon: CgEditNoise,
+  // },
 ];
 
 export const IntelliApiData = [

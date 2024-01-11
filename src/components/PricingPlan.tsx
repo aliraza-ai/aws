@@ -6,6 +6,7 @@ import { pricingData as defaultPricingData } from "../constants";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { CheckIcon } from "../../public";
+import { useWebContext } from "@/context/ContextProvider";
 
 const tokens =
   typeof window !== "undefined" ? sessionStorage.getItem("tokens") : null;
@@ -91,13 +92,15 @@ const PricingCard: React.FC<{ card: PricingData }> = ({ card }) => {
 const PricingPlan: React.FC<PricingPlanProps> = ({
   pricingData = defaultPricingData,
 }) => {
+  const { pricingRef } = useWebContext()
+
   return (
-    <section className="w-full bg-no-repeat bg-cover pt-20">
+    <section ref={pricingRef} className="w-full bg-no-repeat bg-cover pt-20" id="pricing">
       <div className="container mx-auto text-white lg:max-w-7xl p-5">
         <div className="w-full text-white flex-col flex gap-2 items-center justify-center">
           <h2 className="md:block hidden text-center lg:text-4xl md:text-3xl sm:text-2xl text-2xl font-semibold  ">
-            Choose the{" "}
-            <span className="bg-clip-text text-transparent bg-gradient-to-tr from-[#DE1DF5] to-[#011DFD]">
+            Choose the
+            <span className="pl-1 bg-clip-text text-transparent bg-gradient-to-tr from-[#DE1DF5] to-[#011DFD]">
               Pricing
             </span>{" "}
             that fits you

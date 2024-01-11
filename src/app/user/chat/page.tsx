@@ -1,11 +1,10 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { ChatItem } from "react-chat-elements";
 import Link from "next/link";
 import { FaChevronRight } from "react-icons/fa6";
 import { TbSend } from "react-icons/tb";
-import { useRouter } from "next/navigation";
 import createChat from "@/utils/createChat";
 import Swal from "sweetalert2";
 // import getChatCount from "@/utils/getChatCount"
@@ -24,8 +23,6 @@ interface ChatItemProps {
 }
 
 const ChatPage = () => {
-  const router = useRouter();
-  const sessionTokens = typeof window !== "undefined" ? sessionStorage.getItem("tokens") : null;
   const sessionName = typeof window !== "undefined" ? sessionStorage.getItem("name") : null;
   const [message, setMessage] = useState<string>("");
   const [error, setError] = useState("");
@@ -39,16 +36,6 @@ const ChatPage = () => {
       avatar: "/logo-min.png",
     },
   ]);
-
-  useEffect(() => {
-    if (!sessionTokens) {
-      router.push("/auth/login");
-    }
-  }, [sessionTokens, router]);
-
-  if (!sessionTokens) {
-    return null;
-  }
 
   const Chat: React.FC<ChatItemProps | any> = ({ message, id }) => (
     <ChatItem {...message} key={id} className="bg-primary-two" />

@@ -1,24 +1,11 @@
 "use client"
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import { content } from '@/constants/dashboard';
 import { FaChevronRight } from 'react-icons/fa6';
-import { useRouter } from 'next/navigation';;
 
 const BlogLayout = () => {
-  const router = useRouter();
-  const sessionTokens = typeof window !== 'undefined' ? sessionStorage.getItem('tokens') : null;
-
-  useEffect(() => {
-    if (!sessionTokens) {
-      router.push('/auth/login');
-    }
-  }, [sessionTokens, router]);
-
-  if (!sessionTokens) {
-    return null;
-  }
 
   return (
     <div className="absolute top-14 right-0 md:px-20 md:py-10 p-6 w-full lg:w-[calc(100%-250px)] mx-auto text-white">

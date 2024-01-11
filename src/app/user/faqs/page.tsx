@@ -1,25 +1,12 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React from "react";
 import Accordion from "@/components/Accordion";
 import Link from "next/link";
 import { FaChevronRight } from "react-icons/fa6";
-import { useRouter } from "next/navigation";
 
 
 const FAQsPage = () => {
-  const router = useRouter();
-  const sessionTokens = typeof window !== "undefined" ? sessionStorage.getItem("tokens") : null;
-
-  useEffect(() => {
-    if (!sessionTokens) {
-      router.push('/auth/login');
-    }
-  }, [sessionTokens, router]);
-
-  if (!sessionTokens) {
-    return null;
-  }
 
   return (
     <div className="absolute top-14 right-0 md:px-10 md:py-10 p-6 w-full lg:w-[calc(100%-250px)] mx-auto text-white">
@@ -32,7 +19,7 @@ const FAQsPage = () => {
               <Link href="/user/social-media">FAQs & Help</Link>
             </div>
             
-            <h2 className="text-3xl font-semibold p-2 pb-3">FAQs & Help</h2>
+            <h1 className="text-3xl font-semibold p-2 pb-3">FAQs & Help</h1>
             
             <div className="pt-4 flex items-start justify-center w-full md:w-4/5 lg:w-11/12">
               <Accordion />

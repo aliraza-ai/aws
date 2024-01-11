@@ -1,9 +1,10 @@
 const IntelliAI = async (query: {
   prompt: string;
+  userId: string | null;
 }): Promise<{ success: boolean; response: string }> => {
-  const tokens =
-    typeof window !== "undefined" ? sessionStorage.getItem("tokens") : null;
+  const tokens = typeof window !== "undefined" ? sessionStorage.getItem("tokens") : null;
   try {
+    console.log(query)
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL}/intelliAI/generate-prompt`,
       {
@@ -21,7 +22,7 @@ const IntelliAI = async (query: {
       return { success: true, response: res.data };
     } else {
       const errorData = await response.json();
-      return { success: false, response: errorData.message };
+      return { success: false, response: errorData.error };
     }
   } catch (error) {
     return { success: false, response: `Something went wrong!` };

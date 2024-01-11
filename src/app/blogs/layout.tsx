@@ -1,5 +1,7 @@
 import React from "react";
 import type { Metadata } from "next";
+import PageProps from "@/components/PageProps";
+import Scripts from "@/components/Scripts";
 
 export const metadata: Metadata = {
   title: "IntelliWriter.io Blogs – Keep in touch with Us",
@@ -13,13 +15,16 @@ export default function Layout({ children }: Props) {
   return (
     <>
       <head>
-        <meta charSet="UTF-8" />
-        <meta name="google-site-verification" content="jOLdFKT4EB_AxoR8fQqHLckgsvnJ_Ta4WPY40UNfjwo" />
+        <title>IntelliWriter.io Blogs – Keep in touch with Us</title>
+        <meta name="description" content="Daily Updated blogs of Intelliwriter AI Development and features." />
         <link rel="canonical" href="https://intelliwriter.io/blogs" />
       </head>
-      <div>
-        {children}
-      </div>
+      <body>
+        <PageProps>
+          {children}
+        </PageProps>
+        <Scripts />
+      </body>
     </>
   );
 }

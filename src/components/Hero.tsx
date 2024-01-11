@@ -4,19 +4,46 @@ import React, { useState } from "react";
 import { Typewriter } from "react-simple-typewriter";
 import HeroSlider from "./HeroSlider";
 import { HERO_CONTENT } from "../constants";
-import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { IoIosClose } from "react-icons/io";
+import { heroEffect } from "../../public";
+import SwiperCore from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/effect-cards";
+import { EffectCards } from "swiper/modules";
+import { SliderActive } from "../../public";
+SwiperCore.use([EffectCards]);
 
 const Hero = () => {
   const [popup, setPopup] = useState(false);
-  const sessionTokens =
-    typeof window !== "undefined" ? sessionStorage.getItem("tokens") : null;
+  const sessionTokens = typeof window !== "undefined" ? sessionStorage.getItem("tokens") : null;
   const isLoggedIn = sessionTokens !== null;
+  const navigate = useRouter();
+
+  const images = [
+    {
+      id: 1,
+      img: SliderActive,
+    },
+    {
+      id: 2,
+      img: SliderActive,
+    },
+    {
+      id: 3,
+      img: SliderActive,
+    },
+    {
+      id: 4,
+      img: SliderActive,
+    },
+  ];
 
   const handleClick = () => {
     if (isLoggedIn) {
-      window.location.href = "/user/dashboard";
+      navigate.push("/user/dashboard");
     } else {
       setPopup(true);
     }
@@ -36,13 +63,7 @@ const Hero = () => {
         </div>
       </div>
 
-      <div
-        className="xl:pt-20 pt-10 bg-cover bg-center Hero-bg"
-      // style={{
-      //   backgroundImage: `linear-gradient(rgb(20 6 40 / 76%), rgb(20 6 40 / 74%)), url(${HERO_CONTENT.imageUrl})`,
-      //   backgroundPosition: "bottom",
-      // }}
-      >
+      <div className="xl:pt-20 pt-10 bg-cover bg-center Hero-bg">
         <div className="container mx-auto flex flex-col items-center gap-3 px-4 md:px-8 lg:px-12 xl:px-24">
           <h2 className="text-white text-4xl md:text-5xl lg:text-6xl font-semibold text-center pt-10">
             <span className="bg-clip-text text-transparent bg-gradient-to-tr from-[#ec44ff] to-[#2d46ff]">
@@ -87,8 +108,24 @@ const Hero = () => {
             />
           </div>
 
-          <div className="pt-12">
-            <HeroSlider />
+          <div className="pt-12 w-full flex items-center justify-center">
+            <Swiper
+              effect={"cards"}
+              grabCursor={true}
+              className="mySwiper"
+              initialSlide={1}
+              slidesPerView={1}
+            >
+              {images.map(item => (
+                <SwiperSlide key={item.id}>
+                  <div className="h-[400px] bg-slate-400">
+                    <Image src={item.img} alt={item.img} fill className="object-cover max-h-300" />
+                  </div>
+                </SwiperSlide>
+
+              ))}
+
+            </Swiper>
           </div>
         </div>
       </div>
@@ -104,12 +141,7 @@ const Hero = () => {
             <div className="w-full h-full flex flex-col items-center justify-center px-6 gap-6 text-white">
               <div className="w-16 h-16 bg-slate-500 rounded-full flex items-center justify-center">
                 <div className="h-4/5">
-                  <Image
-                    src="/logo-min.png"
-                    alt="logo-min"
-                    width={50}
-                    height={50}
-                  />
+                  <Image src={heroEffect} alt={heroEffect} width={50} height={50} />
                 </div>
               </div>
 
@@ -121,23 +153,16 @@ const Hero = () => {
                 Register or Login to continue
               </p>
 
-              <Link href="/auth/login" className="w-full">
-                <button className="w-full py-3 bg-[#5F0E66] rounded-md font-semibold">
-                  Login
-                </button>
-              </Link>
+              <button className="w-full py-3 bg-[#5F0E66] rounded-md font-semibold cursor-pointer" onClick={() => navigate.push("/auth/login")}>
+                Login
+              </button>
 
-              <Link href="/auth/register" className="w-full">
-                <button className="w-full py-3 bg-gray-800 rounded-md font-semibold">
-                  Register
-                </button>
-              </Link>
+              <button className="w-full py-3 bg-gray-700 rounded-md font-semibold cursor-pointer" onClick={() => navigate.push("/auth/register")}>
+                Register
+              </button>
             </div>
 
-            <IoIosClose
-              className="text-white text-2xl cursor-pointer absolute top-2 right-2"
-              onClick={() => setPopup(false)}
-            />
+            <IoIosClose className="text-white text-2xl cursor-pointer absolute top-2 right-2" onClick={() => setPopup(false)} />
           </div>
         </div>
       )}

@@ -1,19 +1,26 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import Swal from "sweetalert2";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
-import { CardElement, useStripe, useElements, Elements } from "@stripe/react-stripe-js";
-import { useRouter } from "next/navigation";
+import {
+  CardElement,
+  useStripe,
+  useElements,
+  Elements,
+} from "@stripe/react-stripe-js";
 import { CheckIcon } from "../../../../public";
 import Image from "next/image";
 import { pricingData } from "@/constants";
 import StripeTransaction from "@/utils/StripeTransaction";
 import { FaChevronRight } from "react-icons/fa6";
+import updatePlans from "@/utils/updatePlans";
 
-const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY ?? '');
+const stripePromise = loadStripe(
+  process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY ?? ""
+);
 
 const CheckoutForm: React.FC = () => {
   const stripe = useStripe();
@@ -63,18 +70,20 @@ const CheckoutForm: React.FC = () => {
       Swal.fire({
         icon: "error",
         title: "Ooops...",
-        text: error.message || "An error occurred while processing the payment.",
+        text:
+          error.message || "An error occurred while processing the payment.",
       });
     } else {
-      // console.log("PaymentMethod:", paymentMethod);
       const id = paymentMethod.id;
-      const TransactionSuccess = await StripeTransaction(planId, id)
+      const TransactionSuccess = await StripeTransaction(planId, id);
       if (TransactionSuccess.success) {
         Swal.fire({
           icon: "success",
           title: "Success",
           text: TransactionSuccess.message,
         });
+
+        await updatePlans(selectedPlan!.package);
       } else {
         Swal.fire({
           icon: "error",
@@ -90,75 +99,6 @@ const CheckoutForm: React.FC = () => {
       <h1 className="font-bold text-3xl my-4">Payment Summary</h1>
       <div className="flex items-center justify-center w-full">
         <div className="w-4/5 md:flex justify-between p-3 rounded-lg drop-shadow-lg border border-blue-900 backdrop-blur-md">
-          {/* <form onSubmit={handleSubmit} className="md:w-[350px] ">
-          <div className="mb-4">
-            <label
-              className="block mb-2 font-bold text-white"
-              htmlFor="card-element"
-            >
-              Cardholder's Name
-            </label>
-            <input
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              className="contact-input bg-gradient-to-b from-[#0F1333] to-[#1D203F] "
-              placeholder="Enter your name"
-            />
-          </div>
-          <div className="mb-4">
-            <label className="block mb-2 font-bold text-white" htmlFor="email">
-              E-mail
-            </label>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="contact-input bg-gradient-to-b from-[#0F1333] to-[#1D203F] "
-              placeholder="Enter your email"
-            />
-          </div>
-          <div className="mb-4">
-            <label
-              className="block mb-2 font-bold text-white"
-              htmlFor="address"
-            >
-              Address
-            </label>
-            <input
-              type="text"
-              value={address}
-              onChange={(e) => setAddress(e.target.value)}
-              className=" contact-input bg-gradient-to-b from-[#0F1333] to-[#1D203F] "
-              placeholder="Enter your address"
-            />
-          </div>
-          <div className="mb-4">
-            <label
-              className="block mb-2 font-bold text-white"
-              htmlFor="card-element"
-            >
-              Card Details
-            </label>
-            <div className="!text-white py-4 p-2 rounded-full bg-gradient-to-b from-[#0F1333] to-[#1D203F] ">
-              <CardElement
-                id="card-element"
-                options={{
-                  style: { base: { fontSize: "16px", color: "#ffffff" } },
-                }}
-              />
-            </div>
-          </div>
-          {paymentError && <div className="text-red-500">{paymentError}</div>}
-          {selectedPlan.link && (
-            <button className="w-[350px] mt-4 bg-gradient-to-r from-[rgba(247,15,255,1)] to-[#2C63FF] transition-all duration-300 py-3 px-9 text-white font-semibold rounded-full hover:opacity-75" onClick={() => handleSubmit}>
-              <Link href={selectedPlan.link} className="w-[350px]">
-                Pay Now
-              </Link>
-            </button>
-          )}
-        </form> */}
-
           <div className="w-full">
             <div className="px-6 py-10 rounded-lg drop-shadow-lg bg-[#171C34] backdrop-blur-md flex flex-col gap-3">
               {/* <h1 className="font-bold text-2xl mb-3">Summary</h1> */}
@@ -202,7 +142,10 @@ const CheckoutForm: React.FC = () => {
               </div>
 
               {selectedPlan.link && (
-                <button className="w-max mt-4 bg-gradient-to-r from-[rgba(247,15,255,1)] to-[#2C63FF] transition-all duration-300 py-3 px-9 text-white font-semibold rounded-full hover:opacity-75" onClick={() => handleSubmit}>
+                <button
+                  className="w-max mt-4 bg-gradient-to-r from-[rgba(247,15,255,1)] to-[#2C63FF] transition-all duration-300 py-3 px-9 text-white font-semibold rounded-full hover:opacity-75"
+                  onClick={() => handleSubmit}
+                >
                   <Link href={selectedPlan.link} className="w-full">
                     Pay Now
                   </Link>
@@ -226,37 +169,24 @@ const PaymentPage: React.FC = () => {
   );
 };
 
-
 const PaymentPageLayout = () => {
-  const router = useRouter();
-  const sessionTokens = typeof window !== "undefined" ? sessionStorage.getItem("tokens") : null;
   const searchParams = new URLSearchParams(useSearchParams().toString());
   const planId = searchParams.get("planId") || "";
 
   let selectedPlan = pricingData.find((plan) => plan.id.toString() === planId);
 
-  useEffect(() => {
-    if (!sessionTokens) {
-      router.push("/auth/login");
-    }
-  }, [sessionTokens, router]);
-
-  if (!sessionTokens) {
-    return null;
-  }
-
   return (
-    <div className="layout">
-      <div className="absolute top-14 right-0 md:px-20 md:py-10 p-6 w-full lg:w-[calc(100%-250px)] mx-auto text-white">
-        <div className="text-base text-slate-400 font-light p-2 flex items-center gap-2">
-          <Link href="/user/dashboard">Dashboard</Link>
-          <FaChevronRight className="text-sm" />
-          <Link href="/user/plans">Plans</Link>
-          <FaChevronRight className="text-sm" />
-          <Link href={`/user/payment?planId=${planId}`}>{selectedPlan?.package}</Link>
-        </div>
-        <PaymentPage />
+    <div className="absolute top-14 right-0 md:px-20 md:py-10 p-6 w-full lg:w-[calc(100%-250px)] mx-auto text-white">
+      <div className="text-base text-slate-400 font-light p-2 flex items-center gap-2">
+        <Link href="/user/dashboard">Dashboard</Link>
+        <FaChevronRight className="text-sm" />
+        <Link href="/user/plans">Plans</Link>
+        <FaChevronRight className="text-sm" />
+        <Link href={`/user/payment?planId=${planId}`}>
+          {selectedPlan?.package}
+        </Link>
       </div>
+      <PaymentPage />
     </div>
   );
 };

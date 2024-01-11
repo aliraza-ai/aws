@@ -3,6 +3,8 @@ export { default as Logo } from "./Logo.webp";
 export { default as Hero_Circle } from "./hero-circle-min.png";
 export { default as Menu } from "./menu-icon.png";
 
+export const heroEffect = "/logo-min.png";
+
 // Slider 
 export const SliderActive = "/sliderActive.png";
 
@@ -10,7 +12,6 @@ export const SliderActive = "/sliderActive.png";
 export { default as Step1 } from "./Step1.png";
 export { default as Step2 } from "./Step2.png";
 export { default as Step3 } from "./Step3.jpeg";
-
 
 // features-icons
 export { default as Feature1 } from "./feature1.png";
@@ -54,3 +55,11 @@ export { default as blogCardImage2 } from "./blog_content_2.png"
 export { default as blogCardImage3 } from "./blog_content_3.png"
 export { default as blogCardImage4 } from "./blog_content_4.png"
 export { default as blogCardImage5 } from "./blog_content_5.png"
+
+export {default as gradientcircle} from "./discordcircle-min.png"
+export {default as imagestep2} from "./imageStep2.png"
+export {default as imagestep3} from "./imageStep3.png"
+export {default as imagestep1} from "./imageStep1.png"
+export {default as imagestep4} from "./imageStep4.png"
+export {default as imagecontent} from "./imagecontent.jpeg"
+export {default as imagecontentbg} from "./imagecontentbg.jpeg"

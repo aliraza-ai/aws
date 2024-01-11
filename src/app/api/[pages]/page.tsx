@@ -86,7 +86,7 @@ const InnerPage: React.FC<ContentItem> = ({ params }) => {
                 {item.title}
               </h2>
 
-              <SyntaxHighlighter language={'json'} style={coldarkDark} showLineNumbers={true} className="custom-scrollbar w-[cal(100% - 300px)] rounded-lg drop-shadow-xl">
+              <SyntaxHighlighter language={'json'} style={coldarkDark} showLineNumbers={true} className="custom-scrollbar w-[cal(100% - 300px)] rounded-lg drop-shadow-xl endpoint-scrollbar" >
                 {item.endPoint}
               </SyntaxHighlighter>
 

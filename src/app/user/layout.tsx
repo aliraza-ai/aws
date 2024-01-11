@@ -1,7 +1,7 @@
 import React from "react";
 import type { Metadata } from "next";
-import { Sidebar } from "@/components/Sidebar";
-import UserHeader from "@/components/UserHeader";
+import Scripts from "@/components/Scripts";
+import DashboardProps from "./DashboardProps";
 
 export const metadata: Metadata = {
   title: "IntelliWriter.io Dashboard – Manage Your AI Content Creation",
@@ -12,16 +12,17 @@ const Layout = ({ children }: { children: React.ReactNode; }) => {
 
   return (
     <>
-      {/* <head>
+      <head>
+        <title>IntelliWriter.io Dashboard – Manage Your AI Content Creation</title>
+        <meta name="description" content="Access your IntelliWriter.io dashboard to manage and create AI-driven content effortlessly. Write, design, and innovate with our comprehensive tools." />
         <link rel="canonical" href="https://intelliwriter.io/user/dashboard" />
-      </head> */}
-      <section className="flex relative">
-        <section className="w-full fixed z-50 top-0 left-0">
-          <UserHeader />
-        </section>
-        <Sidebar />
-        {children}
-      </section>
+      </head>
+      <body>
+        <DashboardProps>
+          {children}
+        </DashboardProps>
+        <Scripts />
+      </body>
     </>
   );
 };

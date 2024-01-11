@@ -24,17 +24,6 @@ interface ProfilePageLayoutProps {
 
 const ProfilePage: React.FC<ProfilePageLayoutProps> = () => {
   const router = useRouter();
-  const sessionTokens = typeof window !== "undefined" ? sessionStorage.getItem("tokens") : null;
-  
-  useEffect(() => {
-    if (!sessionTokens) {
-      router.push("/auth/login");
-    }
-  }, [sessionTokens, router]);
-  
-  if (!sessionTokens) {
-    return null;
-  }
 
   const [fullname, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");

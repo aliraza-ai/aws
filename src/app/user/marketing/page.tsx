@@ -1,24 +1,11 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React from "react";
 import Link from "next/link";
 import { Marketing } from "@/constants/dashboard";
 import { FaChevronRight } from "react-icons/fa6";
-import { useRouter } from "next/navigation";
 
 const MarketingPage = () => {
-  const router = useRouter();
-  const sessionTokens = typeof window !== "undefined" ? sessionStorage.getItem("tokens") : null;
-  
-  useEffect(() => {
-    if (!sessionTokens) {
-      router.push('/auth/login');
-    }
-  }, [sessionTokens, router]);
-  
-  if (!sessionTokens) {
-    return null;
-  }
 
   return (
     <div className="absolute top-14 right-0 md:px-20 md:py-10 p-6 w-full lg:w-[calc(100%-250px)] mx-auto text-white">
@@ -28,7 +15,7 @@ const MarketingPage = () => {
         <Link href="/user/marketing">Marketing</Link>
       </div>
 
-      <h2 className="text-3xl font-semibold p-2 pb-3">Marketing</h2>
+      <h1 className="text-3xl font-semibold p-2 pb-3">Marketing</h1>
       <div className="grid grid-cols-1 gap-5 py-3 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {Marketing.map((item) => (
           <Link href={item.url}
