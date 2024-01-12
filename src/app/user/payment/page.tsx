@@ -107,7 +107,7 @@ const CheckoutForm: React.FC = () => {
                 {selectedPlan.package}
               </h2>
 
-              <div className="mt-4">
+              <ul className="mt-4">
                 {selectedPlan.features.map((feature, index) => (
                   <li
                     key={index}
@@ -124,7 +124,7 @@ const CheckoutForm: React.FC = () => {
                     {feature}
                   </li>
                 ))}
-              </div>
+              </ul>
 
               <div className="flex text-[whitesmoke] text-sm md:text-lg xl:text-xl font-semibold justify-between">
                 <p>Duration</p>
@@ -143,6 +143,7 @@ const CheckoutForm: React.FC = () => {
 
               {selectedPlan.link && (
                 <button
+                  type="button"
                   className="w-max mt-4 bg-gradient-to-r from-[rgba(247,15,255,1)] to-[#2C63FF] transition-all duration-300 py-3 px-9 text-white font-semibold rounded-full hover:opacity-75"
                   onClick={() => handleSubmit}
                 >

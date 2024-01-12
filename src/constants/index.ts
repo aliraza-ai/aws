@@ -129,7 +129,7 @@ export const pricingData = [
       "250 Chats / month",
       "All access tools",
     ],
-    duration: "6 Months",
+    duration: "1 Month",
     link: "https://buy.stripe.com/14kbM9fM5dfV9d63co",
   },
   {
@@ -143,8 +143,8 @@ export const pricingData = [
       "Unlimited Chats / month",
       "All access tools",
     ],
-    duration: "1 Year",
-    link: "https://buy.stripe.com/28o6rP43ncbRcpicMZ",
+    duration: "1 Month",
+    link: "https://buy.stripe.com/4gwbM943ncbRaha00e",
   },
 ];
 

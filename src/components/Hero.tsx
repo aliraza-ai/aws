@@ -18,7 +18,8 @@ SwiperCore.use([EffectCards]);
 
 const Hero = () => {
   const [popup, setPopup] = useState(false);
-  const sessionTokens = typeof window !== "undefined" ? sessionStorage.getItem("tokens") : null;
+  const sessionTokens =
+    typeof window !== "undefined" ? sessionStorage.getItem("tokens") : null;
   const isLoggedIn = sessionTokens !== null;
   const navigate = useRouter();
 
@@ -86,7 +87,9 @@ const Hero = () => {
             </div>
           </h2>
 
-          <h1 className="py-2 text-center text-xl tracking-widest text-white">Free AI Writing Generator & Best AI Image Generator</h1>
+          <h1 className="py-2 text-center text-xl tracking-widest text-white">
+            Free AI Writing Generator & Best AI Image Generator
+          </h1>
 
           <div className="text-white text-base lg:text-lg my-0 mx-auto max-w-2xl">
             <p className="text-base text-center mb-6">
@@ -96,6 +99,7 @@ const Hero = () => {
 
           <div className="relative flex text-white rounded-3xl bg-gradient-to-r from-[rgba(247,15,255,1)] to-[#2C63FF] p-0.5 items-center justify-start w-[90%] md:w-[70%] lg:w-[40%] gap-3">
             <button
+              type="button"
               className="bg-black text-[9px] md:text-[13px] md:py-2 md:px-5 py-2 px-2 flex items-center justify-center rounded-3xl hover:opacity-75"
               onClick={handleClick}
             >
@@ -116,15 +120,18 @@ const Hero = () => {
               initialSlide={1}
               slidesPerView={1}
             >
-              {images.map(item => (
+              {images.map((item) => (
                 <SwiperSlide key={item.id}>
                   <div className="h-[400px] bg-slate-400">
-                    <Image src={item.img} alt={item.img} fill className="object-cover max-h-300" />
+                    <Image
+                      src={item.img}
+                      alt={item.img}
+                      fill
+                      className="object-cover max-h-300"
+                    />
                   </div>
                 </SwiperSlide>
-
               ))}
-
             </Swiper>
           </div>
         </div>
@@ -141,7 +148,12 @@ const Hero = () => {
             <div className="w-full h-full flex flex-col items-center justify-center px-6 gap-6 text-white">
               <div className="w-16 h-16 bg-slate-500 rounded-full flex items-center justify-center">
                 <div className="h-4/5">
-                  <Image src={heroEffect} alt={heroEffect} width={50} height={50} />
+                  <Image
+                    src={heroEffect}
+                    alt={heroEffect}
+                    width={50}
+                    height={50}
+                  />
                 </div>
               </div>
 
@@ -153,16 +165,27 @@ const Hero = () => {
                 Register or Login to continue
               </p>
 
-              <button className="w-full py-3 bg-[#5F0E66] rounded-md font-semibold cursor-pointer" onClick={() => navigate.push("/auth/login")}>
+              <button
+                type="button"
+                className="w-full py-3 bg-[#5F0E66] rounded-md font-semibold cursor-pointer"
+                onClick={() => navigate.push("/auth/login")}
+              >
                 Login
               </button>
 
-              <button className="w-full py-3 bg-gray-700 rounded-md font-semibold cursor-pointer" onClick={() => navigate.push("/auth/register")}>
+              <button
+                type="button"
+                className="w-full py-3 bg-gray-700 rounded-md font-semibold cursor-pointer"
+                onClick={() => navigate.push("/auth/register")}
+              >
                 Register
               </button>
             </div>
 
-            <IoIosClose className="text-white text-2xl cursor-pointer absolute top-2 right-2" onClick={() => setPopup(false)} />
+            <IoIosClose
+              className="text-white text-2xl cursor-pointer absolute top-2 right-2"
+              onClick={() => setPopup(false)}
+            />
           </div>
         </div>
       )}

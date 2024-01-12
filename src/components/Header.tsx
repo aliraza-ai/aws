@@ -81,12 +81,16 @@ const Header: React.FC<HeaderProps> = ({ aboutRef, pricingRef }) => {
       if (
         aboutRef?.current &&
         scrollPosition >= aboutRef.current.offsetTop &&
-        (pricingRef?.current?.offsetTop ?? Number.MAX_SAFE_INTEGER) > scrollPosition
-        ) {
+        (pricingRef?.current?.offsetTop ?? Number.MAX_SAFE_INTEGER) >
+          scrollPosition
+      ) {
         setActiveSection("about");
       }
       // Check if the scroll position is within the Pricing section
-      else if (pricingRef?.current && scrollPosition >= pricingRef.current.offsetTop) {
+      else if (
+        pricingRef?.current &&
+        scrollPosition >= pricingRef.current.offsetTop
+      ) {
         setActiveSection("pricing");
       } else {
         setActiveSection(null);
@@ -114,8 +118,9 @@ const Header: React.FC<HeaderProps> = ({ aboutRef, pricingRef }) => {
 
       <header className="container mx-auto flex items-center xl:pt-4 justify-center sticky top-0 z-50 w-full">
         <nav
-          className={`py-3 md:px-8 shadow-md flex md:text-[14px] lg:text-[14px]  items-center justify-between  md:rounded-[12px] lg:rounded-[12px] w-full lg:w-11/12 md:w-11/12 transition duration-500 ease-in-out ${isScrolled ? "bg-[#640F6C]" : "bg-primary-two"
-            }`}
+          className={`py-3 md:px-8 shadow-md flex md:text-[14px] lg:text-[14px]  items-center justify-between  md:rounded-[12px] lg:rounded-[12px] w-full lg:w-11/12 md:w-11/12 transition duration-500 ease-in-out ${
+            isScrolled ? "bg-[#640F6C]" : "bg-primary-two"
+          }`}
         >
           <div className="px-4">
             <Link href="/" passHref>
@@ -135,19 +140,22 @@ const Header: React.FC<HeaderProps> = ({ aboutRef, pricingRef }) => {
                 <Link
                   href={menuItem.route}
                   passHref
-                  className={`py-1 transition-all duration-200 ${(activeSection === menuItem.title.toLowerCase() &&
+                  className={`py-1 transition-all duration-200 ${
+                    (activeSection === menuItem.title.toLowerCase() &&
                       activeSection !== null) ||
-                      (pathname === menuItem.route && activeSection === null)
-                      ? `${isScrolled
-                        ? "border-b-2 border-white"
-                        : "border-b-2 border-[#af4db7]"
-                      }`
+                    (pathname === menuItem.route && activeSection === null)
+                      ? `${
+                          isScrolled
+                            ? "border-b-2 border-white"
+                            : "border-b-2 border-[#af4db7]"
+                        }`
                       : ""
-                    }
-                  ${isScrolled
+                  }
+                  ${
+                    isScrolled
                       ? "hover:border-b-2 hover:border-white"
                       : "hover:border-b-2 hover:border-[#af4db7]"
-                    }`}
+                  }`}
                 >
                   {menuItem.title}
                 </Link>
@@ -165,10 +173,11 @@ const Header: React.FC<HeaderProps> = ({ aboutRef, pricingRef }) => {
                   {nameLetter || sessionLetter}
                 </div>
                 <ul
-                  className={`absolute w-40 right-0 bg-primary rounded-md overflow-hidden ${dropdown
-                    ? "visible transition-all duration-200 translate-y-2"
-                    : " invisible transition-all duration-200 translate-y-0 pointer-events-none "
-                    }`}
+                  className={`absolute w-40 right-0 bg-primary rounded-md overflow-hidden ${
+                    dropdown
+                      ? "visible transition-all duration-200 translate-y-2"
+                      : " invisible transition-all duration-200 translate-y-0 pointer-events-none "
+                  }`}
                 >
                   {dropdownMenu.map((item: DropdownMenu) => (
                     <Link key={item.id} href={item.link} passHref>
@@ -210,12 +219,12 @@ const Header: React.FC<HeaderProps> = ({ aboutRef, pricingRef }) => {
               </div>
             )}
 
-            <button
+            <span
               onClick={toggleSidebar}
               className="lg:hidden text-white mr-4 md:mr-0 focus:outline-none"
             >
               <Image src="/menu-icon.png" alt="Menu" width={24} height={24} />
-            </button>
+            </span>
           </div>
         </nav>
 
@@ -251,15 +260,15 @@ const Header: React.FC<HeaderProps> = ({ aboutRef, pricingRef }) => {
                     </Link>
                   </li>
                 ))}
-                <div className="flex w-fit rounded-full mt-1 p-0.5 bg-gradient-to-r from-[rgb(247,15,255,1)] to-[#2C63FF]">
-                  <Link
-                    href="/auth/login"
-                    className="bg-black text-white py-2 px-3 lg:px-9 rounded-full"
-                  >
-                    Register / Login
-                  </Link>
-                </div>
               </ul>
+              <div className="flex w-fit rounded-full mt-1 p-0.5 bg-gradient-to-r from-[rgb(247,15,255,1)] to-[#2C63FF]">
+                <Link
+                  href="/auth/login"
+                  className="bg-black text-white py-2 px-3 lg:px-9 rounded-full"
+                >
+                  Register / Login
+                </Link>
+              </div>
             </div>
           </aside>
         )}

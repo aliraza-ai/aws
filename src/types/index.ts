@@ -8,7 +8,8 @@ export interface CustomButtonProps {
 }
 
 export interface PricingData {
-  plan_id: number;
+  id: number;
+  plan_id?: number;
   price: string | number;
   package: string;
   currency: string;

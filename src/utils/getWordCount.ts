@@ -3,10 +3,12 @@ const getWordCount = async (): Promise<{
   message: string;
   words_left: number | null;
 }> => {
-  const tokens = typeof window !== "undefined" ? sessionStorage.getItem("tokens") : null;
+  const tokens =
+    typeof window !== "undefined" ? sessionStorage.getItem("tokens") : null;
 
   // Get userId from sessionStorage
-  const userId = typeof window !== "undefined" ? sessionStorage.getItem("userId") : null;
+  const userId =
+    typeof window !== "undefined" ? sessionStorage.getItem("userId") : null;
 
   try {
     // Make a GET request to the "get-words-left" API
@@ -31,7 +33,11 @@ const getWordCount = async (): Promise<{
     }
   } catch (error) {
     // Handle network or other errors
-    return { success: false, message: `Something went wrong!`, words_left: null };
+    return {
+      success: false,
+      message: `Something went wrong!`,
+      words_left: null,
+    };
   }
 };
 

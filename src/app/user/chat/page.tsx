@@ -23,7 +23,8 @@ interface ChatItemProps {
 }
 
 const ChatPage = () => {
-  const sessionName = typeof window !== "undefined" ? sessionStorage.getItem("name") : null;
+  const sessionName =
+    typeof window !== "undefined" ? sessionStorage.getItem("name") : null;
   const [message, setMessage] = useState<string>("");
   const [error, setError] = useState("");
   const [chat, setChat] = useState([
@@ -125,6 +126,7 @@ const ChatPage = () => {
             />
 
             <button
+              type="button"
               onClick={handleSendMessage}
               className="mx-2 flex gap-1 px-3 py-2 rounded-full font-medium bg-gradient-to-r from-[rgba(247,15,255,1)] to-[#2C63FF] text-white"
             >

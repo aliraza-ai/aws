@@ -10,9 +10,7 @@ import { SliderActive } from "../../public";
 import Image from "next/image";
 SwiperCore.use([EffectCards]);
 
-
 const HeroSlider = () => {
-
   const images = [
     {
       id: 1,
@@ -40,17 +38,19 @@ const HeroSlider = () => {
       initialSlide={1}
       slidesPerView={1}
     >
-      {images.map(item => (
+      {images.map((item) => (
         <SwiperSlide key={item.id}>
           <div className="swiper-slide w-[600px] h-[300px] bg-slate-400">
-            <Image src={item.img} alt={item.img} fill className="object-cover max-h-[400px] max-w-[800px]" />
+            <Image
+              src={item.img}
+              alt={item.img}
+              fill
+              className="object-cover max-h-[400px] max-w-[800px]"
+            />
           </div>
         </SwiperSlide>
-
       ))}
-
     </Swiper>
-
   );
 };
 

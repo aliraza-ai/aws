@@ -10,7 +10,7 @@ const contactSubmit = async (userData: {
       `${process.env.NEXT_PUBLIC_API_URL}/contacts`,
       {
         method: "POST",
-        headers: { 
+        headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(userData),
