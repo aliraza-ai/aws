@@ -4,6 +4,11 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .text-gradient{
+    @apply bg-clip-text text-transparent bg-gradient-to-tr from-[#ec44ff] to-[#2d46ff]
+  }
+}
 * {
   margin: 0;
   padding: 0;
@@ -65,7 +70,7 @@ body {
   visibility: hidden;
 }
 
-.custom-checkbox input[type="checkbox"]:checked + .checkmark::before {
+.custom-checkbox input[type="checkbox"]:checked+.checkmark::before {
   content: "✔";
   display: block;
   position: absolute;
@@ -83,17 +88,10 @@ body {
   font-size: 14px;
 }
 
-.custom-checkbox input[type="checkbox"]:not(:checked) + .checkmark {
+.custom-checkbox input[type="checkbox"]:not(:checked)+.checkmark {
   background-color: transparent;
   border: 1px solid #fff;
   border-radius: 4px;
-}
-
-.bg-contact {
-  background: url("../../public/breadcrumb-shape-1.png"),
-    linear-gradient(#0e0f28, #0e0f28);
-  background-size: contain;
-  background-repeat: no-repeat;
 }
 
 .contact-input {
@@ -131,28 +129,28 @@ body {
 
 /* Swiper css */
 .swiper {
-  width: 800px;
-  height: 360px;
+  width: 400px;
+  height: 400px;
 }
 
 @media (max-width: 900px) {
   .swiper {
-    width: 400px;
-    height: 180px;
+    width: 300px;
+    height: 300px;
   }
 }
 
 @media (max-width: 450px) {
   .swiper {
-    width: 350px;
-    height: 160px;
+    width: 200px;
+    height: 200px;
   }
 }
 
 @media (max-width: 376px) {
   .swiper {
-    width: 290px;
-    height: 130px;
+    width: 250px;
+    height: 250px;
   }
 }
 
@@ -303,12 +301,10 @@ body {
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(
-    to right,
-    transparent 0%,
-    rgba(255, 255, 255, 0.1) 50%,
-    transparent 100%
-  );
+  background: linear-gradient(to right,
+      transparent 0%,
+      rgba(255, 255, 255, 0.1) 50%,
+      transparent 100%);
   animation: reloadAnimation 1.4s infinite linear;
 }
 
@@ -343,7 +339,7 @@ body {
 /* rce-citem */
 .rce-citem {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: flex-start;
   gap: 20px;
 }
@@ -405,7 +401,7 @@ body {
   box-shadow: 0 0 3px rgb(0, 102, 255);
 }
 
-.ck.ck-editor__main > .ck-editor__editable:not(.ck-focused),
+.ck.ck-editor__main>.ck-editor__editable:not(.ck-focused),
 .ck-reset_all :not(.ck-reset_all-excluded *),
 .ck.ck-reset,
 .ck.ck-reset_all {
@@ -455,17 +451,10 @@ a.ck.ck-button.ck-on {
   font-size: 28px;
 }
 
-.ck.ck-editor__main > .ck-editor__editable,
-.ck.ck-editor__top > .ck-reset_all {
+.ck.ck-editor__main>.ck-editor__editable,
+.ck.ck-editor__top>.ck-reset_all {
   background-color: #101027 !important;
   color: white !important;
-}
-
-.heroBg {
-  background-repeat: no-repeat;
-  background-image: url(../../public/api/hero-bg.jpeg);
-  background-position: center;
-  background-size: cover;
 }
 
 .btn-pill-solid {
@@ -548,7 +537,8 @@ a.ck.ck-button.ck-on {
   font-size: 15px !important;
   font-weight: 400 !important;
 }
-.rce-citem-body--top-time{
+
+.rce-citem-body--top-time {
   font-size: 12px !important;
   font-weight: 400;
 }
@@ -568,10 +558,21 @@ a.ck.ck-button.ck-on {
 }
 
 /* Example CSS for styling the password strength indicator */
-.strength-0 { color: red; }
-.strength-1 { color: orange; }
-.strength-2 { color: yellow; }
-.strength-3 { color: green; }
+.strength-0 {
+  color: red;
+}
+
+.strength-1 {
+  color: orange;
+}
+
+.strength-2 {
+  color: yellow;
+}
+
+.strength-3 {
+  color: green;
+}
 
 
 .endpoint-scrollbar {
@@ -581,6 +582,7 @@ a.ck.ck-button.ck-on {
 .endpoint-scrollbar::-webkit-scrollbar {
   height: 4px;
 }
+
 /* Scrollbar thumb */
 .endpoint-scrollbar::-webkit-scrollbar-thumb {
   background-color: gray !important;
@@ -592,6 +594,7 @@ a.ck.ck-button.ck-on {
   background-color: transparent;
   border-radius: 8px !important;
 }
+
 .endpoint-scrollbar::-webkit-scrollbar-thumb:hover {
   background: gray !important;
 }
@@ -599,4 +602,40 @@ a.ck.ck-button.ck-on {
 .imageContentGeneratorSteps {
   background: rgb(26, 18, 77);
   background: radial-gradient(circle, rgba(26, 18, 77, 1) 0%, rgba(45, 41, 73, 1) 43%, #101027);
+}
+
+
+/* styles.css */
+@keyframes scroll {
+  0% {
+    transform: translateY(0);
+  }
+  30% {
+    transform: translateY(100px);
+  }
+}
+
+.scroll-animation {
+  color: white !important;
+  animation: scroll ease 1.5s infinite;
+}
+.scroll-animation2 {
+  color: white !important;
+  animation: scroll2 ease 1.5s infinite;
+    animation-delay: 0.1s;
+
+}
+
+@keyframes scroll2 {
+  0% {
+    transform: translateY(0);
+  }
+  30% {
+    transform: translateY(10px);
+  }
+}
+
+a.social-icon{
+  width: 30px !important;
+  height: 30px !important;
 }

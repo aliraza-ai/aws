@@ -62,14 +62,18 @@ const LoginPageLayout: React.FC<LoginPageLayoutProps | any> = (props) => {
 
           setTokens(result.token);
           setNameLetter(getFirstLetter(result.name));
-          Swal.fire({
+          await Swal.fire({
             icon: "success",
             title: "Success",
             text: "Login Successfully!",
           });
+          // setTimeout(function () {
+          //   Swal.close();
+          // }, 5000);
           router.push("/user/dashboard");
+
         } else {
-          Swal.fire({
+          await Swal.fire({
             icon: "error",
             title: "Ooops...",
             text: result.message,
@@ -77,7 +81,7 @@ const LoginPageLayout: React.FC<LoginPageLayoutProps | any> = (props) => {
         }
       }
     } catch (error) {
-      Swal.fire({
+      await Swal.fire({
         icon: "error",
         title: "Ooops...",
         text: "Something went wrong!",
@@ -98,7 +102,7 @@ const LoginPageLayout: React.FC<LoginPageLayoutProps | any> = (props) => {
               <div className="text-center font-bold p-3 text-[20px] lg:text-4xl">
                 Sign In
               </div>
-              
+
               <label className="flex items-center">
                 <div className="absolute lg:left-14 left-[2.5rem]">
                   <FaEnvelope />
@@ -154,7 +158,7 @@ const LoginPageLayout: React.FC<LoginPageLayoutProps | any> = (props) => {
                 <p className="text-red-400 text-[16px] p-2">
                   {signInError.password}
                 </p>
-              )}       
+              )}
 
               <Link href="/auth/forgot-password" className="w-[160px]">
                 <span className="text-red-400">Forgot password?</span>

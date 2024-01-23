@@ -2,45 +2,19 @@
 
 import React, { useState } from "react";
 import { Typewriter } from "react-simple-typewriter";
-import HeroSlider from "./HeroSlider";
+import dynamic from "next/dynamic";
+const ScrollButton = dynamic(() => import("@/components/ScrollButton"));
 import { HERO_CONTENT } from "../constants";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { heroEffect, logoMin } from "../../public";
 import { IoIosClose } from "react-icons/io";
-import { heroEffect } from "../../public";
-import SwiperCore from "swiper";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/effect-cards";
-import { EffectCards } from "swiper/modules";
-import { SliderActive } from "../../public";
-SwiperCore.use([EffectCards]);
 
 const Hero = () => {
   const [popup, setPopup] = useState(false);
-  const sessionTokens =
-    typeof window !== "undefined" ? sessionStorage.getItem("tokens") : null;
+  const sessionTokens = typeof window !== "undefined" ? sessionStorage.getItem("tokens") : null;
   const isLoggedIn = sessionTokens !== null;
   const navigate = useRouter();
-
-  const images = [
-    {
-      id: 1,
-      img: SliderActive,
-    },
-    {
-      id: 2,
-      img: SliderActive,
-    },
-    {
-      id: 3,
-      img: SliderActive,
-    },
-    {
-      id: 4,
-      img: SliderActive,
-    },
-  ];
 
   const handleClick = () => {
     if (isLoggedIn) {
@@ -54,25 +28,22 @@ const Hero = () => {
     <>
       <div className="h-screen mx-auto px-36 absolute mt-0 md:top-20 flex justify-center">
         <div className="w-fit mt-0 md:mt-60 sm:block hidden">
-          <Image
-            src="/heroIcons.svg"
-            width={2000}
-            height={1000}
-            alt="Hero Icons Image"
-            loading="lazy"
-          />
+          <Image src={heroEffect} width={2000} height={1000} alt="Hero Icons Image" loading="lazy" />
         </div>
       </div>
 
       <div className="xl:pt-20 pt-10 bg-cover bg-center Hero-bg">
-        <div className="container mx-auto flex flex-col items-center gap-3 px-4 md:px-8 lg:px-12 xl:px-24">
+        <div className=" flex flex-col items-center gap-3 px-4 md:px-8 lg:px-12 xl:px-24">
           <h2 className="text-white text-4xl md:text-5xl lg:text-6xl font-semibold text-center pt-10">
             <span className="bg-clip-text text-transparent bg-gradient-to-tr from-[#ec44ff] to-[#2d46ff]">
               AI Magic
             </span>
+            
             <br />
+            
             <div className="flex flex-col lg:flex-row items-center gap-4 mt-3">
               <span>{HERO_CONTENT.heading}</span>
+              
               <p className="lg:w-[280px] md:w-[210px] w-[170px] lg:h-20 md:h-16 h-12 flex items-center justify-center rounded-lg p-3 bg-primary-two">
                 <span className="metaText">
                   <Typewriter
@@ -105,6 +76,7 @@ const Hero = () => {
             >
               Create Prompt
             </button>
+            
             <input
               type="text"
               placeholder="Create your prompts"
@@ -112,27 +84,8 @@ const Hero = () => {
             />
           </div>
 
-          <div className="pt-12 w-full flex items-center justify-center">
-            <Swiper
-              effect={"cards"}
-              grabCursor={true}
-              className="mySwiper"
-              initialSlide={1}
-              slidesPerView={1}
-            >
-              {images.map((item) => (
-                <SwiperSlide key={item.id}>
-                  <div className="h-[400px] bg-slate-400">
-                    <Image
-                      src={item.img}
-                      alt={item.img}
-                      fill
-                      className="object-cover max-h-300"
-                    />
-                  </div>
-                </SwiperSlide>
-              ))}
-            </Swiper>
+          <div className="pt-20 w-full flex items-center justify-center">
+            <ScrollButton />
           </div>
         </div>
       </div>
@@ -149,8 +102,8 @@ const Hero = () => {
               <div className="w-16 h-16 bg-slate-500 rounded-full flex items-center justify-center">
                 <div className="h-4/5">
                   <Image
-                    src={heroEffect}
-                    alt={heroEffect}
+                    src={logoMin}
+                    alt={logoMin}
                     width={50}
                     height={50}
                   />

@@ -55,7 +55,6 @@ export const ContextProvider: React.FC<ContextProviderProps> = ({ children }) =>
             setLoading(true);
             const query = { prompt, userId }
             const result = await IntelliAI(query);
-            console.log(result)
             if (result.success) {
                 setResponse(result.response);
                 setLoading(false);

@@ -32,8 +32,11 @@ const Features = () => {
           {features.map((item) => (
             <div
               key={item.id}
-              className="flex flex-col items-center rounded-lg py-4 px-6 bg-[rgba(32,45,72,0.41)] text-white gap-2 overflow-hidden border border-[#FFFFFF14] text-center"
+              className="flex flex-col items-center rounded-lg py-4 px-6 bg-white/5 relative backdrop-blur-md text-white gap-2 overflow-hidden border border-[#FFFFFF14] text-center"
             >
+              <div className="absolute -bottom-4 -right-4 bg-blue-500 w-28 h-28 blur-[80px]"></div>
+              <div className="absolute -bottom-4 -right-4 bg-cyan-400 w-16 h-16 blur-[50px]"></div>
+              
               <div className="h-[50%] flex items-center justify-center">
                 <Image
                   src={item.icon}

@@ -4,16 +4,16 @@ import PageProps from "@/components/PageProps";
 import Scripts from "@/components/Scripts";
 
 export const metadata: Metadata = {
-  title: "Contact IntelliWriter.io – Get Support for AI Content Tools",
-  description: "Access your IntelliWriter.io dashboard to manage and create AI-driven content effortlessly. Write, design, and innovate with our comprehensive tools.",
+  title: "IntelliWriter Image generator – Get Instant AI Generated Images",
+  description: "Generate effortlessly images for our AI tool by defining you thoughts!",
 }
 
-const ContactPage = ({ children }: { children: React.ReactNode; }) => {
+const AIImages = ({ children }: { children: React.ReactNode; }) => {
   return (
     <>
       <head>
-        <title>Contact IntelliWriter.io – Get Support for AI Content Tools</title>
-        <meta name="description" content="Access your IntelliWriter.io dashboard to manage and create AI-driven content effortlessly. Write, design, and innovate with our comprehensive tools." />
+        <title>IntelliWriter Image generator – Get Instant AI Generated Images</title>
+        <meta name="description" content="Generate effortlessly images for our AI tool by defining you thoughts!" />
         <link rel="canonical" href="https://intelliwriter.io/contact" />
       </head>
       <body>
@@ -26,4 +26,4 @@ const ContactPage = ({ children }: { children: React.ReactNode; }) => {
   );
 };
 
-export default ContactPage;
+export default AIImages;

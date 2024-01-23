@@ -3,7 +3,8 @@ import { AuthProvider } from "@/context/AuthContext";
 import { ContextProvider } from "@/context/ContextProvider";
 import type { Metadata } from "next";
 import "./globals.css";
-
+import "swiper/css";
+import "swiper/css/effect-cards";
 
 export const metadata: Metadata = {
   title: "Intelliwriter.io: Best AI Image Generator & Free AI Writing",

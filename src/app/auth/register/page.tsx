@@ -82,21 +82,21 @@ const RegisterPageLayout: React.FC<RegisterPageLayoutProps | any> = (props) => {
           confirmpassword: "",
           children: null,
         });
-        Swal.fire({
+        await Swal.fire({
           icon: "success",
           title: "Success",
           text: "Registration done Successfully!",
         });
         router.push("/auth/login");
       } else {
-        Swal.fire({
+        await Swal.fire({
           icon: "error",
           title: "Ooops...",
           text: result.message,
         });
       }
     } catch (error) {
-      Swal.fire({
+      await Swal.fire({
         icon: "error",
         title: "Ooops...",
         text: "Something went wrong!",
@@ -258,10 +258,10 @@ const RegisterPageLayout: React.FC<RegisterPageLayoutProps | any> = (props) => {
                 <div className="flex mt-1">
                   <div
                     className={`h-2 ${passwordStrength < 0.4
-                        ? "bg-red-500"
-                        : passwordStrength < 0.7
-                          ? "bg-yellow-500"
-                          : "bg-green-500"
+                      ? "bg-red-500"
+                      : passwordStrength < 0.7
+                        ? "bg-yellow-500"
+                        : "bg-green-500"
                       }`}
                     style={{ width: `${passwordStrength * 100}%` }}
                   ></div>

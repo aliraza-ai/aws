@@ -48,7 +48,7 @@ const ResetPasswordPageLayout: React.FC<ResetPasswordPageProps | any> = (
         });
         return;
       } else if (newPassword !== confirmPassword) {
-        Swal.fire({
+        await Swal.fire({
           icon: "error",
           title: "Ooops...",
           text: "Password and Confirm password not matched!",
@@ -62,14 +62,14 @@ const ResetPasswordPageLayout: React.FC<ResetPasswordPageProps | any> = (
         });
         const result = await resetPasswordUser(userData);
         if (result.success) {
-          Swal.fire({
+          await Swal.fire({
             icon: "success",
             title: "Success",
             text: result.message,
           });
           router.push("/auth/login");
         } else {
-          Swal.fire({
+          await Swal.fire({
             icon: "error",
             title: "Ooops...",
             text: result.message,
@@ -77,7 +77,7 @@ const ResetPasswordPageLayout: React.FC<ResetPasswordPageProps | any> = (
         }
       }
     } catch (error) {
-      Swal.fire({
+      await Swal.fire({
         icon: "error",
         title: "Ooops...",
         text: "Something went wrong!",

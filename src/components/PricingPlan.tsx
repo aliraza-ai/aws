@@ -8,8 +8,7 @@ import { useRouter } from "next/navigation";
 import { CheckIcon } from "../../public";
 import { useWebContext } from "@/context/ContextProvider";
 
-const tokens =
-  typeof window !== "undefined" ? sessionStorage.getItem("tokens") : null;
+const tokens = typeof window !== "undefined" ? sessionStorage.getItem("tokens") : null;
 
 interface PricingPlanProps {
   pricingData?: PricingData[];
@@ -66,16 +65,15 @@ const PricingCard: React.FC<{ card: PricingData }> = ({ card }) => {
         <div className="flex justify-center pt-10">
           {card.id === 0 && subscribed ? (
             <div className="w-fit rounded-3xl p-0.5 bg-gradient-to-r from-[rgb(247,15,255,1)] to-[#2C63FF] opacity-70">
-              <button className="bg-black text-white py-2 px-2 lg:px-9 rounded-3xl cursor-not-allowed ">
+              <button className="bg-black text-white py-2 px-2 lg:px-9 rounded-3xl cursor-not-allowed " disabled={true} >
                 Subscribed
               </button>
             </div>
           ) : (
             <div className="w-fit rounded-3xl p-0.5 bg-gradient-to-r from-[rgb(247,15,255,1)] to-[#2C63FF]">
               <button
-                className={`bg-black text-white py-2 px-2 lg:px-9 rounded-3xl hover:opacity-75 ${
-                  card.id === 0 && subscribed ? "hidden" : ""
-                }`}
+                className={`bg-black text-white py-2 px-2 lg:px-9 rounded-3xl hover:opacity-75 ${card.id === 0 && subscribed ? "hidden" : ""
+                  }`}
                 onClick={handleClick}
                 disabled={card.id === 0 && subscribed}
               >

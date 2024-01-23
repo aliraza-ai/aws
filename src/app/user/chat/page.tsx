@@ -1,12 +1,13 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ChatItem } from "react-chat-elements";
 import Link from "next/link";
 import { FaChevronRight } from "react-icons/fa6";
 import { TbSend } from "react-icons/tb";
 import createChat from "@/utils/createChat";
 import Swal from "sweetalert2";
+import { logoMin, user } from "../../../../public";
 // import getChatCount from "@/utils/getChatCount"
 
 type ChatItemPosition = "left" | "right";
@@ -23,23 +24,38 @@ interface ChatItemProps {
 }
 
 const ChatPage = () => {
-  const sessionName =
-    typeof window !== "undefined" ? sessionStorage.getItem("name") : null;
+  // const sessionName = typeof window !== "undefined" ? sessionStorage.getItem("name") : null;
   const [message, setMessage] = useState<string>("");
   const [error, setError] = useState("");
+  const [sessionName, setSessionName] = useState<string | null>("...");
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (typeof window !== "undefined") {
+        const name = sessionStorage.getItem("name");
+        setSessionName(name);
+      }
+    };
+    handleScroll();
+
+    return () => {
+      handleScroll();
+    };
+  }, []);
+
   const [chat, setChat] = useState([
     {
-      position: "right",
+      position: "left",
       type: "text",
       title: "Intelliwriter",
-      subtitle: `Hi ${sessionName}, tell me how can I assist you today!`,
+      subtitle: `Hi, tell me how can I assist you today!`,
       date: new Date(),
-      avatar: "/logo-min.png",
+      avatar: logoMin,
     },
   ]);
 
   const Chat: React.FC<ChatItemProps | any> = ({ message, id }) => (
-    <ChatItem {...message} key={id} className="bg-primary-two" />
+    <ChatItem {...message} key={id} className="bg-primary-two items-start" />
   );
 
   const handleSendMessage = async () => {
@@ -52,7 +68,7 @@ const ChatPage = () => {
         title: `${sessionName}`,
         subtitle: message,
         date: new Date(),
-        avatar: "/user.png",
+        avatar: user,
       };
 
       setChat((prevChat) => [...prevChat, userMessage]);
@@ -65,7 +81,7 @@ const ChatPage = () => {
         title: "Intelliwriter",
         subtitle: response.result,
         date: new Date(),
-        avatar: "/logo-min.png",
+        avatar: logoMin,
       };
 
       if (response.success) {
@@ -92,10 +108,10 @@ const ChatPage = () => {
       <div className="text-base text-slate-400 font-light p-2 flex items-center gap-2">
         <Link href="/user/dashboard">Dashboard</Link>
         <FaChevronRight className="text-sm" />
-        <Link href="/user/chat">Chat</Link>
+        <Link href="/user/chat">AI Chat</Link>
       </div>
 
-      <h2 className="text-3xl font-semibold p-2 pb-3">Chat</h2>
+      <h2 className="text-3xl font-semibold p-2 pb-3">AI Chat</h2>
 
       <div className="mx-auto sm:p-10 py-5 bg-primary-two rounded-lg">
         <div className="space-y-4 h-[52vh] overflow-y-auto siderbar flex w-full gap-3 flex-col">
@@ -133,6 +149,7 @@ const ChatPage = () => {
               Send <TbSend className="text-white text-xl" />
             </button>
           </div>
+          
           {error !== "" && (
             <p className="text-red-400 text-[12px] pl-4 py-1">{error}</p>
           )}

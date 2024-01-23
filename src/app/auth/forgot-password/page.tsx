@@ -40,7 +40,7 @@ const ForgotPasswordPageLayout: React.FC<
         });
         const result = await forgotPasswordUser(userData);
         if (result.success) {
-          Swal.fire({
+          await Swal.fire({
             icon: "success",
             title: "Success",
             text: result.message,
@@ -48,7 +48,7 @@ const ForgotPasswordPageLayout: React.FC<
           setShowSuccessComponent(true);
           // router.push("/auth/reset-password");
         } else {
-          Swal.fire({
+          await Swal.fire({
             icon: "error",
             title: "Ooops...",
             text: result.message,
@@ -56,7 +56,7 @@ const ForgotPasswordPageLayout: React.FC<
         }
       }
     } catch (error) {
-      Swal.fire({
+      await Swal.fire({
         icon: "error",
         title: "Ooops...",
         text: "Something went wrong!",

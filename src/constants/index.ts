@@ -1,5 +1,6 @@
+"use client";
+
 import { FaTwitter, FaLinkedin, FaInstagram, FaFacebook } from "react-icons/fa";
-import { IconType } from "react-icons";
 import { FaCircleUser } from "react-icons/fa6";
 import {
   Step1,
@@ -13,65 +14,56 @@ import {
   Feature6,
   Feature7,
   Feature8,
+  image_slide_1,
+  image_slide_2,
+  image_slide_3,
+  nft_slide_1,
+  nft_slide_2,
+  nft_slide_3,
 } from "../../public";
 import { MdOutlineDashboard } from "react-icons/md";
 import { RxCheckCircled } from "react-icons/rx";
-import {
-  CompetitivePricing,
-  Customization,
-  DedicatedSupport,
-  DeveloperFriendly,
-  HighAccuracy,
-  IndustryIntegration,
-  RealTimeProcessing,
-  Scalability,
-  ComprehensiveDocumentation,
-  DeverseLanguageSupport,
-  EasyIntegration,
-  Support,
-} from "../../public/api/index";
 import {
   AiOutlineHome,
   AiFillApi,
   AiOutlineBulb,
   AiOutlineCode,
   AiOutlineCheck,
-} from "react-icons/ai";
-import { ReactNode } from "react";
-import {
   AiOutlineVideoCamera,
   AiOutlineRead,
   AiOutlineFileText,
   AiTwotoneTag,
   AiFillProfile,
 } from "react-icons/ai";
-import { MdClosedCaption, MdOutlineTitle, MdQuiz,MdSupportAgent } from "react-icons/md";
 import {
-  FaHashtag,
-  FaBuysellads,
-  FaQuora,
-  FaRegObjectGroup,
-} from "react-icons/fa";
-import { IoMdImages } from "react-icons/io";
-import { BsSoundwave } from "react-icons/bs";
-import { CgEditNoise } from "react-icons/cg";
-import { BiMaleFemale, BiSolidFace } from "react-icons/bi";
-import { RiImageEditLine } from "react-icons/ri";
-import { blogCardImage1, blogCardImage2, blogCardImage3, blogCardImage4, blogCardImage5 } from "../../public/index";
-import { StaticImageData } from "next/image";
+  MdClosedCaption,
+  MdOutlineTitle,
+  MdQuiz,
+  MdSupportAgent,
+} from "react-icons/md";
+import { FaHashtag, FaBuysellads, FaQuora } from "react-icons/fa";
+import {
+  blogCardImage1,
+  blogCardImage2,
+  blogCardImage3,
+  blogCardImage4,
+  blogCardImage5,
+} from "../../public/index";
+import { IconType } from "react-icons";
+// import { StaticImageData } from "next/image";
 
-const tokens = typeof window !== "undefined" ? sessionStorage.getItem("tokens") : null;
+// const tokens = typeof window !== "undefined" ? sessionStorage.getItem("tokens") : null;
 
-  export const NAV_LINKS = [
-    { id: 1, title: "Home", route: "/" },
-    { id: 2, title: "About", route: "/#about" },
-    { id: 3, title: "Content", route: "/user/dashboard" },
-    { id: 4, title: "Images", route: "/user/image-generator" },
-    { id: 5, title: "APIs", route: "/api" },
-    { id: 6, title: "Pricing", route: "/#pricing" },
-    // { id: 7, title: "Blog", route: "/blogs" },
-    // { id: 8, title: "Contact", route: "/contact" },
-  ];
+export const NAV_LINKS = [
+  { id: 1, title: "Home", route: "/" },
+  { id: 2, title: "About", route: "/#about" },
+  { id: 3, title: "Content", route: "/user/dashboard" },
+  { id: 4, title: "Images", route: "/ai-image-generator" },
+  { id: 5, title: "APIs", route: "/api" },
+  { id: 6, title: "Pricing", route: "/#pricing" },
+  { id: 7, title: "Blog", route: "/blogs" },
+  // { id: 8, title: "Contact", route: "/contact" },
+];
 
 export const HERO_CONTENT = {
   id: 1,
@@ -412,60 +404,9 @@ export const HowItWorks = [
   },
 ];
 
-export const apiFeatures = [
-  {
-    id: 0,
-    title: "High Accuracy",
-    desc: "Precise AI results you can trust",
-    icon: HighAccuracy,
-  },
-  {
-    id: 2,
-    title: "Scalability",
-    desc: "Grow your AI capabilities effortlessly",
-    icon: Scalability,
-  },
-  {
-    id: 3,
-    title: "Real-time Processing",
-    desc: "Immediate responses for dynamic applications",
-    icon: RealTimeProcessing,
-  },
-  {
-    id: 4,
-    title: "Customization",
-    desc: "Tailor AI solutions to your specific needs",
-    icon: Customization,
-  },
-  {
-    id: 5,
-    title: "Industry Integration",
-    desc: "Seamlessly fits into various sectors",
-    icon: IndustryIntegration,
-  },
-  {
-    id: 6,
-    title: "Developer-Friendly",
-    desc: "Simplifies integration for coders",
-    icon: DeveloperFriendly,
-  },
-  {
-    id: 7,
-    title: "Competitive Pricing",
-    desc: "Cost-effective plans for all users",
-    icon: CompetitivePricing,
-  },
-  {
-    id: 8,
-    title: "Dedicated Support",
-    desc: "24/7 assistance when you need it",
-    icon: DedicatedSupport,
-  },
-];
-
 interface apiSectionData {
   id: number;
-  icon: ReactNode;
+  icon: IconType;
   paragraph: string;
 }
 
@@ -505,33 +446,6 @@ export const trust_api_section_data: apiSectionData[] = [
     icon: RxCheckCircled,
     paragraph:
       "Incident Response: A well-defined plan ensures swift response to security incidents, minimizing impact on users.",
-  },
-];
-
-export const missions = [
-  {
-    id: 0,
-    title: "Easy Integration:",
-    desc: "Integrate AI into your applications effortlessly with our API. In just a few lines of code, you can unlock the potential of machine learning and natural language processing.",
-    icon: ComprehensiveDocumentation,
-  },
-  {
-    id: 1,
-    title: "Diverse Language Support",
-    desc: "Our AI APIs support a wide range of programming languages, including Python, JavaScript, Ruby, and more. No matter your preferred language, you can harness the power of AI.",
-    icon: DeverseLanguageSupport,
-  },
-  {
-    id: 2,
-    title: "Customization and Personalization",
-    desc: "Our extensive documentation provides you with step-by-step guides, code samples, and real-world examples. We make sure you have everything you need to get started quickly.",
-    icon: EasyIntegration,
-  },
-  {
-    id: 3,
-    title: "Learning Course Builder",
-    desc: "Our dedicated support team is here around the clock to assist you. Have a question or run into an issue? We're just a message away, ready to help.",
-    icon: Support,
   },
 ];
 
@@ -982,10 +896,9 @@ export const ImageApiData = [
   },
 ];
 
-
 export interface BlogPageDataProps {
   id: number;
-  image: StaticImageData;
+  image: string;
   title: string;
   date: string;
 }
@@ -1026,5 +939,35 @@ export const BlogPageData = [
     image: blogCardImage1,
     title: "Lights, Camera, Action: Building a Multilingual Movie Recommended!",
     date: "Sun, 01 Jun 2023",
+  },
+];
+
+export const images = [
+  {
+    id: 1,
+    img: image_slide_1,
+  },
+  {
+    id: 2,
+    img: image_slide_2,
+  },
+  {
+    id: 3,
+    img: image_slide_3,
+  },
+];
+
+export const nfts = [
+  {
+    id: 1,
+    img: nft_slide_1,
+  },
+  {
+    id: 2,
+    img: nft_slide_2,
+  },
+  {
+    id: 3,
+    img: nft_slide_3,
   },
 ];

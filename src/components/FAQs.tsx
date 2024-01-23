@@ -1,10 +1,14 @@
 "use client";
 
 import React from "react";
-
 import Accordion from "./Accordion";
 
-const FAQs = () => {
+interface AccordProps{
+  id: number;
+  question: string;
+  answer: string;
+}
+const FAQs = ({ faqs }: { faqs?: AccordProps[] }) => {
   return (
     <div className="w-full flex flex-col justify-center items-center">
       <div className="w-full container lg:px-10 px-3 pb-5 md:px-8 overflow-hidden ">
@@ -24,7 +28,7 @@ const FAQs = () => {
           </div>
 
           <div className="pt-4 flex items-center justify-center ">
-            <Accordion />
+            <Accordion faqs={faqs} />
           </div>
         </div>
       </div>

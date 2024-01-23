@@ -23,6 +23,7 @@ interface HeaderProps {
   aboutRef: React.RefObject<HTMLDivElement> | null;
   pricingRef: React.RefObject<HTMLDivElement> | null;
 }
+
 const Header: React.FC<HeaderProps> = ({ aboutRef, pricingRef }) => {
   const router = useRouter();
   const [activeSection, setActiveSection] = useState<string | null>(null);
@@ -30,12 +31,18 @@ const Header: React.FC<HeaderProps> = ({ aboutRef, pricingRef }) => {
   const [dropdown, setDropdown] = useState(false);
   const [showSidebar, setShowSidebar] = useState(false);
   const { tokens, nameLetter, setTokens, setNameLetter } = useAuth();
-  const sessionTokens =
-    typeof window !== "undefined" ? sessionStorage.getItem("tokens") : null;
-  const sessionLetter =
-    typeof window !== "undefined" ? sessionStorage.getItem("nameLetter") : null;
+
+  const [sessionTokens, setSessionTokens] = useState<string | null>(null);
+  const [sessionLetter, setSessionLetter] = useState<string | null>(null);
 
   useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const tokens = sessionStorage.getItem('tokens');
+      const letter = sessionStorage.getItem('nameLetter');
+      setSessionTokens(tokens);
+      setSessionLetter(letter);
+    }
+
     const handleScroll = () => {
       const scrolled = window.scrollY > 0;
       setIsScrolled(scrolled);
@@ -73,11 +80,11 @@ const Header: React.FC<HeaderProps> = ({ aboutRef, pricingRef }) => {
   };
 
   const pathname = usePathname();
+
   useEffect(() => {
     const handleScroll = () => {
-      const scrollPosition = window.scrollY;
+      const scrollPosition = window.scrollY + 20;
 
-      // Check if the scroll position is within the About section
       if (
         aboutRef?.current &&
         scrollPosition >= aboutRef.current.offsetTop &&
@@ -85,9 +92,7 @@ const Header: React.FC<HeaderProps> = ({ aboutRef, pricingRef }) => {
           scrollPosition
       ) {
         setActiveSection("about");
-      }
-      // Check if the scroll position is within the Pricing section
-      else if (
+      } else if (
         pricingRef?.current &&
         scrollPosition >= pricingRef.current.offsetTop
       ) {
@@ -96,10 +101,8 @@ const Header: React.FC<HeaderProps> = ({ aboutRef, pricingRef }) => {
         setActiveSection(null);
       }
     };
-
     window.addEventListener("scroll", handleScroll);
 
-    // Cleanup event listener on component unmount
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
@@ -219,12 +222,12 @@ const Header: React.FC<HeaderProps> = ({ aboutRef, pricingRef }) => {
               </div>
             )}
 
-            <span
+            <button
               onClick={toggleSidebar}
               className="lg:hidden text-white mr-4 md:mr-0 focus:outline-none"
             >
               <Image src="/menu-icon.png" alt="Menu" width={24} height={24} />
-            </span>
+            </button>
           </div>
         </nav>
 
@@ -233,7 +236,7 @@ const Header: React.FC<HeaderProps> = ({ aboutRef, pricingRef }) => {
             className="lg:hidden block fixed inset-0 bg-[#121324] z-50 w-full"
             onClick={closeSidebar}
           >
-            <div className="flex justify-center items-center pr-4">
+            <div className="flex justify-between items-center pr-4">
               <Link href="/">
                 <Image
                   src="/Logo.webp"
@@ -251,7 +254,7 @@ const Header: React.FC<HeaderProps> = ({ aboutRef, pricingRef }) => {
               />
             </div>
 
-            <div className="flex justify-center items-center px-8 pt-3">
+            <div className="px-8 pt-3">
               <ul className="text-white">
                 {NAV_LINKS.map((menuItem, index) => (
                   <li key={index} className="py-2">
@@ -260,15 +263,15 @@ const Header: React.FC<HeaderProps> = ({ aboutRef, pricingRef }) => {
                     </Link>
                   </li>
                 ))}
+                <div className="flex w-fit rounded-full mt-1 p-0.5 bg-gradient-to-r from-[rgb(247,15,255,1)] to-[#2C63FF]">
+                  <Link
+                    href="/auth/login"
+                    className="bg-black text-white py-2 px-3 lg:px-9 rounded-full"
+                  >
+                    Register / Login
+                  </Link>
+                </div>
               </ul>
-              <div className="flex w-fit rounded-full mt-1 p-0.5 bg-gradient-to-r from-[rgb(247,15,255,1)] to-[#2C63FF]">
-                <Link
-                  href="/auth/login"
-                  className="bg-black text-white py-2 px-3 lg:px-9 rounded-full"
-                >
-                  Register / Login
-                </Link>
-              </div>
             </div>
           </aside>
         )}

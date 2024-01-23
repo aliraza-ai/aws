@@ -107,7 +107,7 @@ const Quiz = ({ type }: Props) => {
 
           <div className="flex flex-col">
             <label htmlFor="name" className="text-white mb-2 font-bold">
-              Total Question <span className="text-red-500">*</span>
+              No. of Questions <span className="text-red-500">*</span>
             </label>
 
             <input

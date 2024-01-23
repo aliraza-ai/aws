@@ -4,6 +4,7 @@ import React from "react";
 import Accordion from "@/components/Accordion";
 import Link from "next/link";
 import { FaChevronRight } from "react-icons/fa6";
+import { Accord } from "@/constants";
 
 
 const FAQsPage = () => {
@@ -22,7 +23,7 @@ const FAQsPage = () => {
             <h1 className="text-3xl font-semibold p-2 pb-3">FAQs & Help</h1>
             
             <div className="pt-4 flex items-start justify-center w-full md:w-4/5 lg:w-11/12">
-              <Accordion />
+              <Accordion faqs={Accord} />
             </div>
           </div>
         </div>

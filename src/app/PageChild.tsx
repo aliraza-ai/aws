@@ -14,6 +14,7 @@ const OurRoadmap = dynamic(() => import("@/components/OurRoadmap"));
 const PricingPlan = dynamic(() => import("@/components/PricingPlan"));
 const Community = dynamic(() => import("@/components/Community"));
 const CookiePopup = dynamic(() => import("@/components/CookiePopup"));
+import { Accord } from "@/constants";
 
 export default function PageChild() {
     const { aboutRef, pricingRef } = useWebContext()
@@ -30,7 +31,7 @@ export default function PageChild() {
                     <Community />
                     <Banner />
                     <OurRoadmap />
-                    <FAQs />
+                    <FAQs faqs={Accord} />
                 </div>
                 <CookiePopup />
             </main>

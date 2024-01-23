@@ -12,6 +12,7 @@ import { ImageGeneration } from "../../../../public";
 import getWordCount from "@/utils/getWordCount";
 import getChatCount from "@/utils/getChatCount";
 import { imageCount } from "@/utils/imageCount";
+import getPlanName from '@/utils/getPlanName';
 Chart.register(ArcElement, Tooltip, Legend);
 
 interface DoughnutChartProps {
@@ -50,6 +51,7 @@ const DashboardPage = () => {
   const [wordCount, setWordCount] = useState<number | null>(0);
   const [chatCount, setChatCount] = useState<number | null>(0);
   const [imagesCount, setImagesCount] = useState<number | null>(0);
+  const [planName, setPlanName] = useState<string | null>("Basic Plan");
 
   const fetchWordCount = async () => {
     try {
@@ -93,11 +95,23 @@ const DashboardPage = () => {
     }
   };
 
+  const fetchPlanName = async () => {
+    try {
+      const result = await getPlanName();
+      if (result.success) {
+        setPlanName(result.plans_name);
+      }
+    } catch (error: any) {
+      console.error("Fetch error:", error.message);
+    }
+  };
+
   useEffect(() => {
     fetchWordCount();
     fetchChatCount();
     fetchImageCount();
-  }, []);
+    fetchPlanName();
+ }, []);
 
   const chartLabelsWords = ["Remaining Words", "Total words"];
   const chartLabelsChats = ["Remaining Chats", "Total chats"];
@@ -162,7 +176,7 @@ const DashboardPage = () => {
                       className={`capitalize font-bold text-2xl bg-clip-text text-transparent bg-gradient-to-r from-[rgba(247,15,255,1)] to-[#2C63FF]`}
                     >
                       {basic.id === 1
-                        ? basic.plan
+                        ? planName
                         : basic.id === 2
                           ? wordCount
                           : basic.id === 3

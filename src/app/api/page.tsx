@@ -1,88 +1,121 @@
-"use client";
+// import Image from "next/image";
+import Link from "next/link";
+import React from "react";
+import {
+  apistep1,
+  apistep2,
+  apistep3,
+  apistep4,
+  apicontent,
+} from "../../../public";
+import { FAQs } from "@/components";
+import { APILandingFAQs } from "@/constants/FaqsData";
 
-import React from 'react';
-import { AiOutlineMenu } from 'react-icons/ai';
-import { useWebContext } from '@/context/ContextProvider';
-import { IntelliApiData, ImageApiData, VoiceApiData } from '@/constants'
-import Link from 'next/link';
-import Cards from '@/components/Cards';
-import { BiDockLeft } from "react-icons/bi";
-import { IoIosImages } from "react-icons/io";
-import { RiVoiceprintFill } from "react-icons/ri";
+const steps = [
+  {
+    id: 1,
+    step: "Step#1",
+    detail:
+      "Access Intelliwriter AI website: Checkout the link for API in navbar, Click and Jump to the API Docs of Intelliwriter",
+    image: apistep1,
+  },
+  {
+    id: 2,
+    step: "Step#2",
+    detail:
+      "Here You are! Look for your desired service, APIs for Content, Images, and Voice overs, Just a click away ",
+    image: apistep2,
+  },
+  {
+    id: 3,
+    step: "Step#3",
+    detail:
+      "Dive into the documentation of your API, Have a go through and in case let us know what we can do more",
+    image: apistep3,
+  },
+  {
+    id: 4,
+    step: "Step#4",
+    detail: "Just hit the copy button and boost your productivity",
+    image: apistep4,
+  },
+];
 
-const APIPage = () => {
-    const { setApiSidebartoggle } = useWebContext();
+const page = () => {
+  return (
+    <div className="my-16">
+      <div className="text-center text-white flex flex-col items-center justify-between gap-3 my-20">
+        <h1 className="text-3xl md:text-5xl font-medium capitalize w-[90%] xl:w-[60%] flex flex-col gap-3 pt-6">
+          <span>Integrate Powerful Writing</span>
+          <span>Capabilities Seamlessly with </span>
+          <span className="text-gradient">Intelliwriter APIs</span>
+        </h1>
 
-    return (
-        <div className='lg:w-4/5 md:w-2/3 w-full py-10'>
-            <div className='sm:px-8 p-4 md:hidden block text-white'>
-                <AiOutlineMenu className='text-xl cursor-pointer' onClick={() => setApiSidebartoggle(true)} />
-            </div>
-
-            <div className="w-full p-4 lg:p-12 md:p-8 md:flex flex-col justify-between gap-4">
-                {/* Top Heading */}
-                <h1 className="text-4xl font-semibold text-left">
-                    API Docs
-                </h1>
-
-                <p className="text-gray-300 mb-4">
-                    Welcome to the documentation page for the Intelliwriter API Landing Page. Here, you will find detailed information and instructions on how to use our API, integrate it into your applications, and more.
-                </p>
-
-                {/* Content APIs */}
-                <div className='w-full'>
-                    <div className='flex py-5 gap-2 w-full'>
-                        <BiDockLeft size={25} />
-                        <h2 className='font-medium text-2xl'>Content APIs:</h2>
-                    </div>
-
-                    <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4'>
-                        {IntelliApiData.map((item) => (
-                            <Link key={item.id} href={item.link}>
-                                <Cards data={item} />
-                            </Link>
-                        ))}
-                    </div>
-                </div>
-
-                {/* Image APIs */}
-                <div className='w-full'>
-                    <div className='flex py-5 gap-2'>
-                        <IoIosImages size={25} />
-                        <h2 className='font-medium text-2xl'>Image APIs:</h2>
-                    </div>
-
-                    <div className='grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4'>
-                        {ImageApiData.map((item) => (
-                            <Link key={item.id} href={item.link}>
-                                <Cards data={item} />
-                            </Link>
-                        ))}
-                    </div>
-                </div>
-
-                {/* Voice APIs */}
-                <div className='w-full'>
-                    <div className='flex py-5 gap-2'>
-                        <RiVoiceprintFill size={25} />
-                        <h2 className='font-medium text-2xl'>Voice APIs:</h2>
-                    </div>
-
-                    {VoiceApiData.length !== 0 ? (
-                        <div className='grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4'>
-                            {VoiceApiData.map((item) => (
-                                <Link key={item.id} href={item.link}>
-                                    <Cards data={item} />
-                                </Link>
-                            ))}
-                        </div>
-                    ) :
-                        <h2 className='text-sm text-gray-300 text-center py-2'>No API Available!</h2>
-                    }
-                </div>
-            </div>
+        <p className="text-sm md:text-lg font-light w-[90%] xl:w-[50%] py-8">
+          Infuse your applications with the ability to understand, analyze, and
+          generate human-quality text, unlocking a multitude of new features and
+          possibilities.
+        </p>
+        <div className="w-fit">
+          <button className="w-fit rounded-lg bg-gradient-to-r from-[rgba(247,15,255,1)] to-[#2C63FF] px-3 py-1 md:px-4 md:py-2 hover:opacity-90">
+            <Link href="/api/docs">
+              Discover Intelliwriter's API Services!
+            </Link>
+          </button>
         </div>
-    )
-}
+      </div>
 
-export default APIPage
+      <div className="w-full h-[25rem] md:h-[40rem] flex items-center justify-center relative p-5 sm:px-28 md:py-20 md:px-40 opacity-80">
+        <div className="absolute inset-0 filter blur-[5px] opacity-65">
+          <img
+            src={apicontent}
+            alt=""
+            className="w-full h-[25rem] md:h-[40rem] object-cover"
+          />
+        </div>
+        <img
+          src={apicontent}
+          alt=""
+          className="h-[20rem] md:w-[30rem] md:h-[30rem] z-10  rounded-2xl"
+        />
+      </div>
+
+      <div className="mt-5 imageContentGeneratorSteps text-center py-10 px-[10%] text-white  flex flex-col items-center justify-center ">
+        <h2 className="mb-10 text-2xl md:text-5xl font-semibold capitalize ">
+          Intelliwriter offers an easy and scalable way to write your backend
+          code
+        </h2>
+
+        {steps.map((item) => (
+          <div
+            key={item.id}
+            className={` my-4 flex flex-col gap-5 md:flex md:flex-row md:items-center md:justify-between w-full ${
+              item.id == 2 || item.id == 4 ? "md:flex-row-reverse" : ""
+            }`}
+          >
+            <div className="items-start flex flex-col md:w-4/12 ">
+              <h2 className="text-lg md:text-xl font-bold">{item.step}</h2>
+              <p className="text-start text-base md:text-lg">{item.detail}</p>
+            </div>
+
+            <div className="rounded-md shadow-[#101027] shadow-2xl">
+              <img
+                src={item.image}
+                alt=""
+                height={650}
+                width={650}
+                className="rounded-xl border border-[#1f1f7a]"
+              />
+            </div>
+          </div>
+        ))}
+      </div>
+      
+      <div className="mt-10">
+        <FAQs faqs={APILandingFAQs}/>
+      </div>
+    </div>
+  );
+};
+
+export default page;

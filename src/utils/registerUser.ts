@@ -23,7 +23,7 @@ const registerUser = async (userData: {
       return { success: false, message: errorData.message };
     }
   } catch (error) {
-    return { success: false, message: `Something went wrong!` };
+    return { success: false, message: `Timeout error: ${error}` };
   }
 };
 

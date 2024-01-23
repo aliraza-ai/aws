@@ -5,7 +5,6 @@ const IntelliAI = async (query: {
   const tokens =
     typeof window !== "undefined" ? sessionStorage.getItem("tokens") : null;
   try {
-    console.log(query);
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL}/intelliAI/generate-prompt`,
       {

@@ -3,6 +3,7 @@ import Link from 'next/link'
 import React from 'react'
 import { imagecontent, imagecontentbg, imagestep1, imagestep2, imagestep3, imagestep4, gradientcircle } from '../../../public'
 import { FAQs } from '@/components'
+import { ImageGeneratorFAQs } from "@/constants/FaqsData";
 
 
 const steps = [
@@ -35,35 +36,37 @@ const steps = [
 const page = () => {
   return (
     <div className='my-16'>
-      <div className='text-center text-white  flex flex-col items-center justify-center'>
-        <h1 className="text-3xl md:text-5xl font-semibold capitalize w-[90%] xl:w-[70%]">Unleash your creativity with intelliwriter's AI Image generator</h1>
-        <p className='text-sm md:text-lg my-4 w-[90%] xl:w-[50%]'>
-          Explore your creativity through digital art exploration. Immerse yourself in a realm of creation and dynamic prompts that nurture artistic expression. Whether you're a blogger, social media marketer, or seeking to infuse creativity into your projects, our AI-powered tool empowers you to craft captivating images within seconds.
+       <div className="text-center text-white flex flex-col items-center justify-between gap-3 my-20">
+        <h1 className="text-3xl md:text-5xl font-medium capitalize w-[90%] xl:w-[60%] flex flex-col gap-3 pt-6">
+          <span>Unleash your creativity</span>
+          <span>with Intelliwriter's</span>
+          <span className="text-gradient pb-2"> AI Image Generator</span>
+        </h1>
+
+        <p className="text-sm md:text-lg font-light w-[90%] xl:w-[50%] py-8">
+        Explore your creativity through digital art exploration. Immerse yourself in a realm of creation and dynamic prompts that nurture artistic expression. Whether you're a blogger, social media marketer, or seeking to infuse creativity into your projects, our AI-powered tool empowers you to craft captivating images within seconds.
         </p>
-        <div className="w-fit my-10 rounded-3xl p-0.5 bg-gradient-to-r from-[rgb(247,15,255,1)] to-[#2C63FF]">
-          <button
-            className="bg-black text-white py-2 px-2 lg:px-9 rounded-3xl hover:opacity-75 "
-          >
-            <Link href="/auth/login">
-              Try Intelliwriter AI Image Generator!
+        
+        <div className="w-fit">
+          <button className="w-fit rounded-lg bg-gradient-to-r from-[rgba(247,15,255,1)] to-[#2C63FF] px-3 py-1 md:px-4 md:py-2 hover:opacity-90">
+            <Link href="/user/image-generator">
+              Try Intelliwriter Image Generator!
             </Link>
           </button>
         </div>
-      </div>
+      </div>  
 
       <div className='w-full h-[25rem] md:h-[40rem] flex items-center justify-center relative p-5 sm:px-28 md:py-20 md:px-40 opacity-80'>
         <div className='absolute inset-0 filter blur-[5px] opacity-95'>
-          <Image src={imagecontentbg} alt='' className='w-full h-[25rem] md:h-[40rem] object-cover' />
+          <img src={imagecontentbg} alt='' className='w-full h-[25rem] md:h-[40rem] object-cover' />
         </div>
-        <Image src={imagecontent} alt='' className='h-[20rem] md:w-[30rem] md:h-[30rem] z-10  rounded-2xl' />
+        <img src={imagecontent} alt='' className='h-[20rem] md:w-[30rem] md:h-[30rem] z-10  rounded-2xl' />
       </div>
-
 
       <div className='my-10 md:my-20 text-center text-white flex flex-col items-center justify-center'>
         <h2 className="text-2xl md:text-4xl font-bold capitalize w-[90%] xl:w-[70%]">Why use Intelliwriter's image generator</h2>
         <p className='text-sm md:text-lg my-4 w-[90%] xl:w-[50%]'>Intelliwriter's AI Image Generator isn't just a tool, it's an experience. We've crafted a seamless platform that empowers you to effortlessly bring your visions to life. Join the revolution and discover the magic of AI-powered image creation.</p>
       </div>
-
 
       <div className='imageContentGeneratorSteps text-center py-10 px-[10%] text-white  flex flex-col items-center justify-center '>
         <h2 className="mb-5 text-2xl md:text-5xl font-semibold capitalize  ">OUR TOOL USES THE LATEST IN AI TECHNOLOGY TO GENERATE BEAUTIFUL IMAGES THAT ARE UNIQUE AND ENGAGING.</h2>
@@ -90,8 +93,9 @@ const page = () => {
         ))}
 
       </div>
+      
       <div className='mt-10'>
-        <FAQs />
+        <FAQs faqs={ImageGeneratorFAQs} />
       </div>
     </div>
   )

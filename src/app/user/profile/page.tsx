@@ -30,6 +30,7 @@ const ProfilePage: React.FC<ProfilePageLayoutProps> = () => {
   const [password, setPassword] = useState<string>("");
   const [phone, setPhone] = useState<string>("");
   const [address, setAddress] = useState<string>("");
+  const [error, setError] = useState<string>("");
   const [company_name, setCompany_name] = useState<string>("");
   const [company_position, setComp_pnyPosition] = useState<string>("");
   const [short_bio, setShort_bio] = useState<string>("");
@@ -102,46 +103,53 @@ const ProfilePage: React.FC<ProfilePageLayoutProps> = () => {
     }
 
     try {
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/users/updateUser/${userId}`,
-        {
-          method: "PUT",
-          headers: {
-            Authorization: `Bearer ${sessionTokens}`,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            name: fullname,
-            email,
-            password,
-            phone_number: phone,
-            address,
-            company_name,
-            company_position,
-            short_bio,
-          }),
-        }
-      );
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || "Failed to update user");
-      }
-
-      const data = await response.json();
-      if (data.message === "User updated successfully") {
-        Swal.fire({
-          icon: "success",
-          title: "Success",
-          text: data.message,
-        });
-
-        // Refresh the page after 1 second
-        setTimeout(() => {
-          window.location.reload();
-        }, 1000);
+      if (email === "") {
+        setError("Email is required!");
+      } else if (emailRegex.test(email)) {
+        setError("Invalid email!");
       } else {
-        throw new Error("Failed to update user");
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_API_URL}/users/updateUser/${userId}`,
+          {
+            method: "PUT",
+            headers: {
+              Authorization: `Bearer ${sessionTokens}`,
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              name: fullname,
+              email,
+              password,
+              phone_number: phone,
+              address,
+              company_name,
+              company_position,
+              short_bio,
+            }),
+          }
+        );
+
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(errorData.message || "Failed to update user");
+        }
+
+        const data = await response.json();
+        if (data.message === "User updated successfully") {
+          Swal.fire({
+            icon: "success",
+            title: "Success",
+            text: data.message,
+          });
+
+          setTimeout(() => {
+            window.location.reload();
+          }, 1000);
+        } else {
+          throw new Error("Failed to update user");
+        }
       }
     } catch (error) {
       const errorMessage = (error as Error).message;
@@ -151,7 +159,7 @@ const ProfilePage: React.FC<ProfilePageLayoutProps> = () => {
         title: "Error",
         text: errorMessage || "Failed to update user",
       });
-      console.error("Error updating user data:", errorMessage);
+      // console.error("Error updating user data:", errorMessage);
     }
   };
 
@@ -366,8 +374,7 @@ const ProfilePage: React.FC<ProfilePageLayoutProps> = () => {
                 <div className="flex flex-row items-center gap-2 absolute left-3 top-1/2 ">
                   <BiSolidLock size={18} />
                 </div>
-                Current Password <span className="text-red-500">*</span>{" "}
-                <br />
+                Current Password <span className="text-red-500">*</span> <br />
                 <div className="flex items-center">
                   <input
                     name="password"
@@ -434,33 +441,37 @@ const ProfilePage: React.FC<ProfilePageLayoutProps> = () => {
             {/* Password Strength Bar */}
             <div className="flex mt-2 mb-3">
               <div
-                className={`h-2 ${passwordStrength < 0.4
+                className={`h-2 ${
+                  passwordStrength < 0.4
                     ? "bg-red-500"
                     : passwordStrength < 0.7
-                      ? "bg-yellow-500"
-                      : "bg-green-500"
-                  }`}
+                    ? "bg-yellow-500"
+                    : "bg-green-500"
+                }`}
                 style={{ width: `${passwordStrength * 100}%` }}
               ></div>
             </div>
             {/* Password Strength Text */}
             <div className="flex justify-between text-sm">
               <span
-                className={`text-red-500 ${passwordStrength >= 0.4 && "opacity-50"
-                  }`}
+                className={`text-red-500 ${
+                  passwordStrength >= 0.4 && "opacity-50"
+                }`}
               >
                 Weak
               </span>
               <span
-                className={`text-yellow-500 ${passwordStrength < 0.4 ||
+                className={`text-yellow-500 ${
+                  passwordStrength < 0.4 ||
                   (passwordStrength >= 0.7 && "opacity-50")
-                  }`}
+                }`}
               >
                 Good
               </span>
               <span
-                className={`text-green-500 ${passwordStrength < 0.7 && "opacity-50"
-                  }`}
+                className={`text-green-500 ${
+                  passwordStrength < 0.7 && "opacity-50"
+                }`}
               >
                 Strong
               </span>

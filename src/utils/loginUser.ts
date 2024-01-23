@@ -43,7 +43,7 @@ const loginUser = async (userData: {
   } catch (error) {
     return {
       success: false,
-      message: `Something went wrong!`,
+      message: `Timeout error: ${error}`,
       token: "",
       name: "",
       userId: "",

@@ -19,7 +19,7 @@ const SocialIcons: React.FC<SocialIconsProps> = ({
           <SocialIcon
             url={link}
             // bgColor={bgColor}
-            className="bg-slate-800 rounded-xl cursor-pointer"
+            className="w-3 h-3 bg-slate-800 rounded-xl cursor-pointer"
             target="_blank"
             style={{ backgroundColor: bgColor, fill: iconColor }}
           />

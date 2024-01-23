@@ -1,6 +1,5 @@
 import React from "react";
 import type { Metadata } from "next";
-import { APISidebar } from '@/components';
 import PageProps from "@/components/PageProps";
 import Scripts from "@/components/Scripts";
 export const metadata: Metadata = {
@@ -13,7 +12,6 @@ interface APIProps {
 }
 
 const APIPageLayout: React.FC<APIProps> = ({ children }) => {
-
   return (
     <>
       <head>
@@ -23,10 +21,7 @@ const APIPageLayout: React.FC<APIProps> = ({ children }) => {
       </head>
       <body>
         <PageProps>
-          <div className='flex w-full text-white min-h-screen'>
-            <APISidebar />
-            {children}
-          </div>
+          {children}
         </PageProps>
         <Scripts />
       </body>

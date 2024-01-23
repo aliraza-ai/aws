@@ -2,7 +2,7 @@
 
 import { useWebContext } from "@/context/ContextProvider";
 import React, { useState, FormEvent } from "react";
-import Select, { Props as SelectProps } from "react-select";
+import Select from "react-select";
 
 const CourseLevel = [
   { value: 1, label: "Beginner" },
@@ -26,14 +26,14 @@ interface selectOption {
 
 const SubDurLvl = ({ type }: Props) => {
   const { getResponse, setCourseContentInfo } = useWebContext();
-
+  const [courseLevel, setAsgLevel] = useState<selectOption | null>(null);
+  const [formError, setFormError] = useState<FormProps | null>(null);
   const [formData, setFormData] = useState({
     sub: "",
     duration: "",
     courseLevel: "",
   });
 
-  const [courseLevel, setAsgLevel] = useState<selectOption | null>(null);
 
   const { sub, duration } = formData;
 
@@ -44,7 +44,6 @@ const SubDurLvl = ({ type }: Props) => {
       [name]: value,
     });
   };
-  const [formError, setFormError] = useState<FormProps | null>(null);
 
   const styles = {
     option: (provided: any, state: any) => ({

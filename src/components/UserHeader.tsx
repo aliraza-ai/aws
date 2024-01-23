@@ -30,11 +30,11 @@ const UserHeader = () => {
   const [sessionName, setSessionName] = useState<string | null>("Loading...");
   const [sessionLetter, setSessionLetter] = useState<string | null>("");
 
-  const logout = () => {
+  const logout = async () => {
     ["tokens", "name", "nameLetter", "userId"].forEach((item) => sessionStorage.removeItem(item));
     setTokens(null);
     setNameLetter("");
-    Swal.fire({
+    await Swal.fire({
       icon: "success",
       title: "Success",
       text: "Logout Successfully!",
@@ -104,7 +104,7 @@ const UserHeader = () => {
                   }`}
               >
                 {dropdownMenu.map((item: DropdownMenu) =>
-                  item.title !== "dashboard" ? (
+                  item.title !== "Dashboard" ? (
                     <Link key={item.id} href={item.link} passHref>
                       <li
                         className="py-3 px-5 flex items-center justify-start gap-2 text-white hover:bg-slate-500 transition duration-200"

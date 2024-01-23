@@ -98,14 +98,11 @@ const ImageGeneratorPages = () => {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    // Check if the count is greater than 0
     if (count > 0) {
       setWaitResponse(true);
       setButtonDisabled(true);
 
-      const inputValue =
-        e.currentTarget.querySelector("input")!.value +
-        ` --ar ${selectedOption.value}`;
+      const inputValue = e.currentTarget.querySelector("input")!.value + ` --ar ${selectedOption.value}`;
       setPrompt(e.currentTarget.querySelector("input")!.value);
 
       try {
@@ -115,6 +112,7 @@ const ImageGeneratorPages = () => {
             msg: inputValue,
           },
           {
+            maxBodyLength: Infinity,
             headers: {
               "Content-Type": "application/json",
               Authorization: `Bearer ${tokens}`,
@@ -136,13 +134,14 @@ const ImageGeneratorPages = () => {
   const generateImages = async () => {
     try {
       const response = await axios.get(`${url2}/${messageID}`, {
+        maxBodyLength: Infinity,
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${tokens}`,
         },
       });
       setProgress(response.data.progress);
-      
+
       if (response.data.progress < 100) {
         setTimeout(() => generateImages(), 1000);
       } else {
@@ -227,7 +226,7 @@ const ImageGeneratorPages = () => {
         <div className="text-base text-slate-400 font-light p-2 flex items-center gap-2">
           <Link href="/user/dashboard">Dashboard</Link>
           <FaChevronRight className="text-sm" />
-          <Link href="/user/social-media">Image Generator</Link>
+          <Link href="/user/image-generator">Image Generator</Link>
         </div>
 
         <h1 className="text-3xl font-semibold p-2 pb-3">Image Generator</h1>

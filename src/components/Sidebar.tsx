@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import { IconPlaceholderProps } from "@/types";
 import { Logo } from "../../public";
 import Link from "next/link";
 import { LuLayoutDashboard } from "react-icons/lu";
@@ -19,6 +18,7 @@ import { useAuth } from "@/context/AuthContext";
 import { useRouter, usePathname } from "next/navigation";
 import { Typography, List, ListItem, ListItemPrefix, Alert } from "@material-tailwind/react";
 import { useWebContext } from "@/context/ContextProvider";
+import { GiSoundWaves } from "react-icons/gi";
 
 export function Sidebar() {
   const router = useRouter();
@@ -26,14 +26,14 @@ export function Sidebar() {
   const { setToggle, toggle } = useWebContext();
   const { setTokens, setNameLetter } = useAuth();
 
-  const logout = () => {
+  const logout = async () => {
     sessionStorage.removeItem("tokens");
     sessionStorage.removeItem("name");
     sessionStorage.removeItem("nameLetter");
     sessionStorage.removeItem("userId");
     setTokens(null);
     setNameLetter("");
-    Swal.fire({
+    await Swal.fire({
       icon: "success",
       title: "Success",
       text: "Logout Successfully!",
@@ -45,7 +45,7 @@ export function Sidebar() {
 
   return (
     <div className={`sm:w-[250px] w-full border-r z-[999] fixed top-0 lg:left-0 transition-all duration-200 ${toggle ? "left-0" : "sm:-left-[250px] -left-full"
-        } border-[#54515b] rounded-none h-screen p-0 py-4 pt-0 shadow-xl bg-[rgb(32,45,72)] md:bg-[rgba(32,45,72,0.4)] backdrop-blur-sm overflow-y-auto transition-all duration-200 custom-scrollbar`}>
+      } border-[#54515b] rounded-none h-screen p-0 py-4 pt-0 shadow-xl bg-[rgb(32,45,72)] md:bg-[rgba(32,45,72,0.4)] backdrop-blur-sm overflow-y-auto transition-all duration-200 custom-scrollbar`}>
       {/* Close icon */}
       <IoIosClose className="text-white text-4xl absolute top-5 right-2 lg:hidden block" onClick={() => setToggle(!toggle)} />
 
@@ -55,9 +55,9 @@ export function Sidebar() {
         </Link>
       </div>
 
-      <List className="py-4 rounded-none">
+      <List className="py-4 rounded-none space-y-2">
         {/* Dashboard */}
-        <div>
+        <div className="space-y-2">
           <p className="text-[12px] font-medium uppercase text-gray-300">
             Start Here
           </p>
@@ -78,7 +78,7 @@ export function Sidebar() {
           </Link>
         </div>
 
-        <div className="pt-3">
+        <div className="pt-3 space-y-2">
           <p className="text-[12px] font-medium uppercase text-gray-300">
             Our Tools
           </p>
@@ -174,6 +174,21 @@ export function Sidebar() {
             </ListItem>
           </Link>
 
+          {/* AI Voice Generator */}
+          <Link
+            href="/user/voice-generator"
+            className={`flex items-center border-b-0 p-3 list-item-hover rounded-[6px] ${pathName == "/user/voice-generator" ? "bg-[#640f6c]" : " "
+              } `}
+            onClick={() => setToggle(!toggle)}
+          >
+            <ListItem className="p-0 ">
+              <ListItemPrefix>
+                <GiSoundWaves className="h-5 w-5 text-white" />
+              </ListItemPrefix>
+              <Typography className="text-white">AI Voice Generator</Typography>
+            </ListItem>
+          </Link>
+
           {/* Chat */}
           <Link
             href="/user/chat"
@@ -185,12 +200,12 @@ export function Sidebar() {
               <ListItemPrefix>
                 <SiChatbot className="h-5 w-5 text-white" />
               </ListItemPrefix>
-              <Typography className="text-white">Chat</Typography>
+              <Typography className="text-white">AI Chat</Typography>
             </ListItem>
           </Link>
         </div>
 
-        <div className="pt-3">
+        <div className="pt-3 space-y-2">
           <p className="text-[12px] font-medium uppercase text-gray-300">
             Support
           </p>
