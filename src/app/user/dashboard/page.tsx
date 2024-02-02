@@ -51,7 +51,7 @@ const DashboardPage = () => {
   const [wordCount, setWordCount] = useState<number | null>(0);
   const [chatCount, setChatCount] = useState<number | null>(0);
   const [imagesCount, setImagesCount] = useState<number | null>(0);
-  const [planName, setPlanName] = useState<string | null>("Basic Plan");
+  const [planName, setPlanName] = useState<string | null>("Basic Plan");
 
   const fetchWordCount = async () => {
     try {
@@ -113,8 +113,8 @@ const DashboardPage = () => {
     fetchPlanName();
  }, []);
 
-  const chartLabelsWords = ["Remaining Words", "Total words"];
-  const chartLabelsChats = ["Remaining Chats", "Total chats"];
+ const chartLabelsWords = [`Remaining Words: ${wordCount || 0}`, `Total Words`];
+ const chartLabelsChats = [`Remaining Chats: ${chatCount || 0}`, `Total Chats`];
 
   return (
     <div className="absolute top-14 right-0 md:px-20 md:py-10 p-6 w-full lg:w-[calc(100%-250px)] mx-auto text-white">
@@ -164,6 +164,7 @@ const DashboardPage = () => {
                 <div className="text-white p-5 basis-1/3 bg-[rgba(32,45,72,0.41)] overflow-hidden relative backdrop-blur-md shadow rounded-[20px]">
                   <div className="absolute -bottom-4 -right-4 bg-blue-500 w-28 h-28 blur-[80px]"></div>
                   <div className="absolute -bottom-4 -right-4 bg-cyan-400 w-16 h-16 blur-[50px]"></div>
+                  
                   {/* Rest of the content */}
                   <div className="flex flex-col items-center gap-4 justify-center h-[200px]">
                     <span
@@ -207,9 +208,9 @@ const DashboardPage = () => {
               Words Usage
             </div>
             {/* <Doughnut data={words} className="mx-auto pt-2" /> */}
-            <div className="w-3/4 mx-auto pt-2 ">
+            <div className="w-[83%] mx-auto pt-2 ">
               <DoughnutChart
-                data={[wordCount || 0, 2000 - (wordCount || 0)]}
+                data={[wordCount || 0, 2000|| 0]}
                 labels={chartLabelsWords}
               />
             </div>
@@ -220,9 +221,9 @@ const DashboardPage = () => {
               Chat Usage
             </div>
             {/* <Doughnut  className="mx-auto pt-2" /> */}
-            <div className="w-3/4 mx-auto pt-2">
+            <div className="w-[83%] mx-auto pt-2">
               <DoughnutChart
-                data={[chatCount || 0, 10 - (chatCount || 0)]}
+                data={[chatCount || 0, 10 || 0]}
                 labels={chartLabelsChats}
               />
             </div>

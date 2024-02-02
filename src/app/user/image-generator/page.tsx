@@ -50,19 +50,12 @@ const ImageGeneratorPages = () => {
   };
 
   useEffect(() => {
-    const storedProgressImageUrls = sessionStorage.getItem("progressImageUrls");
-    fetchImageCount();
+    const storedProgressImageUrls = typeof window !== 'undefined' ? sessionStorage.getItem("intelli_images") : null;
+    fetchImageCount()
     if (storedProgressImageUrls) {
-      setProgressImageUrls(JSON.parse(storedProgressImageUrls));
+        setProgressImageUrls(JSON.parse(storedProgressImageUrls));
     }
-  }, []);
-
-  useEffect(() => {
-    sessionStorage.setItem(
-      "progressImageUrls",
-      JSON.stringify(progressImageUrls)
-    );
-  }, [progressImageUrls]);
+}, []);
 
   const handleDownload = async (imageUrl: string) => {
     try {
@@ -153,6 +146,7 @@ const ImageGeneratorPages = () => {
             images: response.data.response.imageUrls,
           },
         ]);
+        
         try {
           const result = await updateImageCount();
           if (result.success) {
@@ -167,6 +161,10 @@ const ImageGeneratorPages = () => {
         setWaitResponse(false);
         setProgress(0);
         setButtonDisabled(false);
+        sessionStorage.setItem(
+          "intelli_images",
+          JSON.stringify(progressImageUrls)
+        );
       }
     } catch (error) {
       console.error(error);
@@ -303,6 +301,7 @@ const ImageGeneratorPages = () => {
               </div>
             </div>
           )}
+          
           {progressImageUrls.length < 1
             ? ""
             : progressImageUrls

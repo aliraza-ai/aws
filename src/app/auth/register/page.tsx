@@ -194,7 +194,7 @@ const RegisterPageLayout: React.FC<RegisterPageLayoutProps | any> = (props) => {
                     }}
                   />
                   {/* Toggle password visibility */}
-                  <div className="absolute right-[60px]">
+                  <div className="absolute right-[60px] cursor-pointer">
                     {password === "" ? null : seePass === "text" ? (
                       <AiFillEye
                         size={24}
@@ -234,7 +234,7 @@ const RegisterPageLayout: React.FC<RegisterPageLayoutProps | any> = (props) => {
                     }}
                   />
                   {/* Toggle confirm password visibility */}
-                  <div className="absolute right-[60px]">
+                  <div className="absolute right-[60px] cursor-pointer">
                     {confirmPassword === "" ? null : seeConfirmPass ===
                       "text" ? (
                       <AiFillEye

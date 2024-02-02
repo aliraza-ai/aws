@@ -142,15 +142,15 @@ const CheckoutForm: React.FC = () => {
               </div>
 
               {selectedPlan.link && (
+              <Link href={selectedPlan.link} className="w-full">
                 <button
                   type="button"
                   className="w-max mt-4 bg-gradient-to-r from-[rgba(247,15,255,1)] to-[#2C63FF] transition-all duration-300 py-3 px-9 text-white font-semibold rounded-full hover:opacity-75"
                   onClick={() => handleSubmit}
                 >
-                  <Link href={selectedPlan.link} className="w-full">
                     Pay Now
-                  </Link>
                 </button>
+                </Link>
               )}
             </div>
           </div>

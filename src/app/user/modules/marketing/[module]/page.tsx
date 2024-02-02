@@ -24,12 +24,15 @@ const ModuleLayout = () => {
     "advertisement",
     "facebook-advertisement",
     "google-advertisement",
+    "value-proposition",
   ];
 
   const compdesc = [
     "mission-statement",
     "vision-statement",
-    "welcome-email"
+    "welcome-email",
+    "pain-agitate-solution",
+    "product-sheet",
   ];
 
   return (

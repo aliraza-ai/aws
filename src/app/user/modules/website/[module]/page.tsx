@@ -20,7 +20,6 @@ const ModuleLayout = () => {
     "call-to-action",
     "headline",
     "subheadline",
-    "value-proposition",
   ];
 
   const proddesc = [
@@ -28,8 +27,6 @@ const ModuleLayout = () => {
     "pros-and-cons",
     "review",
     "testimonial",
-    "pain-agitate-solution",
-    "product-sheet",
   ];
 
   return (

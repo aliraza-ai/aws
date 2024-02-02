@@ -59,6 +59,14 @@ const CompDesc = ({ type }: Props) => {
           prompt = `Write a welcome email having this company ${company} and the description is this:"${description}". Response must be html paragraph with strong tag for headings and subheadings, list points in numbers & <br/> for linebreaks.`;
           getResponse(prompt);
           break;
+          case "pain-agitate-solution":
+          prompt = `Write pain agitate solution having this product ${company} and the description is ${description}. Now, I want response in html paragraph with strong and bold tag for headings and subheadings represented by size and bullets with numbers. After paragraph, use <br/> for linebreaks.`;
+          getResponse(prompt);
+          break;
+          case "product-sheet":
+          prompt = `Generate compelling product sheet having this product ${company} and the description is ${description}. Now, I want response in html paragraph with strong and bold tag for headings and subheadings represented by size and bullets with numbers. After paragraph, use <br/> for linebreaks.`;
+          getResponse(prompt);
+          break;
 
         default:
           break;

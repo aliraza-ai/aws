@@ -66,6 +66,14 @@ const TitleContent = ({ type }: Props) => {
         case "blog-tags":
           prompt = `Give blog tags of having this title ${title} and the content is this ${content}. Now, I want response in html paragraph with strong and bold tag for headings and subheadings represented by size and bullets with numbers. After paragraph, use <br/> for linebreaks.`;
           getResponse(prompt);
+          break; 
+          case "blog-talking-points":
+          prompt = `Give blog talking points of having this title ${title} and the content is this ${content}. Now, I want response in html paragraph with strong and bold tag for headings and subheadings represented by size and bullets with numbers. After paragraph, use <br/> for linebreaks.`;
+          getResponse(prompt);
+          break;
+          case "content-grammer":
+          prompt = `Give Content grammer of having this title ${title} and the content is this ${content}. Now, I want response in html paragraph with strong and bold tag for headings and subheadings represented by size and bullets with numbers. After paragraph, use <br/> for linebreaks.`;
+          getResponse(prompt);
           break;
 
         default:

@@ -1,14 +1,16 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { ChatItem } from "react-chat-elements";
 import Link from "next/link";
+import { CiSaveDown1 } from "react-icons/ci";
+import { IoIosArrowRoundDown } from "react-icons/io";
+
 import { FaChevronRight } from "react-icons/fa6";
 import { TbSend } from "react-icons/tb";
 import createChat from "@/utils/createChat";
 import Swal from "sweetalert2";
 import { logoMin, user } from "../../../../public";
-// import getChatCount from "@/utils/getChatCount"
 
 type ChatItemPosition = "left" | "right";
 type ChatItemType = "text" | "image";
@@ -24,10 +26,11 @@ interface ChatItemProps {
 }
 
 const ChatPage = () => {
-  // const sessionName = typeof window !== "undefined" ? sessionStorage.getItem("name") : null;
   const [message, setMessage] = useState<string>("");
   const [error, setError] = useState("");
   const [sessionName, setSessionName] = useState<string | null>("...");
+
+  const chatContainerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -62,39 +65,47 @@ const ChatPage = () => {
     if (message === "") {
       setError("Type the message first!");
     } else {
-      const userMessage = {
-        position: "right",
-        type: "text",
-        title: `${sessionName}`,
-        subtitle: message,
-        date: new Date(),
-        avatar: user,
-      };
+      try {
+        // Disable the button when sending starts
+        setButtonDisabled(true);
 
-      setChat((prevChat) => [...prevChat, userMessage]);
-      const chat = { message };
-      const response = await createChat(chat);
+        const userMessage = {
+          position: "right",
+          type: "text",
+          title: `${sessionName}`,
+          subtitle: message,
+          date: new Date(),
+          avatar: user,
+        };
 
-      const aiMessage = {
-        position: "left",
-        type: "text",
-        title: "Intelliwriter",
-        subtitle: response.result,
-        date: new Date(),
-        avatar: logoMin,
-      };
+        setChat((prevChat) => [...prevChat, userMessage]);
+        const chat = { message };
+        const response = await createChat(chat);
 
-      if (response.success) {
-        setChat((prevChat) => [...prevChat, aiMessage]);
-        setMessage("");
-        setError("");
-      } else {
-        Swal.fire({
-          icon: "error",
-          title: "Ooops...",
-          text: response.result,
-        });
-        setError(response.result);
+        const aiMessage = {
+          position: "left",
+          type: "text",
+          title: "Intelliwriter",
+          subtitle: response.result,
+          date: new Date(),
+          avatar: logoMin,
+        };
+
+        if (response.success) {
+          setChat((prevChat) => [...prevChat, aiMessage]);
+          setMessage("");
+          setError("");
+        } else {
+          Swal.fire({
+            icon: "error",
+            title: "Ooops...",
+            text: response.result,
+          });
+          setError(response.result);
+        }
+      } finally {
+        // Enable the button after the message is sent or an error occurs
+        setButtonDisabled(false);
       }
     }
   };
@@ -102,6 +113,30 @@ const ChatPage = () => {
   const handleInputChange = (event: any) => {
     setMessage(event.target.value);
   };
+
+  const [buttonDisabled, setButtonDisabled] = useState<boolean>(false);
+  const [isScrolledToBottom, setIsScrolledToBottom] = useState(true);
+
+  const scrollToBottom = () => {
+    const chatContainer = chatContainerRef.current;
+
+    if (chatContainer) {
+      chatContainer.scrollTop = chatContainer.scrollHeight;
+      setIsScrolledToBottom(true);
+    }
+  };
+
+  useEffect(() => {
+    const chatContainer = chatContainerRef.current;
+
+    if (chatContainer) {
+      const isUserScrolledToBottom =
+        chatContainer.scrollTop + chatContainer.clientHeight ===
+        chatContainer.scrollHeight;
+
+      setIsScrolledToBottom(isUserScrolledToBottom);
+    }
+  }, [chat]);
 
   return (
     <div className="absolute top-14 right-0 md:px-20 md:py-10 p-6 w-full lg:w-[calc(100%-250px)] mx-auto text-white">
@@ -114,7 +149,10 @@ const ChatPage = () => {
       <h2 className="text-3xl font-semibold p-2 pb-3">AI Chat</h2>
 
       <div className="mx-auto sm:p-10 py-5 bg-primary-two rounded-lg">
-        <div className="space-y-4 h-[52vh] overflow-y-auto siderbar flex w-full gap-3 flex-col">
+        <div
+          className="space-y-4 h-[52vh] overflow-y-auto siderbar flex w-full gap-3 flex-col"
+          ref={chatContainerRef}
+        >
           {chat.map((chatMsg, index) => (
             <Chat message={chatMsg} key={index} />
           ))}
@@ -125,6 +163,15 @@ const ChatPage = () => {
                 <Card heading="Explore" text1="Sunny Beach" text2="The Last Corner" text3="Dark World" />
               </div> */}
         </div>
+
+        {isScrolledToBottom ? null : (
+          <button
+            onClick={scrollToBottom}
+            className="justify-center items-center hover:opacity-80 fixed bottom-32 right-[38%] flex gap-1 p-3 rounded-full font-medium bg-gradient-to-r from-[rgba(247,15,255,1)] to-[#2C63FF] text-white"
+          >
+            <IoIosArrowRoundDown className="text-xl" />
+          </button>
+        )}
 
         <div className="w-full">
           <div className="input-container w-full flex mt-10">
@@ -144,12 +191,20 @@ const ChatPage = () => {
             <button
               type="button"
               onClick={handleSendMessage}
-              className="mx-2 flex gap-1 px-3 py-2 rounded-full font-medium bg-gradient-to-r from-[rgba(247,15,255,1)] to-[#2C63FF] text-white"
+              className="mx-2 flex gap-1 px-3 py-2 hover:opacity-80 rounded-full font-medium bg-gradient-to-r from-[rgba(247,15,255,1)] to-[#2C63FF] text-white"
+              disabled={buttonDisabled}
+
             >
+              {buttonDisabled ? (
+            "Sending..."
+          ) : (
+            <>
               Send <TbSend className="text-white text-xl" />
+            </>
+          )}
             </button>
           </div>
-          
+
           {error !== "" && (
             <p className="text-red-400 text-[12px] pl-4 py-1">{error}</p>
           )}

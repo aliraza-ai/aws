@@ -93,6 +93,7 @@ const ProfilePage: React.FC<ProfilePageLayoutProps> = () => {
 
   const handleProfileUpdate = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    console.log("Form submitted!");
 
     const sessionTokens = sessionStorage.getItem("tokens");
     const userId = sessionStorage.getItem("userId");
@@ -102,14 +103,7 @@ const ProfilePage: React.FC<ProfilePageLayoutProps> = () => {
       return;
     }
 
-    try {
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-      if (email === "") {
-        setError("Email is required!");
-      } else if (emailRegex.test(email)) {
-        setError("Invalid email!");
-      } else {
+    try {      
         const response = await fetch(
           `${process.env.NEXT_PUBLIC_API_URL}/users/updateUser/${userId}`,
           {
@@ -150,7 +144,7 @@ const ProfilePage: React.FC<ProfilePageLayoutProps> = () => {
         } else {
           throw new Error("Failed to update user");
         }
-      }
+      
     } catch (error) {
       const errorMessage = (error as Error).message;
 
@@ -355,7 +349,7 @@ const ProfilePage: React.FC<ProfilePageLayoutProps> = () => {
             </div>
             <div className="flex justify-end">
               <button
-                className="text-white px-6 py-2 rounded bg-gradient-to-r from-[rgba(247,15,255,1)] to-[#2C63FF]"
+                className="text-white px-6 py-2 rounded hover:opacity-80 bg-gradient-to-r from-[rgba(247,15,255,1)] to-[#2C63FF]"
                 type="submit"
               >
                 Update Profile
@@ -388,7 +382,7 @@ const ProfilePage: React.FC<ProfilePageLayoutProps> = () => {
                     }}
                   />
                   {/* Toggle password visibility */}
-                  <div className="absolute right-[10px]">
+                  <div className="absolute right-[10px] cursor-pointer">
                     {seePass === "text" ? (
                       <AiFillEye
                         size={24}
@@ -421,7 +415,7 @@ const ProfilePage: React.FC<ProfilePageLayoutProps> = () => {
                     }}
                   />
                   {/* Toggle confirm password visibility */}
-                  <div className="absolute right-[10px]">
+                  <div className="absolute right-[10px] cursor-pointer">
                     {seeConfirmPass === "text" ? (
                       <AiFillEye
                         size={24}
@@ -479,7 +473,7 @@ const ProfilePage: React.FC<ProfilePageLayoutProps> = () => {
 
             <div className="flex justify-end mt-8">
               <button
-                className="text-white px-6 py-2 rounded bg-gradient-to-r from-[rgba(247,15,255,1)] to-[#2C63FF]"
+                className="text-white px-6 py-2 rounded hover:opacity-80 bg-gradient-to-r from-[rgba(247,15,255,1)] to-[#2C63FF]"
                 type="submit"
               >
                 Change Password

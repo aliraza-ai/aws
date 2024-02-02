@@ -58,6 +58,11 @@ const Audience = ({ type }: Props) => {
           prompt = `Write an advertisement for google based on title ${product} and the content is this:"${audience}". Response must be html paragraph with strong tag for headings and subheadings, list points in numbers & <br/> for linebreaks.`;
           getResponse(prompt);
           break;
+          case "value-proposition":
+            prompt = `Generate value propositions of having this product ${product} according to this audience ${audience}. Now, I want response in html paragraph with strong and bold tag for headings and subheadings represented by size and bullets with numbers. After paragraph, use <br/> for linebreaks.`;
+            getResponse(prompt);
+            break;
+          
 
         default:
           break;

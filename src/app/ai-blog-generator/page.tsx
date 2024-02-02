@@ -1,45 +1,11 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import {
-  blogcontent,
-  blogstep1,
-  blogstep2,
-  blogstep3,
-  blogstep4,
-} from "../../../public";
+import { blogcontent, curve1 } from "../../../public";
 import { FAQs } from "@/components";
 import { BlogContentFAQs } from "@/constants/FaqsData";
-
-const steps = [
-  {
-    id: 1,
-    step: "Step#1",
-    detail:
-      "Access Intelliwriter AI Content Generator: Open your preferred web browser and navigate to the Intelliwriter.io website. Login and from the user dashboard chose what you want to create.",
-    image: blogstep1,
-  },
-  {
-    id: 2,
-    step: "Step#2",
-    detail:
-      "Enter Prompt to Search: Within the AI Blog Content tab, you'll find a blank canvas eagerly awaiting your inspiration. Guide the AI with your words and watch your ideas transform into content.",
-    image: blogstep2,
-  },
-  {
-    id: 3,
-    step: "Step#3",
-    detail:
-      "Wait For the Response: Sit back, relax, and let the AI generate your prompt.",
-    image: blogstep3,
-  },
-  {
-    id: 4,
-    step: "Step#4",
-    detail: "Get ready to be amazed – your content is ready.",
-    image: blogstep4,
-  },
-];
+import { MoretoolsBlog, dataBlog, stepsBlog } from "@/constants/index";
 
 const page = () => {
   return (
@@ -82,6 +48,37 @@ const page = () => {
         />
       </div>
 
+      <div className="w-1/3 text-white  m-12 ">
+        <h2 className="text-3xl">
+          Elevate your conservation
+          <br />
+          <Image src={curve1} alt="curve" className="w-1/4" />
+        </h2>
+        <p className="text-2sm">
+          Embracing the age of Artifical Intelligence. Discover Boundless power
+          and impact of AI.
+        </p>
+      </div>
+
+      <div className="container mx-auto">
+        <div className="flex flex-wrap gap-4 m-6 justify-center item-center">
+          {dataBlog.map((item, index) => (
+            <div
+              key={index}
+              className="card w-FULL md:w-1/3 xl:w-1/5 bg-blue-900 bg-opacity-20 p-2 ml-4"
+            >
+              <span className=" bg-[#dcfce7] m-2 block w-10 h-10 rounded-md text-[#16a34a] text-2xl  p-2">
+                {React.createElement(item.icon)}
+              </span>
+              <div className="text text-white p-2">
+                <h1 className="text-2xl">{item.title}</h1>
+                <p className="text-sm">{item.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
       <div className="my-10 md:my-20 text-center text-white flex flex-col items-center justify-center">
         <h2 className="text-2xl md:text-4xl font-bold capitalize w-[90%] xl:w-[70%]">
           Why use Intelliwriter's blog generator
@@ -101,7 +98,7 @@ const page = () => {
           magnetic content that grabs readers and never lets go.
         </h2>
 
-        {steps.map((item) => (
+        {stepsBlog.map((item) => (
           <div
             key={item.id}
             className={` my-4 flex flex-col gap-5 md:flex md:flex-row md:items-center md:justify-between w-full ${
@@ -127,7 +124,37 @@ const page = () => {
           </div>
         ))}
       </div>
-      
+      <div className="reason py-8 mt-10 md:mt-20 text-center text-white flex flex-col items-center justify-center">
+        <h2 className="text-2xl py-4 md:text-4xl font-bold capitalize w-[90%] xl:w-[70%]">
+          Our more tools you may{" "}
+          <span className="intelliwriter">like them</span>
+        </h2>
+        <div className="container mx-auto">
+          <div className="flex flex-wrap justify-center item-center">
+            {MoretoolsBlog.map((item, index) => (
+              <div
+                key={index}
+                className="bg-blue-900 m-2 text-center p-2 bg-opacity-20 md:w-[25%] lg:w-[15%] Moretools"
+              >
+                <span
+                  className="items-center justify-center block w-9 h-9 rounded-md text-xl m-3 mr-3 p-2"
+                  style={{
+                    backgroundColor: item.bgcolor,
+                    color: item.color,
+                  }}
+                >
+                  {React.createElement(item.icon)}
+                </span>
+                <div className="text text-white p-2">
+                  <h1 className="text-2xl">{item.title}</h1>
+                  <p className="text-sm">{item.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
       <div className="mt-10">
         <FAQs faqs={BlogContentFAQs} />
       </div>

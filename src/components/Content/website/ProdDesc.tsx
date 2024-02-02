@@ -61,14 +61,6 @@ const ProdDesc = ({ type }: Props) => {
           query = `Write article having this product ${product} and the description is ${description}. Now, I want response in html paragraph with strong and bold tag for headings and subheadings represented by size and bullets with numbers. After paragraph, use <br/> for linebreaks.`;
           getResponse(query);
           break;
-        case "pain-agitate-solution":
-          query = `Write article having this product ${product} and the description is ${description}. Now, I want response in html paragraph with strong and bold tag for headings and subheadings represented by size and bullets with numbers. After paragraph, use <br/> for linebreaks.`;
-          getResponse(query);
-          break;
-        case "product-sheet":
-          query = `Generate compelling product sheet having this product ${product} and the description is ${description}. Now, I want response in html paragraph with strong and bold tag for headings and subheadings represented by size and bullets with numbers. After paragraph, use <br/> for linebreaks.`;
-          getResponse(query);
-          break;
         default:
           break;
       }

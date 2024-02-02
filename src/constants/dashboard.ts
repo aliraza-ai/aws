@@ -75,7 +75,7 @@ export const BasicCardData: BasicCard[] = [
     icon: TiSortAlphabeticallyOutline,
     title: "Remaining Words",
     plan: " ",
-    remaining: 3000,
+    remaining: 2000,
   },
   {
     id: 3,
@@ -239,7 +239,7 @@ export const content: ContentData[] = [
     title: "Blog Talking Points",
     description:
       "Generate blog talkings points based on the blog post title and content",
-    url: "/user/modules/blog-content/blog-talking-points",
+    url: "/user/modules/blog-content/blog-talkings-points",
   },
   {
     id: 11,
@@ -253,7 +253,7 @@ export const content: ContentData[] = [
     icon: FaListCheck,
     title: "Content Grammar",
     description: "Correct the grammatical errors for any text in seconds.",
-    url: "/user/modules/blog-content/content-grammer",
+    url: "/user/modules/blog-content/content-grammar",
   },
   {
     id: 13,
@@ -407,13 +407,13 @@ export const Marketing: Market[] = [
     description: "Generate engaging and comprehensive newsletters.",
     url: "/user/modules/marketing/newsletter",
   },
-  // {
-  //   id: 7,
-  //   icon: FaFlask,
-  //   title: "Pain-Agitate-Solution",
-  //   description: "Generate high-converting sales copy using the PAS formula.",
-  //   url: "/user/modules/marketing/pain-agitate-solution",
-  // },
+  {
+    id: 7,
+    icon: FaFlask,
+    title: "Pain-Agitate-Solution",
+    description: "Generate high-converting sales copy using the PAS formula.",
+    url: "/user/modules/marketing/pain-agitate-solution",
+  },
   {
     id: 8,
     icon: MdOutlineNewspaper,
@@ -421,13 +421,13 @@ export const Marketing: Market[] = [
     description: "Generate comprehensive and informative press releases.",
     url: "/user/modules/marketing/press-release",
   },
-  // {
-  //   id: 9,
-  //   icon: LuFileSpreadsheet,
-  //   title: "Product Sheet",
-  //   description: "Generate compelling product sheets for a product or service.",
-  //   url: "/user/modules/marketing/product-sheet",
-  // },
+  {
+    id: 9,
+    icon: LuFileSpreadsheet,
+    title: "Product Sheet",
+    description: "Generate compelling product sheets for a product or service.",
+    url: "/user/modules/marketing/product-sheet",
+  },
   {
     id: 10,
     icon: PiDeviceMobileBold,
@@ -452,13 +452,13 @@ export const Marketing: Market[] = [
       "Generate creative startup names based on the description and keywords.",
     url: "/user/modules/marketing/startup-names",
   },
-  // {
-  //   id: 13,
-  //   icon: IoDiamond,
-  //   title: "Value Proposition",
-  //   description: "Generate value propositions for a product or service.",
-  //   url: "/user/modules/marketing/value-proposition",
-  // },
+  {
+    id: 13,
+    icon: IoDiamond,
+    title: "Value Proposition",
+    description: "Generate value propositions for a product or service.",
+    url: "/user/modules/marketing/value-proposition",
+  },
   {
     id: 14,
     icon: FaRegStar,

@@ -115,9 +115,9 @@ const Assignment = ({ type }: Props) => {
       //   endhrs: "",
       //   description: "",
       // });
-      settimedura(null);
-      setschedhrs(null);
-      setendhrs(null);
+      // settimedura(null);
+      // setschedhrs(null);
+      // setendhrs(null);
 
     }
   };

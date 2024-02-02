@@ -1,46 +1,14 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import {
-  chatstep1,
-  chatstep2,
-  chatstep3,
-  chatstep4,
   aichat,
 } from "../../../public";
 import { FAQs } from "@/components";
 import { AIChatFAQs } from "@/constants/FaqsData";
+import { MoretoolsChat,stepsChat } from "@/constants/index";
 
-
-const steps = [
-  {
-    id: 1,
-    step: "Step#1",
-    detail:
-      "Access Intelliwriter AI Content Generator: Open your preferred web browser and navigate to the Intelliwriter.io website. Login and from the user dashboard choose what you want to create.",
-    image: chatstep1,
-  },
-  {
-    id: 2,
-    step: "Step#2",
-    detail:
-      "Enter Prompt to Search: Within the AI Chat, you'll find a blank canvas eagerly awaiting your inspiration. Guide the AI with your words and watch your ideas transform into art.",
-    image: chatstep2,
-  },
-  {
-    id: 3,
-    step: "Step#3",
-    detail:
-      "Wait For the Response: Creativity takes time, even for AI. Sit back, relax, and let the magic unfold.",
-    image: chatstep3,
-  },
-  {
-    id: 4,
-    step: "Step#4",
-    detail: "Get ready to be amazed – your content is ready.",
-    image: chatstep4,
-  },
-];
 
 const ChatPage = () => {
   return (
@@ -54,10 +22,9 @@ const ChatPage = () => {
         <p className="text-sm md:text-lg my-4 w-[90%] xl:w-[50%]">
           Explore your creativity through digital art exploration. Immerse
           yourself in a realm of creation and dynamic prompts that nurture
-          artistic expression. Whether you're a Professor,Student,Researcher
-          or seeking to infuse creativity into your projects, our
-          AI-powered tool empowers you to craft captivating Content within
-          seconds.
+          artistic expression. Whether you're a Professor,Student,Researcher or
+          seeking to infuse creativity into your projects, our AI-powered tool
+          empowers you to craft captivating Content within seconds.
         </p>
         <div className="w-fit">
           <button className="w-fit rounded-lg bg-gradient-to-r from-[rgba(247,15,255,1)] to-[#2C63FF] px-3 py-1 md:px-4 md:py-2 hover:opacity-90">
@@ -92,10 +59,10 @@ const ChatPage = () => {
           Why use Intelliwriter's AI Chat
         </h2>
         <p className="text-sm md:text-lg my-4 w-[90%] xl:w-[50%]">
-          Intelliwriter's AI Chat isn't just a tool, it's
-          an experience. We've crafted a seamless platform that empowers you to
-          effortlessly bring your visions to life. Join the revolution and
-          discover the magic of AI-powered content creation.
+          Intelliwriter's AI Chat isn't just a tool, it's an experience. We've
+          crafted a seamless platform that empowers you to effortlessly bring
+          your visions to life. Join the revolution and discover the magic of
+          AI-powered content creation.
         </p>
       </div>
 
@@ -105,11 +72,12 @@ const ChatPage = () => {
           CONTENT THAT ARE UNIQUE AND ENGAGING.
         </h2>
 
-        {steps.map((item) => (
+        {stepsChat.map((item) => (
           <div
             key={item.id}
-            className={` my-4 flex flex-col gap-5 md:flex md:flex-row md:items-center md:justify-between w-full ${item.id == 2 || item.id == 4 ? "md:flex-row-reverse" : ""
-              }`}
+            className={` my-4 flex flex-col gap-5 md:flex md:flex-row md:items-center md:justify-between w-full ${
+              item.id == 2 || item.id == 4 ? "md:flex-row-reverse" : ""
+            }`}
           >
             <div className="items-start flex flex-col md:w-4/12 ">
               <h2 className="text-lg md:text-xl font-semibold">{item.step}</h2>
@@ -127,6 +95,35 @@ const ChatPage = () => {
             </div>
           </div>
         ))}
+      </div>
+      <div className="reason py-8 mt-10 md:mt-20 text-center text-white flex flex-col items-center justify-center">
+        <h2 className="text-2xl py-4 md:text-4xl font-bold capitalize w-[90%] xl:w-[70%]">
+          Our more tools you may{" "}
+          <span className="intelliwriter">like them</span>
+        </h2>
+        <div className="container mx-auto">
+          <div className="flex flex-wrap justify-center item-center">
+            {MoretoolsChat.map((item, index) => (
+              <div
+                key={index}
+                className="bg-blue-900 m-2 text-center p-2 bg-opacity-20 md:w-[25%] lg:w-[15%] Moretools">
+                <span
+                  className="items-center justify-center block w-9 h-9 rounded-md text-xl m-3 mr-3 p-2"
+                  style={{
+                    backgroundColor: item.bgcolor,
+                    color: item.color,
+                  }}
+                >
+                  {React.createElement(item.icon)}
+                </span>
+                <div className="text text-white p-2">
+                  <h1 className="text-2xl">{item.title}</h1>
+                  <p className="text-sm">{item.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
       <div className="mt-10">
         <FAQs faqs={AIChatFAQs} />

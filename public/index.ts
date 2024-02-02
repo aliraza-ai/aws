@@ -110,12 +110,21 @@ export const coursestep4 = "/ai-course-builder-page/coursestep4.png";
 export const coursecontent = "/ai-course-builder-page/coursecontent.jpg";
 
 
-export const socialmediaBg = "/socialmediaBg.jpeg"
-export const socialStep2 = "/socialStep2.png"
-export const socialStep3 = "/socialStep3.png"
-export const socialStep1 = "/socialStep1.png"
-export const socialStep4 = "/socialStep4.png"
+export const socialmediaBg = "/ai-social-media/socialmediaBg.jpeg"
+export const socialStep2 = "/ai-social-media/socialStep2.png"
+export const socialStep3 = "/ai-social-media/socialStep3.png"
+export const socialStep1 = "/ai-social-media/socialStep1.png"
+export const socialStep4 = "/ai-social-media/socialStep4.png"
 
 // export const apiService1 = "/apiSevice1.png";
 // export const apiService2 = "/apiService2.png";
 // export const apiService3 = "/apiService3.png";
+
+
+//Marketing Page
+export {default as marketingstep1} from "./ai-marketing-page/marketingstep1.jpg"
+export {default as marketingstep2} from "./ai-marketing-page/marketingstep2.jpg"
+export {default as marketingstep3} from "./ai-marketing-page/marketingstep3.jpg"
+export {default as marketingstep4} from "./ai-marketing-page/marketingstep4.jpg"
+export {default as marketingcontent} from "./ai-marketing-page/marketingcontent.jpg"
+export {default as curve1} from "./curve1.png"

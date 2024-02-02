@@ -64,13 +64,13 @@ const PricingCard: React.FC<{ card: PricingData }> = ({ card }) => {
 
         <div className="flex justify-center pt-10">
           {card.id === 0 && subscribed ? (
-            <div className="w-fit rounded-3xl p-0.5 bg-gradient-to-r from-[rgb(247,15,255,1)] to-[#2C63FF] opacity-70">
+            <div className="w-fit rounded-3xl p-0.5 pt-24 bg-gradient-to-r from-[rgb(247,15,255,1)] to-[#2C63FF] opacity-70">
               <button className="bg-black text-white py-2 px-2 lg:px-9 rounded-3xl cursor-not-allowed " disabled={true} >
                 Subscribed
               </button>
             </div>
           ) : (
-            <div className="w-fit rounded-3xl p-0.5 bg-gradient-to-r from-[rgb(247,15,255,1)] to-[#2C63FF]">
+            <div className="w-fit rounded-3xl pt-24 p-0.5 bg-gradient-to-r from-[rgb(247,15,255,1)] to-[#2C63FF]">
               <button
                 className={`bg-black text-white py-2 px-2 lg:px-9 rounded-3xl hover:opacity-75 ${card.id === 0 && subscribed ? "hidden" : ""
                   }`}

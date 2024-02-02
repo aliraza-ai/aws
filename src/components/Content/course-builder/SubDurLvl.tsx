@@ -96,7 +96,7 @@ const SubDurLvl = ({ type }: Props) => {
       //   duration: "",
       //   courseLevel: "",
       // });
-      setAsgLevel(null);
+      // setAsgLevel(null);
     }
   };
 

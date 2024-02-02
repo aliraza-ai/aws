@@ -639,3 +639,115 @@ a.social-icon{
   width: 30px !important;
   height: 30px !important;
 }
+
+
+/* Landing Pages */
+
+.selectionbutton
+{
+    display: inline-block;
+outline: 0;
+border: 0;
+cursor: pointer;
+background-color: #110529;
+border-radius: 50px;
+padding: 1rem 1.5rem;
+font-size: 16px;
+font-weight: 500;
+color: white;
+border: 1px solid palevioletred;
+background:linear-gradient(90deg,rgba(55, 1, 51, 0.9),rgba(18, 2, 45, 0.35));
+}
+.selectionbutton:hover
+{
+    background:linear-gradient(-180deg,rgba(91, 2, 85, 0.9),rgba(18, 2, 45, 0.35));
+    box-shadow: 0 12px 16px 0 rgb(116, 21, 105,0.5);
+}
+.middle-text
+{
+    width : 55%;
+}
+.Moretools
+{
+    border-top: 1px solid rgb(148, 65, 79);
+    border-right:1px solid rgb(148, 65, 126) ;
+    border-left:1px solid rgb(15, 8, 213) ;
+    border-bottom:1px solid rgb(102, 102, 107) ;
+    border-radius:25%;
+
+   
+}
+.handshake img
+{
+    border: 0.5rem solid rgba(249, 249, 249, 0.2); /* Transparent black border */
+    border-radius: 7%;
+    
+}
+.card
+{
+    border-top: 1px solid rgb(148, 65, 79);
+    border-right:1px solid rgb(148, 65, 79) ;
+    border-left:1px solid rgb(14, 12, 78) ;
+    border-bottom:1px solid rgb(14, 12, 79) ;
+    border-radius:5%;
+    border-top-right-radius: 30%;
+}
+.card:hover
+{
+
+    box-shadow: 0 2px 3px 0 rgba(220, 93, 205, 0.5);
+    border-top-right-radius: 5%;
+}   
+
+p
+{
+    color: rgb(199, 205, 209) !important;
+}
+.reason
+{
+    background-color: #191731;
+    
+}
+
+.Moretools:hover
+{
+    background-color:rgba(249, 249, 249, 0.078) ;
+    border: none;
+    box-shadow: 0 2px 6px 0 rgba(102, 53, 133, 0.5);
+}
+
+@media screen and (max-width: 678px) {
+    .selectionbutton {
+        margin-left: 2rem;
+        padding: 0.5rem 1rem;
+        margin-right: 1rem;
+    }
+   
+    .Introduction
+    {
+        font-size:2.1rem;
+    }
+}
+@media screen and (max-width:426px) {
+    
+    .card
+    {
+        margin:0 2rem;
+    }
+}
+@media screen and (max-width:426px) {
+    
+    .Moretools
+    {
+        width: 40%;
+    }
+}
+
+/* Custom audio player styles */
+.rhap_container{
+  background-color: transparent !important;
+}
+
+.rhap_time{
+  color: white !important;
+}

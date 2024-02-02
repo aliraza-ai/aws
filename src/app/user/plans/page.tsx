@@ -51,11 +51,12 @@ const PricingCard: React.FC<{ card: PlanData }> = ({ card }) => {
                 <span className="opacity-80">Subscribed</span>
               </button>
             ) : (
+              <Link href={card.plan_id === 0 ? "#" : `/user/payment?planId=${card.plan_id}`}>
               <button className="w-full max-w-xs p-0.5 rounded-md flex items-center justify-center bg-gradient-to-r from-[rgba(247,15,255,1)] to-[#2C63FF] text-white py-2 hover:opacity-75">
-                <Link href={card.plan_id === 0 ? "#" : `/user/payment?planId=${card.plan_id}`}>
                   Subscribe now
-                </Link>
               </button>
+              </Link>
+
             )}
           </div>
         </div>

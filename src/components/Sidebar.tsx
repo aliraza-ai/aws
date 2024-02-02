@@ -159,7 +159,7 @@ export function Sidebar() {
             </ListItem>
           </Link>
 
-          {/* Image Generator */}
+          {/* AI Image Generator */}
           <Link
             href="/user/image-generator"
             className={`flex items-center border-b-0 p-3 list-item-hover rounded-[6px] ${pathName == "/user/image-generator" ? "bg-[#640f6c]" : " "
@@ -170,7 +170,7 @@ export function Sidebar() {
               <ListItemPrefix>
                 <BiSolidImageAlt className="h-5 w-5 text-white" />
               </ListItemPrefix>
-              <Typography className="text-white">Image Generator</Typography>
+              <Typography className="text-white">AI Image Generator</Typography>
             </ListItem>
           </Link>
 

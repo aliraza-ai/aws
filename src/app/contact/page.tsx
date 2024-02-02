@@ -29,6 +29,12 @@ const ContactPageLayout: React.FC<ContactPageLayoutProps> = (props) => {
   const [contactError, setContactError] = useState<ContactPageLayoutProps | null>(null);
   const router = useRouter();
 
+  const validatePhone = (phone: string): boolean => {
+    const phoneRegex = /^[0-9]{15}$/; 
+    return phoneRegex.test(phone);
+  };
+  
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
@@ -59,7 +65,14 @@ const ContactPageLayout: React.FC<ContactPageLayoutProps> = (props) => {
           children: null,
         });
         return;
-      } else if (!formData.subject) {
+      }  else if (!validatePhone(formData.phone)) {
+        setContactError({
+           phone: 'Please enter a valid phone number',
+           children:null,
+           });
+        return;
+      }     
+      else if (!formData.subject) {
         setContactError({
           subject: "Subject is required",
           children: null,

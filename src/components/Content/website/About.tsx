@@ -70,10 +70,6 @@ const Audience = ({ type }: Props) => {
           query = `Write subheadline having this product ${product} according to this audience ${audience} the description is ${description}. Now, I want response in html paragraph with strong and bold tag for headings and subheadings represented by size and bullets with numbers. After paragraph, use <br/> for linebreaks.`;
           getResponse(query);
           break;
-        case "value-proposition":
-          query = `Generate value propositions of having this product ${product} according to this audience ${audience} the description is ${description}. Now, I want response in html paragraph with strong and bold tag for headings and subheadings represented by size and bullets with numbers. After paragraph, use <br/> for linebreaks.`;
-          getResponse(query);
-          break;
         default:
           break;
       }

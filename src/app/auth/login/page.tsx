@@ -10,7 +10,6 @@ import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import loginUser from "@/utils/loginUser";
 import { useAuth } from "@/context/AuthContext";
 
-
 interface LoginPageLayoutProps {
   children: React.ReactNode;
   email?: string;
@@ -24,7 +23,9 @@ const LoginPageLayout: React.FC<LoginPageLayoutProps | any> = (props) => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [seePass, setSeePass] = useState<"text" | "password">("password");
-  const [signInError, setSignInError] = useState<LoginPageLayoutProps | null>(null);
+  const [signInError, setSignInError] = useState<LoginPageLayoutProps | null>(
+    null
+  );
 
   function getFirstLetter(email: string): string {
     return email ? email.charAt(0) : "";
@@ -62,16 +63,15 @@ const LoginPageLayout: React.FC<LoginPageLayoutProps | any> = (props) => {
 
           setTokens(result.token);
           setNameLetter(getFirstLetter(result.name));
-          await Swal.fire({
-            icon: "success",
-            title: "Success",
-            text: "Login Successfully!",
-          });
+          // await Swal.fire({
+          //   icon: "success",
+          //   title: "Success",
+          //   text: "Login Successfully!",
+          // });
           // setTimeout(function () {
           //   Swal.close();
           // }, 5000);
           router.push("/user/dashboard");
-
         } else {
           await Swal.fire({
             icon: "error",
@@ -140,7 +140,7 @@ const LoginPageLayout: React.FC<LoginPageLayoutProps | any> = (props) => {
                     setPassword(e.target.value);
                   }}
                 />
-                <div className="absolute right-[60px]">
+                <div className="absolute right-[60px] cursor-pointer">
                   {password === "" ? null : seePass === "text" ? (
                     <AiFillEye
                       size={24}

@@ -107,8 +107,7 @@ const PrivacyData: Privacy[] = [
     list: [],
     route: (
       <span>
-        If you have any questions or concerns about our Privacy Policy, please
-        contact us at{" "}
+       {" "}
         <Link
           className="text-blue-500"
           style={{ display: "inline" }}

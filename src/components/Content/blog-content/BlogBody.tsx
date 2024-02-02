@@ -45,6 +45,11 @@ const BlogBody = ({ type }: Props) => {
 
       let query = ""
       switch (type) {
+        case "blog-talkings-points":
+            query = `Write blog talking points having this title ${title} and the subhead is this ${subheading}. Now, I want response in html paragraph with strong and bold tag for headings and subheadings represented by size and bullets with numbers. After paragraph, use <br/> for linebreaks.`;
+            getResponse(query);
+            (query);
+            break;
         case "blog-paragraph":
           query = `Write blog paragraph having this title ${title} and the subhead is this ${subheading}. Now, I want response in html paragraph with strong and bold tag for headings and subheadings represented by size and bullets with numbers. After paragraph, use <br/> for linebreaks.`;
           getResponse(query);
@@ -54,11 +59,7 @@ const BlogBody = ({ type }: Props) => {
           getResponse(query);
           (query);
           break;
-        case "blog-talkings-points":
-          query = `Write blog talkings points having this title ${title} and the subhead is this ${subheading}. Now, I want response in html paragraph with strong and bold tag for headings and subheadings represented by size and bullets with numbers. After paragraph, use <br/> for linebreaks.`;
-          getResponse(query);
-          (query);
-          break;
+          
         default:
           break;
       }

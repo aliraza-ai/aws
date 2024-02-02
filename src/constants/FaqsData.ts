@@ -197,3 +197,69 @@ export const AIChatFAQs = [
     "AI Chat is proficient in multilingual interactions. It supports multiple languages, allowing you to engage with a diverse audience. Provide personalized and effective communication in the language your users prefer.",
 },
 ];
+
+export const SocialMediaFAQs = [
+  {
+    id: 1,
+    question: "How Can the AI Social Media Generator Enhance My Content Creation?",
+    answer:
+      "Our AI Social Media Generator is a powerful tool designed to elevate your content creation process. It provides quick and creative suggestions for social media posts, captivating captions, and relevant hashtags. Transform your content effortlessly and boost engagement with your audience.",
+  },
+  {
+    id: 2,
+    question: "Is the AI Generator Capable of Crafting Unique and Trendy Captions?",
+    answer:
+      "Absolutely! The AI Social Media Generator is equipped to craft unique and trendy captions that resonate with your audience. It analyzes current trends, user engagement patterns, and your brand identity to deliver captivating captions that enhance the impact of your social media posts.",
+  },
+  {
+    id: 3,
+    question: "Can I Customize the Tone and Style of the Generated Content?",
+    answer:
+      "Yes, customization is key! Our AI Social Media Generator allows you to tailor the tone and style of the generated content to match your brand identity. Whether you prefer a casual, professional, or humorous tone, you can create content that aligns perfectly with your social media strategy.",
+  },
+  {
+    id: 4,
+    question: "How Does the AI Generator Keep Up with the Latest Hashtag Trends?",
+    answer:
+      "Staying current with hashtag trends is our priority. The AI Social Media Generator continuously analyzes social media trends, user interactions, and popular hashtags to suggest relevant and trending hashtags for your posts. Keep your content fresh and engaging with trending hashtags.",
+  },
+  {
+    id: 5,
+    question: "Can the AI Generator Help Optimize Social Media Post Timing?",
+    answer:
+      "Absolutely! Our AI Social Media Generator goes beyond content creation. It analyzes the optimal times for posting based on your audience's online activity, helping you maximize reach and engagement. Schedule your posts strategically for the best impact on your social media channels.",
+  },
+];
+
+export const MarketingGeneratorFAQs = [
+  {
+    id: 1,
+    question: "How Can AI Chat Boost Marketing Efforts?",
+    answer:
+      "AI Chat is a game-changer for marketing. It facilitates instant engagement with potential customers, operates 24/7, and efficiently handles common marketing queries. Elevate your marketing efforts with quick responses, leading to enhanced customer satisfaction and streamlined communication.",
+  },
+  {
+    id: 2,
+    question: "Is AI Chat Effective in Generating Leads and Conversions?",
+    answer:
+      "Absolutely! Our AI Chat is designed to drive lead generation and conversions. It excels in handling complex marketing conversations, learning from interactions, and providing personalized responses. Enhance your marketing strategies with a tool that adapts to user input for a natural and effective communication experience.",
+  },
+  {
+    id: 3,
+    question: "Can I Tailor AI Chat to Match My Brand's Marketing Tone?",
+    answer:
+      "Yes, customization is at your fingertips! Our AI Chat tool enables you to customize responses to align with your brand's marketing tone and style. Create a personalized and consistent conversational experience that resonates with your target audience and reinforces your brand identity.",
+  },
+  {
+    id: 4,
+    question: "How Does AI Chat Ensure Confidentiality of Marketing Data?",
+    answer:
+      "Safeguarding your marketing data is our top priority. AI Chat adheres to stringent security protocols, implementing encryption and secure storage to protect sensitive marketing information. Rest assured that our tool meets industry standards for data privacy during all interactions.",
+  },
+  {
+    id: 5,
+    question: "Can AI Chat Support Marketing in Multiple Languages?",
+    answer:
+      "Absolutely! AI Chat is proficient in multilingual interactions, enabling you to reach a diverse audience. Support marketing campaigns in multiple languages to engage with users on a global scale. Deliver personalized and effective communication in the language your audience prefers.",
+  },
+];

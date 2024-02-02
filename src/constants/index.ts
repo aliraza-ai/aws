@@ -41,7 +41,27 @@ import {
   MdQuiz,
   MdSupportAgent,
 } from "react-icons/md";
-import { FaHashtag, FaBuysellads, FaQuora } from "react-icons/fa";
+import { IconType } from "react-icons";
+import {
+  FaHashtag,
+  FaBuysellads,
+  FaQuora,
+  FaNewspaper,
+  FaGripLines,
+  FaBlog,
+  FaCompactDisc,
+  FaImage,
+  FaComment,
+  FaTwitterSquare,
+  FaDiscourse,
+  FaSuitcase,
+  FaRocket,
+  FaBullseye,
+  FaEnvelopeOpen,
+  FaBuilding,
+  FaHandshake,
+  FaBook,
+} from "react-icons/fa";
 import {
   blogCardImage1,
   blogCardImage2,
@@ -49,7 +69,57 @@ import {
   blogCardImage4,
   blogCardImage5,
 } from "../../public/index";
-import { IconType } from "react-icons";
+import { RiArticleFill } from "react-icons/ri";
+import { BsLayoutTextSidebarReverse } from "react-icons/bs";
+import { TfiLayoutListPost } from "react-icons/tfi";
+import { ImParagraphJustify } from "react-icons/im";
+import { IoListOutline } from "react-icons/io5";
+import { TbArticle } from "react-icons/tb";
+import { RiFilePaper2Fill } from "react-icons/ri";
+import { ImCalendar } from "react-icons/im";
+import { BiDockLeft } from "react-icons/bi";
+import { RiArticleLine, RiKeyboardFill } from "react-icons/ri";
+import { PiChatCenteredTextDuotone } from "react-icons/pi";
+import { CgTranscript } from "react-icons/cg";
+import { IoMdContacts } from "react-icons/io";
+import {
+  MdOutlineCallToAction,
+  MdOutlineFeaturedPlayList,
+  MdOutlineThumbsUpDown,
+} from "react-icons/md";
+import { FaQuestionCircle } from "react-icons/fa";
+import { BsStars } from "react-icons/bs";
+import { LuSubtitles, LuHash } from "react-icons/lu";
+
+import { blogstep1, blogstep2, blogstep3, blogstep4 } from "../../public";
+import { chatstep1, chatstep2, chatstep3, chatstep4 } from "../../public";
+import {
+  coursestep1,
+  coursestep2,
+  coursestep3,
+  coursestep4,
+} from "../../public";
+import { imagestep1, imagestep2, imagestep3, imagestep4 } from "../../public";
+import {
+  socialStep1,
+  socialStep2,
+  socialStep3,
+  socialStep4,
+} from "../../public";
+import {
+  websitestep1,
+  websitestep2,
+  websitestep3,
+  websitestep4,
+} from "../../public";
+import {
+  marketingstep1,
+  marketingstep2,
+  marketingstep3,
+  marketingstep4,
+} from "../../public";
+import { StepProps } from "@material-tailwind/react/components/Stepper/Step";
+
 // import { StaticImageData } from "next/image";
 
 // const tokens = typeof window !== "undefined" ? sessionStorage.getItem("tokens") : null;
@@ -61,7 +131,7 @@ export const NAV_LINKS = [
   { id: 4, title: "Images", route: "/ai-image-generator" },
   { id: 5, title: "APIs", route: "/api" },
   { id: 6, title: "Pricing", route: "/#pricing" },
-  { id: 7, title: "Blog", route: "/blogs" },
+  { id: 7, title: "Blogs", route: "/blogs" },
   // { id: 8, title: "Contact", route: "/contact" },
 ];
 
@@ -103,7 +173,7 @@ export const pricingData = [
     package: "Basic Pack",
     currency: "",
     features: [
-      "2000 Words / month",
+      "3000 Words / month",
       "5 Images / month",
       "10 Chats / month",
       "All access tools",
@@ -233,7 +303,7 @@ export const FOOTER_LINKS = [
   },
   {
     title: "Content",
-    link: "/user/dashbaord",
+    link: "/user/dashboard",
   },
   {
     title: "APIs",
@@ -252,30 +322,34 @@ export const FOOTER_LINKS = [
 export const FOOTER_FEATURES = [
   {
     title: "Social Media Content Generation",
-    link: "/user/social-media",
+    link: "/ai-social-media",
   },
   {
     title: "Blog Content Generation",
-    link: "/user/blog-content",
+    link: "/ai-blog-generator",
   },
   {
     title: "Website Content Generation",
-    link: "/user/website",
+    link: "/website-content-generator",
   },
   {
     title: "Marketing Content Generation",
-    link: "/user/marketing",
+    link: "/ai-marketing-generator",
+  },
+  {
+    title: "Image Generation",
+    link: "/user/image-generator",
   },
   {
     title: "Chatting",
-    link: "/user/chat",
+    link: "/ai-chat",
   },
 ];
 
 export const SOCIAL_LINKS = [
-  "https://twitter.com/AiRobx75090 ",
+  "https://twitter.com/intelliwriter1 ",
   "https://linkedin.com/company/intelliwriter.io",
-  "https://facebook.com/Intelliwriter.io",
+  "https://www.facebook.com/Intelliwriter.io/",
   "https://instagram.com/intelliwriter_",
 ];
 
@@ -302,7 +376,7 @@ export const COMMUNITYCARD_DATA: CommunityCard[] = [
     title: "Twitter",
     content:
       "Join us on Twitter for active connections and engaging conversations!",
-    link: "https://twitter.com/AiRobx75090",
+    link: "https://twitter.com/intelliwriter1",
   },
   {
     id: 3,
@@ -318,7 +392,7 @@ export const COMMUNITYCARD_DATA: CommunityCard[] = [
     title: "Facebook",
     content:
       "Connect effortlessly with voice, video, and text on Facebook. Stay calm and chat with your communities!",
-    link: "https://facebook.com/Intelliwriter.io",
+    link: "https://www.facebook.com/Intelliwriter.io/",
   },
 ];
 
@@ -969,5 +1043,813 @@ export const nfts = [
   {
     id: 3,
     img: nft_slide_3,
+  },
+];
+
+// DATA FOR LANDING PAGES
+
+// FOR AI CHAT LANDING PAGE
+
+export interface MoretoolsProps {
+  icon: IconType;
+  description: string;
+  title: string;
+  bgcolor: string;
+  color: string;
+}
+
+export const MoretoolsChat: MoretoolsProps[] = [
+  {
+    icon: FaBlog,
+    title: "Blog content",
+    description: "AI Blog Generator",
+    bgcolor: "#dcfce7",
+    color: "#16a34a",
+  },
+  {
+    icon: FaCompactDisc,
+    title: "Social Media",
+    description: "AI Social Media Tool",
+    bgcolor: "#fef9c3",
+    color: "#facc15",
+  },
+  {
+    icon: FaGripLines,
+    title: "Marketing",
+    description: "AI Marketing Tool",
+    bgcolor: "#dbeafe",
+    color: "#2563eb",
+  },
+  {
+    icon: FaNewspaper,
+    title: "Website",
+    description: "AI Web Tool",
+    bgcolor: "#fee2e2",
+    color: "#dc2626",
+  },
+  {
+    icon: FaBook,
+    title: "Course Builder",
+    description: "AI Content Generator",
+    bgcolor: "#f3e8ff",
+    color: "#9333ea",
+  },
+  {
+    icon: FaImage,
+    title: "Image Generator",
+    description: "AI Image Generator",
+    bgcolor: "#80fcf0",
+    color: "#4e7471",
+  },
+];
+
+export const MoretoolsImage: MoretoolsProps[] = [
+  {
+    icon: FaBlog,
+    title: "Blog content",
+    description: "AI Blog Generator",
+    bgcolor: "#dcfce7",
+    color: "#16a34a",
+  },
+  {
+    icon: FaCompactDisc,
+    title: "Social Media",
+    description: "AI Social Media Tool",
+    bgcolor: "#fef9c3",
+    color: "#facc15",
+  },
+  {
+    icon: FaGripLines,
+    title: "Marketing",
+    description: "AI Marketing Tool",
+    bgcolor: "#dbeafe",
+    color: "#2563eb",
+  },
+  {
+    icon: FaNewspaper,
+    title: "Website",
+    description: "AI Web Tool",
+    bgcolor: "#fee2e2",
+    color: "#dc2626",
+  },
+  {
+    icon: FaBook,
+    title: "Course Builder",
+    description: "AI Content Generator",
+    bgcolor: "#f3e8ff",
+    color: "#9333ea",
+  },
+  // {
+  //   icon: FaImage ,
+  //   title: "Image Generator",
+  //   description: "AI Image Generator",
+  //   bgcolor: "#80fcf0",
+  //   color: "#4e7471",
+  // },
+  {
+    icon: FaComment,
+    title: "Chat",
+    description: "AI Chat Tool",
+    bgcolor: "#9333ea",
+    color: "#9e5aa4",
+  },
+];
+
+export interface dataProps {
+  icon: IconType;
+  description: string;
+  title: string;
+}
+
+export const dataBlog: dataProps[] = [
+  {
+    icon: RiArticleFill,
+    title: "Article",
+    description: "Generate articles based on title, keywords, and subheading.",
+  },
+  {
+    icon: BsLayoutTextSidebarReverse,
+    title: "Blog Intro",
+    description:
+      "Generate blog intros based on the blog post title and content.",
+  },
+  {
+    icon: TfiLayoutListPost,
+    title: "Blog Listicle",
+    description:
+      "Generate blog listicle based on the blog post title and content.",
+  },
+  {
+    icon: IoListOutline,
+    title: "Blog Outline",
+    description:
+      "Generate blog outline based on the blog post title and content.",
+  },
+  {
+    icon: RiArticleFill,
+    title: "Blog Outro",
+    description:
+      "Generate blog outro based on the blog post title and content.",
+  },
+  {
+    icon: ImParagraphJustify,
+    title: "Blog Paragraph",
+    description:
+      "Generate blog paragraph based on the blog post title and subheading.",
+  },
+  {
+    icon: TbArticle,
+    title: "Blog Post",
+    description: "Generate blog posts, focused on keywords, about any topic.",
+  },
+  {
+    icon: RiArticleFill,
+    title: "Blog Section",
+    description:
+      "Generate blog section based on the blog post title and subheading.",
+  },
+];
+
+export const MoretoolsBlog: MoretoolsProps[] = [
+  // {
+  //   icon: <FaBlog />,
+  //   title: "Blog content",
+  //   description: "AI Blog Generator",
+  //   bgcolor: "#dcfce7",
+  //   color: "#16a34a",
+  // },
+  {
+    icon: FaCompactDisc,
+    title: "Social Media",
+    description: "AI Social Media Tool",
+    bgcolor: "#fef9c3",
+    color: "#facc15",
+  },
+  {
+    icon: FaGripLines,
+    title: "Marketing",
+    description: "AI Marketing Tool",
+    bgcolor: "#dbeafe",
+    color: "#2563eb",
+  },
+  {
+    icon: FaNewspaper,
+    title: "Website",
+    description: "AI Web Tool",
+    bgcolor: "#fee2e2",
+    color: "#dc2626",
+  },
+  {
+    icon: FaBook,
+    title: "Course Builder",
+    description: "AI Content Generator",
+    bgcolor: "#f3e8ff",
+    color: "#9333ea",
+  },
+  {
+    icon: FaImage,
+    title: "Image Generator",
+    description: "AI Image Generator",
+    bgcolor: "#80fcf0",
+    color: "#4e7471",
+  },
+  {
+    icon: FaComment,
+    title: "Chat",
+    description: "AI Chat Tool",
+    bgcolor: "#9333ea",
+    color: "#9e5aa4",
+  },
+];
+
+export const dataCourse: dataProps[] = [
+  {
+    icon: RiFilePaper2Fill,
+    title: "Course Content",
+    description: "Generate course outline, quiz and its assignment.",
+  },
+  {
+    icon: RiFilePaper2Fill,
+    title: "Course Outline",
+    description: "Generate couse outline for your subject.",
+  },
+  {
+    icon: MdQuiz,
+    title: "Quiz Generator",
+    description: "Generate quiz questions for your subject topic.",
+  },
+  {
+    icon: ImCalendar,
+    title: "Time Table",
+    description: "Generate Time table schedule for your work!",
+  },
+  {
+    icon: BiDockLeft,
+    title: "Assignment Generator",
+    description: "Generate assignment questions for your work!",
+  },
+];
+
+export const MoretoolsCourse: MoretoolsProps[] = [
+  {
+    icon: FaBlog,
+    title: "Blog content",
+    description: "AI Blog Generator",
+    bgcolor: "#dcfce7",
+    color: "#16a34a",
+  },
+  {
+    icon: FaCompactDisc,
+    title: "Social Media",
+    description: "AI Social Media Tool",
+    bgcolor: "#fef9c3",
+    color: "#facc15",
+  },
+  {
+    icon: FaGripLines,
+    title: "Marketing",
+    description: "AI Marketing Tool",
+    bgcolor: "#dbeafe",
+    color: "#2563eb",
+  },
+  {
+    icon: FaNewspaper,
+    title: "Website",
+    description: "AI Web Tool",
+    bgcolor: "#fee2e2",
+    color: "#dc2626",
+  },
+  // {
+  //   icon: FaBook,
+  //   title: "Course Builder",
+  //   description: "AI Content Generator",
+  //   bgcolor: "#f3e8ff",
+  //   color: "#9333ea",
+  // },
+  {
+    icon: FaImage,
+    title: "Image Generator",
+    description: "AI Image Generator",
+    bgcolor: "#80fcf0",
+    color: "#4e7471",
+  },
+  {
+    icon: FaComment,
+    title: "Chat",
+    description: "AI Chat Tool",
+    bgcolor: "#9333ea",
+    color: "#9e5aa4",
+  },
+];
+
+export const dataSocialMedia: dataProps[] = [
+  {
+    icon: FaHashtag,
+    title: "Hashtags",
+    description: "Generate #hashtags for social network content.",
+  },
+  {
+    icon: RiArticleLine,
+    title: "Social Post",
+    description:
+      "Generate social posts ready to be published on social platforms.",
+  },
+  {
+    icon: FaDiscourse,
+    title: "Social Post Caption",
+    description: "Generate social posts caption ready to grab attention.",
+  },
+  {
+    icon: FaTwitter,
+    title: "Tweet",
+    description: "Generate engaging tweets based on a description.",
+  },
+  {
+    icon: FaTwitterSquare,
+    title: "Tweet Thread",
+    description: "Generate engaging twitter threads based on a description.",
+  },
+  {
+    icon: PiChatCenteredTextDuotone,
+    title: "Video Description",
+    description:
+      "Generate compelling video descriptions based on a description.",
+  },
+  {
+    icon: CgTranscript,
+    title: "Video Script",
+    description: "Generate compelling video scripts based on a description.",
+  },
+  {
+    icon: RiKeyboardFill,
+    title: "Video Tags",
+    description: "Generate compelling video tags based on a video title.",
+  },
+];
+
+export const MoretoolsSocialMedia: MoretoolsProps[] = [
+  {
+    icon: FaBlog,
+    title: "Blog content",
+    description: "AI Blog Generator",
+    bgcolor: "#dcfce7",
+    color: "#16a34a",
+  },
+  // {
+  //   icon: FaCompactDisc ,
+  //   title: "Social Media",
+  //   description: "AI Social Media Tool",
+  //   bgcolor: "#fef9c3",
+  //   color: "#facc15",
+  // },
+  {
+    icon: FaGripLines,
+    title: "Marketing",
+    description: "AI Marketing Tool",
+    bgcolor: "#dbeafe",
+    color: "#2563eb",
+  },
+  {
+    icon: FaNewspaper,
+    title: "Website",
+    description: "AI Web Tool",
+    bgcolor: "#fee2e2",
+    color: "#dc2626",
+  },
+  {
+    icon: FaBook,
+    title: "Course Builder",
+    description: "AI Content Generator",
+    bgcolor: "#f3e8ff",
+    color: "#9333ea",
+  },
+  {
+    icon: FaImage,
+    title: "Image Generator",
+    description: "AI Image Generator",
+    bgcolor: "#80fcf0",
+    color: "#4e7471",
+  },
+  {
+    icon: FaComment,
+    title: "Chat",
+    description: "AI Chat Tool",
+    bgcolor: "#9333ea",
+    color: "#9e5aa4",
+  },
+];
+
+export const dataWebsite: dataProps[] = [
+  {
+    icon: IoMdContacts,
+    title: "About Us",
+    description:
+      "Generate about us text on the title and description of a page.",
+  },
+  {
+    icon: MdOutlineCallToAction,
+    title: "Call To Action",
+    description:
+      "Generate CTA lines based on the name and description of a product or service.",
+  },
+  {
+    icon: FaQuestionCircle,
+    title: "FAQ",
+    description:
+      "Generate frequently asked questions for a product or service.",
+  },
+  {
+    icon: BsStars,
+    title: "Feature Section",
+    description: "Generate feature sections to highlight a product or service.",
+  },
+  {
+    icon: LuSubtitles,
+    title: "Headline",
+    description: "Generate engaging headlines for products and services.",
+  },
+  {
+    icon: MdOutlineFeaturedPlayList,
+    title: "Meta Description",
+    description:
+      "Generate meta descriptions based on the title and description of a page.",
+  },
+  {
+    icon: LuHash,
+    title: "Meta Keywords",
+    description:
+      "Generate meta dkeywords based on the title and description of a page.",
+  },
+  {
+    icon: MdOutlineThumbsUpDown,
+    title: "Pros and Cons",
+    description: "Generate pros and cons for a product or service.",
+  },
+];
+
+export const MoretoolsWebsite: MoretoolsProps[] = [
+  {
+    icon: FaBlog,
+    title: "Blog content",
+    description: "AI Blog Generator",
+    bgcolor: "#dcfce7",
+    color: "#16a34a",
+  },
+  {
+    icon: FaCompactDisc,
+    title: "Social Media",
+    description: "AI Social Media Tool",
+    bgcolor: "#fef9c3",
+    color: "#facc15",
+  },
+  {
+    icon: FaGripLines,
+    title: "Marketing",
+    description: "AI Marketing Tool",
+    bgcolor: "#dbeafe",
+    color: "#2563eb",
+  },
+  // {
+  //   icon: FaNewspaper,
+  //   title: "Website",
+  //   description: "AI Web Tool",
+  //   bgcolor: "#fee2e2",
+  //   color: "#dc2626",
+  // },
+  {
+    icon: FaBook,
+    title: "Course Builder",
+    description: "AI Content Generator",
+    bgcolor: "#f3e8ff",
+    color: "#9333ea",
+  },
+  {
+    icon: FaImage,
+    title: "Image Generator",
+    description: "AI Image Generator",
+    bgcolor: "#80fcf0",
+    color: "#4e7471",
+  },
+  {
+    icon: FaComment,
+    title: "Chat",
+    description: "AI Chat Tool",
+    bgcolor: "#9333ea",
+    color: "#9e5aa4",
+  },
+];
+
+export const dataMarketing: dataProps[] = [
+  {
+    icon: FaBullseye,
+    title: "Advertisement",
+    description: "Generate Creative ad description for product or services",
+  },
+  {
+    icon: FaSuitcase,
+    title: "Job Description",
+    description:
+      "Generate professional job description to attract top talents.",
+  },
+  {
+    icon: FaRocket,
+    title: "Mission Statement",
+    description: "Generate Comprehensive and informative mission statement.",
+  },
+  {
+    icon: FaEnvelopeOpen,
+    title: "Newsletter",
+    description: "Generate Engaging and comprehensive newsletters.",
+  },
+  {
+    icon: FaNewspaper,
+    title: "Press Release",
+    description: "Generate Comprehensive and informative press release.",
+  },
+  {
+    icon: FaBuilding,
+    title: "Startup Ideas",
+    description:
+      "Generate innovative startup name and ideas based on the domain.",
+  },
+
+  {
+    icon: FaHandshake,
+    title: "Help Wanted Ad",
+    description:
+      "Generate job hiring adds for your business.And attract top talent seamlessly.",
+  },
+  {
+    icon: FaGripLines,
+    title: "Business Tagline",
+    description: "Generate slogans for your business.And attract top client.",
+  },
+];
+
+export const MoretoolsMarketing: MoretoolsProps[] = [
+  {
+    icon: FaBlog,
+    title: "Blog content",
+    description: "AI Blog Generator",
+    bgcolor: "#dcfce7",
+    color: "#16a34a",
+  },
+  {
+    icon: FaCompactDisc,
+    title: "Social Media",
+    description: "AI Social Media Tool",
+    bgcolor: "#fef9c3",
+    color: "#facc15",
+  },
+  // {
+  //   icon: FaGripLines,
+  //   title: "Marketing",
+  //   description: "AI Marketing Tool",
+  //   bgcolor: "#dbeafe",
+  //   color: "#2563eb",
+  // },
+  {
+    icon: FaNewspaper,
+    title: "Website",
+    description: "AI Web Tool",
+    bgcolor: "#fee2e2",
+    color: "#dc2626",
+  },
+  {
+    icon: FaBook,
+    title: "Course Builder",
+    description: "AI Content Generator",
+    bgcolor: "#f3e8ff",
+    color: "#9333ea",
+  },
+  {
+    icon: FaImage,
+    title: "Image Generator",
+    description: "AI Image Generator",
+    bgcolor: "#80fcf0",
+    color: "#4e7471",
+  },
+  {
+    icon: FaComment,
+    title: "Chat",
+    description: "AI Chat Tool",
+    bgcolor: "#9333ea",
+    color: "#9e5aa4",
+  },
+];
+
+export interface Steps {
+  id: number;
+  detail: string;
+  step: string;
+  image: string;
+}
+
+export const stepsBlog: Steps[] = [
+  {
+    id: 1,
+    step: "Step#1",
+    detail:
+      "Access Intelliwriter AI Content Generator: Open your preferred web browser and navigate to the Intelliwriter.io website. Login and from the user dashboard chose what you want to create.",
+    image: blogstep1,
+  },
+  {
+    id: 2,
+    step: "Step#2",
+    detail:
+      "Enter Prompt to Search: Within the AI Blog Content tab, you'll find a blank canvas eagerly awaiting your inspiration. Guide the AI with your words and watch your ideas transform into content.",
+    image: blogstep2,
+  },
+  {
+    id: 3,
+    step: "Step#3",
+    detail:
+      "Wait For the Response: Sit back, relax, and let the AI generate your prompt.",
+    image: blogstep3,
+  },
+  {
+    id: 4,
+    step: "Step#4",
+    detail: "Get ready to be amazed – your content is ready.",
+    image: blogstep4,
+  },
+];
+
+export const stepsChat: Steps[] = [
+  {
+    id: 1,
+    step: "Step#1",
+    detail:
+      "Access Intelliwriter AI Content Generator: Open your preferred web browser and navigate to the Intelliwriter.io website. Login and from the user dashboard choose what you want to create.",
+    image: chatstep1,
+  },
+  {
+    id: 2,
+    step: "Step#2",
+    detail:
+      "Enter Prompt to Search: Within the AI Chat, you'll find a blank canvas eagerly awaiting your inspiration. Guide the AI with your words and watch your ideas transform into art.",
+    image: chatstep2,
+  },
+  {
+    id: 3,
+    step: "Step#3",
+    detail:
+      "Wait For the Response: Creativity takes time, even for AI. Sit back, relax, and let the magic unfold.",
+    image: chatstep3,
+  },
+  {
+    id: 4,
+    step: "Step#4",
+    detail: "Get ready to be amazed – your content is ready.",
+    image: chatstep4,
+  },
+];
+
+export const stepsCourse: Steps[] = [
+  {
+    id: 1,
+    step: "Step#1",
+    detail:
+      "Access Intelliwriter AI Content Generator: Open your preferred web browser and navigate to the Intelliwriter.io website. Login and from the user dashboard choose what you want to create.",
+    image: coursestep1,
+  },
+  {
+    id: 2,
+    step: "Step#2",
+    detail:
+      "Enter Prompt to Search: Within the AI Course Builder, you'll find a blank canvas eagerly awaiting your inspiration. Guide the AI with your words and watch your ideas transform into art.",
+    image: coursestep2,
+  },
+  {
+    id: 3,
+    step: "Step#3",
+    detail:
+      "Wait For the Response: Creativity takes time, even for AI. Sit back, relax, and let the magic unfold.",
+    image: coursestep3,
+  },
+  {
+    id: 4,
+    step: "Step#4",
+    detail: "Get ready to be amazed – your content is ready.",
+    image: coursestep4,
+  },
+];
+
+export const stepsImage: Steps[] = [
+  {
+    id: 1,
+    step: "Step#1",
+    detail:
+      "Access Intelliwriter AI Content Generator: Open your preferred web browser and navigate to the Intelliwriter.io website. Login and from the user dashboard chose what you want to create.",
+    image: imagestep1,
+  },
+  {
+    id: 2,
+    step: "Step#2",
+    detail:
+      "Enter Prompt to Search: Within the AI Image Generator, you'll find a blank canvas eagerly awaiting your inspiration. Guide the AI with your words and watch your ideas transform into art.",
+    image: imagestep2,
+  },
+  {
+    id: 3,
+    step: "Step#3",
+    detail:
+      "Wait For the Response: Creativity takes time, even for AI. Sit back, relax, and let the magic unfold.",
+    image: imagestep3,
+  },
+  {
+    id: 4,
+    step: "Step#4",
+    detail: "Get ready to be amazed – your content is ready.",
+    image: imagestep4,
+  },
+];
+
+export const stepsSocial: Steps[] = [
+  {
+    id: 1,
+    step: "Step#1",
+    detail:
+      "Access Intelliwriter AI Content Generator: Open your preferred web browser and navigate to the Intelliwriter.io website. Login and from the user dashboard Click on Social Media",
+    image: socialStep1,
+  },
+  {
+    id: 2,
+    step: "Step#2",
+    detail: "Look for your desired tab and hit a click ",
+    image: socialStep2,
+  },
+  {
+    id: 3,
+    step: "Step#3",
+    detail:
+      "Enter Prompt to Search: Within the tab, You'll find a blank canvas eagerly awaiting your inspiration. Guide the AI with your words and watch your ideas transform into hashtags",
+    image: socialStep3,
+  },
+  {
+    id: 4,
+    step: "Step#4",
+    detail: "Get ready to be amazed – your content is ready.",
+    image: socialStep4,
+  },
+];
+
+export const stepsWebsite: Steps[] = [
+  {
+    id: 1,
+    step: "Step#1",
+    detail:
+      "Access Intelliwriter AI Content Generator: Open your preferred web browser and navigate to the Intelliwriter.io website. Login and from the user dashboard choose what you want to create.",
+    image: websitestep1,
+  },
+  {
+    id: 2,
+    step: "Step#2",
+    detail:
+      "Enter Prompt to Search: Within the AI Image Generator, you'll find a blank canvas eagerly awaiting your inspiration. Guide the AI with your words and watch your ideas transform into art.",
+    image: websitestep2,
+  },
+  {
+    id: 3,
+    step: "Step#3",
+    detail:
+      "Wait For the Response: Creativity takes time, even for AI. Sit back, relax, and let the magic unfold.",
+    image: websitestep3,
+  },
+  {
+    id: 4,
+    step: "Step#4",
+    detail: "Get ready to be amazed – your content is ready.",
+    image: websitestep4,
+  },
+];
+
+export const stepsMarketing: Steps[] = [
+  {
+    id: 1,
+    step: "Step#1",
+    detail:
+      "Access Intelliwriter AI Marketing tool: Open your preferred web browser and navigate to the Intelliwriter.io website. Login and from the user dashboard chose what you want to create.",
+    image: marketingstep1.src,
+  },
+  {
+    id: 2,
+    step: "Step#2",
+    detail:
+      "Enter Prompt to Search: Within the AI Marketing tool , you'll find a blank canvas eagerly awaiting your inspiration. Guide the AI with your words and watch the transformation of your idea.",
+    image: marketingstep2.src,
+  },
+  {
+    id: 3,
+    step: "Step#3",
+    detail:
+      "Wait For the Response: Creativity takes time, even for AI. Sit back, relax, and let the magic unfold.",
+    image: marketingstep3.src,
+  },
+  {
+    id: 4,
+    step: "Step#4",
+    detail: "Get ready to be amazed – your content is ready.",
+    image: marketingstep4.src,
   },
 ];
