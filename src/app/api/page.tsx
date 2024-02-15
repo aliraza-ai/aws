@@ -1,15 +1,16 @@
 // import Image from "next/image";
+import { FAQs } from "@/components";
+import { APILandingFAQs } from "@/constants/FaqsData";
 import Link from "next/link";
 import React from "react";
 import {
+  apicontent,
   apistep1,
   apistep2,
   apistep3,
   apistep4,
-  apicontent,
 } from "../../../public";
-import { FAQs } from "@/components";
-import { APILandingFAQs } from "@/constants/FaqsData";
+import Button from "@/components/Button";
 
 const steps = [
   {
@@ -57,11 +58,12 @@ const page = () => {
           possibilities.
         </p>
         <div className="w-fit">
-          <button className="w-fit rounded-lg bg-gradient-to-r from-[rgba(247,15,255,1)] to-[#2C63FF] px-3 py-1 md:px-4 md:py-2 hover:opacity-90">
-            <Link href="/api/docs">
-              Discover Intelliwriter's API Services!
-            </Link>
-          </button>
+          <Link href="/api/docs">
+            <Button
+              title="Discover Intelliwriter's API Services!"
+              btnType="button"
+            />
+          </Link>
         </div>
       </div>
 
@@ -89,9 +91,8 @@ const page = () => {
         {steps.map((item) => (
           <div
             key={item.id}
-            className={` my-4 flex flex-col gap-5 md:flex md:flex-row md:items-center md:justify-between w-full ${
-              item.id == 2 || item.id == 4 ? "md:flex-row-reverse" : ""
-            }`}
+            className={` my-4 flex flex-col gap-5 md:flex md:flex-row md:items-center md:justify-between w-full ${item.id == 2 || item.id == 4 ? "md:flex-row-reverse" : ""
+              }`}
           >
             <div className="items-start flex flex-col md:w-4/12 ">
               <h2 className="text-lg md:text-xl font-bold">{item.step}</h2>
@@ -110,9 +111,9 @@ const page = () => {
           </div>
         ))}
       </div>
-      
+
       <div className="mt-10">
-        <FAQs faqs={APILandingFAQs}/>
+        <FAQs faqs={APILandingFAQs} />
       </div>
     </div>
   );

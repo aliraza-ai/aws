@@ -1,11 +1,73 @@
 "use client";
 
-import { FaTwitter, FaLinkedin, FaInstagram, FaFacebook } from "react-icons/fa";
-import { FaCircleUser } from "react-icons/fa6";
+import { IconType } from "react-icons";
 import {
-  Step1,
-  Step2,
-  Step3,
+  AiFillApi,
+  AiFillProfile,
+  AiOutlineBulb,
+  AiOutlineCheck,
+  AiOutlineCode,
+  AiOutlineFileText,
+  AiOutlineHome,
+  AiOutlineRead,
+  AiOutlineVideoCamera,
+  AiTwotoneTag,
+} from "react-icons/ai";
+import { BiDockLeft } from "react-icons/bi";
+import { BsLayoutTextSidebarReverse, BsStars } from "react-icons/bs";
+import { CgTranscript } from "react-icons/cg";
+import {
+  FaBlog,
+  FaBook,
+  FaBuilding,
+  FaBullseye,
+  FaBuysellads,
+  FaComment,
+  FaCompactDisc,
+  FaDiscourse,
+  FaEnvelopeOpen,
+  FaFacebook,
+  FaGripLines,
+  FaHandshake,
+  FaHashtag,
+  FaImage,
+  FaInstagram,
+  FaLinkedin,
+  FaNewspaper,
+  FaQuestionCircle,
+  FaQuora,
+  FaRocket,
+  FaSuitcase,
+  FaTwitter,
+  FaTwitterSquare,
+} from "react-icons/fa";
+import { FaCircleUser } from "react-icons/fa6";
+import { GiSoundWaves } from "react-icons/gi";
+import { ImCalendar, ImParagraphJustify } from "react-icons/im";
+import { IoMdContacts } from "react-icons/io";
+import { IoListOutline } from "react-icons/io5";
+import { LuHash, LuSubtitles } from "react-icons/lu";
+import {
+  MdClosedCaption,
+  MdOutlineCallToAction,
+  MdOutlineDashboard,
+  MdOutlineFeaturedPlayList,
+  MdOutlineThumbsUpDown,
+  MdOutlineTitle,
+  MdQuiz,
+  MdSupportAgent,
+} from "react-icons/md";
+import { PiChatCenteredTextDuotone } from "react-icons/pi";
+import {
+  RiArticleFill,
+  RiArticleLine,
+  RiFilePaper2Fill,
+  RiKeyboardFill,
+} from "react-icons/ri";
+import { RxCheckCircled } from "react-icons/rx";
+import { TbArticle } from "react-icons/tb";
+import { TfiLayoutListPost } from "react-icons/tfi";
+import {
   Feature1,
   Feature2,
   Feature3,
@@ -14,6 +76,9 @@ import {
   Feature6,
   Feature7,
   Feature8,
+  Step1,
+  Step2,
+  Step3,
   image_slide_1,
   image_slide_2,
   image_slide_3,
@@ -21,104 +86,50 @@ import {
   nft_slide_2,
   nft_slide_3,
 } from "../../public";
-import { MdOutlineDashboard } from "react-icons/md";
-import { RxCheckCircled } from "react-icons/rx";
-import {
-  AiOutlineHome,
-  AiFillApi,
-  AiOutlineBulb,
-  AiOutlineCode,
-  AiOutlineCheck,
-  AiOutlineVideoCamera,
-  AiOutlineRead,
-  AiOutlineFileText,
-  AiTwotoneTag,
-  AiFillProfile,
-} from "react-icons/ai";
-import {
-  MdClosedCaption,
-  MdOutlineTitle,
-  MdQuiz,
-  MdSupportAgent,
-} from "react-icons/md";
-import { IconType } from "react-icons";
-import {
-  FaHashtag,
-  FaBuysellads,
-  FaQuora,
-  FaNewspaper,
-  FaGripLines,
-  FaBlog,
-  FaCompactDisc,
-  FaImage,
-  FaComment,
-  FaTwitterSquare,
-  FaDiscourse,
-  FaSuitcase,
-  FaRocket,
-  FaBullseye,
-  FaEnvelopeOpen,
-  FaBuilding,
-  FaHandshake,
-  FaBook,
-} from "react-icons/fa";
 import {
   blogCardImage1,
   blogCardImage2,
   blogCardImage3,
   blogCardImage4,
   blogCardImage5,
+  blogCardImage6
 } from "../../public/index";
-import { RiArticleFill } from "react-icons/ri";
-import { BsLayoutTextSidebarReverse } from "react-icons/bs";
-import { TfiLayoutListPost } from "react-icons/tfi";
-import { ImParagraphJustify } from "react-icons/im";
-import { IoListOutline } from "react-icons/io5";
-import { TbArticle } from "react-icons/tb";
-import { RiFilePaper2Fill } from "react-icons/ri";
-import { ImCalendar } from "react-icons/im";
-import { BiDockLeft } from "react-icons/bi";
-import { RiArticleLine, RiKeyboardFill } from "react-icons/ri";
-import { PiChatCenteredTextDuotone } from "react-icons/pi";
-import { CgTranscript } from "react-icons/cg";
-import { IoMdContacts } from "react-icons/io";
-import {
-  MdOutlineCallToAction,
-  MdOutlineFeaturedPlayList,
-  MdOutlineThumbsUpDown,
-} from "react-icons/md";
-import { FaQuestionCircle } from "react-icons/fa";
-import { BsStars } from "react-icons/bs";
-import { LuSubtitles, LuHash } from "react-icons/lu";
 
-import { blogstep1, blogstep2, blogstep3, blogstep4 } from "../../public";
-import { chatstep1, chatstep2, chatstep3, chatstep4 } from "../../public";
 import {
+  blogstep1,
+  blogstep2,
+  blogstep3,
+  blogstep4,
+  chatstep1,
+  chatstep2,
+  chatstep3,
+  chatstep4,
   coursestep1,
   coursestep2,
   coursestep3,
   coursestep4,
-} from "../../public";
-import { imagestep1, imagestep2, imagestep3, imagestep4 } from "../../public";
-import {
+  imagestep1,
+  imagestep2,
+  imagestep3,
+  imagestep4,
+  marketingstep1,
+  marketingstep2,
+  marketingstep3,
+  marketingstep4,
   socialStep1,
   socialStep2,
   socialStep3,
   socialStep4,
-} from "../../public";
-import {
+  voicestep1,
+  voicestep2,
+  voicestep3,
+  voicestep4,
   websitestep1,
   websitestep2,
   websitestep3,
   websitestep4,
 } from "../../public";
-import {
-  marketingstep1,
-  marketingstep2,
-  marketingstep3,
-  marketingstep4,
-} from "../../public";
-import { StepProps } from "@material-tailwind/react/components/Stepper/Step";
+import { post1 } from "../../public"
 
 // import { StaticImageData } from "next/image";
 
@@ -171,11 +182,11 @@ export const pricingData = [
     id: 0,
     price: "Free",
     package: "Basic Pack",
-    currency: "",
     features: [
-      "3000 Words / month",
-      "5 Images / month",
-      "10 Chats / month",
+      "2000 Content Words",
+      // "No free Images",
+      "10 Chats Prompts",
+      "Voice Over(20 words/prompt)",
       "All access tools",
     ],
     duration: "Unlimited",
@@ -184,11 +195,11 @@ export const pricingData = [
     id: 1,
     price: 4.99,
     package: "Standard Pack",
-    currency: "USD",
     features: [
-      "15000 Words / month",
-      "500 Images / month",
-      "250 Chats / month",
+      "15,000 Content Words",
+      "500 Images Prompts",
+      "250 Chats Prompts",
+      "Voice Over(200 words/prompt)",
       "All access tools",
     ],
     duration: "1 Month",
@@ -198,15 +209,39 @@ export const pricingData = [
     id: 2,
     package: "Premium Pack",
     price: "59.99",
-    currency: "USD",
     features: [
-      "20000 words / month",
-      "Unlimited Images / month",
-      "Unlimited Chats / month",
+      "2,00,000 Content Words",
+      "Unlimited Images Prompts",
+      "Unlimited Chats Prompts",
+      "Voice Over(Unlimited words)",
       "All access tools",
     ],
     duration: "1 Month",
     link: "https://buy.stripe.com/4gwbM943ncbRaha00e",
+  },
+];
+
+export const packagesData = [
+  // {
+  //   planId: 0,
+  //   package: "Basic Pack",
+  //   words: 2000,
+  //   chats: 10,
+  //   images:0,
+  // },
+  {
+    planId: 1,
+    package: "Standard Pack",
+    words: 15000,
+    chats: 250,
+    images: 500,
+  },
+  {
+    planId: 2,
+    package: "Premium Pack",
+    words: 200000,
+    chats: Infinity,
+    images: Infinity,
   },
 ];
 
@@ -337,8 +372,12 @@ export const FOOTER_FEATURES = [
     link: "/ai-marketing-generator",
   },
   {
-    title: "Image Generation",
-    link: "/user/image-generator",
+    title: "AI Image Generation",
+    link: "/ai-image-generator",
+  },
+  {
+    title: "AI Voice Generation",
+    link: "/ai-voice-generator",
   },
   {
     title: "Chatting",
@@ -975,44 +1014,51 @@ export interface BlogPageDataProps {
   image: string;
   title: string;
   date: string;
+  desc: string;
 }
 
 export const BlogPageData = [
   {
     id: 1,
     image: blogCardImage5,
-    title: "Lights, Camera, Action: Building a Multilingual Movie Recommended!",
+    title: "Intelliwriter providing following features unlimited in premium package",
     date: "Thu, 01 Dec 2023",
+    desc: "",
   },
   {
     id: 2,
     image: blogCardImage2,
-    title: "Lights, Camera, Action: Building a Multilingual Movie Recommended!",
-    date: "Sat, 31 Oct 2023",
+    title: "Intelliwriter providing APIs for developers",
+    date: "Sat, 31 Dec 2023",
+    desc: "",
   },
   {
     id: 3,
     image: blogCardImage3,
-    title: "Lights, Camera, Action: Building a Multilingual Movie Recommended!",
-    date: "Thu, 20 Nov 2023",
+    title: "Best email Marketing with Intelliwriter",
+    date: "Thu, 05 Jan 2024",
+    desc: "",
   },
   {
     id: 4,
     image: blogCardImage4,
-    title: "Lights, Camera, Action: Building a Multilingual Movie Recommended!",
-    date: "Mon, 15 Jan 2023",
+    title: "Ready to go Viral? Start with Intelliwriter Recommended!",
+    date: "Mon, 15 Jan 2024",
+    desc: "",
   },
   {
     id: 5,
-    image: blogCardImage2,
-    title: "Lights, Camera, Action: Building a Multilingual Movie Recommended!",
-    date: "Sat, 20 Sep 2023",
+    image: blogCardImage6,
+    title: "AI Image generation with Intelliwriter",
+    date: "Sat, 20 Jan 2024",
+    desc: "",
   },
   {
     id: 6,
     image: blogCardImage1,
-    title: "Lights, Camera, Action: Building a Multilingual Movie Recommended!",
-    date: "Sun, 01 Jun 2023",
+    title: "Intelliwriter is the Present of AI",
+    date: "Thu, 08 Feb 2024",
+    desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Assumenda debitis omnis quibusdam rerum pariatur quam dolore, autem quidem praesentium illum odio animi nemo? Quis temporibus voluptate laudantium delectus earum saepe?",
   },
 ];
 
@@ -1101,6 +1147,20 @@ export const MoretoolsChat: MoretoolsProps[] = [
     bgcolor: "#80fcf0",
     color: "#4e7471",
   },
+  // {
+  //   icon: FaComment,
+  //   title: "Chat",
+  //   description: "AI Chat Tool",
+  //   bgcolor: "#e58409",
+  //   color: "#e2bf93",
+  // },
+  {
+    icon: GiSoundWaves,
+    title: "Voice generator",
+    description: "AI Voice generator",
+    bgcolor: "#e17be8",
+    color: "#f545f7",
+  },
 ];
 
 export const MoretoolsImage: MoretoolsProps[] = [
@@ -1150,8 +1210,15 @@ export const MoretoolsImage: MoretoolsProps[] = [
     icon: FaComment,
     title: "Chat",
     description: "AI Chat Tool",
-    bgcolor: "#9333ea",
-    color: "#9e5aa4",
+    bgcolor: "#e58409",
+    color: "#e2bf93",
+  },
+  {
+    icon: GiSoundWaves,
+    title: "Voice generator",
+    description: "AI Voice generator",
+    bgcolor: "#e17be8",
+    color: "#f545f7",
   },
 ];
 
@@ -1257,8 +1324,15 @@ export const MoretoolsBlog: MoretoolsProps[] = [
     icon: FaComment,
     title: "Chat",
     description: "AI Chat Tool",
-    bgcolor: "#9333ea",
-    color: "#9e5aa4",
+    bgcolor: "#e58409",
+    color: "#e2bf93",
+  },
+  {
+    icon: GiSoundWaves,
+    title: "Voice generator",
+    description: "AI Voice generator",
+    bgcolor: "#e17be8",
+    color: "#f545f7",
   },
 ];
 
@@ -1337,9 +1411,75 @@ export const MoretoolsCourse: MoretoolsProps[] = [
     icon: FaComment,
     title: "Chat",
     description: "AI Chat Tool",
-    bgcolor: "#9333ea",
-    color: "#9e5aa4",
+    bgcolor: "#e58409",
+    color: "#e2bf93",
   },
+  {
+    icon: GiSoundWaves,
+    title: "Voice generator",
+    description: "AI Voice generator",
+    bgcolor: "#e17be8",
+    color: "#f545f7",
+  },
+];
+
+export const MoretoolsVoice: MoretoolsProps[] = [
+  {
+    icon: FaBlog,
+    title: "Blog content",
+    description: "AI Blog Generator",
+    bgcolor: "#dcfce7",
+    color: "#16a34a",
+  },
+  {
+    icon: FaCompactDisc,
+    title: "Social Media",
+    description: "AI Social Media Tool",
+    bgcolor: "#fef9c3",
+    color: "#facc15",
+  },
+  {
+    icon: FaGripLines,
+    title: "Marketing",
+    description: "AI Marketing Tool",
+    bgcolor: "#dbeafe",
+    color: "#2563eb",
+  },
+  {
+    icon: FaNewspaper,
+    title: "Website",
+    description: "AI Web Tool",
+    bgcolor: "#fee2e2",
+    color: "#dc2626",
+  },
+  {
+    icon: FaBook,
+    title: "Course Builder",
+    description: "AI Content Generator",
+    bgcolor: "#f3e8ff",
+    color: "#9333ea",
+  },
+  {
+    icon: FaImage,
+    title: "Image Generator",
+    description: "AI Image Generator",
+    bgcolor: "#80fcf0",
+    color: "#4e7471",
+  },
+  {
+    icon: FaComment,
+    title: "Chat",
+    description: "AI Chat Tool",
+    bgcolor: "#e58409",
+    color: "#e2bf93",
+  },
+  // {
+  //   icon: GiSoundWaves,
+  //   title: "Voice generator",
+  //   description: "AI Voice generator",
+  //   bgcolor: "#e17be8",
+  //   color: "#f545f7",
+  // },
 ];
 
 export const dataSocialMedia: dataProps[] = [
@@ -1434,8 +1574,15 @@ export const MoretoolsSocialMedia: MoretoolsProps[] = [
     icon: FaComment,
     title: "Chat",
     description: "AI Chat Tool",
-    bgcolor: "#9333ea",
-    color: "#9e5aa4",
+    bgcolor: "#e58409",
+    color: "#e2bf93",
+  },
+  {
+    icon: GiSoundWaves,
+    title: "Voice generator",
+    description: "AI Voice generator",
+    bgcolor: "#e17be8",
+    color: "#f545f7",
   },
 ];
 
@@ -1534,8 +1681,15 @@ export const MoretoolsWebsite: MoretoolsProps[] = [
     icon: FaComment,
     title: "Chat",
     description: "AI Chat Tool",
-    bgcolor: "#9333ea",
-    color: "#9e5aa4",
+    bgcolor: "#e58409",
+    color: "#e2bf93",
+  },
+  {
+    icon: GiSoundWaves,
+    title: "Voice generator",
+    description: "AI Voice generator",
+    bgcolor: "#e17be8",
+    color: "#f545f7",
   },
 ];
 
@@ -1633,8 +1787,15 @@ export const MoretoolsMarketing: MoretoolsProps[] = [
     icon: FaComment,
     title: "Chat",
     description: "AI Chat Tool",
-    bgcolor: "#9333ea",
-    color: "#9e5aa4",
+    bgcolor: "#e58409",
+    color: "#e2bf93",
+  },
+  {
+    icon: GiSoundWaves,
+    title: "Voice generator",
+    description: "AI Voice generator",
+    bgcolor: "#e17be8",
+    color: "#f545f7",
   },
 ];
 
@@ -1650,7 +1811,7 @@ export const stepsBlog: Steps[] = [
     id: 1,
     step: "Step#1",
     detail:
-      "Access Intelliwriter AI Content Generator: Open your preferred web browser and navigate to the Intelliwriter.io website. Login and from the user dashboard chose what you want to create.",
+      "Access Intelliwriter AI Content Generator: Open your preferred web browser and navigate to the Intelliwriter.io website. Login and from the user dashboard choose what you want to create.",
     image: blogstep1,
   },
   {
@@ -1680,7 +1841,7 @@ export const stepsChat: Steps[] = [
     id: 1,
     step: "Step#1",
     detail:
-      "Access Intelliwriter AI Content Generator: Open your preferred web browser and navigate to the Intelliwriter.io website. Login and from the user dashboard choose what you want to create.",
+      "Access Intelliwriter AI Chat Generator: Open your preferred web browser and navigate to the Intelliwriter.io website. Login and from the user dashboard choose what you want to create.",
     image: chatstep1,
   },
   {
@@ -1710,7 +1871,7 @@ export const stepsCourse: Steps[] = [
     id: 1,
     step: "Step#1",
     detail:
-      "Access Intelliwriter AI Content Generator: Open your preferred web browser and navigate to the Intelliwriter.io website. Login and from the user dashboard choose what you want to create.",
+      "Access Intelliwriter AI Course Builder: Open your preferred web browser and navigate to the Intelliwriter.io website. Login and from the user dashboard choose what you want to create.",
     image: coursestep1,
   },
   {
@@ -1740,7 +1901,7 @@ export const stepsImage: Steps[] = [
     id: 1,
     step: "Step#1",
     detail:
-      "Access Intelliwriter AI Content Generator: Open your preferred web browser and navigate to the Intelliwriter.io website. Login and from the user dashboard chose what you want to create.",
+      "Access Intelliwriter AI Image Generator: Open your preferred web browser and navigate to the Intelliwriter.io website. Login and from the user dashboard choose what you want to create.",
     image: imagestep1,
   },
   {
@@ -1770,7 +1931,7 @@ export const stepsSocial: Steps[] = [
     id: 1,
     step: "Step#1",
     detail:
-      "Access Intelliwriter AI Content Generator: Open your preferred web browser and navigate to the Intelliwriter.io website. Login and from the user dashboard Click on Social Media",
+      "Access Intelliwriter AI Social media Generator: Open your preferred web browser and navigate to the Intelliwriter.io website. Login and from the user dashboard Click on Social Media",
     image: socialStep1,
   },
   {
@@ -1799,14 +1960,14 @@ export const stepsWebsite: Steps[] = [
     id: 1,
     step: "Step#1",
     detail:
-      "Access Intelliwriter AI Content Generator: Open your preferred web browser and navigate to the Intelliwriter.io website. Login and from the user dashboard choose what you want to create.",
+      "Access Intelliwriter AI website Content Generator: Open your preferred web browser and navigate to the Intelliwriter.io website. Login and from the user dashboard choose what you want to create.",
     image: websitestep1,
   },
   {
     id: 2,
     step: "Step#2",
     detail:
-      "Enter Prompt to Search: Within the AI Image Generator, you'll find a blank canvas eagerly awaiting your inspiration. Guide the AI with your words and watch your ideas transform into art.",
+      "Enter Prompt to Search: Within the AI Website content Generator, you'll find a blank canvas eagerly awaiting your inspiration. Guide the AI with your words and watch your ideas transform into art.",
     image: websitestep2,
   },
   {
@@ -1829,27 +1990,103 @@ export const stepsMarketing: Steps[] = [
     id: 1,
     step: "Step#1",
     detail:
-      "Access Intelliwriter AI Marketing tool: Open your preferred web browser and navigate to the Intelliwriter.io website. Login and from the user dashboard chose what you want to create.",
-    image: marketingstep1.src,
+      "Access Intelliwriter AI Marketing tool: Open your preferred web browser and navigate to the Intelliwriter.io website. Login and from the user dashboard choose what you want to create.",
+    image: marketingstep1,
   },
   {
     id: 2,
     step: "Step#2",
     detail:
       "Enter Prompt to Search: Within the AI Marketing tool , you'll find a blank canvas eagerly awaiting your inspiration. Guide the AI with your words and watch the transformation of your idea.",
-    image: marketingstep2.src,
+    image: marketingstep2,
   },
   {
     id: 3,
     step: "Step#3",
     detail:
       "Wait For the Response: Creativity takes time, even for AI. Sit back, relax, and let the magic unfold.",
-    image: marketingstep3.src,
+    image: marketingstep3,
   },
   {
     id: 4,
     step: "Step#4",
     detail: "Get ready to be amazed – your content is ready.",
-    image: marketingstep4.src,
+    image: marketingstep4,
   },
 ];
+
+export const stepsVoice: Steps[] = [
+  {
+    id: 1,
+    step: "Step#1",
+    detail:
+      "Access Intelliwriter AI Voice generator: Open your preferred web browser and navigate to the Intelliwriter.io website. Login and from the user dashboard choose what you want to create.",
+    image: voicestep1,
+  },
+  {
+    id: 2,
+    step: "Step#2",
+    detail:
+      "Enter Prompt to Search: Within the AI Voice generator , you'll find a blank canvas eagerly awaiting your inspiration. Guide the AI with your words and watch the transformation of your words into voice.",
+    image: voicestep2,
+  },
+  {
+    id: 3,
+    step: "Step#3",
+    detail:
+      "Wait For the Response: Creativity takes time, even for AI. Sit back, relax, and let the magic unfold.",
+    image: voicestep3,
+  },
+  {
+    id: 4,
+    step: "Step#4",
+    detail: "Get ready to be amazed – your AI voice is ready.",
+    image: voicestep4,
+  },
+];
+
+interface Blogpost {
+  id: number;
+  title: string;
+  image: string;
+  desc: string;
+  date: string;
+}
+
+export const post: Blogpost[] = [
+  {
+    id: 0,
+    title: "On abuse of power and power Of the Collective",
+    image: blogCardImage1,  //post1
+    desc: "ChatGPT (Conversational Generative Pre-trained Transformer) is a newly released open-source conversational AI platform. It has been praised for its ability to generate natural language responses to user inputs, and many have hailed it as the next step in creating more human-like conversations. However, despite its promise, certain limitations still prevent it from being a viable replacement for other conversational AI platforms. Let’s explore these limitations and how they can be addressed.The title and description of the bundle will be displayed to potential buyers, in the same way a regular prompt's title and description is used.The discount is applied to each individual prompt within the bundle.    The following restrictions apply to creating bundles:",
+    date: "February 13, 2024",
+  },
+]
+
+interface post {
+  id: number;
+  title: string;
+  image: string;
+  date: string;
+}
+
+export const postPage: post[] = [
+  {
+    id: 0,
+    title: "On abuse of power and power Of the Collective",
+    image: blogCardImage1,  //post1
+    date: "February 10, 2024",
+  },
+  {
+    id: 1,
+    title: "On abuse of power and power Of the Collective",
+    image: post1,  //post1
+    date: "February 13, 2024",
+  },
+  {
+    id: 2,
+    title: "On abuse of power and power Of the Collective",
+    image: blogCardImage2,
+    date: "January 13, 2024",
+  },
+]

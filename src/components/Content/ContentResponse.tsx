@@ -9,31 +9,11 @@ import IntelliAI from "@/utils/IntelliAI";
 
 interface ContentResponseProps {}
 
-interface ExportToPDF {
-  (): void;
-}
-
-interface Margin {
-  top: number;
-  right: number;
-  bottom: number;
-  left: number;
-}
-
 const ContentResponse: React.FC<ContentResponseProps> = () => {
-  const {
-    loading,
-    setLoading,
-    response,
-    emptyResponse,
-    error,
-    courseContent,
-    setResponse,
-    setError,
-  } = useWebContext();
+  const { loading, setLoading, response, emptyResponse, error, courseContent } =
+    useWebContext();
 
   const editor = useRef<any>(null);
-  const [matches, setMatches] = useState<any[]>([]);
   const [query, setQuery] = useState<string>("");
   const { module } = useParams();
 
@@ -41,9 +21,7 @@ const ContentResponse: React.FC<ContentResponseProps> = () => {
   const [outlineResponse, setOutlineResponse] = useState<string>("");
   const [quiz, setQuiz] = useState<string>("");
   const [assignment, setAssignment] = useState<string>("");
-  const [selectedErrorValue, setSelectedErrorValue] = useState<number | null>(
-    null
-  );
+
   const [copyButtonText, setCopyButtonText] = useState<string>("Copy");
 
   const handleCopyClick = () => {
@@ -65,45 +43,6 @@ const ContentResponse: React.FC<ContentResponseProps> = () => {
       }, 5000);
     }
   };
-
-  //   const handleExportToPDF: ExportToPDF = () => {
-  //     if (editor?.current?.editor) {
-  //       const editorData = editor.current.editor.getData();
-  //       const pdf = new jsPDF("p", "pt", "a4");
-  //       const margin: Margin = { top: 20, right: 20, bottom: 20, left: 20 };
-  //       const pageWidth = pdf.internal.pageSize.getWidth() - 2 * margin.left;
-  //       const pageHeight = pdf.internal.pageSize.getHeight() - 2 * margin.top;
-  //       const fontSize: number = 12;
-  //       const lines = pdf.splitTextToSize(editorData, pageWidth, { fontSize });
-
-  //       let cursor = margin.top;
-  //       let pageNumber = 1;
-
-  //       lines.forEach((line: any, index: number) => {
-  //         const textHeight = pdf.getTextDimensions(line, { fontSize }).h;
-
-  //         if (cursor + textHeight > pageHeight) {
-  //           pdf.addPage();
-  //           cursor = margin.top;
-  //           pageNumber++;
-  //         }
-
-  //         if (cursor <= pageHeight - margin.bottom) {
-  //           pdf.text(String(margin.left), cursor, line);
-  //           cursor += textHeight;
-  //         }
-  //       });
-
-  //       for (let i = 1; i <= pageNumber; i++) {
-  //         pdf.setPage(i);
-  //         pdf.text(
-  //           String(margin.left),
-  //           pdf.internal.pageSize.getHeight() - margin.bottom - fontSize, i);
-  //       }
-
-  //       pdf.save("document.pdf");
-  //     }
-  //   };
 
   const handleQuizGenerator = async () => {
     try {
@@ -156,41 +95,17 @@ const ContentResponse: React.FC<ContentResponseProps> = () => {
     },
   };
 
-  const handleDismissClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    const errorSpan = document.querySelector(
-      `.error[value="${selectedErrorValue}"]`
-    );
-    if (errorSpan) {
-      errorSpan.classList.remove("error");
-      (errorSpan as any).style.backgroundColor = "transparent";
-      (errorSpan as any).style.backgroundColor = "none";
-    }
-  };
-
-  const handleDocumentClick = (e: MouseEvent) => {
-    const tooltip = document.querySelector(".tooltip") as HTMLDivElement;
-    if (tooltip) {
-      if (!(e.target as HTMLElement).closest(".error")) {
-        tooltip.style.display = "none";
-      }
-    }
-  };
-
   useEffect(() => {
     emptyResponse();
     setLoading(false);
     setQuery("");
     setTabs("");
-  }, []);
 
-  useEffect(() => {
     setOutlineResponse(response || "");
-    setQuery("");
     setQuiz("");
     setAssignment("");
     setTabs("");
-  }, [response]);
+  }, []);
 
   return (
     <>
@@ -208,7 +123,7 @@ const ContentResponse: React.FC<ContentResponseProps> = () => {
         <div className="flex items-center justify-center border-4 border-dashed w-full h-full text-white/40 border-white/40 rounded">
           <p className="font-medium text-red-600">
             {/* {error} */}
-            {error === "Out of Word limit!" ? error: "Something went wrong!"}
+            {error === "Out of Word limit!" ? error : "Something went wrong!"}
           </p>
         </div>
       ) : response ? (
@@ -240,6 +155,7 @@ const ContentResponse: React.FC<ContentResponseProps> = () => {
 
               {assignment !== "" && (
                 <button
+                  type="button"
                   className={`text-lg px-3 py-1 text-white border-b rounded-t-md ${
                     tabs === "assignment"
                       ? "border-b-4 border-b-blue-500 bg-[#282a45]"
@@ -258,14 +174,12 @@ const ContentResponse: React.FC<ContentResponseProps> = () => {
           <div className="w-full h-full">
             <div className="w-full flex items-center justify-end">
               <button
+                type="button"
                 onClick={handleCopyClick}
                 className="copyButton self-end bg-primary-two rounded-full text-sm px-2 p-1 -mb-[36px] mr-2 z-30"
               >
                 {copyButtonText}
               </button>
-              {/* <button onClick={handleExportToPDF} className="copyButton self-end bg-gray-200 rounded-full text-sm px-2 p-1 -mb-[34px] mr-2 z-30">
-                      Export to PDF
-                  </button> */}
             </div>
 
             {tabs === "" ? (

@@ -1,15 +1,16 @@
 "use client";
+import { FAQs } from "@/components";
+import { SocialMediaFAQs } from "@/constants/FaqsData";
+import {
+  MoretoolsSocialMedia,
+  dataSocialMedia,
+  stepsSocial,
+} from "@/constants/index";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { SocialMediaFAQs } from "@/constants/FaqsData";
-import { socialmediaBg, curve1 } from "../../../public";
-import { FAQs } from "@/components";
-import {
-  dataSocialMedia,
-  MoretoolsSocialMedia,
-  stepsSocial,
-} from "@/constants/index";
+import { curve1, socialmediaBg } from "../../../public";
+import Button from "@/components/Button";
 
 const page = () => {
   return (
@@ -33,11 +34,12 @@ const page = () => {
           content in seconds.
         </p>
         <div className="w-fit">
-          <button className="w-fit rounded-lg bg-gradient-to-r from-[rgba(247,15,255,1)] to-[#2C63FF] px-3 py-1 md:px-4 md:py-2 hover:opacity-90">
-            <Link href="/auth/login">
-              Try Intelliwriter Social Media Generator!
-            </Link>
-          </button>
+          <Link href="/auth/social-media">
+            <Button
+              title="Try Intelliwriter Social Media Generator!"
+              btnType="button"
+            />
+          </Link>
         </div>
       </div>
 
@@ -109,9 +111,8 @@ const page = () => {
         {stepsSocial.map((item) => (
           <div
             key={item.id}
-            className={` my-4 flex flex-col gap-5 md:flex md:flex-row md:items-center md:justify-between w-full ${
-              item.id == 2 || item.id == 4 ? "md:flex-row-reverse" : ""
-            }`}
+            className={` my-4 flex flex-col gap-5 md:flex md:flex-row md:items-center md:justify-between w-full ${item.id == 2 || item.id == 4 ? "md:flex-row-reverse" : ""
+              }`}
           >
             <div className="items-start flex flex-col md:w-4/12 ">
               <h2 className="text-lg md:text-xl font-semibold">{item.step}</h2>
@@ -126,8 +127,6 @@ const page = () => {
                 width={650}
                 className="rounded-xl border border-[#1f1f7a]"
               />
-              {/* <Image src={gradientcircle} alt='' height={600} width={600} className='opacity-40 absolute -translate-x-2/3 -translate-y-full'/> */}
-              {/* <div className="bg-[#214abd] w-[330px] h-[330px] absolute rounded-full -translate-y-4/5 translate-x-1/2 md:translate-x-2/3 lg:translate-x-full blur-[120px]"></div> */}
             </div>
           </div>
         ))}
@@ -143,7 +142,7 @@ const page = () => {
             {MoretoolsSocialMedia.map((item, index) => (
               <div
                 key={index}
-                className="bg-blue-900 m-2 text-center p-2 bg-opacity-20 md:w-[25%] lg:w-[15%] Moretools"
+                className="bg-blue-900 m-2 text-center p-2 bg-opacity-20 md:w-[25%] lg:w-[16%] Moretools"
               >
                 <span
                   className="flex items-center justify-center w-12 h-12 rounded-full text-2xl m-3 p-2"

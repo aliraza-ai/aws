@@ -1,14 +1,13 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
-import { ChatItem } from "react-chat-elements";
 import Link from "next/link";
-import { CiSaveDown1 } from "react-icons/ci";
+import React, { useEffect, useRef, useState } from "react";
+import { ChatItem } from "react-chat-elements";
 import { IoIosArrowRoundDown } from "react-icons/io";
 
+import createChat from "@/utils/createChat";
 import { FaChevronRight } from "react-icons/fa6";
 import { TbSend } from "react-icons/tb";
-import createChat from "@/utils/createChat";
 import Swal from "sweetalert2";
 import { logoMin, user } from "../../../../public";
 
@@ -165,12 +164,12 @@ const ChatPage = () => {
         </div>
 
         {isScrolledToBottom ? null : (
-          <button
+          <span
             onClick={scrollToBottom}
             className="justify-center items-center hover:opacity-80 fixed bottom-32 right-[38%] flex gap-1 p-3 rounded-full font-medium bg-gradient-to-r from-[rgba(247,15,255,1)] to-[#2C63FF] text-white"
           >
             <IoIosArrowRoundDown className="text-xl" />
-          </button>
+          </span>
         )}
 
         <div className="w-full">

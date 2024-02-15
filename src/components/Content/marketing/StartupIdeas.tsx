@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useState, FormEvent } from "react";
 import { useWebContext } from "@/context/ContextProvider";
+import { FormEvent, useState } from "react";
 
 
 interface Props {
@@ -11,7 +11,7 @@ interface FormProps {
   domain?: string,
 }
 
-const StartupIdeas = ({ type }: Props) => {
+const StartupIdeas = ({ }: Props) => {
   const { getResponse } = useWebContext();
 
 
@@ -49,7 +49,7 @@ const StartupIdeas = ({ type }: Props) => {
         <div className="flex flex-col gap-4 w-full">
           <div className="flex flex-col">
             <label htmlFor="message" className="text-white mb-2 font-bold">
-              Domain <span className="text-red-500">*</span>
+              Domain <span className="text-pink-500">*</span>
             </label>
             <textarea
               placeholder=" i.e: Web Programming, digital art, artificial intelligence "
@@ -63,7 +63,7 @@ const StartupIdeas = ({ type }: Props) => {
             ></textarea>
           </div>
           {formError?.domain && (
-            <p className="text-red-400 text-[16px] p-2">
+            <p className="!text-red-500 text-sm px-2">
               {formError.domain}
             </p>
           )}

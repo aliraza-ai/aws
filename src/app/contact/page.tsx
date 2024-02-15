@@ -1,10 +1,10 @@
 "use client";
 
+import contactSubmit from "@/utils/contactSubmit";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import Swal from "sweetalert2";
-import Image from "next/image";
-import contactSubmit from "@/utils/contactSubmit";
-import { useRouter } from "next/navigation";
 import { Shape1, Shape2, Shape3, Shape4, Shape5 } from "../../../public";
 
 interface ContactPageLayoutProps {
@@ -17,7 +17,7 @@ interface ContactPageLayoutProps {
   agree?: string;
 }
 
-const ContactPageLayout: React.FC<ContactPageLayoutProps> = (props) => {
+const ContactPageLayout: React.FC<ContactPageLayoutProps> = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -26,14 +26,14 @@ const ContactPageLayout: React.FC<ContactPageLayoutProps> = (props) => {
     message: "",
     agree: false,
   });
-  const [contactError, setContactError] = useState<ContactPageLayoutProps | null>(null);
+  const [contactError, setContactError] =
+    useState<ContactPageLayoutProps | null>(null);
   const router = useRouter();
 
   const validatePhone = (phone: string): boolean => {
-    const phoneRegex = /^[0-9]{15}$/; 
+    const phoneRegex = /^[0-9]{15}$/;
     return phoneRegex.test(phone);
   };
-  
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -65,14 +65,13 @@ const ContactPageLayout: React.FC<ContactPageLayoutProps> = (props) => {
           children: null,
         });
         return;
-      }  else if (!validatePhone(formData.phone)) {
+      } else if (!validatePhone(formData.phone)) {
         setContactError({
-           phone: 'Please enter a valid phone number',
-           children:null,
-           });
+          phone: "Please enter a valid phone number",
+          children: null,
+        });
         return;
-      }     
-      else if (!formData.subject) {
+      } else if (!formData.subject) {
         setContactError({
           subject: "Subject is required",
           children: null,
@@ -206,7 +205,7 @@ const ContactPageLayout: React.FC<ContactPageLayoutProps> = (props) => {
                         htmlFor="name"
                         className="text-white mb-2 font-bold"
                       >
-                        Your name <span className="text-red-500">*</span>
+                        Your name <span className="text-pink-500">*</span>
                       </label>
                       <input
                         type="text"
@@ -222,7 +221,7 @@ const ContactPageLayout: React.FC<ContactPageLayoutProps> = (props) => {
                       />
                     </div>
                     {contactError?.name && (
-                      <p className="text-red-400 text-[16px] p-2">
+                      <p className="!text-red-500 text-sm px-2">
                         {contactError.name}
                       </p>
                     )}
@@ -232,7 +231,7 @@ const ContactPageLayout: React.FC<ContactPageLayoutProps> = (props) => {
                         htmlFor="email"
                         className="text-white mb-2 font-bold"
                       >
-                        Your email <span className="text-red-500">*</span>
+                        Your email <span className="text-pink-500">*</span>
                       </label>
                       <input
                         type="email"
@@ -248,7 +247,7 @@ const ContactPageLayout: React.FC<ContactPageLayoutProps> = (props) => {
                       />
                     </div>
                     {contactError?.email && (
-                      <p className="text-red-400 text-[16px] p-2">
+                      <p className="!text-red-500 text-sm px-2">
                         {contactError.email}
                       </p>
                     )}
@@ -258,7 +257,7 @@ const ContactPageLayout: React.FC<ContactPageLayoutProps> = (props) => {
                         htmlFor="phone"
                         className="text-white mb-2 font-bold"
                       >
-                        Your phone <span className="text-red-500">*</span>
+                        Your phone <span className="text-pink-500">*</span>
                       </label>
                       <input
                         type="tel"
@@ -274,7 +273,7 @@ const ContactPageLayout: React.FC<ContactPageLayoutProps> = (props) => {
                       />
                     </div>
                     {contactError?.phone && (
-                      <p className="text-red-400 text-[16px] p-2">
+                      <p className="!text-red-500 text-sm px-2">
                         {contactError.phone}
                       </p>
                     )}
@@ -284,7 +283,7 @@ const ContactPageLayout: React.FC<ContactPageLayoutProps> = (props) => {
                         htmlFor="subject"
                         className="text-white mb-2 font-bold"
                       >
-                        Subject <span className="text-red-500">*</span>
+                        Subject <span className="text-pink-500">*</span>
                       </label>
                       <input
                         type="text"
@@ -300,7 +299,7 @@ const ContactPageLayout: React.FC<ContactPageLayoutProps> = (props) => {
                       />
                     </div>
                     {contactError?.subject && (
-                      <p className="text-red-400 text-[16px] p-2">
+                      <p className="!text-red-500 text-sm px-2">
                         {contactError.subject}
                       </p>
                     )}
@@ -310,7 +309,7 @@ const ContactPageLayout: React.FC<ContactPageLayoutProps> = (props) => {
                         htmlFor="message"
                         className="text-white mb-2 font-bold"
                       >
-                        Message <span className="text-red-500">*</span>
+                        Message <span className="text-pink-500">*</span>
                       </label>
                       <textarea
                         placeholder="Enter your message"
@@ -325,7 +324,7 @@ const ContactPageLayout: React.FC<ContactPageLayoutProps> = (props) => {
                       ></textarea>
                     </div>
                     {contactError?.message && (
-                      <p className="text-red-400 text-[16px] p-2">
+                      <p className="!text-red-500 text-sm px-2">
                         {contactError.message}
                       </p>
                     )}
@@ -353,7 +352,7 @@ const ContactPageLayout: React.FC<ContactPageLayoutProps> = (props) => {
                           </label>
                         </div>
                         {contactError?.agree && (
-                          <p className="text-red-400 text-[16px] p-2">
+                          <p className="!text-red-500 text-sm px-2">
                             {contactError.agree}
                           </p>
                         )}

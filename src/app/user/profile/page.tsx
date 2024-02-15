@@ -1,13 +1,13 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import Swal from "sweetalert2";
 import { useRouter } from "next/navigation";
-import { FaUser, FaEnvelope, FaHome, FaUserTie } from "react-icons/fa";
-import { BiSolidLock, BiMessageRoundedDetail } from "react-icons/bi";
-import { MdOutlinePhoneAndroid } from "react-icons/md";
-import { GrOrganization } from "react-icons/gr";
+import React, { useEffect, useState } from "react";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
+import { BiMessageRoundedDetail, BiSolidLock } from "react-icons/bi";
+import { FaEnvelope, FaHome, FaUser, FaUserTie } from "react-icons/fa";
+import { GrOrganization } from "react-icons/gr";
+import { MdOutlinePhoneAndroid } from "react-icons/md";
+import Swal from "sweetalert2";
 
 interface ProfilePageLayoutProps {
   children: React.ReactNode;
@@ -103,48 +103,47 @@ const ProfilePage: React.FC<ProfilePageLayoutProps> = () => {
       return;
     }
 
-    try {      
-        const response = await fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}/users/updateUser/${userId}`,
-          {
-            method: "PUT",
-            headers: {
-              Authorization: `Bearer ${sessionTokens}`,
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              name: fullname,
-              email,
-              password,
-              phone_number: phone,
-              address,
-              company_name,
-              company_position,
-              short_bio,
-            }),
-          }
-        );
-
-        if (!response.ok) {
-          const errorData = await response.json();
-          throw new Error(errorData.message || "Failed to update user");
+    try {
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/users/updateUser/${userId}`,
+        {
+          method: "PUT",
+          headers: {
+            Authorization: `Bearer ${sessionTokens}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: fullname,
+            email,
+            password,
+            phone_number: phone,
+            address,
+            company_name,
+            company_position,
+            short_bio,
+          }),
         }
+      );
 
-        const data = await response.json();
-        if (data.message === "User updated successfully") {
-          Swal.fire({
-            icon: "success",
-            title: "Success",
-            text: data.message,
-          });
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || "Failed to update user");
+      }
 
-          setTimeout(() => {
-            window.location.reload();
-          }, 1000);
-        } else {
-          throw new Error("Failed to update user");
-        }
-      
+      const data = await response.json();
+      if (data.message === "User updated successfully") {
+        Swal.fire({
+          icon: "success",
+          title: "Success",
+          text: data.message,
+        });
+
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
+      } else {
+        throw new Error("Failed to update user");
+      }
     } catch (error) {
       const errorMessage = (error as Error).message;
 
@@ -230,7 +229,7 @@ const ProfilePage: React.FC<ProfilePageLayoutProps> = () => {
                 <div className="flex flex-row items-center gap-2 absolute left-3 top-1/2 ">
                   <FaUser size={16} />
                 </div>
-                Full Name <span className="text-red-500">*</span> <br />
+                Full Name <span className="text-pink-500">*</span> <br />
                 <input
                   autoComplete="off"
                   name="fullname"
@@ -246,7 +245,7 @@ const ProfilePage: React.FC<ProfilePageLayoutProps> = () => {
                 <div className="flex flex-row items-center gap-2 absolute left-3 top-1/2 ">
                   <FaEnvelope size={16} />
                 </div>
-                Email <span className="text-red-500">*</span> <br />
+                Email <span className="text-pink-500">*</span> <br />
                 <input
                   autoComplete="off"
                   readOnly
@@ -266,7 +265,7 @@ const ProfilePage: React.FC<ProfilePageLayoutProps> = () => {
                 <div className="flex flex-row items-center gap-2 absolute left-3 top-1/2  ">
                   <MdOutlinePhoneAndroid size={18} />
                 </div>
-                Phone Number <span className="text-red-500">*</span> <br />
+                Phone Number <span className="text-pink-500">*</span> <br />
                 <input
                   autoComplete="off"
                   name="phone"
@@ -282,7 +281,7 @@ const ProfilePage: React.FC<ProfilePageLayoutProps> = () => {
                 <div className="flex flex-row items-center gap-2 absolute left-3 top-1/2  ">
                   <FaHome size={16} />
                 </div>
-                Address <span className="text-red-500">*</span> <br />
+                Address <span className="text-pink-500">*</span> <br />
                 <input
                   autoComplete="off"
                   name="address"
@@ -368,7 +367,7 @@ const ProfilePage: React.FC<ProfilePageLayoutProps> = () => {
                 <div className="flex flex-row items-center gap-2 absolute left-3 top-1/2 ">
                   <BiSolidLock size={18} />
                 </div>
-                Current Password <span className="text-red-500">*</span> <br />
+                Current Password <span className="text-pink-500">*</span> <br />
                 <div className="flex items-center">
                   <input
                     name="password"
@@ -401,7 +400,7 @@ const ProfilePage: React.FC<ProfilePageLayoutProps> = () => {
                 <div className="flex flex-row items-center gap-2 absolute left-3 top-1/2 ">
                   <BiSolidLock size={18} />
                 </div>
-                New Password <span className="text-red-500">*</span> <br />
+                New Password <span className="text-pink-500">*</span> <br />
                 <div className="flex items-center">
                   <input
                     name="confirmPassword"

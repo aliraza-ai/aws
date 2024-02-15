@@ -1,14 +1,11 @@
-"use client"
+"use client";
+import { FAQs } from "@/components";
+import { MoretoolsWebsite, dataWebsite, stepsWebsite } from "@/constants";
+import { WebsiteContentGeneratorFAQs } from "@/constants/FaqsData";
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import Image from "next/image";
-import {
-  websitecontent,
-  curve1,
-} from "../../../public";
-import { FAQs } from "@/components";
-import { WebsiteContentGeneratorFAQs } from "@/constants/FaqsData";
-import { dataWebsite,MoretoolsWebsite,stepsWebsite } from "@/constants";
+import { curve1, websitecontent } from "../../../public";
 
 const page = () => {
   return (
@@ -29,7 +26,7 @@ const page = () => {
           seconds.
         </p>
         <div className="w-fit">
-          <button className="w-fit rounded-lg bg-gradient-to-r from-[rgba(247,15,255,1)] to-[#2C63FF] px-3 py-1 md:px-4 md:py-2 hover:opacity-90">
+          <button type="button" className="w-fit rounded-lg bg-gradient-to-r from-[rgba(247,15,255,1)] to-[#2C63FF] px-3 py-1 md:px-4 md:py-2 hover:opacity-90">
             <Link href="/user/website">
               Try Intelliwriter AI Website Content Generator!
             </Link>
@@ -72,7 +69,7 @@ const page = () => {
               className="card w-FULL md:w-1/3 xl:w-1/5 bg-blue-900 bg-opacity-20 p-2 ml-4"
             >
               <span className=" bg-[#fee2e2] m-2 block w-10 h-10 rounded-md text-[#dc2626] text-2xl  p-2">
-              {React.createElement(item.icon)}
+                {React.createElement(item.icon)}
               </span>
               <div className="text text-white p-2">
                 <h1 className="text-2xl">{item.title}</h1>
@@ -136,7 +133,8 @@ const page = () => {
             {MoretoolsWebsite.map((item, index) => (
               <div
                 key={index}
-                className="bg-blue-900 m-2 text-center p-2 bg-opacity-20 md:w-[25%] lg:w-[15%] Moretools">
+                className="bg-blue-900 m-2 text-center p-2 bg-opacity-20 md:w-[25%] lg:w-[16%] Moretools"
+              >
                 <span
                   className="items-center justify-center block w-9 h-9 rounded-md text-xl m-3 mr-3 p-2"
                   style={{

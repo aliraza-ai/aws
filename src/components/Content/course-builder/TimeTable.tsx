@@ -1,7 +1,7 @@
 "use client";
 
 import { useWebContext } from "@/context/ContextProvider";
-import React, { useState, FormEvent } from "react";
+import React, { FormEvent, useState } from "react";
 import Select, { Props as SelectProps } from "react-select";
 
 type TimeDuraType =
@@ -41,7 +41,7 @@ interface FormProps {
   description?: string;
 }
 
-const Assignment = ({ type }: Props) => {
+const Assignment = ({ }: Props) => {
   const { getResponse } = useWebContext();
 
   const [formData, setFormData] = useState({
@@ -131,7 +131,7 @@ const Assignment = ({ type }: Props) => {
         <div className="flex flex-col gap-4 w-full">
           <div className="flex flex-col">
             <label htmlFor="name" className="text-white mb-2 font-bold">
-              Subject <span className="text-red-500">*</span>
+              Subject <span className="text-pink-500">*</span>
             </label>
 
             <input
@@ -144,12 +144,12 @@ const Assignment = ({ type }: Props) => {
             />
           </div>
           {formError?.sub && (
-            <p className="text-red-400 text-[16px] p-2">{formError.sub}</p>
+            <p className="!text-red-500 text-sm px-2">{formError.sub}</p>
           )}
 
           <div className="flex flex-col course">
             <label htmlFor="name" className="text-white mb-2 font-bold">
-              Time Duration <span className="text-red-500">*</span>
+              Time Duration <span className="text-pink-500">*</span>
             </label>
             <Select
               name="time_duration"
@@ -168,12 +168,12 @@ const Assignment = ({ type }: Props) => {
             />
           </div>
           {formError?.timedura && (
-            <p className="text-red-400 text-[16px] p-2">{formError.timedura}</p>
+            <p className="!text-red-500 text-sm px-2">{formError.timedura}</p>
           )}
 
           <div className="flex flex-col course">
             <label htmlFor="name" className="text-white mb-2 font-bold">
-              Schedule Hour<span className="text-red-500">*</span>
+              Schedule Hour<span className="text-pink-500">*</span>
             </label>
             <Select
               name="time_duration"
@@ -192,12 +192,12 @@ const Assignment = ({ type }: Props) => {
             />
           </div>
           {formError?.schedhrs && (
-            <p className="text-red-400 text-[16px] p-2">{formError.schedhrs}</p>
+            <p className="!text-red-500 text-sm px-2">{formError.schedhrs}</p>
           )}
 
           <div className="flex flex-col course">
             <label htmlFor="name" className="text-white mb-2 font-bold">
-              Ending Hours <span className="text-red-500">*</span>
+              Ending Hours <span className="text-pink-500">*</span>
             </label>
             <Select
               name="time_duration"
@@ -216,12 +216,12 @@ const Assignment = ({ type }: Props) => {
             />
           </div>
           {formError?.endhrs && (
-            <p className="text-red-400 text-[16px] p-2">{formError.endhrs}</p>
+            <p className="!text-red-500 text-sm px-2">{formError.endhrs}</p>
           )}
 
           <div className="flex flex-col">
             <label htmlFor="message" className="text-white mb-2 font-bold">
-              Timetable Description <span className="text-red-500">*</span>
+              Timetable Description <span className="text-pink-500">*</span>
             </label>
             <textarea
               placeholder="The best places to visit in this summer"
@@ -237,7 +237,7 @@ const Assignment = ({ type }: Props) => {
             ></textarea>
           </div>
           {formError?.description && (
-            <p className="text-red-400 text-[16px] p-2">
+            <p className="!text-red-500 text-sm px-2">
               {formError.description}
             </p>
           )}

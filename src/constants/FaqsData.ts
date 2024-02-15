@@ -166,48 +166,50 @@ export const CourseBuilderFAQs = [
 ];
 
 export const AIChatFAQs = [
-{
-  id: 1,
-  question: "How Can AI Chat Enhance Customer Support?",
-  answer:
-    "AI Chat is a game-changer for customer support. It offers instant responses, 24/7 availability, and the ability to handle common queries. Your customers can get quick answers, leading to improved satisfaction and streamlined support processes.",
-},
-{
-  id: 2,
-  question: "Is AI Chat Capable of Handling Complex Conversations?",
-  answer:
-    "Absolutely! Our AI Chat is equipped to handle complex conversations and provide nuanced responses. It learns from interactions and adapts to user input, ensuring a natural and effective communication experience for users.",
-},
-{
-  id: 3,
-  question: "Can I Customize the AI Chat for My Brand's Tone and Style?",
-  answer:
-    "Yes, customization is key! Our AI Chat tool allows you to tailor its responses to match your brand's tone and style. You can create a personalized and consistent conversational experience that aligns with your brand identity.",
-},
-{
-  id: 4,
-  question: "How Does AI Chat Ensure Data Privacy and Security?",
-  answer:
-    "Ensuring data privacy is our priority. AI Chat follows strict security protocols to protect user information. We implement encryption, secure storage, and adhere to industry standards to safeguard sensitive data during interactions.",
-},
-{
-  id: 5,
-  question: "How Does AI Chat Handle Multilingual Conversations?",
-  answer:
-    "AI Chat is proficient in multilingual interactions. It supports multiple languages, allowing you to engage with a diverse audience. Provide personalized and effective communication in the language your users prefer.",
-},
+  {
+    id: 1,
+    question: "How Can AI Chat Enhance Customer Support?",
+    answer:
+      "AI Chat is a game-changer for customer support. It offers instant responses, 24/7 availability, and the ability to handle common queries. Your customers can get quick answers, leading to improved satisfaction and streamlined support processes.",
+  },
+  {
+    id: 2,
+    question: "Is AI Chat Capable of Handling Complex Conversations?",
+    answer:
+      "Absolutely! Our AI Chat is equipped to handle complex conversations and provide nuanced responses. It learns from interactions and adapts to user input, ensuring a natural and effective communication experience for users.",
+  },
+  {
+    id: 3,
+    question: "Can I Customize the AI Chat for My Brand's Tone and Style?",
+    answer:
+      "Yes, customization is key! Our AI Chat tool allows you to tailor its responses to match your brand's tone and style. You can create a personalized and consistent conversational experience that aligns with your brand identity.",
+  },
+  {
+    id: 4,
+    question: "How Does AI Chat Ensure Data Privacy and Security?",
+    answer:
+      "Ensuring data privacy is our priority. AI Chat follows strict security protocols to protect user information. We implement encryption, secure storage, and adhere to industry standards to safeguard sensitive data during interactions.",
+  },
+  {
+    id: 5,
+    question: "How Does AI Chat Handle Multilingual Conversations?",
+    answer:
+      "AI Chat is proficient in multilingual interactions. It supports multiple languages, allowing you to engage with a diverse audience. Provide personalized and effective communication in the language your users prefer.",
+  },
 ];
 
 export const SocialMediaFAQs = [
   {
     id: 1,
-    question: "How Can the AI Social Media Generator Enhance My Content Creation?",
+    question:
+      "How Can the AI Social Media Generator Enhance My Content Creation?",
     answer:
       "Our AI Social Media Generator is a powerful tool designed to elevate your content creation process. It provides quick and creative suggestions for social media posts, captivating captions, and relevant hashtags. Transform your content effortlessly and boost engagement with your audience.",
   },
   {
     id: 2,
-    question: "Is the AI Generator Capable of Crafting Unique and Trendy Captions?",
+    question:
+      "Is the AI Generator Capable of Crafting Unique and Trendy Captions?",
     answer:
       "Absolutely! The AI Social Media Generator is equipped to craft unique and trendy captions that resonate with your audience. It analyzes current trends, user engagement patterns, and your brand identity to deliver captivating captions that enhance the impact of your social media posts.",
   },
@@ -219,7 +221,8 @@ export const SocialMediaFAQs = [
   },
   {
     id: 4,
-    question: "How Does the AI Generator Keep Up with the Latest Hashtag Trends?",
+    question:
+      "How Does the AI Generator Keep Up with the Latest Hashtag Trends?",
     answer:
       "Staying current with hashtag trends is our priority. The AI Social Media Generator continuously analyzes social media trends, user interactions, and popular hashtags to suggest relevant and trending hashtags for your posts. Keep your content fresh and engaging with trending hashtags.",
   },
@@ -261,5 +264,38 @@ export const MarketingGeneratorFAQs = [
     question: "Can AI Chat Support Marketing in Multiple Languages?",
     answer:
       "Absolutely! AI Chat is proficient in multilingual interactions, enabling you to reach a diverse audience. Support marketing campaigns in multiple languages to engage with users on a global scale. Deliver personalized and effective communication in the language your audience prefers.",
+  },
+];
+
+export const AIVoiceGeneratorFAQs = [
+  {
+    id: 1,
+    question: "How Can AI Voice Generator Enhance Content Creation?",
+    answer:
+      "AI Voice Generator revolutionizes content creation by providing natural and expressive voiceovers. It saves time and resources, enabling creators to generate high-quality audio content for videos, podcasts, and more. Elevate your content creation process with AI-generated voices.",
+  },
+  {
+    id: 2,
+    question: "Is AI Voice Generator Suitable for Professional Narration?",
+    answer:
+      "Absolutely! Our AI Voice Generator is designed for professional narration purposes. It offers a range of voices suitable for various industries and content types. Achieve polished and professional narration without the need for manual recording or hiring voice actors.",
+  },
+  {
+    id: 3,
+    question: "Can I Customize the Tone and Style of AI-Generated Voices?",
+    answer:
+      "Yes, customization is key! Our AI Voice Generator allows you to tailor the tone, style, and even accent of the generated voices. Personalize your audio content to align with your brand or project requirements, ensuring a unique and engaging listening experience.",
+  },
+  {
+    id: 4,
+    question: "How Does AI Voice Generator Ensure Voice Quality and Realism?",
+    answer:
+      "Ensuring realistic and high-quality voices is our priority. The AI Voice Generator utilizes advanced algorithms to produce natural-sounding voices with clarity and authenticity. Experience lifelike voiceovers that captivate your audience and enhance the overall audio experience.",
+  },
+  {
+    id: 5,
+    question: "Can AI Voice Generator Handle Different Languages and Accents?",
+    answer:
+      "Certainly! AI Voice Generator supports a variety of languages and accents, providing versatility for global content creation. Whether you need voices for English, Spanish, Mandarin, or regional accents, our tool delivers accurate and expressive voice generation across languages.",
   },
 ];

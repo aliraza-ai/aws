@@ -1,24 +1,24 @@
 "use client";
 
-import React from "react";
-import { Logo } from "../../public";
-import Link from "next/link";
-import { LuLayoutDashboard } from "react-icons/lu";
-import { FaRegShareSquare, FaBook, FaDollarSign } from "react-icons/fa";
-import { RiLogoutBoxRFill } from "react-icons/ri";
-import { MdContactSupport } from "react-icons/md";
-import { CgWebsite } from "react-icons/cg";
-import { IoIosClose } from "react-icons/io";
-import { SiChatbot, SiBloglovin, SiGooglemarketingplatform } from "react-icons/si";
-import { BiSolidImageAlt } from "react-icons/bi";
-import Image from "next/image";
 import "@/app/globals.css";
-import Swal from "sweetalert2";
 import { useAuth } from "@/context/AuthContext";
-import { useRouter, usePathname } from "next/navigation";
-import { Typography, List, ListItem, ListItemPrefix, Alert } from "@material-tailwind/react";
 import { useWebContext } from "@/context/ContextProvider";
+import { Alert, List, ListItem, ListItemPrefix, Typography } from "@material-tailwind/react";
+import Image from "next/image";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
+import React from "react";
+import { BiSolidImageAlt } from "react-icons/bi";
+import { CgWebsite } from "react-icons/cg";
+import { FaBook, FaDollarSign, FaRegShareSquare } from "react-icons/fa";
 import { GiSoundWaves } from "react-icons/gi";
+import { IoIosClose } from "react-icons/io";
+import { LuLayoutDashboard } from "react-icons/lu";
+import { MdContactSupport } from "react-icons/md";
+import { RiLogoutBoxRFill } from "react-icons/ri";
+import { SiBloglovin, SiChatbot, SiGooglemarketingplatform } from "react-icons/si";
+import Swal from "sweetalert2";
+import { Logo } from "../../public";
 
 export function Sidebar() {
   const router = useRouter();

@@ -2,9 +2,11 @@ import { MouseEventHandler } from "react";
 
 export interface CustomButtonProps {
   title: string;
-  containerStyles?: string;
-  handleClick?: MouseEventHandler<HTMLButtonElement>;
+  className?: string;
+  width?: string;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
   btnType?: "button" | "submit";
+  disbaled?: boolean  ;
 }
 
 export interface PricingData {
@@ -12,7 +14,6 @@ export interface PricingData {
   plan_id?: number;
   price: string | number;
   package: string;
-  currency: string;
   features: string[];
   duration: string;
   link?: string;
@@ -31,4 +32,3 @@ export type PlanData = {
 export interface IconPlaceholderProps {
   className?: string;
 }
-

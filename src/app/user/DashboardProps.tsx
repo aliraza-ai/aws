@@ -1,38 +1,52 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
 import { Sidebar } from "@/components/Sidebar";
 import UserHeader from "@/components/UserHeader";
-import { useRouter } from 'next/navigation';
+import {usePathname ,useRouter} from "next/navigation";
+import React, { useEffect, useState } from "react";
 
-const DashboardProps = ({ children }: { children: React.ReactNode; }) => {
-    const router = useRouter();
-    const [first, setfirst] = useState(false)
-    useEffect(() => {
-        if (typeof sessionStorage !== 'undefined') {
-            const sessionTokens = sessionStorage.getItem('tokens');
-            if (!sessionTokens) {
-                setfirst(false)
-                router.push('/auth/login');
-            } else {
-                setfirst(true)
-            }
-        }
+const DashboardProps = ({ children }: { children: React.ReactNode }) => {
+  const router = useRouter();
+  const pathname = usePathname();
 
-    }, [router]);
+  const [loading, setLoading] = useState(true); // State variable to track loading state
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  useEffect(() => {
+    if (typeof sessionStorage !== "undefined") {
+      const sessionTokens = sessionStorage.getItem("tokens");
+      if (!sessionTokens) {
+        router.push("/auth/login");
+      } else {
+        setIsLoggedIn(true);
+      }
+      setLoading(false);
+    }
+  }, [router]);
+
+  const isImageGeneratorRoute = pathname === "/user/image-generator";
+
+
+  if (loading) {
     return (
-        <>
-            {/* {typeof sessionStorage !== 'undefined' && sessionStorage.getItem('tokens') ? */}
-            {first ?
-                <div className="flex relative">
-                    <UserHeader />
-                    <Sidebar />
-                    {children}
-                </div>
-                : null}
-        </>
-    )
-}
+      <div className="w-full flex justify-center items-center h-screen">
+        <div
+          className={`h-20 w-20 animate-spin rounded-full text-white border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]`}
+        ></div>
+      </div>
+    );
+  }
+
+  if (!isLoggedIn) {
+    return null;
+  }
+  return (
+    <div className="flex relative">
+      {!isImageGeneratorRoute && <UserHeader />}
+      {!isImageGeneratorRoute && <Sidebar />}
+      {children}
+    </div>
+  );
+};
 
 export default DashboardProps;

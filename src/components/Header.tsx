@@ -1,16 +1,16 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import Link from "next/link";
-import Image from "next/image";
-import CustomButton from "./CustomButton";
-import { NAV_LINKS, dropdownMenu } from "../constants";
 import { useAuth } from "@/context/AuthContext";
+import Image from "next/image";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
+import React, { useEffect, useState } from "react";
 import { IconType } from "react-icons";
-import { IoIosClose } from "react-icons/io";
-import { useRouter, usePathname } from "next/navigation";
-import Swal from "sweetalert2";
 import { BiLogOut } from "react-icons/bi";
+import { IoIosClose } from "react-icons/io";
+import Swal from "sweetalert2";
+import { NAV_LINKS, dropdownMenu } from "../constants";
+import Button from "./Button";
 
 interface DropdownMenu {
   id: number;
@@ -36,9 +36,9 @@ const Header: React.FC<HeaderProps> = ({ aboutRef, pricingRef }) => {
   const [sessionLetter, setSessionLetter] = useState<string | null>(null);
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const tokens = sessionStorage.getItem('tokens');
-      const letter = sessionStorage.getItem('nameLetter');
+    if (typeof window !== "undefined") {
+      const tokens = sessionStorage.getItem("tokens");
+      const letter = sessionStorage.getItem("nameLetter");
       setSessionTokens(tokens);
       setSessionLetter(letter);
     }
@@ -89,7 +89,7 @@ const Header: React.FC<HeaderProps> = ({ aboutRef, pricingRef }) => {
         aboutRef?.current &&
         scrollPosition >= aboutRef.current.offsetTop &&
         (pricingRef?.current?.offsetTop ?? Number.MAX_SAFE_INTEGER) >
-          scrollPosition
+        scrollPosition
       ) {
         setActiveSection("about");
       } else if (
@@ -116,14 +116,16 @@ const Header: React.FC<HeaderProps> = ({ aboutRef, pricingRef }) => {
           alt="Hero Icons Image"
           width={200}
           height={200}
+          className="filter hue-rotate-[350deg]"
         />
       </div>
 
       <header className="container mx-auto flex items-center xl:pt-4 justify-center sticky top-0 z-50 w-full">
         <nav
-          className={`py-3 md:px-8 shadow-md flex md:text-[14px] lg:text-[14px]  items-center justify-between  md:rounded-[12px] lg:rounded-[12px] w-full lg:w-11/12 md:w-11/12 transition duration-500 ease-in-out ${
-            isScrolled ? "bg-[#640F6C]" : "bg-primary-two"
-          }`}
+          className={`py-3 md:px-8 shadow-md flex md:text-[14px] lg:text-[14px]  items-center justify-between  md:rounded-[12px] lg:rounded-[12px] w-full lg:w-11/12 md:w-11/12 transition duration-500 ease-in-out ${isScrolled
+            ? "bg-gradient-to-r from-blue-500/20 to-pink-600/20 backdrop-blur-sm"
+            : "bg-transparent"
+            }`}
         >
           <div className="px-4">
             <Link href="/" passHref>
@@ -143,22 +145,19 @@ const Header: React.FC<HeaderProps> = ({ aboutRef, pricingRef }) => {
                 <Link
                   href={menuItem.route}
                   passHref
-                  className={`py-1 transition-all duration-200 ${
-                    (activeSection === menuItem.title.toLowerCase() &&
-                      activeSection !== null) ||
+                  className={`py-1 transition-all duration-200 ${(activeSection === menuItem.title.toLowerCase() &&
+                    activeSection !== null) ||
                     (pathname === menuItem.route && activeSection === null)
-                      ? `${
-                          isScrolled
-                            ? "border-b-2 border-white"
-                            : "border-b-2 border-[#af4db7]"
-                        }`
-                      : ""
-                  }
-                  ${
-                    isScrolled
+                    ? `${isScrolled
+                      ? "border-b-2 border-white"
+                      : "border-b-2 border-[#af4db7]"
+                    }`
+                    : ""
+                    }
+                  ${isScrolled
                       ? "hover:border-b-2 hover:border-white"
                       : "hover:border-b-2 hover:border-[#af4db7]"
-                  }`}
+                    }`}
                 >
                   {menuItem.title}
                 </Link>
@@ -176,11 +175,10 @@ const Header: React.FC<HeaderProps> = ({ aboutRef, pricingRef }) => {
                   {nameLetter || sessionLetter}
                 </div>
                 <ul
-                  className={`absolute w-40 right-0 bg-primary rounded-md overflow-hidden ${
-                    dropdown
-                      ? "visible transition-all duration-200 translate-y-2"
-                      : " invisible transition-all duration-200 translate-y-0 pointer-events-none "
-                  }`}
+                  className={`absolute w-40 right-0 bg-primary rounded-md overflow-hidden ${dropdown
+                    ? "visible transition-all duration-200 translate-y-2"
+                    : " invisible transition-all duration-200 translate-y-0 pointer-events-none "
+                    }`}
                 >
                   {dropdownMenu.map((item: DropdownMenu) => (
                     <Link key={item.id} href={item.link} passHref>
@@ -211,23 +209,20 @@ const Header: React.FC<HeaderProps> = ({ aboutRef, pricingRef }) => {
                 </ul>
               </div>
             ) : (
-              <div className="lg:block hidden w-fit rounded-3xl p-0.5 bg-gradient-to-r from-[rgb(247,15,255,1)] to-[#2C63FF]">
-                <Link href="/auth/login">
-                  <CustomButton
-                    title="Login / Register"
-                    btnType="button"
-                    containerStyles="bg-black hover:opacity-75 text-white py-2 px-2 lg:px-9 rounded-3xl"
-                  />
-                </Link>
-              </div>
+              <Link href="/auth/login" className="lg:block hidden">
+                <Button
+                  title="Login / Register"
+                  btnType="button"
+                />
+              </Link>
             )}
 
-            <button
+            <span
               onClick={toggleSidebar}
               className="lg:hidden text-white mr-4 md:mr-0 focus:outline-none"
             >
               <Image src="/menu-icon.png" alt="Menu" width={24} height={24} />
-            </button>
+            </span>
           </div>
         </nav>
 
@@ -254,24 +249,22 @@ const Header: React.FC<HeaderProps> = ({ aboutRef, pricingRef }) => {
               />
             </div>
 
-            <div className="px-8 pt-3">
-              <ul className="text-white">
+            <div className="px-10 pt-3">
+              <ul className="text-white py-5">
                 {NAV_LINKS.map((menuItem, index) => (
-                  <li key={index} className="py-2">
-                    <Link href={menuItem.route} passHref>
+                  <li key={index} className="py-3 text-lg opacity-70">
+                    <Link href={menuItem.route}>
                       {menuItem.title}
                     </Link>
                   </li>
                 ))}
-                <div className="flex w-fit rounded-full mt-1 p-0.5 bg-gradient-to-r from-[rgb(247,15,255,1)] to-[#2C63FF]">
-                  <Link
-                    href="/auth/login"
-                    className="bg-black text-white py-2 px-3 lg:px-9 rounded-full"
-                  >
-                    Register / Login
-                  </Link>
-                </div>
               </ul>
+              <Link href="/auth/login" >
+                <Button
+                  title="Login / Register"
+                  btnType="button"
+                />
+              </Link>
             </div>
           </aside>
         )}

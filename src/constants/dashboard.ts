@@ -1,56 +1,65 @@
-import { RiArticleFill, RiFilePaper2Fill } from "react-icons/ri";
-import { MdDiamond } from "react-icons/md";
-import { TiSortAlphabeticallyOutline } from "react-icons/ti";
-import { RiChatSmile2Fill } from "react-icons/ri";
 import { IoMdImages } from "react-icons/io";
-
+import { MdDiamond } from "react-icons/md";
 import {
-  BsLayoutTextSidebarReverse,
+  RiArticleFill,
+  RiChatSmile2Fill,
+  RiFilePaper2Fill,
+} from "react-icons/ri";
+import { TiSortAlphabeticallyOutline } from "react-icons/ti";
+
+import { IconType } from "react-icons";
+import { AiFillContacts } from "react-icons/ai";
+import { BiBulb, BiDockLeft } from "react-icons/bi";
+import {
   BsArrowsExpand,
+  BsLayoutTextSidebarReverse,
   BsStars,
 } from "react-icons/bs";
-import { TbArticle, TbTargetArrow } from "react-icons/tb";
-import { IoListOutline, IoDiamond, IoLogoFacebook } from "react-icons/io5";
-import { ImParagraphJustify, ImCalendar } from "react-icons/im";
-import { TfiLayoutListPost } from "react-icons/tfi";
 import { CgTranscript } from "react-icons/cg";
-import { PiListNumbersDuotone, PiSubtitles } from "react-icons/pi";
-import { FaListCheck, FaRetweet } from "react-icons/fa6";
-import { ImParagraphLeft } from "react-icons/im";
 import {
+  FaDiscourse,
+  FaFlask,
   FaHashtag,
+  FaQuestionCircle,
+  FaRegStar,
   FaTwitter,
   FaTwitterSquare,
-  FaDiscourse,
-  FaRegStar,
-  FaFlask,
-  FaQuestionCircle,
 } from "react-icons/fa";
-import { RiArticleLine, RiKeyboardFill, RiPriceTagLine } from "react-icons/ri";
-import { PiChatCenteredTextDuotone, PiDeviceMobileBold } from "react-icons/pi";
+import { FaListCheck, FaRetweet } from "react-icons/fa6";
+import { HiOutlineLightBulb } from "react-icons/hi";
 import {
-  LuSubtitles,
+  ImCalendar,
+  ImParagraphJustify,
+  ImParagraphLeft,
+} from "react-icons/im";
+import { IoMdBriefcase, IoMdContacts } from "react-icons/io";
+import { IoDiamond, IoListOutline, IoLogoFacebook } from "react-icons/io5";
+import {
   LuFileSpreadsheet,
-  LuQuote,
   LuHash,
+  LuQuote,
+  LuSubtitles,
 } from "react-icons/lu";
-import { AiFillContacts } from "react-icons/ai";
-import { IconType } from "react-icons";
-import { BiDockLeft, BiBulb } from "react-icons/bi";
 import {
-  MdQuiz,
+  MdOutlineCallToAction,
+  MdOutlineFeaturedPlayList,
   MdOutlineMarkEmailUnread,
   MdOutlineNewspaper,
-  MdOutlineFeaturedPlayList,
-  MdOutlineCallToAction,
-  MdRocket,
   MdOutlineReviews,
   MdOutlineThumbsUpDown,
+  MdQuiz,
+  MdRocket,
 } from "react-icons/md";
-import { HiOutlineLightBulb } from "react-icons/hi";
-import { IoMdBriefcase, IoMdContacts } from "react-icons/io";
+import {
+  PiChatCenteredTextDuotone,
+  PiDeviceMobileBold,
+  PiListNumbersDuotone,
+  PiSubtitles,
+} from "react-icons/pi";
+import { RiArticleLine, RiKeyboardFill, RiPriceTagLine } from "react-icons/ri";
 import { SiGoogleads } from "react-icons/si";
-import { Doughnut } from "react-chartjs-2";
+import { TbArticle, TbTargetArrow } from "react-icons/tb";
+import { TfiLayoutListPost } from "react-icons/tfi";
 
 // HOME PAGE
 

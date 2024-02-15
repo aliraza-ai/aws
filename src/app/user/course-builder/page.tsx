@@ -1,12 +1,11 @@
 "use client";
 
-import React from "react";
 import { Course } from "@/constants/dashboard";
 import Link from "next/link";
+import React from "react";
 import { FaChevronRight } from "react-icons/fa6";
 
 const CourseBuilderPage = () => {
-
   return (
     <div className="absolute top-14 right-0 md:px-20 md:py-10 p-6 w-full lg:w-[calc(100%-250px)] mx-auto text-white">
       <div className="text-base text-slate-400 font-light p-2 flex items-center gap-2">

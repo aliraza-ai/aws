@@ -104,7 +104,7 @@ const ImageGeneratorPages = () => {
                         </div>
                     </form>
 
-                    <p className="text-red-500 text-sm">
+                    <p className="!text-red-500 text-sm">
                         {promptError}
                     </p>
 

@@ -1,7 +1,7 @@
 "use client";
 
 import { useWebContext } from "@/context/ContextProvider";
-import React, { useState, FormEvent } from "react";
+import React, { FormEvent, useState } from "react";
 import Select from "react-select";
 
 const CourseLevel = [
@@ -109,7 +109,7 @@ const SubDurLvl = ({ type }: Props) => {
         <div className="flex flex-col gap-4 w-full">
           <div className="flex flex-col">
             <label htmlFor="name" className="text-white mb-2 font-bold">
-              Course Subject <span className="text-red-500">*</span>
+              Course Subject <span className="text-pink-500">*</span>
             </label>
 
             <input
@@ -122,12 +122,12 @@ const SubDurLvl = ({ type }: Props) => {
             />
           </div>
           {formError?.sub && (
-            <p className="text-red-400 text-[16px] p-2">{formError.sub}</p>
+            <p className="!text-red-500 text-sm px-2">{formError.sub}</p>
           )}
 
           <div className="flex flex-col">
             <label htmlFor="name" className="text-white mb-2 font-bold">
-              Course Duration <span className="text-red-500">*</span>
+              Course Duration <span className="text-pink-500">*</span>
             </label>
 
             <input
@@ -140,12 +140,12 @@ const SubDurLvl = ({ type }: Props) => {
             />
           </div>
           {formError?.duration && (
-            <p className="text-red-400 text-[16px] p-2">{formError.duration}</p>
+            <p className="!text-red-500 text-sm px-2">{formError.duration}</p>
           )}
 
           <div className="flex flex-col course">
             <label htmlFor="name" className="text-white mb-2 font-bold">
-              Course Level <span className="text-red-500">*</span>
+              Course Level <span className="text-pink-500">*</span>
             </label>
             <Select
               className="w-full rounded-full h-[55px] bg-gradient-to-b from-[#0F1333] to-[#1D203F]"
@@ -163,7 +163,7 @@ const SubDurLvl = ({ type }: Props) => {
             />
           </div>
           {formError?.courseLevel && (
-            <p className="text-red-400 text-[16px] p-2">
+            <p className="!text-red-500 text-sm px-2">
               {formError.courseLevel}
             </p>
           )}

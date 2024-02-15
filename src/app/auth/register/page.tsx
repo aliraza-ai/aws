@@ -1,15 +1,15 @@
 "use client";
 
-import Swal from "sweetalert2";
-import React, { useState } from "react";
+import Button from "@/components/Button";
+import registerUser from "@/utils/registerUser";
 import Head from "next/head";
-// import type { Metadata } from "next";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { FaEnvelope, FaUser } from "react-icons/fa";
-import { BiSolidLock } from "react-icons/bi";
+import React, { useState } from "react";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
-import registerUser from "@/utils/registerUser";
+import { BiSolidLock } from "react-icons/bi";
+import { FaEnvelope, FaUser } from "react-icons/fa";
+import Swal from "sweetalert2";
 
 interface RegisterPageLayoutProps {
   children: React.ReactNode;
@@ -19,7 +19,7 @@ interface RegisterPageLayoutProps {
   confirmpassword?: string;
 }
 
-const RegisterPageLayout: React.FC<RegisterPageLayoutProps | any> = (props) => {
+const RegisterPageLayout: React.FC<RegisterPageLayoutProps | any> = () => {
   const router = useRouter();
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
@@ -46,7 +46,6 @@ const RegisterPageLayout: React.FC<RegisterPageLayoutProps | any> = (props) => {
     try {
       const userData = { name, email, password };
 
-      const result = await registerUser(userData);
       if (!name) {
         setRegisterError({
           name: "Name is required",
@@ -71,29 +70,32 @@ const RegisterPageLayout: React.FC<RegisterPageLayoutProps | any> = (props) => {
         Swal.fire({
           icon: "error",
           title: "Passwords do not match",
-          text: "Please make sure the passwords match.",
+          text: "Make sure the passwords must be matched.",
         });
         return;
-      } else if (result.success) {
-        setRegisterError({
-          name: "",
-          email: "",
-          password: "",
-          confirmpassword: "",
-          children: null,
-        });
-        await Swal.fire({
-          icon: "success",
-          title: "Success",
-          text: "Registration done Successfully!",
-        });
-        router.push("/auth/login");
       } else {
-        await Swal.fire({
-          icon: "error",
-          title: "Ooops...",
-          text: result.message,
-        });
+        const result = await registerUser(userData);
+        if (result.success) {
+          setRegisterError({
+            name: "",
+            email: "",
+            password: "",
+            confirmpassword: "",
+            children: null,
+          });
+          await Swal.fire({
+            icon: "success",
+            title: "Success",
+            text: "Registration done Successfully!",
+          });
+          router.push("/auth/login");
+        } else {
+          await Swal.fire({
+            icon: "error",
+            title: "Ooops...",
+            text: result.message,
+          });
+        }
       }
     } catch (error) {
       await Swal.fire({
@@ -148,7 +150,7 @@ const RegisterPageLayout: React.FC<RegisterPageLayoutProps | any> = (props) => {
                   />
                 </label>
                 {registerError?.name && (
-                  <p className="text-red-400 text-[16px] p-2">
+                  <p className="!text-red-500 text-sm px-2">
                     {registerError.name}
                   </p>
                 )}
@@ -169,7 +171,7 @@ const RegisterPageLayout: React.FC<RegisterPageLayoutProps | any> = (props) => {
                   />
                 </label>
                 {registerError?.email && (
-                  <p className="text-red-400 text-[16px] p-2">
+                  <p className="!text-red-500 text-sm px-2">
                     {registerError.email}
                   </p>
                 )}
@@ -208,8 +210,40 @@ const RegisterPageLayout: React.FC<RegisterPageLayoutProps | any> = (props) => {
                     )}
                   </div>
                 </label>
+
+                {password !== "" &&
+                  <div className="flex items-center gap-2 -mt-3">
+                    <div className="">
+                      <span
+                        className={`${passwordStrength < 0.4
+                          ? "text-red-600"
+                          : passwordStrength < 0.7
+                            ? "text-yellow-600"
+                            : "text-green-700"
+                          } text-sm`}
+                      >
+                        {passwordStrength < 0.4
+                          ? "Weak"
+                          : passwordStrength < 0.7
+                            ? "Good"
+                            : " Stong"
+                        }
+                      </span>
+                    </div>
+                    <div
+                      className={`h-1 rounded-full ${passwordStrength < 0.4
+                        ? "bg-red-600"
+                        : passwordStrength < 0.7
+                          ? "bg-yellow-600"
+                          : "bg-green-700"
+                        }`}
+                      style={{ width: `${passwordStrength * 100}%` }}
+                    ></div>
+                  </div>
+                }
+
                 {registerError?.password && (
-                  <p className="text-red-400 text-[16px] p-2">
+                  <p className="!text-red-500 text-sm px-2">
                     {registerError.password}
                   </p>
                 )}
@@ -230,7 +264,6 @@ const RegisterPageLayout: React.FC<RegisterPageLayoutProps | any> = (props) => {
                         setSeeConfirmPass("password");
                       }
                       setConfirmPassword(e.target.value);
-                      calculatePasswordStrength(e.target.value);
                     }}
                   />
                   {/* Toggle confirm password visibility */}
@@ -250,56 +283,21 @@ const RegisterPageLayout: React.FC<RegisterPageLayoutProps | any> = (props) => {
                   </div>
                 </label>
                 {registerError?.confirmpassword && (
-                  <p className="text-red-400 text-[16px] p-0 m-0">
+                  <p className="!text-red-500 text-sm px-2">
                     {registerError.confirmpassword}
                   </p>
                 )}
-                {/* Password Strength Bar */}
-                <div className="flex mt-1">
-                  <div
-                    className={`h-2 ${passwordStrength < 0.4
-                      ? "bg-red-500"
-                      : passwordStrength < 0.7
-                        ? "bg-yellow-500"
-                        : "bg-green-500"
-                      }`}
-                    style={{ width: `${passwordStrength * 100}%` }}
-                  ></div>
-                </div>
 
-                {/* Password Strength Text */}
-                <div className="flex justify-between text-sm">
-                  <span
-                    className={`text-red-500 ${passwordStrength >= 0.4 && "opacity-50"
-                      }`}
-                  >
-                    Weak
-                  </span>
-                  <span
-                    className={`text-yellow-500 ${passwordStrength < 0.4 ||
-                      (passwordStrength >= 0.7 && "opacity-50")
-                      }`}
-                  >
-                    Good
-                  </span>
-                  <span
-                    className={`text-green-500 ${passwordStrength < 0.7 && "opacity-50"
-                      }`}
-                  >
-                    Strong
-                  </span>
-                </div>
-
-                <button
-                  type="submit"
-                  className="bg-gradient-to-r from-[rgba(247,15,255,1)] to-[#2C63FF] py-3 hover:opacity-90 transition-all duration-300 px-[35px] text-white font-semibold rounded-full"
-                >
-                  Register
-                </button>
+                <Button
+                  title="Register"
+                  width="w-full"
+                  className="w-full"
+                  btnType="submit"
+                />
 
                 <p className="pb-6 !m-0 text-center text-white lg:pt-0 pt-3">
                   Already have an account?{" "}
-                  <span className="text-red-400">
+                  <span className="text-pink-400">
                     <Link href="/auth/login">Login</Link>
                   </span>
                 </p>

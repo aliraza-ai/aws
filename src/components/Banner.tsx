@@ -1,9 +1,9 @@
 "use client";
 
-import React from "react";
 import Image from "next/image";
-import { CTA_Shape1, CTA_Shape3, CTA_Graph } from "../../public";
 import { useRouter } from "next/navigation";
+import { CTA_Graph, CTA_Shape1, CTA_Shape3 } from "../../public";
+import Button from "./Button";
 
 const tokens =
   typeof window !== "undefined" ? sessionStorage.getItem("tokens") : null;
@@ -20,38 +20,46 @@ const Banner = () => {
   };
   return (
     <div className="container mx-auto w-full p-5 md:px-10 lg:px-24 pb-16 relative">
-      <div className="bg-[#54157eec] text-white md:flex items-center justify-center px-2 py-4 md:p-10 rounded-2xl relative">
+      <div className="bg-gradient-to-r from-blue-500/10 to-pink-600/10 text-white md:flex items-center justify-center px-2 py-4 md:p-10 rounded-2xl relative">
         <div>
           <Image
             src={CTA_Shape3}
             className="absolute top-0 left-0"
-            alt=""
-            width={800}
-            height={300}
+            alt="cta shape 3"
+            width={650}
+            height={500}
           />
         </div>
-        <div className="md:w-1/2 p-5">
-          <Image src={CTA_Graph} alt="cta" width={500} height={300} />
+
+        <div className="md:w-1/2 p-5 h-full">
+          <Image
+            src={CTA_Graph}
+            alt="cta graph"
+            width={400}
+            height={250}
+            className="saturate-150"
+          />
         </div>
 
         <div className="md:w-1/2 py-3 px-5 md:p-5 relative z-10">
-          <h2 className="font-vietnam font-semibold text-lg md:text-3xl lg:text-4xl md:my-6 relative">
+          <h2 className="font-vietnam font-normal text-lg md:text-3xl lg:text-4xl md:my-6 relative">
             More than 13000 teams use our platform
           </h2>
+
           <p className="text-base my-4 md:my-8">
             Experience the difference and elevate your content creation with our
             cutting-edge tools and support.
           </p>
-          <button onClick={handleClick}>
-            <div className=" bg-gradient-to-r from-[rgba(247,15,255,1)] to-[#2C63FF] font-semibold  px-4 py-2 rounded-md h-fit flex justify-between items-center gap-2 hover:opacity-90">
-              Get Started
-            </div>
-          </button>
+          <Button
+            title="Get Started"
+            btnType="button"
+            onClick={handleClick}
+          />
         </div>
       </div>
 
       <div className="absolute right-0 bottom-0 md:block hidden md:mr-8 mt-10 z-0">
-        <Image src={CTA_Shape1} alt="cta-shape" width={300} height={100} />
+        <Image src={CTA_Shape1} alt="cta shape 1" width={300} height={100} className="filter hue-rotate-[300deg]" />
       </div>
     </div>
   );

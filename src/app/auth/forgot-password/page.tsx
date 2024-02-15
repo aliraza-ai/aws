@@ -1,12 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import Button from "@/components/Button";
+import CheckEmail from "@/components/CheckEmail";
+import forgotPasswordUser from "@/utils/forgotPassword";
 import Link from "next/link";
+import { useState } from "react";
 import { FaEnvelope } from "react-icons/fa";
 import Swal from "sweetalert2";
-import { useRouter } from "next/navigation";
-import forgotPasswordUser from "@/utils/forgotPassword";
-import CheckEmail from "@/components/CheckEmail";
 
 interface ForgotPasswordPageLayoutProps {
   children: React.ReactNode;
@@ -15,12 +15,11 @@ interface ForgotPasswordPageLayoutProps {
 
 const ForgotPasswordPageLayout: React.FC<
   ForgotPasswordPageLayoutProps | any
-> = (props) => {
+> = () => {
   const [email, setEmail] = useState<string>("");
   const [showSuccessComponent, setShowSuccessComponent] = useState(false);
   const [forgotError, setForgotError] =
     useState<ForgotPasswordPageLayoutProps | null>(null);
-  const router = useRouter();
 
   const submitForm = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -90,24 +89,24 @@ const ForgotPasswordPageLayout: React.FC<
                 </label>
 
                 {forgotError?.email && (
-                  <p className="text-red-400 text-[16px] p-2">
+                  <p className="!text-red-500 text-sm px-2">
                     {forgotError.email}
                   </p>
                 )}
-
-                <button
-                  type="submit"
-                  className="bg-gradient-to-r from-[rgba(247,15,255,1)] to-[#2C63FF] py-3 hover:opacity-90 transition-all duration-300 px-[35px] text-white font-semibold rounded-full"
-                >
-                  Reset Password
-                </button>
+                <Button
+                  title="Reset Password"
+                  width="w-full"
+                  className="w-full"
+                  btnType="submit"
+                />
               </div>
             </form>
 
             <p className="pb-6 !m-0 text-center text-white lg:pt-0 pt-3">
               Remembered your password?{" "}
-              <span className="text-red-400">
-                <Link href="/auth/login">Login </Link>/
+              <span className="text-pink-400">
+                <Link href="/auth/login">Login </Link>
+                <span className="text-white px-0.5 opacity-60">/</span>
                 <Link href="/auth/register"> Register</Link>
               </span>
             </p>

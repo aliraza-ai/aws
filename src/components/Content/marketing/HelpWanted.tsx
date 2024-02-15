@@ -1,7 +1,7 @@
 "use client";
 
 import { useWebContext } from "@/context/ContextProvider";
-import React, { useState, FormEvent } from "react";
+import React, { FormEvent, useState } from "react";
 
 interface Props {
   type: string;
@@ -12,7 +12,7 @@ interface FormProps {
   location?: string;
 }
 
-const HelpWanted = ({ type }: Props) => {
+const HelpWanted = ({}: Props) => {
   const { getResponse } = useWebContext();
 
   const [formData, setFormData] = useState({
@@ -53,12 +53,6 @@ const HelpWanted = ({ type }: Props) => {
 
       const prompt = `Write a Help wanted ad having this title ${title} and the company name is this ${name} also with the company location ${location}. Response must be in html paragraph with strong tag for headings and <br/> for linebreaks.`;
       getResponse(prompt);
-
-      // setFormData({
-      //   title: "",
-      //   name: "",
-      //   location: "",
-      // });
     }
   };
 
@@ -71,7 +65,7 @@ const HelpWanted = ({ type }: Props) => {
         <div className="flex flex-col gap-4 w-full">
           <div className="flex flex-col">
             <label htmlFor="name" className="text-white mb-2 font-bold">
-              Job Title <span className="text-red-500">*</span>
+              Job Title <span className="text-pink-500">*</span>
             </label>
 
             <input
@@ -84,12 +78,12 @@ const HelpWanted = ({ type }: Props) => {
             />
           </div>
           {formError?.title && (
-            <p className="text-red-400 text-[16px] p-2">{formError.title}</p>
+            <p className="!text-red-500 text-sm px-2">{formError.title}</p>
           )}
 
           <div className="flex flex-col">
             <label htmlFor="name" className="text-white mb-2 font-bold">
-              Company Name <span className="text-red-500">*</span>
+              Company Name <span className="text-pink-500">*</span>
             </label>
 
             <input
@@ -102,12 +96,12 @@ const HelpWanted = ({ type }: Props) => {
             />
           </div>
           {formError?.name && (
-            <p className="text-red-400 text-[16px] p-2">{formError.name}</p>
+            <p className="!text-red-500 text-sm px-2">{formError.name}</p>
           )}
 
           <div className="flex flex-col">
             <label htmlFor="location" className="text-white mb-2 font-bold">
-              Company&apos;s Location <span className="text-red-500">*</span>
+              Company&apos;s Location <span className="text-pink-500">*</span>
             </label>
             <input
               type="text"
@@ -119,7 +113,7 @@ const HelpWanted = ({ type }: Props) => {
             />
           </div>
           {formError?.location && (
-            <p className="text-red-400 text-[16px] p-2">{formError.location}</p>
+            <p className="!text-red-500 text-sm px-2">{formError.location}</p>
           )}
 
           <button

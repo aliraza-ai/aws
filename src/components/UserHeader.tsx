@@ -1,17 +1,16 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import { useAuth } from "@/context/AuthContext";
+import { useWebContext } from "@/context/ContextProvider";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import React, { useEffect, useState } from "react";
 import { IconType } from "react-icons";
 import { BiLogOut } from "react-icons/bi";
-import { dropdownMenu, staticNotifications } from "../constants";
-import { useAuth } from "@/context/AuthContext";
-import Swal from "sweetalert2";
-import { useRouter } from "next/navigation";
 import { IoMdMenu } from "react-icons/io";
-import { useWebContext } from "@/context/ContextProvider";
+import Swal from "sweetalert2";
+import { dropdownMenu, staticNotifications } from "../constants";
 import Notifications from "./Notifications";
-// import { IoMdNotificationsOff } from "react-icons/io";
 
 interface DropdownMenu {
   id: number;

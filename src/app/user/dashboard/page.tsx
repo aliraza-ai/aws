@@ -1,18 +1,18 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
-import { Doughnut } from "react-chartjs-2";
+import { BasicCardData, templateData } from "@/constants/dashboard";
+import getChatCount from "@/utils/getChatCount";
+import getPlanName from "@/utils/getPlanName";
+import getWordCount from "@/utils/getWordCount";
+import { imageCount } from "@/utils/imageCount";
+import { ArcElement, Legend, Tooltip } from "chart.js";
+import Chart from "chart.js/auto";
 import Image from "next/image";
 import Link from "next/link";
-import { ArcElement, Tooltip, Legend } from "chart.js";
-import Chart from "chart.js/auto";
-import { BasicCardData, templateData } from "@/constants/dashboard";
+import React, { useEffect, useState } from "react";
+import { Doughnut } from "react-chartjs-2";
 import { AiOutlineRight } from "react-icons/ai";
 import { ImageGeneration } from "../../../../public";
-import getWordCount from "@/utils/getWordCount";
-import getChatCount from "@/utils/getChatCount";
-import { imageCount } from "@/utils/imageCount";
-import getPlanName from '@/utils/getPlanName';
 Chart.register(ArcElement, Tooltip, Legend);
 
 interface DoughnutChartProps {
@@ -51,7 +51,7 @@ const DashboardPage = () => {
   const [wordCount, setWordCount] = useState<number | null>(0);
   const [chatCount, setChatCount] = useState<number | null>(0);
   const [imagesCount, setImagesCount] = useState<number | null>(0);
-  const [planName, setPlanName] = useState<string | null>("Basic Plan");
+  const [planName, setPlanName] = useState<string | null>("Basic Pack");
 
   const fetchWordCount = async () => {
     try {
@@ -111,21 +111,27 @@ const DashboardPage = () => {
     fetchChatCount();
     fetchImageCount();
     fetchPlanName();
- }, []);
+  }, []);
 
- const chartLabelsWords = [`Remaining Words: ${wordCount || 0}`, `Total Words`];
- const chartLabelsChats = [`Remaining Chats: ${chatCount || 0}`, `Total Chats`];
+  const chartLabelsWords = [
+    `Remaining Words: ${wordCount || 0}`,
+    `Total Words`,
+  ];
+  const chartLabelsChats = [
+    `Remaining Chats: ${chatCount || 0}`,
+    `Total Chats`,
+  ];
 
   return (
     <div className="absolute top-14 right-0 md:px-20 md:py-10 p-6 w-full lg:w-[calc(100%-250px)] mx-auto text-white">
       {/* <h2 className="text-2xl font-semibold p-2">Overview</h2> */}
-      <div className="gap-4 w-full flex flex-col-reverse flex-wrap lg:flex-nowrap justify-between items-center mx-auto p-5 pt-2">
-        <div className="w-full overflow-hidden relative backdrop-blur-md shadow">
-          <div className="absolute -bottom-4 -right-4 bg-blue-500 w-28 h-28 blur-[80px]"></div>
-          <div className="absolute -bottom-4 -right-4 bg-cyan-400 w-16 h-16 blur-[50px]"></div>
+      <div className="gap-4 w-full flex flex-col-reverse flex-wrap lg:flex-nowrap justify-between rounded-md items-center mx-auto p-5 pt-2">
+        <div className="w-full overflow-hidden rounded-md object-cover relative backdrop-blur-md shadow">
+          <div className="absolute -bottom-4 -right-4 bg-blue-500 w-28 h-28 blur-[80px] rounded-md"></div>
+          <div className="absolute -bottom-4 -right-4 bg-cyan-400 w-16 h-16 blur-[50px] rounded-md"></div>
 
-          <div className="p-2 w-full bg-[rgba(32,45,72,0.41)] py-4 rounded-[12px] justify-evenly flex md:flex-row flex-col md:items-center gap-4 px-4">
-            <div className="flex md:flex-row flex-col md:items-center -ml-2 gap-2 w-4/5 px-4">
+          <div className="p-2 w-full bg-[rgba(32,45,72,0.41)] py-4 rounded-md justify-between flex md:flex-row flex-col md:items-center gap-4 px-4">
+            <div className="flex md:flex-row flex-col md:items-center gap-2 w-4/5 px-4">
               <Image
                 src={ImageGeneration}
                 alt="Image generation"
@@ -145,7 +151,7 @@ const DashboardPage = () => {
 
             <Link
               href="/user/image-generator"
-              className="w-fit rounded-lg bg-gradient-to-r from-[rgba(247,15,255,1)] to-[#2C63FF] px-3 py-1 md:px-4 md:py-2 hover:opacity-90"
+              className="w-fit rounded-lg bg-gradient-to-r from-[rgba(247,15,255,1)] to-[#2C63FF] px-3 py-1 md:px-4 md:py-2 hover:opacity-90 mr-5"
             >
               Get Started
             </Link>
@@ -159,12 +165,12 @@ const DashboardPage = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5">
             {/* Cards */}
-            {BasicCardData.map((basic, index) => (
+            {BasicCardData.map((basic) => (
               <div key={basic.id}>
                 <div className="text-white p-5 basis-1/3 bg-[rgba(32,45,72,0.41)] overflow-hidden relative backdrop-blur-md shadow rounded-[20px]">
                   <div className="absolute -bottom-4 -right-4 bg-blue-500 w-28 h-28 blur-[80px]"></div>
                   <div className="absolute -bottom-4 -right-4 bg-cyan-400 w-16 h-16 blur-[50px]"></div>
-                  
+
                   {/* Rest of the content */}
                   <div className="flex flex-col items-center gap-4 justify-center h-[200px]">
                     <span
@@ -174,21 +180,27 @@ const DashboardPage = () => {
                     </span>
 
                     <span
-                      className={`capitalize font-bold text-2xl bg-clip-text text-transparent bg-gradient-to-r from-[rgba(247,15,255,1)] to-[#2C63FF]`}
+                      className={`capitalize text-center font-bold text-2xl bg-clip-text text-transparent bg-gradient-to-r from-[rgba(247,15,255,1)] to-[#2C63FF]`}
                     >
                       {basic.id === 1
                         ? planName
                         : basic.id === 2
                           ? wordCount
-                          : basic.id === 3
-                            ? chatCount
-                            : basic.id === 4
-                              ? imagesCount
-                              : basic.remaining}
+                          : basic.id === 3 ? (
+                            chatCount !== null && chatCount > 250 ? Infinity
+                              : chatCount
+                          ) : basic.id === 4
+                            ? (
+                              imagesCount !== null && imagesCount > 500 ? Infinity
+                                : imagesCount === 0 ? "Upgrade to premium"
+                                  : imagesCount
+                            )
+                            : basic.remaining}
                     </span>
+                    {/* <span className="text-4xl">∞</span> */}
 
                     <p className="text-[16px] opacity-60 text-center">
-                      {basic.title}
+                      {basic.id === 4 && imagesCount === 0 ? "" : basic.title}
                     </p>
                   </div>
                 </div>
@@ -208,9 +220,9 @@ const DashboardPage = () => {
               Words Usage
             </div>
             {/* <Doughnut data={words} className="mx-auto pt-2" /> */}
-            <div className="w-[83%] mx-auto pt-2 ">
+            <div className="w-3/4 mx-auto pt-2 white-color">
               <DoughnutChart
-                data={[wordCount || 0, 2000|| 0]}
+                data={[wordCount || 0, 2000 || 0]}
                 labels={chartLabelsWords}
               />
             </div>
@@ -243,7 +255,7 @@ const DashboardPage = () => {
                 className="flex items-center p-5 bg-cardcolor text-white text-opacity-60 shadow rounded-md"
               >
                 <span
-                  className="items-center justify-center block w-9 h-9 rounded-md text-xl mr-3 p-2"
+                  className="items-center justify-center block w-9 h-9 rounded-md text-xl mr-3 p-2 text-white"
                   style={{
                     backgroundColor: item.bgcolor,
                     color: item.color,

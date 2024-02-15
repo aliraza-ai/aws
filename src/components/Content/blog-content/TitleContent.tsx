@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useState, FormEvent } from "react";
 import { useWebContext } from "@/context/ContextProvider";
+import React, { FormEvent, useState } from "react";
 
 interface Props {
   type: string
@@ -48,34 +48,58 @@ const TitleContent = ({ type }: Props) => {
       let prompt = ""
       switch (type) {
         case "blog-intro":
-          prompt = `Write blog intro having this title ${title} and the content is this ${content}. Response must be in html paragraph with strong tag for headings and <br/> for linebreaks.`;
+          prompt = `Write blog intro of 100-150 words on ${title}. The main purpose of the blog is:  ${content}. The response must be in this format:
+          <strong>Introduction</strong>:
+            <p>...</p>
+            Here ... is the blog introduction.`;
+
           getResponse(prompt);
           break;
         case "blog-listicle":
-          prompt = `Write blog listicle in bullet points based on the title ${title} and the content: "${content}". Response contains html strong tag for title and sub-title and list points in numbers for listicles with <br /> linebreaks.`;
+          prompt = `Write blog listicle of 200-250 words on ${title}. The main purpose of the blog is:  ${content}. The response must be in this format:
+          <strong>${title}</strong>:
+            <ul>
+            <li>
+              <strong>...: </strong> ...
+              <br /><br />
+            </li>
+            </ul>
+            Here ... is the blog listicle. `;
           getResponse(prompt);
           break;
         case "blog-outline":
-          prompt = `Write outline for blog based on title ${title} and the content:"${content}". Response must be html paragraph with strong tag for headings and subheadings, list points in numbers & <br/> for linebreaks.`;
+          prompt = `Write blog outline of 100-150 words on ${title}. The main purpose of the blog is:  ${content}. The response must be in this format:
+          <strong>${title}(outline)</strong>:
+            <p>...</p>
+            Here ... is the blog outline. `;
           getResponse(prompt);
           break;
         case "blog-outro":
-          prompt = `Write blog outro having this title ${title} and the content is this ${content}. Now, I want response in html paragraph with strong and bold tag for headings and subheadings represented by size and bullets with numbers. After paragraph, use <br/> for linebreaks.`;
+          prompt = `Write blog outro of 80-120 words on ${title}. The main purpose of the blog is:  ${content}. The response must be in this format:
+          <strong>${title}(outro)</strong>:
+            <p>...</p>
+            Here ... is the blog outro. `;
           getResponse(prompt);
           break;
         case "blog-tags":
-          prompt = `Give blog tags of having this title ${title} and the content is this ${content}. Now, I want response in html paragraph with strong and bold tag for headings and subheadings represented by size and bullets with numbers. After paragraph, use <br/> for linebreaks.`;
-          getResponse(prompt);
-          break; 
-          case "blog-talking-points":
-          prompt = `Give blog talking points of having this title ${title} and the content is this ${content}. Now, I want response in html paragraph with strong and bold tag for headings and subheadings represented by size and bullets with numbers. After paragraph, use <br/> for linebreaks.`;
-          getResponse(prompt);
-          break;
-          case "content-grammer":
-          prompt = `Give Content grammer of having this title ${title} and the content is this ${content}. Now, I want response in html paragraph with strong and bold tag for headings and subheadings represented by size and bullets with numbers. After paragraph, use <br/> for linebreaks.`;
+          prompt = `Write 15-20 blog tags on ${title} and the main purpose of the blog is:  ${content}. The response must be in this format:
+          <strong>${title}(tags)</strong>:
+            <p>...</p>
+            Here ... is the blog hashags tags. `;
           getResponse(prompt);
           break;
-
+        case "blog-talkings-points":
+          prompt = `Write blog-talking-points of 150-200 words on ${title} and the main purpose of the blog is:  ${content}. The response must be in this format:
+          <p>
+            <strong>${title} Talking Points:</strong><br/>
+            <ul>
+              <li>${content}</li>
+              <!-- Add more talking points as needed -->
+            </ul>
+          </p>`;
+          getResponse(prompt);
+          break;
+    
         default:
           break;
       }
@@ -93,7 +117,7 @@ const TitleContent = ({ type }: Props) => {
 
           <div className="flex flex-col">
             <label htmlFor="name" className="text-white mb-2 font-bold">
-              Title <span className="text-red-500">*</span>
+              Title <span className="text-pink-500">*</span>
             </label>
 
             <input
@@ -106,14 +130,14 @@ const TitleContent = ({ type }: Props) => {
             />
           </div>
           {formError?.title && (
-            <p className="text-red-400 text-[16px] p-2">
+            <p className="!text-red-500 text-sm px-2">
               {formError.title}
             </p>
           )}
 
           <div className="flex flex-col">
             <label htmlFor="message" className="text-white mb-2 font-bold">
-              Content <span className="text-red-500">*</span>
+              Content <span className="text-pink-500">*</span>
             </label>
             <textarea
               placeholder="The best places to visit in this summer"
@@ -127,7 +151,7 @@ const TitleContent = ({ type }: Props) => {
             ></textarea>
           </div>
           {formError?.content && (
-            <p className="text-red-400 text-[16px] p-2">
+            <p className="!text-red-500 text-sm px-2">
               {formError.content}
             </p>
           )}

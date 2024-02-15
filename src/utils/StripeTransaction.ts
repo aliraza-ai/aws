@@ -27,7 +27,7 @@ const StripeTransaction = async (
 
     if (response.ok) {
       const res = await response.json();
-      const updatePlan = await UpdatePlan(userId);
+      const updatePlan = await UpdatePlan(userId, planId);
       if (updatePlan.success) {
         return {
           success: true,

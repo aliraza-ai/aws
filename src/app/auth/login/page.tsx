@@ -1,14 +1,17 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import Swal from "sweetalert2";
+import Button from "@/components/Button";
+import { useAuth } from "@/context/AuthContext";
+import loginUser from "@/utils/loginUser";
+import ReCAPTCHA from "react-google-recaptcha";
+import { verifyCaptcha } from "@/utils/verifyCaptcha";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { FaEnvelope } from "react-icons/fa";
-import { BiSolidLock } from "react-icons/bi";
+import React, { useEffect, useState, useRef } from "react";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
-import loginUser from "@/utils/loginUser";
-import { useAuth } from "@/context/AuthContext";
+import { BiSolidLock } from "react-icons/bi";
+import { FaEnvelope } from "react-icons/fa";
+import Swal from "sweetalert2";
 
 interface LoginPageLayoutProps {
   children: React.ReactNode;
@@ -17,7 +20,10 @@ interface LoginPageLayoutProps {
   error?: string;
 }
 
-const LoginPageLayout: React.FC<LoginPageLayoutProps | any> = (props) => {
+const LoginPageLayout: React.FC<LoginPageLayoutProps | any> = () => {
+  const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
+  const recaptchaRef = useRef<ReCAPTCHA>(null);
+  const [isVerified, setIsverified] = useState<boolean>(false);
   const router = useRouter();
   const { setTokens, setNameLetter } = useAuth();
   const [email, setEmail] = useState<string>("");
@@ -26,6 +32,16 @@ const LoginPageLayout: React.FC<LoginPageLayoutProps | any> = (props) => {
   const [signInError, setSignInError] = useState<LoginPageLayoutProps | null>(
     null
   );
+
+  const handleRecaptchaChange = (token: string | null) => {
+    setRecaptchaToken(token);
+  };
+
+  async function handleCaptchaSubmission(token: string | null) {
+    await verifyCaptcha(token)
+      .then(() => setIsverified(true))
+      .catch(() => setIsverified(false));
+  }
 
   function getFirstLetter(email: string): string {
     return email ? email.charAt(0) : "";
@@ -40,6 +56,9 @@ const LoginPageLayout: React.FC<LoginPageLayoutProps | any> = (props) => {
           email: "Email is required",
           children: null,
         });
+        return;
+      } else if (!recaptchaToken) {
+        throw new Error("Please verify you are not a robot.");
         return;
       } else if (!password) {
         setSignInError({
@@ -118,7 +137,7 @@ const LoginPageLayout: React.FC<LoginPageLayoutProps | any> = (props) => {
                 />
               </label>
               {signInError?.email && (
-                <p className="text-red-400 text-[16px] p-2">
+                <p className="!text-red-500 text-sm px-2">
                   {signInError.email}
                 </p>
               )}
@@ -155,22 +174,30 @@ const LoginPageLayout: React.FC<LoginPageLayoutProps | any> = (props) => {
                 </div>
               </label>
               {signInError?.password && (
-                <p className="text-red-400 text-[16px] p-2">
+                <p className="!text-red-500 text-sm px-2">
                   {signInError.password}
                 </p>
               )}
 
               <Link href="/auth/forgot-password" className="w-[160px]">
-                <span className="text-red-400">Forgot password?</span>
+                <span className="text-pink-400">Forgot password?</span>
               </Link>
-              <button
-                type="submit"
-                className="bg-gradient-to-r from-[rgba(247,15,255,1)] to-[#2C63FF] py-3  hover:border-blue-500 transition-all duration-300 px-[35px] text-white font-semibold rounded-full"
-              >
-                Login
-              </button>
+              <ReCAPTCHA
+                sitekey="6Lfu7nMpAAAAAHhTlS81YcB09k9ok0n-m-QSALgi"
+                ref={recaptchaRef}
+                onChange={handleCaptchaSubmission}
+              />
+              <div className="flex w-full justify-center">
+                <Button
+                  disbaled={!isVerified}
+                  title="Login"
+                  width="w-full"
+                  className="w-full"
+                  btnType="submit"
+                />
+              </div>
               {/* {signInError?.error && (
-                  <p className="text-red-400 text-[16px] p-2">
+                  <p className="!text-red-500 text-sm px-2">
                     {signInError.error}
                   </p>
                 )} */}
@@ -179,7 +206,7 @@ const LoginPageLayout: React.FC<LoginPageLayoutProps | any> = (props) => {
 
           <p className="pb-6 !m-0 text-center text-white lg:pt-0 pt-3">
             Don&apos;t have an account?{" "}
-            <span className="text-red-400">
+            <span className="text-pink-400">
               <Link href="/auth/register">Register</Link>
             </span>
           </p>

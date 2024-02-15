@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Button from "./Button";
 
 const CheckEmail = () => {
   return (
@@ -13,11 +14,12 @@ const CheckEmail = () => {
         If you haven't received any email, please retry after 5 minutes or check
         <br /> your spam folder.
       </p>
-      <Link
-        href="/"
-        className="bg-gradient-to-r from-[rgba(247,15,255,1)] to-[#2C63FF] text-white font-bold py-2 px-4 rounded"
-      >
-        Go to Homepage
+
+      <Link href="/">
+        <Button
+          title="Go to Homepage"
+          btnType="button"
+        />
       </Link>
     </div>
   );

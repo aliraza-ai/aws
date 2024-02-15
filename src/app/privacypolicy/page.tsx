@@ -1,5 +1,5 @@
-import React, { ReactNode } from "react";
 import Link from "next/link";
+import React, { ReactNode } from "react";
 
 interface Privacy {
   id: number;
@@ -107,7 +107,7 @@ const PrivacyData: Privacy[] = [
     list: [],
     route: (
       <span>
-       {" "}
+        {" "}
         <Link
           className="text-blue-500"
           style={{ display: "inline" }}

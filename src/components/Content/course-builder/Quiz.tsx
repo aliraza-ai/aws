@@ -12,7 +12,7 @@ interface FormProps {
   question?: string;
 }
 
-const Quiz = ({ type }: Props) => {
+const Quiz = ({ }: Props) => {
   const { getResponse } = useWebContext();
 
   const [formData, setFormData] = useState({
@@ -71,7 +71,7 @@ const Quiz = ({ type }: Props) => {
         <div className="flex flex-col gap-4 w-full">
           <div className="flex flex-col">
             <label htmlFor="name" className="text-white mb-2 font-bold">
-              Quiz Subject <span className="text-red-500">*</span>
+              Quiz Subject <span className="text-pink-500">*</span>
             </label>
 
             <input
@@ -84,12 +84,12 @@ const Quiz = ({ type }: Props) => {
             />
           </div>
           {formError?.sub && (
-            <p className="text-red-400 text-[16px] p-2">{formError.sub}</p>
+            <p className="!text-red-500 text-sm px-2">{formError.sub}</p>
           )}
 
           <div className="flex flex-col">
             <label htmlFor="name" className="text-white mb-2 font-bold">
-              Quiz Topic <span className="text-red-500">*</span>
+              Quiz Topic <span className="text-pink-500">*</span>
             </label>
 
             <input
@@ -102,12 +102,12 @@ const Quiz = ({ type }: Props) => {
             />
           </div>
           {formError?.topic && (
-            <p className="text-red-400 text-[16px] p-2">{formError.topic}</p>
+            <p className="!text-red-500 text-sm px-2">{formError.topic}</p>
           )}
 
           <div className="flex flex-col">
             <label htmlFor="name" className="text-white mb-2 font-bold">
-              No. of Questions <span className="text-red-500">*</span>
+              No. of Questions <span className="text-pink-500">*</span>
             </label>
 
             <input
@@ -120,7 +120,7 @@ const Quiz = ({ type }: Props) => {
             />
           </div>
           {formError?.question && (
-            <p className="text-red-400 text-[16px] p-2">{formError.question}</p>
+            <p className="!text-red-500 text-sm px-2">{formError.question}</p>
           )}
 
           <button

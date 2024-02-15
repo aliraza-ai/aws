@@ -56,6 +56,7 @@ export const blogCardImage2 = "/blogs/blog_content_2.png";
 export const blogCardImage3 = "/blogs/blog_content_3.png";
 export const blogCardImage4 = "/blogs/blog_content_4.png";
 export const blogCardImage5 = "/blogs/blog_content_5.png";
+export const blogCardImage6 = "/blogs/blog_content_6.png";
 
 // Home About slider
 export const image_slide_1 = "/sliders/image_slide_1.png";
@@ -109,22 +110,35 @@ export const coursestep3 = "/ai-course-builder-page/coursestep3.png";
 export const coursestep4 = "/ai-course-builder-page/coursestep4.png";
 export const coursecontent = "/ai-course-builder-page/coursecontent.jpg";
 
-
-export const socialmediaBg = "/ai-social-media/socialmediaBg.jpeg"
-export const socialStep2 = "/ai-social-media/socialStep2.png"
-export const socialStep3 = "/ai-social-media/socialStep3.png"
-export const socialStep1 = "/ai-social-media/socialStep1.png"
-export const socialStep4 = "/ai-social-media/socialStep4.png"
+//Social Media
+export const socialmediaBg = "/ai-social-media/socialmediaBg.jpeg";
+export const socialStep2 = "/ai-social-media/socialStep2.png";
+export const socialStep3 = "/ai-social-media/socialStep3.png";
+export const socialStep1 = "/ai-social-media/socialStep1.png";
+export const socialStep4 = "/ai-social-media/socialStep4.png";
 
 // export const apiService1 = "/apiSevice1.png";
 // export const apiService2 = "/apiService2.png";
 // export const apiService3 = "/apiService3.png";
 
-
 //Marketing Page
-export {default as marketingstep1} from "./ai-marketing-page/marketingstep1.jpg"
-export {default as marketingstep2} from "./ai-marketing-page/marketingstep2.jpg"
-export {default as marketingstep3} from "./ai-marketing-page/marketingstep3.jpg"
-export {default as marketingstep4} from "./ai-marketing-page/marketingstep4.jpg"
-export {default as marketingcontent} from "./ai-marketing-page/marketingcontent.jpg"
-export {default as curve1} from "./curve1.png"
+export const marketingstep1 = "./ai-marketing-page/marketingstep1.jpg";
+export const marketingstep2 = "./ai-marketing-page/marketingstep2.jpg";
+export const marketingstep3 = "./ai-marketing-page/marketingstep3.jpg";
+export const marketingstep4 = "./ai-marketing-page/marketingstep4.jpg";
+export const marketingcontent = "./ai-marketing-page/marketingcontent.jpg";
+export const curve1 = "./curve1.png";
+
+//Voice generation
+export const voicecontentbg = "/ai-voice-generator/voicecontentbg.jpg";
+export const voicestep1 = "/ai-voice-generator/voicestep1.png";
+export const voicestep2 = "/ai-voice-generator/voicestep2.png";
+export const voicestep3 = "/ai-voice-generator/voicestep3.png";
+export const voicestep4 = "/ai-voice-generator/voicestep4.png";
+
+
+//Post
+export const post1 = "/post/post1.png";
+
+//Maintenance Page
+export const Maintenance = "/Maintenance.png";

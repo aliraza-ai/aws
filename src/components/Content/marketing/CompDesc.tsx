@@ -1,7 +1,7 @@
 "use client";
 
 import { useWebContext } from "@/context/ContextProvider";
-import React, { useState, FormEvent } from "react";
+import React, { FormEvent, useState } from "react";
 
 interface Props {
   type: string;
@@ -45,7 +45,7 @@ const CompDesc = ({ type }: Props) => {
         description: "",
       });
 
-      let prompt = ""
+      let prompt = "";
       switch (type) {
         case "mission-statement":
           prompt = `Write a mission statement having this company ${company} and the description is this ${description}. Response must be in html paragraph with strong tag for headings and <br/> for linebreaks.`;
@@ -59,11 +59,11 @@ const CompDesc = ({ type }: Props) => {
           prompt = `Write a welcome email having this company ${company} and the description is this:"${description}". Response must be html paragraph with strong tag for headings and subheadings, list points in numbers & <br/> for linebreaks.`;
           getResponse(prompt);
           break;
-          case "pain-agitate-solution":
+        case "pain-agitate-solution":
           prompt = `Write pain agitate solution having this product ${company} and the description is ${description}. Now, I want response in html paragraph with strong and bold tag for headings and subheadings represented by size and bullets with numbers. After paragraph, use <br/> for linebreaks.`;
           getResponse(prompt);
           break;
-          case "product-sheet":
+        case "product-sheet":
           prompt = `Generate compelling product sheet having this product ${company} and the description is ${description}. Now, I want response in html paragraph with strong and bold tag for headings and subheadings represented by size and bullets with numbers. After paragraph, use <br/> for linebreaks.`;
           getResponse(prompt);
           break;
@@ -87,7 +87,7 @@ const CompDesc = ({ type }: Props) => {
         <div className="flex flex-col gap-4 w-full">
           <div className="flex flex-col">
             <label htmlFor="name" className="text-white mb-2 font-bold">
-              Company <span className="text-red-500">*</span>
+              Company <span className="text-pink-500">*</span>
             </label>
 
             <input
@@ -100,12 +100,12 @@ const CompDesc = ({ type }: Props) => {
             />
           </div>
           {formError?.company && (
-            <p className="text-red-400 text-[16px] p-2">{formError.company}</p>
+            <p className="!text-red-500 text-sm px-2">{formError.company}</p>
           )}
 
           <div className="flex flex-col">
             <label htmlFor="message" className="text-white mb-2 font-bold">
-              Description <span className="text-red-500">*</span>
+              Description <span className="text-pink-500">*</span>
             </label>
             <textarea
               placeholder="i.e The best places to visit in this summer"
@@ -121,7 +121,7 @@ const CompDesc = ({ type }: Props) => {
             ></textarea>
           </div>
           {formError?.description && (
-            <p className="text-red-400 text-[16px] p-2">
+            <p className="!text-red-500 text-sm px-2">
               {formError.description}
             </p>
           )}

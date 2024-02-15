@@ -1,8 +1,8 @@
 "use client";
 
-import React from "react";
-import Link from "next/link";
 import { Marketing } from "@/constants/dashboard";
+import Link from "next/link";
+import React from "react";
 import { FaChevronRight } from "react-icons/fa6";
 
 const MarketingPage = () => {

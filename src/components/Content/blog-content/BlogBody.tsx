@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useState, FormEvent } from "react";
 import { useWebContext } from "@/context/ContextProvider";
+import React, { FormEvent, useState } from "react";
 
 interface Props {
   type: string;
@@ -43,13 +43,8 @@ const BlogBody = ({ type }: Props) => {
         subheading: "",
       });
 
-      let query = ""
+      let query = "";
       switch (type) {
-        case "blog-talkings-points":
-            query = `Write blog talking points having this title ${title} and the subhead is this ${subheading}. Now, I want response in html paragraph with strong and bold tag for headings and subheadings represented by size and bullets with numbers. After paragraph, use <br/> for linebreaks.`;
-            getResponse(query);
-            (query);
-            break;
         case "blog-paragraph":
           query = `Write blog paragraph having this title ${title} and the subhead is this ${subheading}. Now, I want response in html paragraph with strong and bold tag for headings and subheadings represented by size and bullets with numbers. After paragraph, use <br/> for linebreaks.`;
           getResponse(query);
@@ -57,9 +52,8 @@ const BlogBody = ({ type }: Props) => {
         case "blog-section":
           query = `Write blog section having this title ${title} and the subhead is this ${subheading}. Now, I want response in html paragraph with strong and bold tag for headings and subheadings represented by size and bullets with numbers. After paragraph, use <br/> for linebreaks.`;
           getResponse(query);
-          (query);
           break;
-          
+
         default:
           break;
       }
@@ -80,7 +74,7 @@ const BlogBody = ({ type }: Props) => {
         <div className="flex flex-col gap-4 w-full">
           <div className="flex flex-col">
             <label htmlFor="name" className="text-white mb-2 font-bold">
-              Title <span className="text-red-500">*</span>
+              Title <span className="text-pink-500">*</span>
             </label>
 
             <input
@@ -93,12 +87,12 @@ const BlogBody = ({ type }: Props) => {
             />
           </div>
           {formError?.title && (
-            <p className="text-red-400 text-[16px] p-2">{formError.title}</p>
+            <p className="!text-red-500 text-sm px-2">{formError.title}</p>
           )}
 
           <div className="flex flex-col">
             <label htmlFor="phone" className="text-white mb-2 font-bold">
-              Subheading <span className="text-red-500">*</span>
+              Subheading <span className="text-pink-500">*</span>
             </label>
             <input
               type="tel"
@@ -110,7 +104,7 @@ const BlogBody = ({ type }: Props) => {
             />
           </div>
           {formError?.subheading && (
-            <p className="text-red-400 text-[16px] p-2">
+            <p className="!text-red-500 text-sm px-2">
               {formError.subheading}
             </p>
           )}

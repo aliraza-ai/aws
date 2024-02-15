@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useState, FormEvent } from "react";
 import { useWebContext } from "@/context/ContextProvider";
+import React, { FormEvent, useState } from "react";
 
 interface Props {
     type: string
@@ -11,7 +11,7 @@ interface FormProps {
     content?: string,
 }
 
-const VideoTags = ({ type }: Props) => {
+const VideoTags = ({ }: Props) => {
     const { getResponse } = useWebContext();
     const [formData, setFormData] = useState({
         title: "",
@@ -51,7 +51,7 @@ const VideoTags = ({ type }: Props) => {
                 <div className="flex flex-col gap-4 w-full">
                     <div className="flex flex-col">
                         <label htmlFor="name" className="text-white mb-2 font-bold">
-                            Title <span className="text-red-500">*</span>
+                            Title <span className="text-pink-500">*</span>
                         </label>
 
                         <input
@@ -64,7 +64,7 @@ const VideoTags = ({ type }: Props) => {
                         />
                     </div>
                     {formError?.title && (
-                        <p className="text-red-400 text-[16px] p-2">
+                        <p className="!text-red-500 text-sm px-2">
                             {formError.title}
                         </p>
                     )}

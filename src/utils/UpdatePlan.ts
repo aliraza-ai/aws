@@ -1,23 +1,24 @@
-import getChatCount from "./getChatCount";
-import getWordCount from "./getWordCount";
+import { packagesData } from "@/constants";
 
 const UpdatePlan = async (
-  userId: string | null
+  userId: string | null,
+  planId: string | null
 ): Promise<{ success: boolean; message: string }> => {
+
   try {
-    let wordsLeft = null;
-    let chatCount = null;
-    const words = await getWordCount();
-    if (words.success) {
-      wordsLeft = words.words_left;
-    }
-
-    const chats = await getChatCount();
-    if (chats.success) {
-      chatCount = chats.chat_left;
-    }
-
-    const data = { userId, wordsLeft, chatCount };
+    const planID = Number(planId);
+    let data = null;
+    packagesData.map(item => {
+      if (item.planId === planID) {
+        data = {
+          userId: userId,
+          planName: item.package,
+          words: item.words,
+          chats: item.chats,
+          images: item.images
+        };
+      }
+    })
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL}/transactions`,
       {

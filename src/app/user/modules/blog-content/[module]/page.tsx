@@ -21,12 +21,12 @@ const ModuleLayout = () => {
     "blog-outline",
     "blog-outro",
     "blog-tags",
+    "blog-talkings-points"
   ];
 
   const blogBody = [
     "blog-paragraph",
     "blog-section",
-    "blog-talkings-points"
   ];
 
   const blogDesc = [

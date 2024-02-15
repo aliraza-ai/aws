@@ -1,14 +1,12 @@
 "use client";
+import { FAQs } from "@/components";
+import { AIChatFAQs } from "@/constants/FaqsData";
+import { MoretoolsChat, stepsChat } from "@/constants/index";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import {
-  aichat,
-} from "../../../public";
-import { FAQs } from "@/components";
-import { AIChatFAQs } from "@/constants/FaqsData";
-import { MoretoolsChat,stepsChat } from "@/constants/index";
-
+import { aichat } from "../../../public";
+import Button from "@/components/Button";
 
 const ChatPage = () => {
   return (
@@ -27,11 +25,12 @@ const ChatPage = () => {
           empowers you to craft captivating Content within seconds.
         </p>
         <div className="w-fit">
-          <button className="w-fit rounded-lg bg-gradient-to-r from-[rgba(247,15,255,1)] to-[#2C63FF] px-3 py-1 md:px-4 md:py-2 hover:opacity-90">
-            <Link href="/user/chat" target="_blank">
-              Try Intelliwriter AI Chat!
-            </Link>
-          </button>
+          <Link href="/user/chat">
+            <Button
+              title="Try Intelliwriter AI Chat!"
+              btnType="button"
+            />
+          </Link>
         </div>
       </div>
 
@@ -75,9 +74,8 @@ const ChatPage = () => {
         {stepsChat.map((item) => (
           <div
             key={item.id}
-            className={` my-4 flex flex-col gap-5 md:flex md:flex-row md:items-center md:justify-between w-full ${
-              item.id == 2 || item.id == 4 ? "md:flex-row-reverse" : ""
-            }`}
+            className={` my-4 flex flex-col gap-5 md:flex md:flex-row md:items-center md:justify-between w-full ${item.id == 2 || item.id == 4 ? "md:flex-row-reverse" : ""
+              }`}
           >
             <div className="items-start flex flex-col md:w-4/12 ">
               <h2 className="text-lg md:text-xl font-semibold">{item.step}</h2>
@@ -106,7 +104,8 @@ const ChatPage = () => {
             {MoretoolsChat.map((item, index) => (
               <div
                 key={index}
-                className="bg-blue-900 m-2 text-center p-2 bg-opacity-20 md:w-[25%] lg:w-[15%] Moretools">
+                className="bg-blue-900 m-2 text-center p-2 bg-opacity-20 md:w-[25%] lg:w-[16%] Moretools"
+              >
                 <span
                   className="items-center justify-center block w-9 h-9 rounded-md text-xl m-3 mr-3 p-2"
                   style={{

@@ -1,7 +1,7 @@
 "use client";
 
 import { useWebContext } from "@/context/ContextProvider";
-import React, { useState, FormEvent } from "react";
+import React, { FormEvent, useState } from "react";
 
 interface Props {
   type: string;
@@ -78,7 +78,7 @@ const ProdDesc = ({ type }: Props) => {
         <div className="flex flex-col gap-4 w-full">
           <div className="flex flex-col">
             <label htmlFor="name" className="text-white mb-2 font-bold">
-              Product <span className="text-red-500">*</span>
+              Product <span className="text-pink-500">*</span>
             </label>
 
             <input
@@ -91,12 +91,12 @@ const ProdDesc = ({ type }: Props) => {
             />
           </div>
           {formError?.product && (
-            <p className="text-red-400 text-[16px] p-2">{formError.product}</p>
+            <p className="!text-red-500 text-sm px-2">{formError.product}</p>
           )}
 
           <div className="flex flex-col">
             <label htmlFor="message" className="text-white mb-2 font-bold">
-              Description <span className="text-red-500">*</span>
+              Description <span className="text-pink-500">*</span>
             </label>
             <textarea
               placeholder="i.e The best places to visit in this summer"
@@ -112,7 +112,7 @@ const ProdDesc = ({ type }: Props) => {
             ></textarea>
           </div>
           {formError?.description && (
-            <p className="text-red-400 text-[16px] p-2">
+            <p className="!text-red-500 text-sm px-2">
               {formError.description}
             </p>
           )}

@@ -1,12 +1,12 @@
 "use client";
 
-import { useState } from "react";
-import React from "react";
-import Link from "next/link";
-import Swal from "sweetalert2";
+import Button from "@/components/Button";
 import resetPasswordUser from "@/utils/resetPassword";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
+import React, { useState } from "react";
 import { BiSolidLock } from "react-icons/bi";
+import Swal from "sweetalert2";
 
 interface ResetPasswordPageProps {
   children: React.ReactNode;
@@ -110,7 +110,7 @@ const ResetPasswordPageLayout: React.FC<ResetPasswordPageProps | any> = (
                 />
               </label>
               {resetError?.newPassword && (
-                <p className="text-red-400 text-[16px] p-2">
+                <p className="!text-red-500 text-sm px-2">
                   {resetError.newPassword}
                 </p>
               )}
@@ -130,23 +130,22 @@ const ResetPasswordPageLayout: React.FC<ResetPasswordPageProps | any> = (
                 />
               </label>
               {resetError?.confirmPassword && (
-                <p className="text-red-400 text-[16px] p-2">
+                <p className="!text-red-500 text-sm px-2">
                   {resetError.confirmPassword}
                 </p>
               )}
-
-              <button
-                type="submit"
-                className="bg-gradient-to-r from-[rgba(247,15,255,1)] to-[#2C63FF] py-3 hover:opacity-90 transition-all duration-300 px-[35px] text-white font-semibold rounded-full"
-              >
-                Reset Password
-              </button>
+              <Button
+                title="Reset Password"
+                width="w-full"
+                className="w-full"
+                btnType="submit"
+              />
             </div>
           </form>
 
           <p className="pb-6 !m-0 text-center text-white lg:pt-0 pt-3">
             Remember your password?{" "}
-            <span className="text-red-400">
+            <span className="text-pink-400">
               <Link href="/auth/login">Login</Link>
             </span>
           </p>

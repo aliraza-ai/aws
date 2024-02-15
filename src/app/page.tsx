@@ -1,6 +1,5 @@
-import React from 'react';
-import PageChild from './PageChild';
 import Scripts from '@/components/Scripts';
+import PageChild from './PageChild';
 const Home = () => {
   return (
     <>

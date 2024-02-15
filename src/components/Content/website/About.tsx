@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useState, FormEvent } from "react";
 import { useWebContext } from "@/context/ContextProvider";
+import React, { FormEvent, useState } from "react";
 
 interface Props {
   type: string;
@@ -48,7 +48,7 @@ const Audience = ({ type }: Props) => {
         description: "",
       });
 
-      let query = '';
+      let query = "";
       switch (type) {
         case "about-us":
           query = `Write about us having this product ${product} according to this audience ${audience} the description is ${description}. Now, I want response in html paragraph with strong and bold tag for headings and subheadings represented by size and bullets with numbers. After paragraph, use <br/> for linebreaks.`;
@@ -84,11 +84,14 @@ const Audience = ({ type }: Props) => {
 
   return (
     <div className="w-full flex flex-col items-start justify-center">
-      <form onSubmit={handleSubmit} className="w-full justify-center flex border border-blue-900 backdrop-blur-md px-6 py-10 rounded-lg drop-shadow-lg">
+      <form
+        onSubmit={handleSubmit}
+        className="w-full justify-center flex border border-blue-900 backdrop-blur-md px-6 py-10 rounded-lg drop-shadow-lg"
+      >
         <div className="flex flex-col gap-4 w-full">
           <div className="flex flex-col">
             <label htmlFor="name" className="text-white mb-2 font-bold">
-              Product <span className="text-red-500">*</span>
+              Product <span className="text-pink-500">*</span>
             </label>
 
             <input
@@ -101,12 +104,12 @@ const Audience = ({ type }: Props) => {
             />
           </div>
           {formError?.product && (
-            <p className="text-red-400 text-[16px] p-2">{formError.product}</p>
+            <p className="!text-red-500 text-sm px-2">{formError.product}</p>
           )}
 
           <div className="flex flex-col">
             <label htmlFor="name" className="text-white mb-2 font-bold">
-              Audience <span className="text-red-500">*</span>
+              Audience <span className="text-pink-500">*</span>
             </label>
 
             <input
@@ -119,12 +122,12 @@ const Audience = ({ type }: Props) => {
             />
           </div>
           {formError?.audience && (
-            <p className="text-red-400 text-[16px] p-2">{formError.audience}</p>
+            <p className="!text-red-500 text-sm px-2">{formError.audience}</p>
           )}
 
           <div className="flex flex-col">
             <label htmlFor="message" className="text-white mb-2 font-bold">
-              Description <span className="text-red-500">*</span>
+              Description <span className="text-pink-500">*</span>
             </label>
             <textarea
               placeholder="i.e The best places to visit in this summer"
@@ -140,7 +143,7 @@ const Audience = ({ type }: Props) => {
             ></textarea>
           </div>
           {formError?.description && (
-            <p className="text-red-400 text-[16px] p-2">
+            <p className="!text-red-500 text-sm px-2">
               {formError.description}
             </p>
           )}

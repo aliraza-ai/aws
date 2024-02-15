@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useState, FormEvent } from "react";
 import { useWebContext } from "@/context/ContextProvider";
+import React, { FormEvent, useState } from "react";
 
 interface Props {
   type: string
@@ -46,15 +46,26 @@ const BlogDesc = ({ type }: Props) => {
       let query = "";
       switch (type) {
         case "blog-post":
-          query = `Write blog post having this keywords ${keyword} and the description is this ${description}. Now, I want response in html paragraph with strong and bold tag for headings and subheadings represented by size and bullets with numbers. After paragraph, use <br/> for linebreaks.`;
+          query = `Write 200-300 words blog post having this keywords ${keyword} and the description is this ${description}. I need response in this format:
+          <p>
+            <strong>{Blog post title should come here}:</strong> <br />
+            <p>...</p>
+          </p>, where ... is blog post content, you can ue bullets if needed! `;
           getResponse(query);
           break;
         case "paragraph":
-          query = `Write a paragraph having this keyword ${keyword} and the description is this ${description}. Now, I want response in html paragraph with strong and bold tag for headings and subheadings represented by size and bullets with numbers. After paragraph, use <br/> for linebreaks.`;
+          query = `Write 100-150 words blog paragraph having this keywords ${keyword} and the description is this ${description}. I need response in this format:
+          <p>
+            <strong>{Blog post title should come here}:</strong> <br />
+            <p>...</p>
+          </p>, where ... is blog paragraphcontent, you can ue bullets if needed! `;
           getResponse(query);
           break;
         case "startup-names":
-          query = `Generate creative startup names having this keywords ${keyword} and the description is this ${description}. Now, I want response in html paragraph with strong and bold tag for headings and subheadings represented by size and bullets with numbers. After paragraph, use <br/> for linebreaks.`;
+          query = `Write business startup name having this keywords ${keyword} and the description is this ${description}. I need response in this format:
+          <p>
+            <strong>  Business Startup name:</strong> ...
+          </p>, where ... is business startup name.`;
           getResponse(query);
           break;
         default:
@@ -75,7 +86,7 @@ const BlogDesc = ({ type }: Props) => {
 
           <div className="flex flex-col">
             <label htmlFor="name" className="text-white mb-2 font-bold">
-              Keyword <span className="text-red-500">*</span>
+              Keyword <span className="text-pink-500">*</span>
             </label>
 
             <input
@@ -88,14 +99,14 @@ const BlogDesc = ({ type }: Props) => {
             />
           </div>
           {formError?.keyword && (
-            <p className="text-red-400 text-[16px] p-2">
+            <p className="!text-red-500 text-sm px-2">
               {formError.keyword}
             </p>
           )}
 
           <div className="flex flex-col">
             <label htmlFor="message" className="text-white mb-2 font-bold">
-              Description <span className="text-red-500">*</span>
+              Description <span className="text-pink-500">*</span>
             </label>
             <textarea
               placeholder="The best places to visit in this summer"
@@ -109,7 +120,7 @@ const BlogDesc = ({ type }: Props) => {
             ></textarea>
           </div>
           {formError?.description && (
-            <p className="text-red-400 text-[16px] p-2">
+            <p className="!text-red-500 text-sm px-2">
               {formError.description}
             </p>
           )}

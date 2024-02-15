@@ -1,7 +1,7 @@
 "use client";
 
 import { useWebContext } from "@/context/ContextProvider";
-import React, { useState, FormEvent } from "react";
+import React, { FormEvent, useState } from "react";
 
 interface Props {
   type: string;
@@ -13,7 +13,7 @@ interface FormProps {
   description?: string;
 }
 
-const FeatureSection = ({ type }: Props) => {
+const FeatureSection = ({ }: Props) => {
   const { getResponse } = useWebContext();
   const [formData, setFormData] = useState({
     title: "",
@@ -76,7 +76,7 @@ const FeatureSection = ({ type }: Props) => {
         <div className="flex flex-col gap-4 w-full">
           <div className="flex flex-col">
             <label htmlFor="name" className="text-white mb-2 font-bold">
-              Title <span className="text-red-500">*</span>
+              Title <span className="text-pink-500">*</span>
             </label>
 
             <input
@@ -89,12 +89,12 @@ const FeatureSection = ({ type }: Props) => {
             />
           </div>
           {formError?.title && (
-            <p className="text-red-400 text-[16px] p-2">{formError.title}</p>
+            <p className="!text-red-500 text-sm px-2">{formError.title}</p>
           )}
 
           <div className="flex flex-col">
             <label htmlFor="name" className="text-white mb-2 font-bold">
-              Product <span className="text-red-500">*</span>
+              Product <span className="text-pink-500">*</span>
             </label>
 
             <input
@@ -107,12 +107,12 @@ const FeatureSection = ({ type }: Props) => {
             />
           </div>
           {formError?.product && (
-            <p className="text-red-400 text-[16px] p-2">{formError.product}</p>
+            <p className="!text-red-500 text-sm px-2">{formError.product}</p>
           )}
 
           <div className="flex flex-col">
             <label htmlFor="name" className="text-white mb-2 font-bold">
-              Audience <span className="text-red-500">*</span>
+              Audience <span className="text-pink-500">*</span>
             </label>
 
             <input
@@ -125,12 +125,12 @@ const FeatureSection = ({ type }: Props) => {
             />
           </div>
           {formError?.audience && (
-            <p className="text-red-400 text-[16px] p-2">{formError.audience}</p>
+            <p className="!text-red-500 text-sm px-2">{formError.audience}</p>
           )}
 
           <div className="flex flex-col">
             <label htmlFor="message" className="text-white mb-2 font-bold">
-              Description <span className="text-red-500">*</span>
+              Description <span className="text-pink-500">*</span>
             </label>
             <textarea
               placeholder="i.e The best places to visit in this summer"
@@ -146,14 +146,14 @@ const FeatureSection = ({ type }: Props) => {
             ></textarea>
           </div>
           {formError?.description && (
-            <p className="text-red-400 text-[16px] p-2">
+            <p className="!text-red-500 text-sm px-2">
               {formError.description}
             </p>
           )}
 
           {/* <div className="flex flex-col">
               <label htmlFor="message" className="text-white mb-2 font-bold">
-                Message <span className="text-red-500">*</span>
+                Message <span className="text-pink-500">*</span>
               </label>
               <textarea
                 placeholder="Enter your message"
@@ -163,7 +163,7 @@ const FeatureSection = ({ type }: Props) => {
               ></textarea>
             </div>
             {formError?.subheading && (
-              <p className="text-red-400 text-[16px] p-2">
+              <p className="!text-red-500 text-sm px-2">
                 {formError.subheading}
               </p>
             )} */}

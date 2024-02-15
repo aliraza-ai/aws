@@ -1,7 +1,7 @@
 "use client";
 
 import { useWebContext } from "@/context/ContextProvider";
-import React, { useState, FormEvent } from "react";
+import React, { FormEvent, useState } from "react";
 
 interface Props {
   type: string;
@@ -12,7 +12,7 @@ interface FormProps {
   subheading?: string;
 }
 
-const Article = ({ type }: Props) => {
+const Article = ({ }: Props) => {
   const { getResponse } = useWebContext();
 
   const [formData, setFormData] = useState({
@@ -50,16 +50,16 @@ const Article = ({ type }: Props) => {
         keywords: "",
         subheading: "",
       });
-
-      const query = `Write article having this title ${title} according to this keywords ${keywords} the subheading is ${subheading}. Now, I want response in html paragraph with strong and bold tag for headings and subheadings represented by size and bullets with numbers. After paragraph, use <br/> for linebreaks.`;
+      
+      const query = `Write blog article of 300-400 words having the title ${title} according to the keywords ${keywords}  which contains  ${subheading} as subheading. Now, I want response in only html paragraph with <strong> tag for headings and subheadings, <ul> or <ol> tag for bullets(if needed) and always use <br/><br/> for linebreaks after every section or paragraph ends. The response must be in blog article format with three sections: 
+      Introduction:
+        ...
+      ${subheading}:
+        ... 
+      Conclusion:
+        ...
+      where ... are its content.`;
       getResponse(query);
-
-      // setFormData({
-      //   title: "",
-      //   keywords: "",
-      //   subheading: "",
-      // });
-
     }
   };
 
@@ -72,10 +72,10 @@ const Article = ({ type }: Props) => {
         <div className="flex flex-col gap-4 w-full">
           <div className="flex flex-col">
             <label htmlFor="name" className="text-white mb-2 font-bold">
-              Title <span className="text-red-500">*</span>
+              Title <span className="text-pink-500">*</span>
             </label>
 
-            <input 
+            <input
               type="text"
               name="title"
               placeholder="i.e Ocean, Beach & Hotel"
@@ -85,12 +85,12 @@ const Article = ({ type }: Props) => {
             />
           </div>
           {formError?.title && (
-            <p className="text-red-400 text-[16px] p-2">{formError.title}</p>
+            <p className="!text-red-500 text-sm px-2">{formError.title}</p>
           )}
 
           <div className="flex flex-col">
             <label htmlFor="name" className="text-white mb-2 font-bold">
-              Keywords <span className="text-red-500">*</span>
+              Keywords <span className="text-pink-500">*</span>
             </label>
 
             <input
@@ -103,12 +103,12 @@ const Article = ({ type }: Props) => {
             />
           </div>
           {formError?.keywords && (
-            <p className="text-red-400 text-[16px] p-2">{formError.keywords}</p>
+            <p className="!text-red-500 text-sm px-2">{formError.keywords}</p>
           )}
 
           <div className="flex flex-col">
             <label htmlFor="phone" className="text-white mb-2 font-bold">
-              Subheading <span className="text-red-500">*</span>
+              Subheading <span className="text-pink-500">*</span>
             </label>
             <input
               type="text"
@@ -120,7 +120,7 @@ const Article = ({ type }: Props) => {
             />
           </div>
           {formError?.subheading && (
-            <p className="text-red-400 text-[16px] p-2">
+            <p className="!text-red-500 text-sm px-2">
               {formError.subheading}
             </p>
           )}
@@ -138,3 +138,4 @@ const Article = ({ type }: Props) => {
 };
 
 export default Article;
+

@@ -1,18 +1,20 @@
 "use client";
 
-import React, { useState } from "react";
-import { Typewriter } from "react-simple-typewriter";
 import dynamic from "next/dynamic";
-const ScrollButton = dynamic(() => import("@/components/ScrollButton"));
-import { HERO_CONTENT } from "../constants";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { heroEffect, logoMin } from "../../public";
+import { useState } from "react";
 import { IoIosClose } from "react-icons/io";
+import { Typewriter } from "react-simple-typewriter";
+import { heroEffect, logoMin } from "../../public";
+import { HERO_CONTENT } from "../constants";
+import Button from "./Button";
+const ScrollButton = dynamic(() => import("@/components/ScrollButton"));
 
 const Hero = () => {
   const [popup, setPopup] = useState(false);
-  const sessionTokens = typeof window !== "undefined" ? sessionStorage.getItem("tokens") : null;
+  const sessionTokens =
+    typeof window !== "undefined" ? sessionStorage.getItem("tokens") : null;
   const isLoggedIn = sessionTokens !== null;
   const navigate = useRouter();
 
@@ -28,22 +30,26 @@ const Hero = () => {
     <>
       <div className="h-screen mx-auto px-36 absolute mt-0 md:top-20 flex justify-center">
         <div className="w-fit mt-0 md:mt-60 sm:block hidden">
-          <Image src={heroEffect} width={2000} height={1000} alt="Hero Icons Image" loading="lazy" />
+          <Image
+            src={heroEffect}
+            width={2000}
+            height={1000}
+            alt="Hero Icons Image"
+            loading="lazy"
+          />
         </div>
       </div>
 
-      <div className="xl:pt-20 pt-10 bg-cover bg-center Hero-bg">
+      <div className="xl:pt-20 pt-10 bg-cover bg-center">
         <div className=" flex flex-col items-center gap-3 px-4 md:px-8 lg:px-12 xl:px-24">
           <h2 className="text-white text-4xl md:text-5xl lg:text-6xl font-semibold text-center pt-10">
             <span className="bg-clip-text text-transparent bg-gradient-to-tr from-[#ec44ff] to-[#2d46ff]">
               AI Magic
             </span>
-            
             <br />
-            
             <div className="flex flex-col lg:flex-row items-center gap-4 mt-3">
               <span>{HERO_CONTENT.heading}</span>
-              
+
               <p className="lg:w-[280px] md:w-[210px] w-[170px] lg:h-20 md:h-16 h-12 flex items-center justify-center rounded-lg p-3 bg-primary-two">
                 <span className="metaText">
                   <Typewriter
@@ -67,21 +73,20 @@ const Hero = () => {
               {HERO_CONTENT.description}
             </p>
           </div>
+          <div className="w-[90%] md:w-[70%] lg:w-[40%] rounded-full">
+            <div className="relative flex text-white rounded-full bg-primary p-[px] items-center justify-start w-full gap-4 border-2 border-pink-600/75">
+              <Button
+                title="Create Prompt"
+                btnType="button"
+                onClick={handleClick}
+              />
 
-          <div className="relative flex text-white rounded-3xl bg-gradient-to-r from-[rgba(247,15,255,1)] to-[#2C63FF] p-0.5 items-center justify-start w-[90%] md:w-[70%] lg:w-[40%] gap-3">
-            <button
-              type="button"
-              className="bg-black text-[9px] md:text-[13px] md:py-2 md:px-5 py-2 px-2 flex items-center justify-center rounded-3xl hover:opacity-75"
-              onClick={handleClick}
-            >
-              Create Prompt
-            </button>
-            
-            <input
-              type="text"
-              placeholder="Create your prompts"
-              className="placeholder-white text-[9px] md:text-[14px] focus:outline-none bg-transparent"
-            />
+              <input
+                type="text"
+                placeholder="Create your prompts"
+                className="placeholder-white/75 text-sm font-light focus:outline-none bg-transparent"
+              />
+            </div>
           </div>
 
           <div className="pt-20 w-full flex items-center justify-center">
@@ -101,12 +106,7 @@ const Hero = () => {
             <div className="w-full h-full flex flex-col items-center justify-center px-6 gap-6 text-white">
               <div className="w-16 h-16 bg-slate-500 rounded-full flex items-center justify-center">
                 <div className="h-4/5">
-                  <Image
-                    src={logoMin}
-                    alt={logoMin}
-                    width={50}
-                    height={50}
-                  />
+                  <Image src={logoMin} alt={logoMin} width={50} height={50} />
                 </div>
               </div>
 

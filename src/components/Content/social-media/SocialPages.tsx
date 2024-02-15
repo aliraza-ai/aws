@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useState, FormEvent } from "react";
 import { useWebContext } from "@/context/ContextProvider";
+import { FormEvent, useState } from "react";
 
 interface Props {
   type: string;
@@ -66,7 +66,7 @@ const SocialPages = ({ type }: Props) => {
         default:
           break;
       }
-      
+
       // setFormData({
       //   description: "",
       // });
@@ -82,7 +82,7 @@ const SocialPages = ({ type }: Props) => {
         <div className="flex flex-col gap-4 w-full">
           <div className="flex flex-col">
             <label htmlFor="message" className="text-white mb-2 font-bold">
-              Description <span className="text-red-500">*</span>
+              Description <span className="text-pink-500">*</span>
             </label>
             <textarea
               placeholder="i.e We strive to the best when it comes to content creation "
@@ -98,7 +98,7 @@ const SocialPages = ({ type }: Props) => {
             ></textarea>
           </div>
           {formError?.description && (
-            <p className="text-red-400 text-[16px] p-2">
+            <p className="!text-red-500 text-sm px-2">
               {formError.description}
             </p>
           )}

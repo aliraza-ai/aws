@@ -1,7 +1,7 @@
 "use client";
 
 import { useWebContext } from "@/context/ContextProvider";
-import React, { useState, FormEvent } from "react";
+import React, { FormEvent, useState } from "react";
 import Select, { Props as SelectProps } from "react-select";
 
 type AsgLevelType =
@@ -27,7 +27,7 @@ interface FormProps {
   objective?: string;
 }
 
-const Assignment = ({ type }: Props) => {
+const Assignment = ({ }: Props) => {
   const { getResponse } = useWebContext();
 
   const [formData, setFormData] = useState({
@@ -111,7 +111,7 @@ const Assignment = ({ type }: Props) => {
         <div className="flex flex-col gap-4 w-full">
           <div className="flex flex-col">
             <label htmlFor="name" className="text-white mb-2 font-bold">
-              Assignment Subject <span className="text-red-500">*</span>
+              Assignment Subject <span className="text-pink-500">*</span>
             </label>
 
             <input
@@ -124,12 +124,12 @@ const Assignment = ({ type }: Props) => {
             />
           </div>
           {formError?.sub && (
-            <p className="text-red-400 text-[16px] p-2">{formError.sub}</p>
+            <p className="!text-red-500 text-sm px-2">{formError.sub}</p>
           )}
 
           <div className="flex flex-col">
             <label htmlFor="name" className="text-white mb-2 font-bold">
-              Assignment Start Date <span className="text-red-500">*</span>
+              Assignment Start Date <span className="text-pink-500">*</span>
             </label>
 
             <input
@@ -142,12 +142,12 @@ const Assignment = ({ type }: Props) => {
             />
           </div>
           {formError?.start && (
-            <p className="text-red-400 text-[16px] p-2">{formError.start}</p>
+            <p className="!text-red-500 text-sm px-2">{formError.start}</p>
           )}
 
           <div className="flex flex-col">
             <label htmlFor="name" className="text-white mb-2 font-bold">
-              Assignment Due Date <span className="text-red-500">*</span>
+              Assignment Due Date <span className="text-pink-500">*</span>
             </label>
 
             <input
@@ -160,12 +160,12 @@ const Assignment = ({ type }: Props) => {
             />
           </div>
           {formError?.due && (
-            <p className="text-red-400 text-[16px] p-2">{formError.due}</p>
+            <p className="!text-red-500 text-sm px-2">{formError.due}</p>
           )}
 
           <div className="flex flex-col">
             <label htmlFor="name" className="text-white mb-2 font-bold">
-              Assignment Level <span className="text-red-500">*</span>
+              Assignment Level <span className="text-pink-500">*</span>
             </label>
             <Select
               name="assignment_level"
@@ -183,12 +183,12 @@ const Assignment = ({ type }: Props) => {
             />
           </div>
           {formError?.asgLevel && (
-            <p className="text-red-400 text-[16px] p-2">{formError.asgLevel}</p>
+            <p className="!text-red-500 text-sm px-2">{formError.asgLevel}</p>
           )}
 
           <div className="flex flex-col">
             <label htmlFor="name" className="text-white mb-2 font-bold">
-              Target Audience <span className="text-red-500">*</span>
+              Target Audience <span className="text-pink-500">*</span>
             </label>
 
             <input
@@ -201,12 +201,12 @@ const Assignment = ({ type }: Props) => {
             />
           </div>
           {formError?.target && (
-            <p className="text-red-400 text-[16px] p-2">{formError.target}</p>
+            <p className="!text-red-500 text-sm px-2">{formError.target}</p>
           )}
 
           <div className="flex flex-col">
             <label htmlFor="name" className="text-white mb-2 font-bold">
-              No of Question <span className="text-red-500">*</span>
+              No of Question <span className="text-pink-500">*</span>
             </label>
 
             <input
@@ -219,12 +219,12 @@ const Assignment = ({ type }: Props) => {
             />
           </div>
           {formError?.question && (
-            <p className="text-red-400 text-[16px] p-2">{formError.question}</p>
+            <p className="!text-red-500 text-sm px-2">{formError.question}</p>
           )}
 
           <div className="flex flex-col">
             <label htmlFor="message" className="text-white mb-2 font-bold">
-              Learning Objective <span className="text-red-500">*</span>
+              Learning Objective <span className="text-pink-500">*</span>
             </label>
             <textarea
               placeholder="The best places to visit in this summer"
@@ -240,7 +240,7 @@ const Assignment = ({ type }: Props) => {
             ></textarea>
           </div>
           {formError?.objective && (
-            <p className="text-red-400 text-[16px] p-2">
+            <p className="!text-red-500 text-sm px-2">
               {formError.objective}
             </p>
           )}

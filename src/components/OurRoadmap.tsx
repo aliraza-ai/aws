@@ -1,8 +1,8 @@
 "use client";
 
+import Image from "next/image";
 import React, { FC } from "react";
 import { RocketImg } from "../../public";
-import Image from "next/image";
 
 interface CircleContainerProps {
   heading: string;
@@ -12,7 +12,7 @@ interface CircleContainerProps {
 const CircleContainer: FC<CircleContainerProps> = ({ heading, text }) => {
   return (
     <div className="w-36 h-36 bg-[#FFFFFF05] border border-gray-600 rounded-full mx-4 text-white text-center flex flex-col items-center justify-center m-1">
-      <h2 className="mb-2 text-xl font-bold">{heading}</h2>
+      <h2 className="mb-2 text-xl font-normal">{heading}</h2>
       <p>{text}</p>
     </div>
   );
@@ -26,7 +26,7 @@ interface ContentContainerProps {
 const ContentContainer: FC<ContentContainerProps> = ({ heading, text }) => {
   return (
     <div className="md:w-72 w-full h-50 xl:w-96 xl:h-42 bg-[#FFFFFF05] border border-gray-600 rounded-lg  py-5 px-3 text-white text-left m-1">
-      <h2 className="mb-2 text-xl font-semibold">{heading}</h2>
+      <h2 className="mb-2 text-xl font-normal">{heading}</h2>
       <p className="text-[16px]">{text}</p>
     </div>
   );
@@ -39,10 +39,10 @@ const OurRoadmap: React.FC = () => {
         <div className="container mx-auto py-5 lg:px-10 px-4">
           <div className="w-full lg:px-14 md:px-8 px-6 py-3 overflow-hidden">
             <div className="w-full text-white flex-col flex gap-2">
-              <p className="lg:text-lg md:text-[16px] sm:text-[16px] text-md font-medium">
+              <p className="lg:text-lg md:text-[16px] sm:text-[16px] text-md font-normal">
                 OUR ROADMAP
               </p>
-              <h2 className="lg:text-4xl md:text-2xl sm:text-1xl text-2xl font-bold">
+              <h2 className="lg:text-4xl md:text-2xl sm:text-1xl text-2xl font-normal">
                 Our Strategy <br className="md:hidden inline" /> &{" "}
                 <span className="bg-clip-text text-transparent bg-gradient-to-tr from-[#DE1DF5] to-[#011DFD]">
                   Project Plan
@@ -63,6 +63,7 @@ const OurRoadmap: React.FC = () => {
                 alt="Rocket.png"
                 width={500}
                 height={500}
+                className="filter hue-rotate-[300deg]"
               />
             </div>
 
@@ -74,8 +75,8 @@ const OurRoadmap: React.FC = () => {
                   <div className="bg-[#2C63FF] w-[130px] h-[130px] absolute rounded-full -translate-y-4/5 translate-x-1/2 md:translate-x-2/3 lg:translate-x-full blur-[70px]"></div>
                 </div>
 
-                <div className="w-full mt-7 lg:w-1/2 md:w-5/12 lg:ml-2 flex items-center justify-center">
-                  <div className="w-full bg-[#FFFFFF05] shadow sm:px-5 px-2 py-5 rounded-lg text-xl border border-[#FFFFFF14] text-white text-start font-bold ml-2">
+                <div className="w-full mt-7 lg:w-1/2 md:w-5/12 lg:ml-2 flex items-center justify-center relative">
+                  <div className="w-full bg-[#FFFFFF05] shadow sm:px-5 px-2 py-5 rounded-lg text-xl border border-[#FFFFFF14] text-white text-start font-normal ml-2">
                     <p>Algorithmic Enhancement</p>
                     <p className="text-base font-medium pt-2">
                       We&apos;re committed to delivering top-notch services by
@@ -98,8 +99,8 @@ const OurRoadmap: React.FC = () => {
                 <div className="bg-[#2C63FF] w-[130px] h-[130px] absolute rounded-full -translate-y-4/5 translate-x-1/2 md:translate-x-2/3 lg:translate-x-full blur-[70px]"></div>
               </div>
 
-              <div className="w-full md:w-[430px] text-white p-5">
-                <div className="w-full bg-[#FFFFFF05] shadow sm:px-5 px-1 py-5 rounded-lg text-xl font-bold sm:mt-0 border border-[#FFFFFF14]">
+              <div className="w-full md:w-[430px] text-white p-5 relative">
+                <div className="w-full bg-[#FFFFFF05] shadow sm:px-5 px-1 py-5 rounded-lg text-xl font-normal sm:mt-0 border border-[#FFFFFF14]">
                   Personalized Content Delivery
                   <p className="text-base font-medium pt-2">
                     Tailor content based on user preferences and behavior,
@@ -116,8 +117,8 @@ const OurRoadmap: React.FC = () => {
                 <div className="bg-[#2C63FF] w-[130px] h-[130px] absolute rounded-full -translate-y-4/5 translate-x-1/2 md:translate-x-2/3 lg:translate-x-full blur-[70px]"></div>
               </div>
 
-              <div className="w-full md:w-[430px]  text-white  p-5">
-                <div className="w-full bg-[#FFFFFF05] shadow sm:px-5 px-1 py-5 rounded-lg text-xl font-bold sm:mt-0 border border-[#FFFFFF14]">
+              <div className="w-full md:w-[430px]  text-white p-5 relative">
+                <div className="w-full bg-[#FFFFFF05] shadow sm:px-5 px-1 py-5 rounded-lg text-xl font-normal sm:mt-0 border border-[#FFFFFF14]">
                   Quality Control Measures
                   <p className="text-base font-medium pt-2">
                     Implement stringent checks and human-in-the-loop validation
@@ -136,8 +137,8 @@ const OurRoadmap: React.FC = () => {
               <div className="bg-[#2C63FF] w-[130px] h-[130px] absolute rounded-full -translate-y-4/5 translate-x-1/2 md:translate-x-2/3 lg:translate-x-full blur-[70px]"></div>
             </div>
 
-            <div className="w-full lg:w-1/3 md:w-5/12 text-white p-3 ml-2">
-              <div className="w-full bg-[#FFFFFF05] shadow sm:px-5 px-2 py-5 rounded-lg text-xl font-bold border border-[#FFFFFF14]">
+            <div className="w-full lg:w-1/3 md:w-5/12 text-white p-3 ml-2 relative">
+              <div className="w-full bg-[#FFFFFF05] shadow sm:px-5 px-2 py-5 rounded-lg text-xl font-normal border border-[#FFFFFF14]">
                 <p>Multimedia Expansion</p>
                 <p className="text-base font-medium pt-2">
                   Diversifying our offerings, we&apos;re expanding content generation

@@ -1,7 +1,7 @@
 "use client";
 
 import { useWebContext } from "@/context/ContextProvider";
-import React, { useState, FormEvent } from "react";
+import React, { FormEvent, useState } from "react";
 
 interface Props {
   type: string;
@@ -12,7 +12,7 @@ interface FormProps {
   subject?: string;
 }
 
-const PressRelease = ({ type }: Props) => {
+const PressRelease = ({ }: Props) => {
   const { getResponse } = useWebContext();
 
   const [formData, setFormData] = useState({
@@ -71,7 +71,7 @@ const PressRelease = ({ type }: Props) => {
         <div className="flex flex-col gap-4 w-full">
           <div className="flex flex-col">
             <label htmlFor="name" className="text-white mb-2 font-bold">
-              Company <span className="text-red-500">*</span>
+              Company <span className="text-pink-500">*</span>
             </label>
 
             <input
@@ -84,12 +84,12 @@ const PressRelease = ({ type }: Props) => {
             />
           </div>
           {formError?.company && (
-            <p className="text-red-400 text-[16px] p-2">{formError.company}</p>
+            <p className="!text-red-500 text-sm px-2">{formError.company}</p>
           )}
 
           <div className="flex flex-col">
             <label htmlFor="message" className="text-white mb-2 font-bold">
-              Description <span className="text-red-500">*</span>
+              Description <span className="text-pink-500">*</span>
             </label>
             <textarea
               placeholder="i.e We strive the best when it comes to content creation"
@@ -105,14 +105,14 @@ const PressRelease = ({ type }: Props) => {
             ></textarea>
           </div>
           {formError?.description && (
-            <p className="text-red-400 text-[16px] p-2">
+            <p className="!text-red-500 text-sm px-2">
               {formError.description}
             </p>
           )}
 
           <div className="flex flex-col">
             <label htmlFor="name" className="text-white mb-2 font-bold">
-              Subject <span className="text-red-500">*</span>
+              Subject <span className="text-pink-500">*</span>
             </label>
 
             <input
@@ -125,7 +125,7 @@ const PressRelease = ({ type }: Props) => {
             />
           </div>
           {formError?.subject && (
-            <p className="text-red-400 text-[16px] p-2">{formError.subject}</p>
+            <p className="!text-red-500 text-sm px-2">{formError.subject}</p>
           )}
 
           <button

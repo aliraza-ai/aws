@@ -1,22 +1,21 @@
 "use client";
 
-import React, { useState } from "react";
-import { loadStripe } from "@stripe/stripe-js";
-import Swal from "sweetalert2";
-import { useSearchParams } from "next/navigation";
-import Link from "next/link";
-import {
-  CardElement,
-  useStripe,
-  useElements,
-  Elements,
-} from "@stripe/react-stripe-js";
-import { CheckIcon } from "../../../../public";
-import Image from "next/image";
 import { pricingData } from "@/constants";
 import StripeTransaction from "@/utils/StripeTransaction";
+import {
+  CardElement,
+  Elements,
+  useElements,
+  useStripe,
+} from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+import Image from "next/image";
+import Link from "next/link";
+import { useSearchParams } from "next/navigation";
+import React, { useState } from "react";
 import { FaChevronRight } from "react-icons/fa6";
-import updatePlans from "@/utils/updatePlans";
+import Swal from "sweetalert2";
+import { CheckIcon } from "../../../../public";
 
 const stripePromise = loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY ?? ""
@@ -32,14 +31,16 @@ const CheckoutForm: React.FC = () => {
   const searchParams = new URLSearchParams(useSearchParams().toString());
   const planId = searchParams.get("planId") || "";
 
+  const [buttonDisabled, setButtonDisabled] = useState<boolean>(false);
+
   let selectedPlan = pricingData.find((plan) => plan.id.toString() === planId);
 
   if (!selectedPlan) {
     selectedPlan = pricingData[2];
   }
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  const handleSubmit = async () => {
+    setButtonDisabled(true);
 
     if (!stripe || !elements) {
       return;
@@ -51,46 +52,48 @@ const CheckoutForm: React.FC = () => {
       return;
     }
 
-    const { error, paymentMethod } = await stripe.createPaymentMethod({
-      type: "card",
-      card: cardElement,
-      billing_details: {
-        name: name,
-        email: email,
-        address: {
-          line1: address,
+    try {
+      const { error, paymentMethod } = await stripe.createPaymentMethod({
+        type: "card",
+        card: cardElement,
+        billing_details: {
+          name: name,
+          email: email,
+          address: {
+            line1: address,
+          },
         },
-      },
-    });
-
-    if (error) {
-      setPaymentError(
-        error.message || "An error occurred while processing the payment."
-      );
-      Swal.fire({
-        icon: "error",
-        title: "Ooops...",
-        text:
-          error.message || "An error occurred while processing the payment.",
       });
-    } else {
-      const id = paymentMethod.id;
-      const TransactionSuccess = await StripeTransaction(planId, id);
-      if (TransactionSuccess.success) {
-        Swal.fire({
-          icon: "success",
-          title: "Success",
-          text: TransactionSuccess.message,
-        });
 
-        await updatePlans(selectedPlan!.package);
-      } else {
+      if (error) {
+        setPaymentError(
+          error.message || "An error occurred while processing the payment."
+        );
         Swal.fire({
           icon: "error",
           title: "Ooops...",
-          text: TransactionSuccess.message,
+          text:
+            error.message || "An error occurred while processing the payment.",
         });
+      } else {
+        const id = paymentMethod.id;
+        const TransactionSuccess = await StripeTransaction(planId, id);
+        if (TransactionSuccess.success) {
+          Swal.fire({
+            icon: "success",
+            title: "Success",
+            text: TransactionSuccess.message,
+          });
+        } else {
+          Swal.fire({
+            icon: "error",
+            title: "Ooops...",
+            text: TransactionSuccess.message,
+          });
+        }
       }
+    } catch (error) {
+      console.error("Error processing payment:", error);
     }
   };
 
@@ -142,14 +145,21 @@ const CheckoutForm: React.FC = () => {
               </div>
 
               {selectedPlan.link && (
-              <Link href={selectedPlan.link} className="w-full">
-                <button
-                  type="button"
-                  className="w-max mt-4 bg-gradient-to-r from-[rgba(247,15,255,1)] to-[#2C63FF] transition-all duration-300 py-3 px-9 text-white font-semibold rounded-full hover:opacity-75"
-                  onClick={() => handleSubmit}
+                <Link
+                  href={selectedPlan.link}
+                  className={`flex gap-2 items-center w-max mt-4 bg-gradient-to-r from-[rgba(247,15,255,1)] to-[#2C63FF] transition-all duration-300 py-3 px-9 text-white  font-semibold rounded-full ${
+                    buttonDisabled
+                      ? "cursor-not-allowed opacity-70"
+                      : "cursor-pointer hover:opacity-75"
+                  }`}
+                  onClick={handleSubmit}
                 >
-                    Pay Now
-                </button>
+                  {buttonDisabled && (
+                    <div
+                      className={`h-6 w-6 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]`}
+                    ></div>
+                  )}
+                  <span>Pay Now</span>
                 </Link>
               )}
             </div>

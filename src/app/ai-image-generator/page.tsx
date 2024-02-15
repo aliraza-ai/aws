@@ -1,11 +1,12 @@
 "use client";
-import Image from "next/image";
-import Link from "next/link";
-import React from "react";
-import { imagecontent, imagecontentbg, gradientcircle } from "../../../public";
 import { FAQs } from "@/components";
 import { ImageGeneratorFAQs } from "@/constants/FaqsData";
 import { MoretoolsImage, stepsImage } from "@/constants/index";
+import Image from "next/image";
+import Link from "next/link";
+import React from "react";
+import { imagecontent, imagecontentbg } from "../../../public";
+import Button from "@/components/Button";
 
 const page = () => {
   return (
@@ -26,11 +27,12 @@ const page = () => {
         </p>
 
         <div className="w-fit">
-          <button className="w-fit rounded-lg bg-gradient-to-r from-[rgba(247,15,255,1)] to-[#2C63FF] px-3 py-1 md:px-4 md:py-2 hover:opacity-90">
-            <Link href="/user/image-generator">
-              Try Intelliwriter Image Generator!
-            </Link>
-          </button>
+          <Link href="/user/image-generator">
+            <Button
+              title="Try Intelliwriter Image Generator!"
+              btnType="button"
+            />
+          </Link>
         </div>
       </div>
 
@@ -70,9 +72,8 @@ const page = () => {
         {stepsImage.map((item) => (
           <div
             key={item.id}
-            className={` my-4 flex flex-col gap-5 md:flex md:flex-row md:items-center md:justify-between w-full ${
-              item.id == 2 || item.id == 4 ? "md:flex-row-reverse" : ""
-            }`}
+            className={` my-4 flex flex-col gap-5 md:flex md:flex-row md:items-center md:justify-between w-full ${item.id == 2 || item.id == 4 ? "md:flex-row-reverse" : ""
+              }`}
           >
             <div className="items-start flex flex-col md:w-4/12 ">
               <h2 className="text-lg md:text-xl font-semibold">{item.step}</h2>
@@ -104,7 +105,7 @@ const page = () => {
             {MoretoolsImage.map((item, index) => (
               <div
                 key={index}
-                className="bg-blue-900 m-2 text-center p-2 bg-opacity-20 md:w-[25%] lg:w-[15%] Moretools"
+                className="bg-blue-900 m-2 text-center p-2 bg-opacity-20 md:w-[25%] lg:w-[16%] Moretools"
               >
                 <span
                   className="items-center justify-center block w-9 h-9 rounded-md text-xl m-3 mr-3 p-2"

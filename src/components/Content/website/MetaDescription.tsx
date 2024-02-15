@@ -1,7 +1,7 @@
 "use client";
 
 import { useWebContext } from "@/context/ContextProvider";
-import React, { useState, FormEvent } from "react";
+import React, { FormEvent, useState } from "react";
 
 interface Props {
   type: string;
@@ -12,7 +12,7 @@ interface FormProps {
   description?: string;
 }
 
-const MetaDescription = ({ type }: Props) => {
+const MetaDescription = ({ }: Props) => {
   const { getResponse } = useWebContext();
 
   const [formData, setFormData] = useState({
@@ -71,7 +71,7 @@ const MetaDescription = ({ type }: Props) => {
         <div className="flex flex-col gap-4 w-full">
           <div className="flex flex-col">
             <label htmlFor="name" className="text-white mb-2 font-bold">
-              Title <span className="text-red-500">*</span>
+              Title <span className="text-pink-500">*</span>
             </label>
 
             <input
@@ -84,12 +84,12 @@ const MetaDescription = ({ type }: Props) => {
             />
           </div>
           {formError?.title && (
-            <p className="text-red-400 text-[16px] p-2">{formError.title}</p>
+            <p className="!text-red-500 text-sm px-2">{formError.title}</p>
           )}
 
           <div className="flex flex-col">
             <label htmlFor="name" className="text-white mb-2 font-bold">
-              Keywords <span className="text-red-500">*</span>
+              Keywords <span className="text-pink-500">*</span>
             </label>
 
             <input
@@ -102,12 +102,12 @@ const MetaDescription = ({ type }: Props) => {
             />
           </div>
           {formError?.keywords && (
-            <p className="text-red-400 text-[16px] p-2">{formError.keywords}</p>
+            <p className="!text-red-500 text-sm px-2">{formError.keywords}</p>
           )}
 
           <div className="flex flex-col">
             <label htmlFor="message" className="text-white mb-2 font-bold">
-              Description <span className="text-red-500">*</span>
+              Description <span className="text-pink-500">*</span>
             </label>
             <textarea
               placeholder="The best places to visit in this summer"
@@ -123,7 +123,7 @@ const MetaDescription = ({ type }: Props) => {
             ></textarea>
           </div>
           {formError?.description && (
-            <p className="text-red-400 text-[16px] p-2">
+            <p className="!text-red-500 text-sm px-2">
               {formError.description}
             </p>
           )}

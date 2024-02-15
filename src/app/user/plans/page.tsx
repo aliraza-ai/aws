@@ -1,14 +1,11 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-// import { PlanData } from "@/types";
-import { pricingData as defaultPricingData } from "@/constants";
+import React, { useEffect, useState } from "react";
+import cardsPlans from "@/utils/cardsPlans";
 import Image from "next/image";
-import { CheckIcon } from "../../../../public";
 import Link from "next/link";
 import { FaChevronRight } from "react-icons/fa6";
-import cardsPlans from "@/utils/cardsPlans";
-
+import { CheckIcon } from "../../../../public";
 
 // Update PlanData interface to use PlanFeature
 interface PlanData {
@@ -34,9 +31,17 @@ const PricingCard: React.FC<{ card: PlanData }> = ({ card }) => {
         <div className="pt-4 text-slate-400">
           <ul className="flex flex-col gap-4 ">
             {card.features.map((feature, index) => (
-              <li key={index} className="flex gap-2 items-center text-[16px] w-full">
+              <li
+                key={index}
+                className="flex gap-2 items-center text-[16px] w-full"
+              >
                 <div className="saturate-[3] object-cover w-4 h-4">
-                  <Image src={CheckIcon} alt="Check Icon" width={20} height={20} />
+                  <Image
+                    src={CheckIcon}
+                    alt="Check Icon"
+                    width={20}
+                    height={20}
+                  />
                 </div>
                 {feature}
               </li>
@@ -51,12 +56,20 @@ const PricingCard: React.FC<{ card: PlanData }> = ({ card }) => {
                 <span className="opacity-80">Subscribed</span>
               </button>
             ) : (
-              <Link href={card.plan_id === 0 ? "#" : `/user/payment?planId=${card.plan_id}`}>
-              <button className="w-full max-w-xs p-0.5 rounded-md flex items-center justify-center bg-gradient-to-r from-[rgba(247,15,255,1)] to-[#2C63FF] text-white py-2 hover:opacity-75">
+              <Link
+                href={
+                  card.plan_id === 0
+                    ? "#"
+                    : `/user/payment?planId=${card.plan_id}`
+                }
+              >
+                <button
+                  type="button"
+                  className="w-full max-w-xs p-0.5 rounded-md flex items-center justify-center bg-gradient-to-r from-[rgba(247,15,255,1)] to-[#2C63FF] text-white py-2 hover:opacity-75"
+                >
                   Subscribe now
-              </button>
+                </button>
               </Link>
-
             )}
           </div>
         </div>
@@ -79,11 +92,11 @@ const PlanPage: React.FC<PlanData> = () => {
     } catch (error: any) {
       console.error("Error fetching word count:", error.message);
     }
-  }; 
-  
+  };
+
   useEffect(() => {
     fetchPlans();
-  }, [])
+  }, []);
 
   return (
     <div className="absolute top-14 right-0 md:px-20 md:py-10 p-6 w-full lg:w-[calc(100%-250px)] mx-auto text-white">
