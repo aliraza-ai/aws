@@ -2,7 +2,7 @@
 
 import { Sidebar } from "@/components/Sidebar";
 import UserHeader from "@/components/UserHeader";
-import {usePathname ,useRouter} from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
 const DashboardProps = ({ children }: { children: React.ReactNode }) => {
@@ -24,7 +24,7 @@ const DashboardProps = ({ children }: { children: React.ReactNode }) => {
     }
   }, [router]);
 
-  const isImageGeneratorRoute = pathname === "/user/image-generator";
+  // const isImageGeneratorRoute = pathname === "/user/image-generator";
 
 
   if (loading) {
@@ -42,8 +42,10 @@ const DashboardProps = ({ children }: { children: React.ReactNode }) => {
   }
   return (
     <div className="flex relative">
-      {!isImageGeneratorRoute && <UserHeader />}
-      {!isImageGeneratorRoute && <Sidebar />}
+      {/* {!isImageGeneratorRoute && <UserHeader />}
+      {!isImageGeneratorRoute && <Sidebar />} */}
+      <UserHeader />
+      <Sidebar />
       {children}
     </div>
   );

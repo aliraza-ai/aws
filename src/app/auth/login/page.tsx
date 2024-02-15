@@ -33,16 +33,6 @@ const LoginPageLayout: React.FC<LoginPageLayoutProps | any> = () => {
     null
   );
 
-  const handleRecaptchaChange = (token: string | null) => {
-    setRecaptchaToken(token);
-  };
-
-  async function handleCaptchaSubmission(token: string | null) {
-    await verifyCaptcha(token)
-      .then(() => setIsverified(true))
-      .catch(() => setIsverified(false));
-  }
-
   function getFirstLetter(email: string): string {
     return email ? email.charAt(0) : "";
   }
@@ -56,9 +46,6 @@ const LoginPageLayout: React.FC<LoginPageLayoutProps | any> = () => {
           email: "Email is required",
           children: null,
         });
-        return;
-      } else if (!recaptchaToken) {
-        throw new Error("Please verify you are not a robot.");
         return;
       } else if (!password) {
         setSignInError({
@@ -182,14 +169,9 @@ const LoginPageLayout: React.FC<LoginPageLayoutProps | any> = () => {
               <Link href="/auth/forgot-password" className="w-[160px]">
                 <span className="text-pink-400">Forgot password?</span>
               </Link>
-              <ReCAPTCHA
-                sitekey="6Lfu7nMpAAAAAHhTlS81YcB09k9ok0n-m-QSALgi"
-                ref={recaptchaRef}
-                onChange={handleCaptchaSubmission}
-              />
+
               <div className="flex w-full justify-center">
                 <Button
-                  disbaled={!isVerified}
                   title="Login"
                   width="w-full"
                   className="w-full"
