@@ -9,161 +9,183 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { curve1, socialmediaBg } from "../../../public";
+import { curve1, socialmediaBg, landbg } from "../../../public";
 import Button from "@/components/Button";
 
 const page = () => {
+  const tokens =
+    typeof window !== "undefined" ? sessionStorage.getItem("tokens") : null;
   return (
     <div className="my-16">
-      <div className="text-center text-white  flex flex-col items-center justify-between gap-3 mb-20">
-        <h1 className="text-3xl md:text-5xl font-semibold capitalize w-[90%] xl:w-[70%]">
-          Unleash your{" "}
-          <span className="bg-clip-text text-transparent bg-gradient-to-tr from-[#ec44ff] to-[#2d46ff]">
-            creativity
-          </span>{" "}
-          with intelliwriter's
-          <br />{" "}
-          <span className="bg-clip-text text-transparent bg-gradient-to-tr from-[#ec44ff] to-[#2d46ff]">
-            AI Social Media
-          </span>{" "}
-          generator
-        </h1>
-        <p className="text-sm md:text-lg my-4 w-[90%] xl:w-[50%]">
-          Viral magic! AI crafts captions, titles & hashtags that skyrocket your
-          reach. Ditch writer's block. Unleash AI to generate buzzworthy social
-          content in seconds.
-        </p>
-        <div className="w-fit">
-          <Link href="/auth/social-media">
-            <Button
-              title="Try Intelliwriter Social Media Generator!"
-              btnType="button"
+      <div className="h-full bg-gradient-to-b from-[#471c7c]/40 to-[#030616]/20 backdrop-blur-sm">
+        <div className="container mx-auto md:px-0 py-20 flex flex-col lg:flex-row items-center justify-center">
+          <div className="w-full lg:w-1/2 text-white flex flex-col mx-10 justify-between gap-3">
+            <h1 className="text-3xl md:text-5xl mx-5 lg:mx-0 font-semibold capitalize w-[90%] xl:w-[85%] lg:text-start text-center">
+              IntelliWriter Free Platform For <br />{" "}
+              <span>AI Social Media</span> generator
+            </h1>
+            <p className="text-sm md:text-lg mx-5 lg:mx-0 my-4 w-[90%] text-center lg:text-start">
+              Viral magic! AI crafts captions, titles & hashtags that skyrocket
+              your reach. Ditch writer's block. Unleash AI to generate
+              buzzworthy social content in seconds.
+            </p>
+            <div className="w-fit mx-auto lg:mx-0 justufy-center lg:justify-start text-center lg:text-left">
+              <Link href={tokens ? "/user/social-media" : "/auth/register"}>
+                <Button
+                  title="Try Intelliwriter Social Media Generator For Free !"
+                  btnType="button"
+                />
+              </Link>
+            </div>
+          </div>
+          <div className="w-full lg:w-1/2 pt-5 md:pt-5 lg:pt-0 flex justify-center">
+            <img
+              src={socialmediaBg}
+              alt="Social Media"
+              className="h-[20rem] md:w-[30rem] md:h-[30rem] z-10  rounded-2xl"
             />
-          </Link>
+          </div>
         </div>
       </div>
 
-      <div className="w-full h-[25rem] md:h-[40rem] flex items-center justify-center relative p-5 sm:px-28 md:py-20 md:px-40 opacity-80">
-        <div className="absolute inset-0 filter blur-[5px] opacity-95">
-          <img
-            src={socialmediaBg}
-            alt=""
-            className="w-full h-[25rem] md:h-[40rem] object-cover"
-          />
+      <div className="xl:px-16 md:px-6 px-4 py-10 text-white  flex flex-col ">
+        <div className="py-10">
+          <h2 className="lg:text-6xl text-5xl font-normal relative lg:p-10 md:p-6 p-4">
+            <span className="border-text text-white opacity-20 absolute md:top-3 lg:top-4 top-0 lg:left-10">
+              UNLOCK YOUR
+            </span>
+            <span className="text-white relative lg:p-6 p-6">POTENTIALS</span>
+          </h2>
+          <p className="md:text-lg text-base font-extralight !text-white lg:px-10 md:p-6 p-4">
+            Embracing the age of Artifical Intelligence. Discover Boundless
+            power and impact of AI Social Media.
+          </p>
         </div>
-        <img
-          src={socialmediaBg}
-          alt=""
-          className="h-[20rem] md:w-[30rem] md:h-[30rem] z-10  rounded-2xl"
-        />
       </div>
 
-      <div className="w-1/3 text-white  m-12 ">
-        <h2 className="text-3xl">
-          Elevate your conservation
-          <br />
-          <Image src={curve1} alt="curve" className="w-1/4" />
-        </h2>
-        <p className="text-2sm">
-          Embracing the age of Artifical Intelligence. Discover Boundless power
-          and impact of AI.
-        </p>
+      <div className="w-3/4 mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 py-5 ">
+        {dataSocialMedia.map((item, index) => (
+          <div
+            key={index}
+            className=" flex flex-col rounded-lg py-4 px-4 bg-white/5 relative backdrop-blur-md text-white gap-2 overflow-hidden border border-[#FFFFFF14]"
+          >
+            <div className="absolute -bottom-4 -right-4 bg-[#ac7aeb] w-28 h-28 blur-[80px]"></div>
+            <div className="absolute -bottom-4 -right-4 bg-gray-800 w-16 h-16 blur-[50px]"></div>
+            <div className="absolute top-4 left-4 bg-gray-800 w-16 h-16 blur-[50px]"></div>
+            <span className=" bg-[#fef9c3] m-2 block w-10 h-10 rounded-md text-[#facc15] text-2xl  p-2">
+              {React.createElement(item.icon)}
+            </span>
+            <div className="text text-white p-2">
+              <h1 className="text-2xl">{item.title}</h1>
+              <p className="text-sm">{item.description}</p>
+            </div>
+          </div>
+        ))}
       </div>
 
-      <div className="container mx-auto">
-        <div className="flex flex-wrap gap-4 m-6 justify-center item-center">
-          {dataSocialMedia.map((item, index) => (
+      <div className="xl:px-16 md:px-6 px-4 py-10 text-white  flex flex-col ">
+        <div className="py-10">
+          <h2 className="lg:text-6xl text-5xl font-normal relative lg:p-10 md:p-6 p-4">
+            <span className="border-text text-white opacity-20 absolute md:top-3 lg:top-4 top-0 lg:left-10">
+              HOW CONTENT
+            </span>
+            <span className="text-white relative lg:p-6 p-6">GENERATES</span>
+          </h2>
+          <p className="md:text-lg text-base font-extralight !text-white lg:px-10 md:p-6 p-4">
+            Embark on an unstoppable journey of your with our AI Social Media –
+            where your text come to life with captivating social media materials
+            in just a few clicks!
+          </p>
+        </div>
+        <div className="w-11/12 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-6 md:gap-10">
+          {stepsSocial.map((item) => (
             <div
-              key={index}
-              className="card w-FULL md:w-1/3 xl:w-1/5 bg-blue-900 bg-opacity-20 p-2 ml-4"
+              key={item.id}
+              className="w-full flex flex-col justify-center items-center space-y-5"
             >
-              <span className=" bg-[#fef9c3] m-2 block w-10 h-10 rounded-md text-[#facc15] text-2xl  p-2">
-                {React.createElement(item.icon)}
-              </span>
-              <div className="text text-white p-2">
-                <h1 className="text-2xl">{item.title}</h1>
-                <p className="text-sm">{item.description}</p>
+              <div className="rounded-md shadow-[#ac7aeb] shadow-2xl">
+                <Image
+                  src={item.image}
+                  alt="Steps"
+                  layout="responsive"
+                  height={400}
+                  width={450}
+                  className="w-full rounded-xl border border-[#1f1f7a]"
+                />
+              </div>
+              <div className="flex flex-col pt-5 text-center">
+                <h2 className="text-lg md:text-xl font-semibold my-2">
+                  {item.step}
+                </h2>
+                <p className="text-base md:text-lg">{item.detail}</p>
               </div>
             </div>
           ))}
         </div>
       </div>
 
-      <div className="my-10 md:my-20 text-center text-white flex flex-col items-center justify-center">
-        <h2 className="text-2xl md:text-4xl font-bold capitalize w-[90%] xl:w-[70%]">
-          Why use Intelliwriter's social media generator
-        </h2>
-        <p className="text-sm md:text-lg my-4 w-[90%] xl:w-[50%]">
-          Intelliwriter's AI Social Media Generator isn't just a tool, it's an
-          experience. We've crafted a seamless platform that empowers you to
-          effortlessly bring your words an attractive look. Join the revolution
-          and discover the magic of AI-powered Content Creation to boost your
-          productivity.
-        </p>
-      </div>
-
-      <div className="imageContentGeneratorSteps text-center py-10 px-[10%] text-white  flex flex-col items-center justify-center ">
-        <h2 className="mb-5 text-2xl md:text-5xl font-semibold capitalize  ">
-          OUR TOOL USES THE LATEST IN AI TECHNOLOGY TO GENERATE CAPTIVATING
-          WORDS THAT ARE UNIQUE AND ENGAGING.
-        </h2>
-
-        {stepsSocial.map((item) => (
-          <div
-            key={item.id}
-            className={` my-4 flex flex-col gap-5 md:flex md:flex-row md:items-center md:justify-between w-full ${item.id == 2 || item.id == 4 ? "md:flex-row-reverse" : ""
-              }`}
-          >
-            <div className="items-start flex flex-col md:w-4/12 ">
-              <h2 className="text-lg md:text-xl font-semibold">{item.step}</h2>
-              <p className="text-start text-base md:text-lg">{item.detail}</p>
-            </div>
-
-            <div className="rounded-md shadow-[#101027] shadow-2xl">
-              <Image
-                src={item.image}
-                alt=""
-                height={650}
-                width={650}
-                className="rounded-xl border border-[#1f1f7a]"
-              />
-            </div>
-          </div>
-        ))}
-      </div>
-
-      <div className="reason py-8 mt-10 md:mt-20 text-center text-white flex flex-col items-center justify-center">
-        <h2 className="text-2xl py-4 md:text-4xl font-bold capitalize w-[90%] xl:w-[70%]">
-          Our more tools you may{" "}
-          <span className="intelliwriter">like them</span>
-        </h2>
-        <div className="container mx-auto">
-          <div className="flex flex-wrap justify-center items-center">
-            {MoretoolsSocialMedia.map((item, index) => (
-              <div
-                key={index}
-                className="bg-blue-900 m-2 text-center p-2 bg-opacity-20 md:w-[25%] lg:w-[16%] Moretools"
+      <div className="reason xl:px-16 md:px-6 px-4 py-10 mt-8 text-white flex flex-col">
+        <div className="py-10">
+          <h2 className="lg:text-6xl text-5xl font-normal relative lg:p-10 md:p-6 p-4">
+            <span className="border-text text-white opacity-20 absolute md:top-3 lg:top-4 top-0 lg:left-10">
+              DISCOVER MORE
+            </span>
+            <span className="text-white relative lg:p-6 p-6">AI TOOLS</span>
+          </h2>
+          <p className="md:text-lg text-base font-extralight !text-white lg:px-10 md:p-6 p-4">
+            Unlock the power of AI with our suite of innovative tools, designed
+            to simplify your tasks and elevate your productivity to new heights!{" "}
+          </p>
+        </div>
+        <div className="w-full md:w-11/12 justify-center items-center md:mx-auto gap-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">
+          {MoretoolsSocialMedia.map((item, index) => (
+            <div
+              key={index}
+              className="flex items-center bg-blue-900 p-3 gap-3 bg-opacity-20 w-[100%] lg:w-[100%] mx-auto "
+            >
+              <span
+                className="items-center justify-center block w-8 h-8 rounded-md text-lg p-2 "
+                style={{
+                  backgroundColor: item.bgcolor,
+                  color: item.color,
+                }}
               >
-                <span
-                  className="flex items-center justify-center w-12 h-12 rounded-full text-2xl m-3 p-2"
-                  style={{
-                    backgroundColor: item.bgcolor,
-                    color: item.color,
-                  }}
-                >
-                  {React.createElement(item.icon)}
-                </span>
-                <div className="text text-white mt-2">
-                  <h1 className="text-xl font-semibold">{item.title}</h1>
-                  <p className="text-sm">{item.description}</p>
-                </div>
+                {React.createElement(item.icon)}
+              </span>
+              <div className="text text-white ">
+                <h2 className="text-xl">{item.title}</h2>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       </div>
-      <div className="mt-10">
+
+      <div className="mt-6">
         <FAQs faqs={SocialMediaFAQs} />
+      </div>
+
+      <div className="relative w-full h-1/2 my-16 flex items-center justify-center">
+        <Image
+          src={landbg}
+          alt=""
+          width={100}
+          height={100}
+          className="w-full h-72 inset-0 z-0 "
+        />
+        <div className="absolute top-24 w-full flex flex-col items-center justify-center z-10">
+          <p className="text-center text-xl md:text-4xl text-white">
+            Start generating your Social Media content now for free
+          </p>
+          <div className="mt-4">
+            <Link href={tokens ? "/user/social-media" : "/auth/register"}>
+              <Button
+                title="Start Now !"
+                btnType="button"
+                className="mt-4 text-2xl"
+              />
+            </Link>
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -7,7 +7,7 @@ const contactSubmit = async (userData: {
 }): Promise<{ success: boolean; message: string }> => {
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/contacts`,
+      `${process.env.NEXT_PUBLIC_API_URL}/contactus`,
       {
         method: "POST",
         headers: {

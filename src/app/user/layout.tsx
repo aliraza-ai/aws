@@ -2,6 +2,7 @@ import Scripts from "@/components/Scripts";
 import type { Metadata } from "next";
 import React from "react";
 import DashboardProps from "./DashboardProps";
+import Head from "next/head";
 
 export const metadata: Metadata = {
   title: "IntelliWriter.io Dashboard – Manage Your AI Content Creation",
@@ -12,7 +13,7 @@ export const metadata: Metadata = {
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
-      <head>
+      <Head>
         <title>
           IntelliWriter.io Dashboard – Manage Your AI Content Creation
         </title>
@@ -21,8 +22,15 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
           content="Access your IntelliWriter.io dashboard to manage and create AI-driven content effortlessly. Write, design, and innovate with our comprehensive tools."
         />
         <link rel="canonical" href="https://intelliwriter.io/user/dashboard" />
-      </head>
-      <body>
+        <script dangerouslySetInnerHTML={{
+          __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MNPNZ6PR');` }} />
+
+      </Head>
+      <body className="!font-sans">
         <DashboardProps>{children}</DashboardProps>
         <Scripts />
       </body>

@@ -31,10 +31,14 @@ const ContactPageLayout: React.FC<ContactPageLayoutProps> = () => {
   const router = useRouter();
 
   const validatePhone = (phone: string): boolean => {
-    const phoneRegex = /^[0-9]{15}$/;
+    const phoneRegex = /^[+]?[0-9]{1,3}?[-. (]?\d{3}[-. )]?\d{3}[-. ]?\d{4}$/;
     return phoneRegex.test(phone);
   };
 
+  const validateEmail = (email: string): boolean => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
@@ -68,6 +72,18 @@ const ContactPageLayout: React.FC<ContactPageLayoutProps> = () => {
       } else if (!validatePhone(formData.phone)) {
         setContactError({
           phone: "Please enter a valid phone number",
+          children: null,
+        });
+        return;
+      } else if (!validatePhone(formData.phone)) {
+        setContactError({
+          phone: "Please enter a valid phone number",
+          children: null,
+        });
+        return;
+      } else if (!validateEmail(formData.email)) {
+        setContactError({
+          email: "Please enter a valid email address",
           children: null,
         });
         return;
@@ -361,7 +377,7 @@ const ContactPageLayout: React.FC<ContactPageLayoutProps> = () => {
                       <div>
                         <button
                           type="submit"
-                          className="bg-gradient-to-r from-[rgba(247,15,255,1)] to-[#2C63FF] hover:opacity-90 transition-all duration-300 py-[7px] px-[35px] text-white font-semibold rounded-full"
+                          className="bg-gradient-to-bl transition-all duration-300 from-[#471c7c] to-[#7628d6] hover:opacity-90 py-2.5 tracking-wider lg:text-base text-sm text-white font-medium md:px-6 px-4 rounded-full"
                         >
                           Submit
                         </button>

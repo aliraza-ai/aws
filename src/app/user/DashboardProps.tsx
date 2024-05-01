@@ -1,5 +1,6 @@
 "use client";
 
+import Chatbot from "@/components/Chatbot";
 import { Sidebar } from "@/components/Sidebar";
 import UserHeader from "@/components/UserHeader";
 import { usePathname, useRouter } from "next/navigation";
@@ -7,9 +8,9 @@ import React, { useEffect, useState } from "react";
 
 const DashboardProps = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
-  const pathname = usePathname();
+  // const pathname = usePathname();
 
-  const [loading, setLoading] = useState(true); // State variable to track loading state
+  const [loading, setLoading] = useState(true); 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
@@ -25,7 +26,6 @@ const DashboardProps = ({ children }: { children: React.ReactNode }) => {
   }, [router]);
 
   // const isImageGeneratorRoute = pathname === "/user/image-generator";
-
 
   if (loading) {
     return (
@@ -46,6 +46,7 @@ const DashboardProps = ({ children }: { children: React.ReactNode }) => {
       {!isImageGeneratorRoute && <Sidebar />} */}
       <UserHeader />
       <Sidebar />
+      {/* <Chatbot /> */}
       {children}
     </div>
   );

@@ -30,7 +30,9 @@ const UserHeader = () => {
   const [sessionLetter, setSessionLetter] = useState<string | null>("");
 
   const logout = async () => {
-    ["tokens", "name", "nameLetter", "userId"].forEach((item) => sessionStorage.removeItem(item));
+    ["tokens", "name", "nameLetter", "userId"].forEach((item) =>
+      sessionStorage.removeItem(item)
+    );
     setTokens(null);
     setNameLetter("");
     await Swal.fire({
@@ -58,15 +60,23 @@ const UserHeader = () => {
   }, []);
 
   useEffect(() => {
-    setSessionLetter(typeof window !== "undefined" ? sessionStorage.getItem("nameLetter") : null);
-    setSessionName(typeof window !== "undefined" ? sessionStorage.getItem("name") : null);
+    setSessionLetter(
+      typeof window !== "undefined"
+        ? sessionStorage.getItem("nameLetter")
+        : null
+    );
+    setSessionName(
+      typeof window !== "undefined" ? sessionStorage.getItem("name") : null
+    );
   }, [sessionName, sessionLetter]);
 
   return (
     <div className="w-full fixed z-50 top-0 left-0">
-      <div className={`flex items-center sticky top-0 z-20 justify-between px-2 md:px-8 py-2 sm:h-[80px] h-[60px] lg:ml-[250px] ${isScrolled
-        ? "bg-[rgba(32,45,72,0.4)] backdrop-blur-sm"
-        : "bg-transparent"
+      <div
+        className={`flex items-center sticky top-0 z-20 justify-between px-2 md:px-8 py-2 sm:h-[80px] h-[60px] lg:ml-[250px] ${
+          isScrolled
+            ? "bg-[rgba(32,45,72,0.4)] backdrop-blur-sm"
+            : "bg-transparent"
         }`}
       >
         {/* Toggle Button */}
@@ -81,7 +91,7 @@ const UserHeader = () => {
               Hi, {sessionName}
             </h2>
             <p className="text-[10px] md:text-sm text-[whitesmoke]">
-              Welcome to intelliwriter
+              Welcome to Intelliwriter
             </p>
           </div>
         </div>
@@ -97,16 +107,17 @@ const UserHeader = () => {
                 {nameLetter || sessionLetter}
               </div>
               <ul
-                className={`absolute w-40 right-0 bg-primary rounded-md overflow-hidden z-40  ${dropdown
-                  ? "visible transition-all duration-200 translate-y-2"
-                  : " invisible transition-all duration-200 translate-y-0 pointer-events-none "
-                  }`}
+                className={`absolute w-[200px] right-0 bg-primary rounded-md overflow-hidden z-40  ${
+                  dropdown
+                    ? "visible transition-all duration-200 translate-y-2"
+                    : " invisible transition-all duration-200 translate-y-0 pointer-events-none "
+                }`}
               >
                 {dropdownMenu.map((item: DropdownMenu) =>
                   item.title !== "Dashboard" ? (
                     <Link key={item.id} href={item.link} passHref>
                       <li
-                        className="py-3 px-5 flex items-center justify-start gap-2 text-white hover:bg-slate-500 transition duration-200"
+                        className="py-3 px-5 flex items-center whitespace-nowrap justify-start gap-2 text-white hover:bg-slate-500 transition duration-200"
                         onClick={() => setDropdown(!dropdown)}
                       >
                         <span className="text-xl">

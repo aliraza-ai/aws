@@ -1,148 +1,80 @@
 "use client";
 
-import dynamic from "next/dynamic";
-import Image from "next/image";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { IoIosClose } from "react-icons/io";
-import { Typewriter } from "react-simple-typewriter";
-import { heroEffect, logoMin } from "../../public";
-import { HERO_CONTENT } from "../constants";
+import { heroBg } from "../../public";
 import Button from "./Button";
-const ScrollButton = dynamic(() => import("@/components/ScrollButton"));
+import Link from "next/link";
+import { Typewriter } from "react-simple-typewriter";
 
 const Hero = () => {
   const [popup, setPopup] = useState(false);
-  const sessionTokens =
-    typeof window !== "undefined" ? sessionStorage.getItem("tokens") : null;
-  const isLoggedIn = sessionTokens !== null;
-  const navigate = useRouter();
-
-  const handleClick = () => {
-    if (isLoggedIn) {
-      navigate.push("/user/dashboard");
-    } else {
-      setPopup(true);
-    }
-  };
 
   return (
-    <>
-      <div className="h-screen mx-auto px-36 absolute mt-0 md:top-20 flex justify-center">
-        <div className="w-fit mt-0 md:mt-60 sm:block hidden">
-          <Image
-            src={heroEffect}
-            width={2000}
-            height={1000}
-            alt="Hero Icons Image"
-            loading="lazy"
-          />
-        </div>
-      </div>
+    <div className="w-full relative md:h-screen h-full overflow-hidden"
+      style={{
+        backgroundImage: `url('/intelli-bg.png')`,
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+      }}>
+      {/* <img src="/intelli-bg.png" alt="hero" className="h-full opacity-60 -z-20 absolute bottom-0 left-0" /> */}
+      {/* <Image src={HeroBg} alt={HeroBg} width={1200} height={500} className="absolute w-fit md:h-screen sm:h-[700px] h-[600px] top-0 right-0 overflow-hidden" /> */}
+      {/* <video autoPlay loop muted className="absolute top-0 left-0 w-full h-screen object-cover">
+        <source src={heroBg} />
+      </video> */}
 
-      <div className="xl:pt-20 pt-10 bg-cover bg-center">
-        <div className=" flex flex-col items-center gap-3 px-4 md:px-8 lg:px-12 xl:px-24">
-          <h2 className="text-white text-4xl md:text-5xl lg:text-6xl font-semibold text-center pt-10">
-            <span className="bg-clip-text text-transparent bg-gradient-to-tr from-[#ec44ff] to-[#2d46ff]">
-              AI Magic
-            </span>
-            <br />
-            <div className="flex flex-col lg:flex-row items-center gap-4 mt-3">
-              <span>{HERO_CONTENT.heading}</span>
 
-              <p className="lg:w-[280px] md:w-[210px] w-[170px] lg:h-20 md:h-16 h-12 flex items-center justify-center rounded-lg p-3 bg-primary-two">
-                <span className="metaText">
+      <div className="flex h-screen items-start w-full relative overflow-hidden">
+        <>
+          {/* <div className="w-full h-[300px] bg-gradient-to-b from-primary to-transparent absolute top-0 left-0" /> */}
+          <div className="w-full h-[450px] bg-gradient-to-t from-primary from-20% to-transparent absolute bottom-0 left-0" />
+        </>
+        <div className="w-[600px] h-[600px] bg-[#471c7c] blur-[300px] absolute bottom-4 right-4 -z-20" />
+        <div className="w-[300px] h-[300px] bg-[#c18ffd] blur-[140px] absolute bottom-4 right-10 -z-10" />
+
+        <div className="w-full h-screen md:px-10 px-3 flex gap-3 items-center ">
+          {/* Side */}
+          {/* <div className="md:w-12 w-6 flex items-center flex-col gap-2 self-end">
+            <FaRegLightbulb className="text-[#7628d6] text-2xl" />
+            <div className="w-0.5 h-[60vh] bg-gradient-to-b from-[#471c7c] to-[#7628d6]"></div>
+          </div> */}
+
+          <div className="w-full flex md:flex-row flex-col items-center justify-center relative">
+            {/* Left side */}
+            <div className="w-full text-center flex items-center justify-between flex-col gap-3">
+              <h1 className="xl:text-[78px] lg:text-[78px] md:text-7xl !leading-normal sm:text-6xl text-5xl flex flex-col justify-between font-semibold text-white w-full relative py-10">
+                <span>Touch the Power of</span>
+                <span className="flex md:flex-row items-center flex-col justify-center gap-3"><span className="whitespace-nowrap w-[455px] h-[110px] flex items-center justify-center rounded-lg px-3 bg-[#4d0663]">
                   <Typewriter
-                    words={["Images", "Ads", "NFTs", "Blogs", "Content"]}
+                    words={["AI Content", "AI Visuals", "AI Speech",]}
                     loop={100}
                     typeSpeed={70}
                     deleteSpeed={50}
                     delaySpeed={1000}
                   />
-                </span>
-              </p>
+                </span> with </span>
+                <span>IntelliWriter.</span>
+              </h1>
+
+              <p className="w-full text-center md:text-[24px] text-lg !text-white font-sans font-[500] -mt-4 md:w-3/4 leading-40">
+                Generate Images, Voices, NFTs & text content with <span className="font-medium">Intelli GPT-4</span> LLM</p>
+
+              <Link href="/user/dashboard">
+                <Button
+                  title="Get Started"
+                  btnType="button"
+                  className="mt-4 !px-10 !py-3 2xl:text-2xl xl:text-xl md:text-lg text-base"
+                />
+              </Link>
             </div>
-          </h2>
 
-          <h1 className="py-2 text-center text-xl tracking-widest text-white">
-            Free AI Writing Generator & Best AI Image Generator
-          </h1>
-
-          <div className="text-white text-base lg:text-lg my-0 mx-auto max-w-2xl">
-            <p className="text-base text-center mb-6">
-              {HERO_CONTENT.description}
-            </p>
-          </div>
-          <div className="w-[90%] md:w-[70%] lg:w-[40%] rounded-full">
-            <div className="relative flex text-white rounded-full bg-primary p-[px] items-center justify-start w-full gap-4 border-2 border-pink-600/75">
-              <Button
-                title="Create Prompt"
-                btnType="button"
-                onClick={handleClick}
-              />
-
-              <input
-                type="text"
-                placeholder="Create your prompts"
-                className="placeholder-white/75 text-sm font-light focus:outline-none bg-transparent"
-              />
-            </div>
-          </div>
-
-          <div className="pt-20 w-full flex items-center justify-center">
-            <ScrollButton />
+            {/* Right side */}
+            {/* <div className="md:w-1/2 w-full flex justify-center items-center">
+              <img src={righthero} alt={righthero} className="w-4/5" />
+            </div> */}
           </div>
         </div>
       </div>
-
-      {popup && (
-        <div>
-          <div
-            className="w-full h-screen fixed bg-black/40 top-0 left-0"
-            onClick={() => setPopup(false)}
-          ></div>
-
-          <div className=" lg:w-[500px] lg:h-[500px] w-[280px] h-[400px] md:w-[500px] md:h-[500px]  fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-primary-two rounded-lg drop-shadow-xl z-50">
-            <div className="w-full h-full flex flex-col items-center justify-center px-6 gap-6 text-white">
-              <div className="w-16 h-16 bg-slate-500 rounded-full flex items-center justify-center">
-                <div className="h-4/5">
-                  <Image src={logoMin} alt={logoMin} width={50} height={50} />
-                </div>
-              </div>
-
-              <h3 className="font-medium text-[16px] lg:text-2xl">
-                Welcome to Intelliwriter
-              </h3>
-
-              <p className="text-[16px] text-white font-[500]">
-                Register or Login to continue
-              </p>
-
-              <button
-                type="button"
-                className="w-full py-3 bg-[#5F0E66] rounded-md font-semibold cursor-pointer"
-                onClick={() => navigate.push("/auth/login")}
-              >
-                Login
-              </button>
-
-              <button
-                type="button"
-                className="w-full py-3 bg-gray-700 rounded-md font-semibold cursor-pointer"
-                onClick={() => navigate.push("/auth/register")}
-              >
-                Register
-              </button>
-            </div>
-
-            <IoIosClose
-              className="text-white text-2xl cursor-pointer absolute top-2 right-2"
-              onClick={() => setPopup(false)}
-            />
-          </div>
-        </div>
-      )}
-    </>
+    </div>
   );
 };
 

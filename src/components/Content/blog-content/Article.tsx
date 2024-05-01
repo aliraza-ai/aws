@@ -1,5 +1,6 @@
 "use client";
 
+import Button from "@/components/Button";
 import { useWebContext } from "@/context/ContextProvider";
 import React, { FormEvent, useState } from "react";
 
@@ -50,7 +51,8 @@ const Article = ({ }: Props) => {
         keywords: "",
         subheading: "",
       });
-      
+
+      // const query = `Write blog article having this title ${title} according to this keywords ${keywords} the subheading is ${subheading}. Now, I want response in html paragraph with <strong> tag for headings and subheadings, <ul> or <ol> tag for bullets and always use two <br/><br/> for linebreaks after every section or paragraph ends. The response must be in blog article format with three sections, first section holds introduction of article, second section shows its main content and information like features etc amd its third part contains its conclusion. All must be aligned properly!`;
       const query = `Write blog article of 300-400 words having the title ${title} according to the keywords ${keywords}  which contains  ${subheading} as subheading. Now, I want response in only html paragraph with <strong> tag for headings and subheadings, <ul> or <ol> tag for bullets(if needed) and always use <br/><br/> for linebreaks after every section or paragraph ends. The response must be in blog article format with three sections: 
       Introduction:
         ...
@@ -67,7 +69,7 @@ const Article = ({ }: Props) => {
     <div className="w-full flex flex-col items-start justify-center">
       <form
         onSubmit={handleSubmit}
-        className="w-full justify-center flex border border-blue-900 backdrop-blur-md px-6 py-10 rounded-lg drop-shadow-lg"
+        className="w-full justify-center flex border border-btnPrimary backdrop-blur-md px-6 py-10 rounded-lg drop-shadow-lg"
       >
         <div className="flex flex-col gap-4 w-full">
           <div className="flex flex-col">
@@ -125,12 +127,11 @@ const Article = ({ }: Props) => {
             </p>
           )}
 
-          <button
-            type="submit"
-            className="bg-gradient-to-r from-[rgba(247,15,255,1)] to-[#2C63FF] hover:opacity-90 transition-all duration-300 py-3 px-9 text-white font-semibold rounded-full"
-          >
-            Submit
-          </button>
+          <Button
+            btnType="submit"
+            className="!w-full"
+            title="Submit"
+          />
         </div>
       </form>
     </div>

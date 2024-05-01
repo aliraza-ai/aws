@@ -9,18 +9,16 @@ interface SocialIconsProps {
 
 const SocialIcons: React.FC<SocialIconsProps> = ({
   socialLinks,
-  iconColor = "#ffffff",
-  bgColor = "transparent",
 }) => {
   return (
-    <ul className="flex gap-2 p-1">
+    <ul className="flex gap-3 p-2 w-[200px] justify-between">
       {socialLinks.map((link, index) => (
         <li key={index}>
           <SocialIcon
             url={link}
-            className="w-3 h-3 bg-slate-800 rounded-xl cursor-pointer"
+            className="w-5 h-5  rounded-md cursor-pointer border border-slate-700"
             target="_blank"
-            style={{ backgroundColor: bgColor, fill: iconColor }}
+            bgColor="black"
           />
         </li>
       ))}

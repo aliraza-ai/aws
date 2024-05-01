@@ -1,5 +1,5 @@
 const resetPasswordUser = async (userData: {
-  token: string | null;
+  resetToken: string | null;
   newPassword: string;
 }): Promise<{ success: boolean; message: string }> => {
   try {
@@ -16,6 +16,7 @@ const resetPasswordUser = async (userData: {
 
     if (response.ok) {
       const data = await response.json();
+
       return { success: true, message: data.message };
     } else {
       const errorData = await response.json();

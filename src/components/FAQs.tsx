@@ -10,27 +10,23 @@ interface AccordProps {
 
 const FAQs = ({ faqs }: { faqs?: AccordProps[] }) => {
   return (
-    <div className="w-full flex flex-col justify-center items-center">
-      <div className="w-full container lg:px-10 px-3 pb-5 md:px-8 overflow-hidden ">
-        <div className="w-full flex flex-col items-center justify-center">
-          <div className="w-full text-white flex flex-col gap-2 mb-2">
-            <h2 className="text-center lg:text-4xl md:text-3xl sm:text-2xl text-2xl font-normal">
-              Frequently Asked{" "}
-              <span className="bg-clip-text text-transparent bg-gradient-to-tr from-[#DE1DF5] to-[#011DFD]">
-                Questions
-              </span>
-            </h2>
+    <div className="xl:px-16 md:px-6 px-4 py-10 w-full container">
+      <div className="py-10">
+        <h2 className="lg:text-6xl text-5xl font-normal relative lg:p-10 md:p-6 p-4">
+          <span className="border-text text-white opacity-20 absolute md:top-3 lg:top-4 top-0 lg:left-10">
+            FREQUENTLY ASKED
+          </span>
+          <span className="text-white relative lg:p-6 p-6">QUESTIONS</span>
+        </h2>
 
-            <p className="text-center text-white text-[16px] lg:text-[16px] text-white-700">
-              We&apos;re dedicated to assisting individuals interested in
-              generating AI-driven content and images
-            </p>
-          </div>
+        <p className="2xl:text-xl md:text-lg text-[18px] font-normal !text-white/70 lg:px-10 md:p-6 p-4">
+          We&apos;re dedicated to assisting individuals interested in generating
+          AI-driven content and imageS.
+        </p>
+      </div>
 
-          <div className="pt-4 flex items-center justify-center ">
-            <Accordion faqs={faqs} />
-          </div>
-        </div>
+      <div className="w-full flex items-center justify-center lg:px-10 md:px-6 px-4">
+        <Accordion faqs={faqs} />
       </div>
     </div>
   );

@@ -83,7 +83,7 @@ const Community = () => {
           </span>
         </h2>
 
-        <p className="text-white text-base text-white-700">
+        <p className="text-white text-[18px] font-normal text-white/70">
           Welcome to our vibrant communities of content creators and innovators!
           Here, creativity thrives, ideas flourish, and support is abundant.
           Join us in shaping the future of content generation together.

@@ -7,6 +7,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { FaEnvelope } from "react-icons/fa";
 import Swal from "sweetalert2";
+import { ForgotBg } from "../../../../public";
 
 interface ForgotPasswordPageLayoutProps {
   children: React.ReactNode;
@@ -31,8 +32,7 @@ const ForgotPasswordPageLayout: React.FC<
           children: null,
         });
         return;
-      }
-      else {
+      } else {
         setForgotError({
           email: "",
           children: null,
@@ -64,53 +64,58 @@ const ForgotPasswordPageLayout: React.FC<
   };
 
   return (
-    <section className="w-full bg-contact py-16 bg-bottom bg-no-repeat bg-cover flex items-center justify-center">
+    <section className="w-full h-screen flex bg-slate-900">
+      <Link
+        href="/auth/login"
+        className="z-50 absolute left-2 top-2 opacity-75 hover:opacity-100 text-white border rounded-3xl px-4 py-1"
+      >
+        Back
+      </Link>
       {!showSuccessComponent && (
-        <div className="container rounded shadow-lg md:max-w-xl mx-3">
-          <div className="h-full border-2 border-opacity-10 border-white w-full bg-slate-800 rounded-3xl bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 space-y-5 px-5 pt-5">
-            <form onSubmit={submitForm}>
-              <div className="flex flex-col lg:p-5 p-0 gap-y-6 text-white">
-                <div className="text-center font-bold p-3 text-[20px] lg:text-4xl">
-                  Forgot Password
-                </div>
-                <label className="flex items-center">
-                  <div className="absolute lg:left-14 left-[2.5rem]">
-                    <FaEnvelope />
-                  </div>
-                  <input
-                    autoComplete="off"
-                    name="title"
-                    placeholder="Email"
-                    type="email"
-                    className="contact-input bg-gradient-to-b !pl-[48px] from-[#0F1333] to-[#1D203F] "
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                  />
-                </label>
-
-                {forgotError?.email && (
-                  <p className="!text-red-500 text-sm px-2">
-                    {forgotError.email}
-                  </p>
-                )}
-                <Button
-                  title="Reset Password"
-                  width="w-full"
-                  className="w-full"
-                  btnType="submit"
-                />
+        <div className="z-10 h-full w-full md:w-1/3 flex flex-col items-center justify-center bg-transparent space-y-5 px-5 pt-5">
+          <form onSubmit={submitForm}>
+            <div className="flex flex-col lg:p-5 p-0 gap-y-6 text-white">
+              <div className="text-center font-bold p-3 text-3xl lg:text-4xl">
+                Forgot Password
               </div>
-            </form>
+              <label className="flex items-center relative">
+                <div className="absolute left-[20px]">
+                  <FaEnvelope />
+                </div>
+                <input
+                  autoComplete="off"
+                  name="title"
+                  placeholder="Email"
+                  type="email"
+                  className="contact-input bg-gradient-to-b !pl-[48px] md:from-[#111630] md:to-[#1d214c] 
+                    from-[#000b1e] to-[#010208] "
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </label>
 
-            <p className="pb-6 !m-0 text-center text-white lg:pt-0 pt-3">
-              Remembered your password?{" "}
-              <span className="text-pink-400">
-                <Link href="/auth/login">Login </Link>
-                <span className="text-white px-0.5 opacity-60">/</span>
-                <Link href="/auth/register"> Register</Link>
-              </span>
-            </p>
-          </div>
+              {forgotError?.email && (
+                <p className="!text-red-500 text-sm px-2">
+                  {forgotError.email}
+                </p>
+              )}
+              <Button
+                title="Reset Password"
+                width="w-full"
+                className="w-full"
+                btnType="submit"
+              />
+            </div>
+          </form>
+
+          <p className="w-[90%] pb-6 !m-0 text-center text-white lg:pt-0 pt-3">
+            Remembered your password?{" "}
+            <span className="text-pink-400">
+              <Link href="/auth/login">Login </Link>
+              <span className="text-white px-0.5 opacity-60">/</span>
+              <Link href="/auth/register"> Register</Link>
+            </span>
+          </p>
         </div>
       )}
       {showSuccessComponent && (
@@ -118,6 +123,11 @@ const ForgotPasswordPageLayout: React.FC<
           <CheckEmail />
         </div>
       )}
+      <img
+        alt=""
+        src={ForgotBg}
+        className="w-full md:w-2/3 justify-end opacity-10 md:opacity-100 absolute h-screen right-0 object-cover"
+      />
     </section>
   );
 };

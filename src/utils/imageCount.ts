@@ -60,7 +60,7 @@ const imageCount = async (): Promise<{
   try {
     // Make a GET request to the "get-words-left" API
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/users/${userId}/image-count`,
+      `${process.env.NEXT_PUBLIC_API_URL}/current-plan/get-plan/${userId}`,
       {
         method: "GET",
         headers: {

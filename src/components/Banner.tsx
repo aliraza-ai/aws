@@ -19,7 +19,7 @@ const Banner = () => {
     }
   };
   return (
-    <div className="container mx-auto w-full p-5 md:px-10 lg:px-24 pb-16 relative">
+    <div className="w-full p-5 md:px-10 xl:px-24 pb-16 relative">
       <div className="bg-gradient-to-r from-blue-500/10 to-pink-600/10 text-white md:flex items-center justify-center px-2 py-4 md:p-10 rounded-2xl relative">
         <div>
           <Image
@@ -31,7 +31,7 @@ const Banner = () => {
           />
         </div>
 
-        <div className="md:w-1/2 p-5 h-full">
+        <div className="md:w-1/2 p-5 h-full filter saturate-150">
           <Image
             src={CTA_Graph}
             alt="cta graph"
@@ -58,8 +58,8 @@ const Banner = () => {
         </div>
       </div>
 
-      <div className="absolute right-0 bottom-0 md:block hidden md:mr-8 mt-10 z-0">
-        <Image src={CTA_Shape1} alt="cta shape 1" width={300} height={100} className="filter hue-rotate-[300deg]" />
+      <div className="absolute right-0 bottom-0 md:block hidden md:mr-8 mt-10 z-0 filter hue-rotate-[270deg]">
+        <Image src={CTA_Shape1} alt="cta shape 1" width={300} height={100} />
       </div>
     </div>
   );

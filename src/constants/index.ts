@@ -13,9 +13,12 @@ import {
   AiOutlineVideoCamera,
   AiTwotoneTag,
 } from "react-icons/ai";
-import { BiDockLeft } from "react-icons/bi";
-import { BsLayoutTextSidebarReverse, BsStars } from "react-icons/bs";
-import { CgTranscript } from "react-icons/cg";
+import { BiDockLeft, BiSolidImageAlt } from "react-icons/bi";
+import { BsLayoutTextSidebarReverse, BsStars,BsArrowsExpand } from "react-icons/bs";
+import { CiCircleCheck } from "react-icons/ci";
+import { FaBarcode } from "react-icons/fa6";
+import { BsSlack } from "react-icons/bs";
+import { CgTranscript, CgWebsite } from "react-icons/cg";
 import {
   FaBlog,
   FaBook,
@@ -40,6 +43,8 @@ import {
   FaSuitcase,
   FaTwitter,
   FaTwitterSquare,
+  FaYoutube,
+  FaRegShareSquare,
 } from "react-icons/fa";
 import { FaCircleUser } from "react-icons/fa6";
 import { GiSoundWaves } from "react-icons/gi";
@@ -48,14 +53,21 @@ import { IoMdContacts } from "react-icons/io";
 import { IoListOutline } from "react-icons/io5";
 import { LuHash, LuSubtitles } from "react-icons/lu";
 import {
+  SiBloglovin,
+  SiChatbot,
+  SiGooglemarketingplatform,
+} from "react-icons/si";
+import {
   MdClosedCaption,
   MdOutlineCallToAction,
   MdOutlineDashboard,
   MdOutlineFeaturedPlayList,
+  MdOutlinePayment,
   MdOutlineThumbsUpDown,
   MdOutlineTitle,
   MdQuiz,
   MdSupportAgent,
+  MdVoiceChat,
 } from "react-icons/md";
 import { PiChatCenteredTextDuotone } from "react-icons/pi";
 import {
@@ -65,9 +77,37 @@ import {
   RiKeyboardFill,
 } from "react-icons/ri";
 import { RxCheckCircled } from "react-icons/rx";
-import { TbArticle } from "react-icons/tb";
+import { TbArticle, TbTextCaption } from "react-icons/tb";
 import { TfiLayoutListPost } from "react-icons/tfi";
 import {
+  youtubestep1,
+  youtubestep2,
+  youtubestep3,
+  youtubestep4,
+  Captionstep1,
+  Captionstep2,
+  Step1,
+  Step2,
+  Step3,
+  contentgen,
+  coursebuilder,
+  image_slide_1,
+  image_slide_2,
+  image_slide_3,
+  imagegen,
+  nft_slide_1,
+  nft_slide_2,
+  nft_slide_3,
+  slider_1,
+  slider_2,
+  slider_3,
+  slider_4,
+  slider_5,
+  slider_6,
+  slider_7,
+  socialads,
+  speechgen,
+  voicegen,
   Feature1,
   Feature2,
   Feature3,
@@ -76,15 +116,8 @@ import {
   Feature6,
   Feature7,
   Feature8,
-  Step1,
-  Step2,
-  Step3,
-  image_slide_1,
-  image_slide_2,
-  image_slide_3,
-  nft_slide_1,
-  nft_slide_2,
-  nft_slide_3,
+  Feature9,
+  Feature10,
 } from "../../public";
 import {
   blogCardImage1,
@@ -92,7 +125,7 @@ import {
   blogCardImage3,
   blogCardImage4,
   blogCardImage5,
-  blogCardImage6
+  blogCardImage6,
 } from "../../public/index";
 
 import {
@@ -128,8 +161,13 @@ import {
   websitestep2,
   websitestep3,
   websitestep4,
+  SpeechTextstep1,
+  SpeechTextstep2,
+  SpeechTextstep3,
+  SpeechTextstep4,
+  // SpeechTextstep3,
 } from "../../public";
-import { post1 } from "../../public"
+import { post1 } from "../../public";
 
 // import { StaticImageData } from "next/image";
 
@@ -138,11 +176,11 @@ import { post1 } from "../../public"
 export const NAV_LINKS = [
   { id: 1, title: "Home", route: "/" },
   { id: 2, title: "About", route: "/#about" },
-  { id: 3, title: "Content", route: "/user/dashboard" },
-  { id: 4, title: "Images", route: "/ai-image-generator" },
-  { id: 5, title: "APIs", route: "/api" },
-  { id: 6, title: "Pricing", route: "/#pricing" },
-  { id: 7, title: "Blogs", route: "/blogs" },
+  { id: 3, title: "AI Tools", route: " " },
+  // { id: 4, title: "Images", route: "/ai-image-generator" },
+  { id: 4, title: "APIs", route: "/api" },
+  { id: 5, title: "Pricing", route: "/#pricing" },
+  { id: 6, title: "Blogs", route: "/blogs" },
   // { id: 8, title: "Contact", route: "/contact" },
 ];
 
@@ -180,44 +218,64 @@ export const ABOUTUS_CONTENT = [
 export const pricingData = [
   {
     id: 0,
-    price: "Free",
+    price: 0,
+    icon: CiCircleCheck,
+    packagehint: "Starter plan",
     package: "Basic Pack",
-    features: [
+    featuresName: [
       "2000 Content Words",
-      // "No free Images",
+      "No Free Images",
+      "GPT-4 Integration",
       "10 Chats Prompts",
-      "Voice Over(20 words/prompt)",
-      "All access tools",
+      "Voice Over(20 words per attempt)",
+      "All Tools Access",
     ],
+    features: ["2000", "No", "Yes", "10", "(20 words / prompt)", "All"],
     duration: "Unlimited",
+    // icon: <cicircle/>,
   },
   {
     id: 1,
     price: 4.99,
+    icon: FaBarcode,
+    packagehint: "Most popular",
     package: "Standard Pack",
-    features: [
-      "15,000 Content Words",
-      "500 Images Prompts",
+    featuresName: [
+      "Unlimited Content Words",
+      "500 Images prompts",
+      "GPT-4 Integration",
       "250 Chats Prompts",
-      "Voice Over(200 words/prompt)",
-      "All access tools",
+      "Voice Over(200 words per attempt)",
+      "All Tools Access",
     ],
+    features: ["Unlimited", "500", "Yes", "250", "(200 words / prompt)", "All"],
     duration: "1 Month",
-    link: "https://buy.stripe.com/14kbM9fM5dfV9d63co",
+    link: "https://buy.stripe.com/cN24jHgQ96RxahaaET",
   },
   {
     id: 2,
+    icon: BsSlack,
+    packagehint: "Best one",
     package: "Premium Pack",
-    price: "59.99",
-    features: [
-      "2,00,000 Content Words",
-      "Unlimited Images Prompts",
+    price: "19.99",
+    featuresName: [
+      "Unlimited Content Words",
+      "Unlimited Images prompts",
+      "GPT-4 Integration",
       "Unlimited Chats Prompts",
       "Voice Over(Unlimited words)",
-      "All access tools",
+      "All Tools Access",
+    ],
+    features: [
+      "Unlimited",
+      "Unlimited ",
+      "Yes",
+      "Unlimited ",
+      "(Unlimited words)",
+      "All",
     ],
     duration: "1 Month",
-    link: "https://buy.stripe.com/4gwbM943ncbRaha00e",
+    link: "https://buy.stripe.com/cN24jHczT6Rx2OIfZe",
   },
 ];
 
@@ -279,20 +337,20 @@ export const Accord = [
 export const features = [
   {
     id: 0,
-    title: "Text to Images",
-    desc: "Effortlessly transform words into captivating, attention-grabbing visuals with our advanced AI tool.",
-    icon: Feature1,
+    title: "Image Generator",
+    desc: "Effortlessly transform words into captivating visuals with our advanced AI tool.",
+    icon: imagegen,
   },
   {
     id: 2,
     title: "Social Ads",
-    desc: "Revolutionize social ads with our AI. Craft stunning posts in few clicks!",
+    desc: "Transform social ads with AI. Craft stunning posts effortlessly in just a few clicks!",
     icon: Feature2,
   },
   {
     id: 3,
-    title: "Course Builder",
-    desc: "Craft comprehensive courses effortlessly with our AI. Build engaging courses.",
+    title: "Youtube Content",
+    desc: "Craft comprehensive content for you Youtube Channel effortlessly with our AI. Build engaging content.",
     icon: Feature3,
   },
   {
@@ -301,29 +359,97 @@ export const features = [
     desc: "Fuel your content effortlessly with our AI. Generate engaging content.",
     icon: Feature4,
   },
-  {
+ {
     id: 5,
-    title: "Website Content ",
-    desc: "Craft your website effortlessly! Our AI generates compelling content for sites.",
-    icon: Feature5,
+    title: "Voice Generator ",
+    desc: "Transform your words into captivating AI speech with our innovative voice generator. ",
+    icon: voicegen,
   },
-  {
+   {
     id: 6,
-    title: "Content Summary ",
-    desc: "Summarize content effortlessly with our AI to simplify complex material.",
-    icon: Feature6,
+    title: "Digital Marketing ",
+    desc: "Boost your marketing with AI-generated content, crafting captivating messages for effortless conversion.",
+    icon: Feature5,
   },
   {
     id: 7,
     title: "Content Rewrite",
     desc: "Effortlessly revamp your content and rewriting text with our AI tool.",
+    icon: Feature6,
+  },
+   {
+    id: 8,
+    title: "Speech Generator",
+    desc: "Unleash the power of speech with your voice, effortlessly converting voice to captivating text with AI.",
+    icon: speechgen,
+  },
+  {
+    id: 9,
+    title: "Course Builder",
+    desc: "Craft comprehensive courses effortlessly with our AI. Build engaging courses.",
     icon: Feature7,
   },
   {
-    id: 8,
+    id: 10,
+    title: "Content Summary ",
+    desc: "Summarize content effortlessly with our AI to simplify complex material.",
+    icon: Feature8,
+  },
+  {
+    id: 11,
+    title: "Website Content ",
+    desc: "Craft your website effortlessly! Our AI generates compelling content for sites.",
+    icon: Feature9,
+  },
+  {
+    id: 12,
     title: "Content Grammar",
     desc: "Perfect your content and enhance grammar flawlessly with our AI tool.",
-    icon: Feature8,
+    icon: Feature10,
+  },
+];
+export const RoadmapData = [
+  {
+    Question: "Q1",
+    heading: "Algorithmic Enhancement",
+    description:
+      "We're committed to delivering top-notch services by perpetually refining AI algorithms, guaranteeing superior content and image generation with improved quality, coherence, and diversity.",
+  },
+  {
+    Question: "Q2",
+    heading: "Personalized Content Delivery",
+    description:
+      "Tailor content based on user preferences and behavior, offering a unique and engaging experience for every visitor.",
+  },
+  {
+    Question: "Q3",
+    heading: "Quality Control Measures",
+    description:
+      "Implement stringent checks and human-in-the-loop validation processes to ensure high-quality, accurate content output.",
+  },
+  {
+    Question: "Q4",
+    heading: "Multimedia Expansion",
+    description:
+      "Diversifying our offerings, we&apos;re expanding content generation to include images, videos, audio, and interactive formats, aiming to elevate user engagement across various multimedia channels.",
+  },
+  {
+    Question: "Q5",
+    heading: "Ethical Compliance Frameworks",
+    description:
+      "Prioritize adherence to ethical and legal standards, ensuring generated content aligns with copyright laws and ethical guidelines.",
+  },
+  {
+    Question: "Q6",
+    heading: "Community-Centric Iteration",
+    description:
+      "Promote engagement from users to continually enhance content creation, nurturing a cycle of community-driven improvement through iterative refinements.",
+  },
+  {
+    Question: "Q7",
+    heading: "AI-Driven Ethics",
+    description:
+      "Embed ethical considerations into AI models, safeguarding against the creation of misleading or harmful content and respecting user privacy",
   },
 ];
 
@@ -335,10 +461,6 @@ export const FOOTER_LINKS = [
   {
     title: "About us",
     link: "/#about",
-  },
-  {
-    title: "Content",
-    link: "/user/dashboard",
   },
   {
     title: "APIs",
@@ -356,28 +478,32 @@ export const FOOTER_LINKS = [
 
 export const FOOTER_FEATURES = [
   {
-    title: "Social Media Content Generation",
+    title: "Social Content",
     link: "/ai-social-media",
   },
   {
-    title: "Blog Content Generation",
+    title: "Blog Content",
     link: "/ai-blog-generator",
   },
   {
-    title: "Website Content Generation",
+    title: "Website Content",
     link: "/website-content-generator",
   },
   {
-    title: "Marketing Content Generation",
+    title: "Marketing Content",
     link: "/ai-marketing-generator",
   },
   {
-    title: "AI Image Generation",
+    title: "Image Generator",
     link: "/ai-image-generator",
   },
   {
-    title: "AI Voice Generation",
+    title: "Voice Generator",
     link: "/ai-voice-generator",
+  },
+  {
+    title: "Text Generator",
+    link: "/speech-content-generator",
   },
   {
     title: "Chatting",
@@ -460,6 +586,12 @@ export const dropdownMenu: DropdownMenu[] = [
     icon: MdSupportAgent,
     title: "Support",
     link: "/contact",
+  },
+  {
+    id: 4,
+    icon: MdOutlinePayment,
+    title: "Payment History",
+    link: "/user/payment-history",
   },
 ];
 
@@ -1013,56 +1145,17 @@ export interface BlogPageDataProps {
   id: number;
   image: string;
   title: string;
-  date: string;
+  link: string;
   desc: string;
+  date: string;
 }
 
-export const BlogPageData = [
-  {
-    id: 1,
-    image: blogCardImage5,
-    title: "Intelliwriter providing following features unlimited in premium package",
-    date: "Thu, 01 Dec 2023",
-    desc: "",
-  },
-  {
-    id: 2,
-    image: blogCardImage2,
-    title: "Intelliwriter providing APIs for developers",
-    date: "Sat, 31 Dec 2023",
-    desc: "",
-  },
-  {
-    id: 3,
-    image: blogCardImage3,
-    title: "Best email Marketing with Intelliwriter",
-    date: "Thu, 05 Jan 2024",
-    desc: "",
-  },
-  {
-    id: 4,
-    image: blogCardImage4,
-    title: "Ready to go Viral? Start with Intelliwriter Recommended!",
-    date: "Mon, 15 Jan 2024",
-    desc: "",
-  },
-  {
-    id: 5,
-    image: blogCardImage6,
-    title: "AI Image generation with Intelliwriter",
-    date: "Sat, 20 Jan 2024",
-    desc: "",
-  },
-  {
-    id: 6,
-    image: blogCardImage1,
-    title: "Intelliwriter is the Present of AI",
-    date: "Thu, 08 Feb 2024",
-    desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Assumenda debitis omnis quibusdam rerum pariatur quam dolore, autem quidem praesentium illum odio animi nemo? Quis temporibus voluptate laudantium delectus earum saepe?",
-  },
-];
+export interface ImageProps {
+  id: number;
+  img: string;
+}
 
-export const images = [
+export const images: ImageProps[] = [
   {
     id: 1,
     img: image_slide_1,
@@ -1077,7 +1170,7 @@ export const images = [
   },
 ];
 
-export const nfts = [
+export const nfts: ImageProps[] = [
   {
     id: 1,
     img: nft_slide_1,
@@ -1089,6 +1182,61 @@ export const nfts = [
   {
     id: 3,
     img: nft_slide_3,
+  },
+];
+
+export const slider: ImageProps[] = [
+  {
+    id: 1,
+    img: slider_5,
+  },
+  {
+    id: 2,
+    img: image_slide_2,
+  },
+  {
+    id: 3,
+    img: nft_slide_3,
+  },
+  {
+    id: 4,
+    img: slider_3,
+  },
+  {
+    id: 5,
+    img: nft_slide_2,
+  },
+  {
+    id: 6,
+    img: image_slide_3,
+  },
+  {
+    id: 7,
+    img: slider_1,
+  },
+  {
+    id: 8,
+    img: slider_2,
+  },
+  {
+    id: 9,
+    img: nft_slide_1,
+  },
+  {
+    id: 10,
+    img: slider_4,
+  },
+  {
+    id: 11,
+    img: image_slide_1,
+  },
+  {
+    id: 12,
+    img: slider_6,
+  },
+  {
+    id: 13,
+    img: slider_7,
   },
 ];
 
@@ -1161,6 +1309,27 @@ export const MoretoolsChat: MoretoolsProps[] = [
     bgcolor: "#e17be8",
     color: "#f545f7",
   },
+  {
+    icon: MdVoiceChat,
+    title: "Speech to Text",
+    description: "Speech text generator",
+    bgcolor: "#ff8a65",
+    color: "#ff5722",
+  },
+  {
+    icon: TbTextCaption,
+    title: "Image Caption Generator",
+    description: "Image Caption Generator",
+    bgcolor: "#3b9409",
+    color: "#a5dc86",
+  },
+  {
+    icon: FaYoutube,
+    title: "Youtube Content Generator",
+    description: "Youtube Content Generator",
+    bgcolor: "#ff0000",
+    color: "#ffffff",
+  },
 ];
 
 export const MoretoolsImage: MoretoolsProps[] = [
@@ -1219,6 +1388,27 @@ export const MoretoolsImage: MoretoolsProps[] = [
     description: "AI Voice generator",
     bgcolor: "#e17be8",
     color: "#f545f7",
+  },
+  {
+    icon: MdVoiceChat,
+    title: "Speech to Text",
+    description: "Speech text generator",
+    bgcolor: "#ff8a65",
+    color: "#ff5722",
+  },
+  {
+    icon: TbTextCaption,
+    title: "Image Caption Generator",
+    description: "Image Caption Generator",
+    bgcolor: "#3b9409",
+    color: "#a5dc86",
+  },
+  {
+    icon: FaYoutube,
+    title: "Youtube Content Generator",
+    description: "Youtube Content Generator",
+    bgcolor: "#ff0000",
+    color: "#ffffff",
   },
 ];
 
@@ -1334,6 +1524,27 @@ export const MoretoolsBlog: MoretoolsProps[] = [
     bgcolor: "#e17be8",
     color: "#f545f7",
   },
+  {
+    icon: MdVoiceChat,
+    title: "Speech to Text",
+    description: "Speech text generator",
+    bgcolor: "#ff8a65",
+    color: "#ff5722",
+  },
+  {
+    icon: TbTextCaption,
+    title: "Image Caption Generator",
+    description: "Image Caption Generator",
+    bgcolor: "#3b9409",
+    color: "#a5dc86",
+  },
+  {
+    icon: FaYoutube,
+    title: "Youtube Content Generator",
+    description: "Youtube Content Generator",
+    bgcolor: "#ff0000",
+    color: "#ffffff",
+  },
 ];
 
 export const dataCourse: dataProps[] = [
@@ -1421,6 +1632,27 @@ export const MoretoolsCourse: MoretoolsProps[] = [
     bgcolor: "#e17be8",
     color: "#f545f7",
   },
+  {
+    icon: MdVoiceChat,
+    title: "Speech to Text",
+    description: "Speech text generator",
+    bgcolor: "#ff8a65",
+    color: "#ff5722",
+  },
+  {
+    icon: TbTextCaption,
+    title: "Image Caption Generator",
+    description: "Image Caption Generator",
+    bgcolor: "#3b9409",
+    color: "#a5dc86",
+  },
+  {
+    icon: FaYoutube,
+    title: "Youtube Content Generator",
+    description: "Youtube Content Generator",
+    bgcolor: "#ff0000",
+    color: "#ffffff",
+  },
 ];
 
 export const MoretoolsVoice: MoretoolsProps[] = [
@@ -1480,6 +1712,107 @@ export const MoretoolsVoice: MoretoolsProps[] = [
   //   bgcolor: "#e17be8",
   //   color: "#f545f7",
   // },
+  {
+    icon: MdVoiceChat,
+    title: "Speech to Text",
+    description: "Speech text generator",
+    bgcolor: "#ff8a65",
+    color: "#ff5722",
+  },
+  {
+    icon: TbTextCaption,
+    title: "Image Caption Generator",
+    description: "Image Caption Generator",
+    bgcolor: "#3b9409",
+    color: "#a5dc86",
+  },
+  {
+    icon: FaYoutube,
+    title: "Youtube Content Generator",
+    description: "Youtube Content Generator",
+    bgcolor: "#ff0000",
+    color: "#ffffff",
+  },
+];
+
+export const MoretoolsSpeechtext: MoretoolsProps[] = [
+  {
+    icon: FaBlog,
+    title: "Blog content",
+    description: "AI Blog Generator",
+    bgcolor: "#dcfce7",
+    color: "#16a34a",
+  },
+  {
+    icon: FaCompactDisc,
+    title: "Social Media",
+    description: "AI Social Media Tool",
+    bgcolor: "#fef9c3",
+    color: "#facc15",
+  },
+  {
+    icon: FaGripLines,
+    title: "Marketing",
+    description: "AI Marketing Tool",
+    bgcolor: "#dbeafe",
+    color: "#2563eb",
+  },
+  {
+    icon: FaNewspaper,
+    title: "Website",
+    description: "AI Web Tool",
+    bgcolor: "#fee2e2",
+    color: "#dc2626",
+  },
+  {
+    icon: FaBook,
+    title: "Course Builder",
+    description: "AI Content Generator",
+    bgcolor: "#f3e8ff",
+    color: "#9333ea",
+  },
+  {
+    icon: FaImage,
+    title: "Image Generator",
+    description: "AI Image Generator",
+    bgcolor: "#80fcf0",
+    color: "#4e7471",
+  },
+  {
+    icon: FaComment,
+    title: "Chat",
+    description: "AI Chat Tool",
+    bgcolor: "#e58409",
+    color: "#e2bf93",
+  },
+  {
+    icon: GiSoundWaves,
+    title: "Voice generator",
+    description: "AI Voice generator",
+    bgcolor: "#e17be8",
+    color: "#f545f7",
+  },
+  // {
+  //   icon: MdVoiceChat,
+  //   title: "Speech to Text",
+  //   description: "Speech content generator",
+  //   bgcolor: "#ff8a65",
+  //   color: "#ff5722",
+  // },
+  {
+    icon: TbTextCaption,
+    title: "Image Caption Generator",
+    description: "Image Caption Generator",
+    bgcolor: "#3b9409",
+    color: "#a5dc86",
+  },
+  {
+    icon: FaYoutube,
+    title: "Youtube Content Generator",
+    description: "Youtube Content Generator",
+    bgcolor: "#ff0000",
+    color: "#ffffff",
+  },
 ];
 
 export const dataSocialMedia: dataProps[] = [
@@ -1583,6 +1916,27 @@ export const MoretoolsSocialMedia: MoretoolsProps[] = [
     description: "AI Voice generator",
     bgcolor: "#e17be8",
     color: "#f545f7",
+  },
+  {
+    icon: MdVoiceChat,
+    title: "Speech to Text",
+    description: "Speech text generator",
+    bgcolor: "#ff8a65",
+    color: "#ff5722",
+  },
+  {
+    icon: TbTextCaption,
+    title: "Image Caption Generator",
+    description: "Image Caption Generator",
+    bgcolor: "#3b9409",
+    color: "#a5dc86",
+  },
+  {
+    icon: FaYoutube,
+    title: "Youtube Content Generator",
+    description: "Youtube Content Generator",
+    bgcolor: "#ff0000",
+    color: "#ffffff",
   },
 ];
 
@@ -1691,6 +2045,27 @@ export const MoretoolsWebsite: MoretoolsProps[] = [
     bgcolor: "#e17be8",
     color: "#f545f7",
   },
+  {
+    icon: MdVoiceChat,
+    title: "Speech to Text",
+    description: "Speech text generator",
+    bgcolor: "#ff8a65",
+    color: "#ff5722",
+  },
+  {
+    icon: TbTextCaption,
+    title: "Image Caption Generator",
+    description: "Image Caption Generator",
+    bgcolor: "#3b9409",
+    color: "#a5dc86",
+  },
+  {
+    icon: FaYoutube,
+    title: "Youtube Content Generator",
+    description: "Youtube Content Generator",
+    bgcolor: "#ff0000",
+    color: "#ffffff",
+  },
 ];
 
 export const dataMarketing: dataProps[] = [
@@ -1796,6 +2171,202 @@ export const MoretoolsMarketing: MoretoolsProps[] = [
     description: "AI Voice generator",
     bgcolor: "#e17be8",
     color: "#f545f7",
+  },
+  {
+    icon: MdVoiceChat,
+    title: "Speech to Text",
+    description: "Speech text generator",
+    bgcolor: "#ff8a65",
+    color: "#ff5722",
+  },
+  {
+    icon: TbTextCaption,
+    title: "Image Caption Generator",
+    description: "Image Caption Generator",
+    bgcolor: "#3b9409",
+    color: "#a5dc86",
+  },
+  {
+    icon: FaYoutube,
+    title: "Youtube Content Generator",
+    description: "Youtube Content Generator",
+    bgcolor: "#ff0000",
+    color: "#ffffff",
+  },
+];
+
+export const MoretoolsImageCaption: MoretoolsProps[] = [
+  {
+    icon: FaBlog,
+    title: "Blog content",
+    description: "AI Blog Generator",
+    bgcolor: "#dcfce7",
+    color: "#16a34a",
+  },
+  {
+    icon: FaCompactDisc,
+    title: "Social Media",
+    description: "AI Social Media Tool",
+    bgcolor: "#fef9c3",
+    color: "#facc15",
+  },
+  {
+    icon: FaGripLines,
+    title: "Marketing",
+    description: "AI Marketing Tool",
+    bgcolor: "#dbeafe",
+    color: "#2563eb",
+  },
+  {
+    icon: FaNewspaper,
+    title: "Website",
+    description: "AI Web Tool",
+    bgcolor: "#fee2e2",
+    color: "#dc2626",
+  },
+  {
+    icon: FaBook,
+    title: "Course Builder",
+    description: "AI Content Generator",
+    bgcolor: "#f3e8ff",
+    color: "#9333ea",
+  },
+  {
+    icon: FaImage,
+    title: "Image Generator",
+    description: "AI Image Generator",
+    bgcolor: "#80fcf0",
+    color: "#4e7471",
+  },
+  {
+    icon: FaComment,
+    title: "Chat",
+    description: "AI Chat Tool",
+    bgcolor: "#e58409",
+    color: "#e2bf93",
+  },
+  {
+    icon: GiSoundWaves,
+    title: "Voice generator",
+    description: "AI Voice generator",
+    bgcolor: "#e17be8",
+    color: "#f545f7",
+  },
+  {
+    icon: MdVoiceChat,
+    title: "Speech to Text",
+    description: "Speech text generator",
+    bgcolor: "#ff8a65",
+    color: "#ff5722",
+  },  
+  // {
+  //   icon: TbTextCaption,
+  //   title: "Image Caption Generator",
+  //   description: "Image Caption Generator",
+  //   bgcolor: "#3b9409",
+  //   color: "#a5dc86",
+  // },
+  {
+    icon: FaYoutube,
+    title: "Youtube Content Generator",
+    description: "Youtube Content Generator",
+    bgcolor: "#ff0000",
+    color: "#ffffff",
+  },
+];
+
+
+export const MoretoolsYoutubeContent: MoretoolsProps[] = [
+  {
+    icon: FaBlog,
+    title: "Blog content",
+    description: "AI Blog Generator",
+    bgcolor: "#dcfce7",
+    color: "#16a34a",
+  },
+  {
+    icon: FaCompactDisc,
+    title: "Social Media",
+    description: "AI Social Media Tool",
+    bgcolor: "#fef9c3",
+    color: "#facc15",
+  },
+  {
+    icon: FaGripLines,
+    title: "Marketing",
+    description: "AI Marketing Tool",
+    bgcolor: "#dbeafe",
+    color: "#2563eb",
+  },
+  {
+    icon: FaNewspaper,
+    title: "Website",
+    description: "AI Web Tool",
+    bgcolor: "#fee2e2",
+    color: "#dc2626",
+  },
+  {
+    icon: FaBook,
+    title: "Course Builder",
+    description: "AI Content Generator",
+    bgcolor: "#f3e8ff",
+    color: "#9333ea",
+  },
+  {
+    icon: FaImage,
+    title: "Image Generator",
+    description: "AI Image Generator",
+    bgcolor: "#80fcf0",
+    color: "#4e7471",
+  },
+  {
+    icon: FaComment,
+    title: "Chat",
+    description: "AI Chat Tool",
+    bgcolor: "#e58409",
+    color: "#e2bf93",
+  },
+  {
+    icon: GiSoundWaves,
+    title: "Voice generator",
+    description: "AI Voice generator",
+    bgcolor: "#e17be8",
+    color: "#f545f7",
+  },
+  {
+    icon: MdVoiceChat,
+    title: "Speech to Text",
+    description: "Speech text generator",
+    bgcolor: "#ff8a65",
+    color: "#ff5722",
+  },  
+  {
+    icon: TbTextCaption,
+    title: "Image Caption Generator",
+    description: "Image Caption Generator",
+    bgcolor: "#3b9409",
+    color: "#a5dc86",
+  },
+  // {
+  //   icon: FaYoutube,
+  //   title: "Youtube Content Generator",
+  //   description: "Youtube Content Generator",
+  //   bgcolor: "#ff0000",
+  //   color: "#ffffff",
+  // },
+];
+
+
+export const dataYoutube: dataProps[] = [
+  {
+    icon: FaYoutube,
+    title: "Content Generator",
+    description: "Generate title, description, keywords and tags based on your youtube video title.",
+  },
+  {
+    icon: BsArrowsExpand,
+    title: "Video Summarizer",
+    description:"Summarize any youtube video and experience full video within a second.",
   },
 ];
 
@@ -2045,48 +2616,264 @@ export const stepsVoice: Steps[] = [
   },
 ];
 
-interface Blogpost {
-  id: number;
-  title: string;
-  image: string;
-  desc: string;
-  date: string;
-}
-
-export const post: Blogpost[] = [
-  {
-    id: 0,
-    title: "On abuse of power and power Of the Collective",
-    image: blogCardImage1,  //post1
-    desc: "ChatGPT (Conversational Generative Pre-trained Transformer) is a newly released open-source conversational AI platform. It has been praised for its ability to generate natural language responses to user inputs, and many have hailed it as the next step in creating more human-like conversations. However, despite its promise, certain limitations still prevent it from being a viable replacement for other conversational AI platforms. Let’s explore these limitations and how they can be addressed.The title and description of the bundle will be displayed to potential buyers, in the same way a regular prompt's title and description is used.The discount is applied to each individual prompt within the bundle.    The following restrictions apply to creating bundles:",
-    date: "February 13, 2024",
-  },
-]
-
-interface post {
-  id: number;
-  title: string;
-  image: string;
-  date: string;
-}
-
-export const postPage: post[] = [
-  {
-    id: 0,
-    title: "On abuse of power and power Of the Collective",
-    image: blogCardImage1,  //post1
-    date: "February 10, 2024",
-  },
+export const stepsSpeechText: Steps[] = [
   {
     id: 1,
-    title: "On abuse of power and power Of the Collective",
-    image: post1,  //post1
-    date: "February 13, 2024",
+    step: "Step#1",
+    detail:
+      "Access Intelliwriter AI Speech Text Generator: Open your preferred web browser and navigate to the Intelliwriter.io website. Login and from the user dashboard choose what you want to create.",
+    image: SpeechTextstep1,
   },
   {
     id: 2,
-    title: "On abuse of power and power Of the Collective",
-    image: blogCardImage2,
-    date: "January 13, 2024",
+    step: "Step#2",
+    detail:
+      "Enter Prompt to Search: Within the AI Speech text generator , you'll find a Voice recorder and option to upload any speech file and then submit eagerly awaiting your inspiration. Guide the AI with your speech and watch the transformation of your speech into text.",
+    image: SpeechTextstep2,
   },
-]
+  {
+    id: 3,
+    step: "Step#3",
+    detail:
+      "Wait For the Response: Creativity takes time, even for AI. Sit back, relax, and let the magic unfold.",
+    image: SpeechTextstep3,
+  },
+  {
+    id: 4,
+    step: "Step#4",
+    detail: "Get ready to be amazed – your AI Speech text is ready.",
+    image: SpeechTextstep4,
+  },
+];
+
+//Image Caption Generator
+export const stepsImageCaption: Steps[] = [
+  {
+    id: 1,
+    step: "Step#1",
+    detail:
+      "Access Intelliwriter Image Caption Generator: Open your preferred web browser and navigate to the Intelliwriter.io website. Login and from the user dashboard choose what you want to create.",
+    image: Captionstep1,
+  },
+  {
+    id: 2,
+    step: "Step#2",
+    detail:
+      "Enter Prompt to Search: Within the Image Caption Generator, you'll find a dropdown to select caption tone, blank for additional Information and a blank canvas eagerly awaiting your inspiration. Guide the AI with your words and watch your image transform into caption.",
+    image: Captionstep2,
+  },
+  {
+    id: 3,
+    step: "Step#3",
+    detail:
+      "Wait For the Response: Creativity takes time, even for AI. Sit back, relax, and let the magic unfold.",
+    image: Captionstep2,
+  },
+  {
+    id: 4,
+    step: "Step#4",
+    detail: "Get ready to be amazed – your image caption is ready.",
+    image: Captionstep2,
+  },
+];
+
+//Youtube Content Generator
+export const stepsYoutubeContent: Steps[] = [
+  {
+    id: 1,
+    step: "Step#1",
+    detail:
+      "Access Intelliwriter Youtube Content Generator: Open your preferred web browser and navigate to the Intelliwriter.io website. Login and from the user dashboard choose what you want to create.",
+    image: youtubestep1,
+  },
+  {
+    id: 2,
+    step: "Step#2",
+    detail:
+      "Enter Prompt to Search: Within the Youtube Content Generator, you'll find a blank canvas eagerly awaiting your inspiration. Guide the AI with your words and watch your title transform into youtube content.",
+    image: youtubestep2,
+  },
+  {
+    id: 3,
+    step: "Step#3",
+    detail:
+      "Wait For the Response: Creativity takes time, even for AI. Sit back, relax, and let the magic unfold.",
+    image: youtubestep3,
+  },
+  {
+    id: 4,
+    step: "Step#4",
+    detail: "Get ready to be amazed – your Youtube content is ready.",
+    image: youtubestep4,
+  },
+];
+
+
+
+export interface BlogPostProps {
+  id: number;
+  title: string;
+  link: string;
+  image: string;
+  desc: string;
+  date: string;
+  tags: string;
+}
+
+export const blogpost: BlogPostProps[] = [
+  {
+    id: 1,
+    image: blogCardImage1,
+    title: "Intelliwriter is the Present of AI",
+    link: "/blogs/presence-of-ai",
+    desc: "<h1>The Presence of Artificial Intelligence</h1><p>Artificial Intelligence (AI) has become ubiquitous in today's world, influencing various aspects of our lives. From virtual assistants like Siri and Alexa to advanced algorithms powering recommendation systems, AI is revolutionizing industries and reshaping how we interact with technology.</p><h2>Impact on Society</h2><p>One of the most significant impacts of AI is its effect on society. With AI-powered automation, tasks that were once labor-intensive are now performed efficiently and accurately, leading to increased productivity and cost savings for businesses.</p><h2>Applications in Healthcare</h2><p>AI is making strides in healthcare by enabling early disease detection, personalized treatment plans, and predictive analytics. With AI algorithms analyzing vast amounts of medical data, doctors can make more informed decisions and provide better patient care.</p><h2>Ethical Considerations</h2><p>Despite its benefits, AI raises ethical concerns regarding privacy, bias, and job displacement. As AI systems become more autonomous, ensuring transparency and accountability becomes crucial to mitigate potential risks and ensure fair treatment for all.</p><h2>The Future of AI</h2><p>The future of AI holds immense potential. From advancements in natural language processing to breakthroughs in machine learning algorithms, the possibilities are endless. As AI continues to evolve, it's essential to prioritize ethical development and responsible use to create a future where AI benefits society as a whole.</p><h2>Conclusion</h2><p>In conclusion, the presence of AI is transforming the way we live, work, and interact with the world around us. By harnessing the power of AI responsibly, we can unlock its full potential to solve complex problems, improve decision-making, and create a brighter future for generations to come.</p><h2>Benefits of AI:</h2><ul><li>Increased efficiency and productivity</li><li>Improved decision-making</li><li>Enhanced customer experiences</li><li>Cost savings</li><li>New job opportunities</li></ul>",
+    date: "Thu, 08 Feb 2024",
+    tags: "",
+  },
+  {
+    id: 2,
+    title: "Intelliwriter providing APIs for developers",
+    image: blogCardImage2,
+    link: "/blogs/intelliwriter-apis",
+    desc: "<h1>Intelliwriter Providing APIs for Developers</h1><p>Intelliwriter, the leading AI-powered writing platform, is now offering APIs for developers, enabling seamless integration of advanced language generation capabilities into various applications and platforms.</p><h2>Benefits of Intelliwriter APIs</h2><ul><li><strong>Enhanced Content Generation:</strong> With Intelliwriter APIs, developers can access cutting-edge language generation models to create engaging and personalized content.</li><li><strong>Streamlined Workflow:</strong> Integrating Intelliwriter APIs streamlines the content creation process, saving time and resources for developers and content creators.</li><li><strong>Customization Options:</strong> Intelliwriter APIs offer extensive customization options, allowing developers to tailor the language generation process to meet specific requirements and use cases.</li><li><strong>Scalability:</strong> Whether building a small-scale application or a large-scale platform, Intelliwriter APIs offer scalability to handle varying levels of demand and workload.</li><li><strong>Developer-Friendly Documentation:</strong> Intelliwriter provides comprehensive documentation and support resources to help developers integrate and utilize the APIs effectively.</li></ul><h2>Getting Started with Intelliwriter APIs</h2><p>Intelliwriter makes it easy for developers to get started with its APIs. Simply sign up for an API key, explore the documentation, and start integrating advanced language generation capabilities into your applications today.</p>",
+    date: "Sat, 31 Dec 2023",
+    tags: "ai, ai blog posts , ai revolution",
+  },
+  {
+    id: 3,
+    image: blogCardImage3,
+    title: "Best email Marketing with Intelliwriter",
+    link: "/blogs/intelliwriter-email-marketing",
+    desc: "ChatGPT (Conversational Generative Pre-trained Transformer) is a newly released open-source conversational AI platform. It has been praised for its ability to generate natural language responses to user inputs, and many have hailed it as the next step in creating more human-like conversations. However, despite its promise, certain limitations still prevent it from being a viable replacement for other conversational AI platforms. Let’s explore these limitations and how they can be addressed.The title and description of the bundle will be displayed to potential buyers, in the same way a regular prompt's title and description is used.The discount is applied to each individual prompt within the bundle.    The following restrictions apply to creating bundles.",
+    date: "Thu, 05 Jan 2024",
+    tags: "",
+  },
+  {
+    id: 4,
+    image: blogCardImage4,
+    title: "Ready to go Viral? Start with Intelliwriter Recommended!",
+    link: "/blogs/begin-with-intelliwriter",
+    desc: "ChatGPT (Conversational Generative Pre-trained Transformer) is a newly released open-source conversational AI platform. It has been praised for its ability to generate natural language responses to user inputs, and many have hailed it as the next step in creating more human-like conversations. However, despite its promise, certain limitations still prevent it from being a viable replacement for other conversational AI platforms. Let’s explore these limitations and how they can be addressed.The title and description of the bundle will be displayed to potential buyers, in the same way a regular prompt's title and description is used.The discount is applied to each individual prompt within the bundle.    The following restrictions apply to creating bundles.",
+    date: "Mon, 15 Jan 2024",
+    tags: "",
+  },
+  {
+    id: 5,
+    title:
+      "Intelliwriter providing following features unlimited in premium package",
+    image: blogCardImage5,
+    link: "/blogs/intelliwriter-premium-package",
+    desc: "ChatGPT (Conversational Generative Pre-trained Transformer) is a newly released open-source conversational AI platform. It has been praised for its ability to generate natural language responses to user inputs, and many have hailed it as the next step in creating more human-like conversations. However, despite its promise, certain limitations still prevent it from being a viable replacement for other conversational AI platforms. Let’s explore these limitations and how they can be addressed.The title and description of the bundle will be displayed to potential buyers, in the same way a regular prompt's title and description is used.The discount is applied to each individual prompt within the bundle.    The following restrictions apply to creating bundles:",
+    date: "Thu, 01 Dec 2023",
+    tags: "",
+  },
+  {
+    id: 6,
+    image: blogCardImage6,
+    title: "AI Image generation with Intelliwriter",
+    link: "/blogs/intelliwriter-image-generator",
+    desc: "ChatGPT (Conversational Generative Pre-trained Transformer) is a newly released open-source conversational AI platform. It has been praised for its ability to generate natural language responses to user inputs, and many have hailed it as the next step in creating more human-like conversations. However, despite its promise, certain limitations still prevent it from being a viable replacement for other conversational AI platforms. Let’s explore these limitations and how they can be addressed.The title and description of the bundle will be displayed to potential buyers, in the same way a regular prompt's title and description is used.The discount is applied to each individual prompt within the bundle.    The following restrictions apply to creating bundles:",
+    date: "Sat, 20 Jan 2024",
+    tags: "",
+  },
+];
+
+export interface MegaMenuProps {
+  id: number;
+  icon: IconType;
+  title: string;
+  link: string;
+  desc: string;
+  route: string;
+}
+
+export const MegaMenu: MegaMenuProps[] = [
+  {
+    id: 0,
+    icon: SiBloglovin,
+    title: "Blog Content",
+    link: "/user/blog-content",
+    route: "/ai-blog-generator",
+    desc: "It helps to generate blog content",
+  },
+  {
+    id: 1,
+    icon: FaRegShareSquare,
+    title: "Social Media",
+    link: "/user/social-media",
+    route: "/ai-social-media",
+    desc: "It helps to generate Social Media content",
+  },
+  {
+    id: 2,
+    icon: SiGooglemarketingplatform,
+    title: "Marketing",
+    link: "/user/marketing",
+    route: "/ai-marketing-generator",
+    desc: "It helps to generate Marketing content",
+  },
+  {
+    id: 3,
+    icon: CgWebsite,
+    title: "Website",
+    link: "/user/website",
+    route: "/website-content-generator",
+    desc: "It helps to generate Website content",
+  },
+  {
+    id: 4,
+    icon: FaBook,
+    title: "Course Builder",
+    link: "/user/course-builder",
+    route: "/ai-course-builder",
+    desc: "It helps to generate Course builder",
+  },
+  {
+    id: 5,
+    icon: BiSolidImageAlt,
+    title: "AI Image Generator",
+    link: "/user/image-generator",
+    route: "/ai-image-generator",
+    desc: "It helps to generate AI Images",
+  },
+  {
+    id: 6,
+    icon: GiSoundWaves,
+    title: "AI Voice Generator",
+    link: "/user/voice-generator",
+    route: "/ai-voice-generator",
+    desc: "It helps to convert text into AI Voice",
+  },
+  {
+    id: 7,
+    icon: TbTextCaption,
+    title: "Image Caption Generator",
+    link: "/user/image-caption-generator",
+    route: "/image-caption-generator",
+    desc: "It helps to generate Caption for Images",
+  },
+  {
+    id: 8,
+    icon: MdVoiceChat,
+    title: "Speech Content",
+    link: "/user/speech-content-generator",
+    route: "/speech-content-generator",
+    desc: "It helps to convert Voice into Text",
+  },
+  {
+    id: 9,
+    icon: FaYoutube,
+    title: "Youtube Content",
+    link: "/user/youtube-content",
+    route: "/youtube-content",
+    desc: "It helps to generate Youtube contents",
+  },
+  {
+    id: 10,
+    icon: SiChatbot,
+    title: "AI Chat",
+    link: "/user/chat",
+    route: "/ai-chat",
+    desc: "It helps to generate AI contents",
+  },
+];

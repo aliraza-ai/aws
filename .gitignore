@@ -2,6 +2,7 @@
 
 # dependencies
 /node_modules
+/.vscode/
 /.pnp
 .pnp.js
 .yarn/install-state.gz
@@ -9,6 +10,10 @@
 
 # testing
 /coverage
+
+# md files
+/md
+*.md 
 
 # next.js
 /.next/

@@ -2,12 +2,10 @@
 import React, { useState } from "react";
 import Maintenance from "@/components/Maintenance";
 
-const MaintenancePage= () => {
-  
-
+const MaintenancePage = () => {
   return (
     <div>
-     <Maintenance/>
+      <Maintenance />
     </div>
   );
 };

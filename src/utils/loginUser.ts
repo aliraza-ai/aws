@@ -4,9 +4,11 @@ const loginUser = async (userData: {
 }): Promise<{
   success: boolean;
   message: string;
+  error: string;
   token: string;
   name: string;
   userId: string;
+  email: string;
 }> => {
   try {
     const response = await fetch(
@@ -27,8 +29,10 @@ const loginUser = async (userData: {
         success: true,
         message: data.message,
         token: data.token,
-        name: data.name,
-        userId: data.id,
+        name: data.user.fullName,
+        userId: data.user.id,
+        error: "",
+        email: data.user.email,
       };
     } else {
       const errorData = await response.json();
@@ -38,15 +42,19 @@ const loginUser = async (userData: {
         token: "",
         name: "",
         userId: "",
+        email: "",
+        error: errorData.error,
       };
     }
   } catch (error) {
     return {
       success: false,
-      message: `Timeout error: ${error}`,
+      message: `Timeout error`,
       token: "",
       name: "",
       userId: "",
+      email: "",
+      error: `${error}`,
     };
   }
 };

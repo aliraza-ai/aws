@@ -41,15 +41,15 @@ const ModuleLayout = () => {
           <FaChevronRight className="text-sm" />
           <Link
             href={`/user/modules/website/${module}`}
-            className="capitalize"
+            className={`${module === "call-to-action" ? '' : 'capitalize'}`}
           >
-            {pageTitle}
+            {module === "call-to-action" ? 'Call to Action' : pageTitle}
           </Link>
         </div>
 
         {/* Title */}
-        <h2 className="text-3xl font-semibold p-2 pb-3 capitalize">
-          {pageTitle}
+        <h2 className={`text-3xl font-medium p-2 pb-3 ${module === "call-to-action" ? '' : 'capitalize'}`}>
+          {module === "call-to-action" ? 'Call to Action' : pageTitle}
         </h2>
       </div>
 

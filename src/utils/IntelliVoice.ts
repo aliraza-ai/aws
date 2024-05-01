@@ -7,7 +7,7 @@ const IntelliVoice = async (query: {
     typeof window !== "undefined" ? sessionStorage.getItem("tokens") : null;
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/intelli-apis/generate-voice`,
+      `${process.env.NEXT_PUBLIC_API_URL}/openai/generate-audio`,
       {
         method: "POST",
         headers: {

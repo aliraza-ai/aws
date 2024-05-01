@@ -8,7 +8,7 @@ const createChat = async (chat: {
 
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/users/create-chat/${userId}`,
+      `${process.env.NEXT_PUBLIC_API_URL}/openai/generate-chat`,
       {
         method: "POST",
         headers: {

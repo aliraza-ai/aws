@@ -1,12 +1,12 @@
 const IntelliAI = async (query: {
   prompt: string;
-  userId: string | null;
+  userId: string | null; // Make sure userId is included in the query object
 }): Promise<{ success: boolean; response: string }> => {
   const tokens =
     typeof window !== "undefined" ? sessionStorage.getItem("tokens") : null;
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/intelliAI/generate-prompt`,
+      `${process.env.NEXT_PUBLIC_API_URL}/openai/generate-completion`,
       {
         method: "POST",
         headers: {
@@ -16,10 +16,9 @@ const IntelliAI = async (query: {
         body: JSON.stringify(query),
       }
     );
-
     if (response.ok) {
       const res = await response.json();
-      return { success: true, response: res.data };
+      return { success: true, response: res.completion };
     } else {
       const errorData = await response.json();
       return { success: false, response: errorData.error };

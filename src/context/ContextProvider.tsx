@@ -1,7 +1,8 @@
 "use client";
 
 import IntelliAI from "@/utils/IntelliAI";
-import { ReactNode, createContext, useContext, useRef, useState } from "react";
+import blogList from "@/utils/blogList";
+import { ReactNode, createContext, useEffect, useContext, useRef, useState } from "react";
 
 interface ContextProviderProps {
   children: ReactNode;
@@ -32,16 +33,27 @@ interface ContextProviderValue {
   setApiSidebartoggle: (apiSidebartoggle: boolean) => void;
   aboutRef: React.RefObject<HTMLDivElement> | null;
   pricingRef: React.RefObject<HTMLDivElement> | null;
+  blogs:BlogProps[]
+}
+
+interface BlogProps {
+  id: number;
+  title: string;
+  description: string;
+  publishDate: string;
+  image: string;
+  slug: string;
+  tags: string;
+  category: string;
 }
 
 const AppContext = createContext<ContextProviderValue | undefined>(undefined);
 
-export const ContextProvider: React.FC<ContextProviderProps> = ({
-  children,
-}) => {
+export const ContextProvider: React.FC<ContextProviderProps> = ({ children }) => {
   const [toggle, setToggle] = useState(false);
   const [response, setResponse] = useState<any>(null);
   const [loading, setLoading] = useState(false);
+  const [blogs, setBlogs] = useState<BlogProps[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [courseContent, setCourseContent] = useState({
     subject: "",
@@ -107,7 +119,22 @@ export const ContextProvider: React.FC<ContextProviderProps> = ({
     setApiSidebartoggle,
     aboutRef,
     pricingRef,
+    blogs,
   };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const blogsData = await blogList();
+        setBlogs(blogsData.blogs);
+
+      } catch (error) {
+        console.error("Failed to fetch blog data:", error);
+      }
+    };
+
+    fetchData();
+  }, []); // 
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 };

@@ -24,6 +24,7 @@ import {
   FaRegStar,
   FaTwitter,
   FaTwitterSquare,
+  FaYoutube,
 } from "react-icons/fa";
 import { FaListCheck, FaRetweet } from "react-icons/fa6";
 import { HiOutlineLightBulb } from "react-icons/hi";
@@ -60,6 +61,7 @@ import { RiArticleLine, RiKeyboardFill, RiPriceTagLine } from "react-icons/ri";
 import { SiGoogleads } from "react-icons/si";
 import { TbArticle, TbTargetArrow } from "react-icons/tb";
 import { TfiLayoutListPost } from "react-icons/tfi";
+import { Article, Business, HelpWanted, Social } from "../../public";
 
 // HOME PAGE
 
@@ -100,66 +102,81 @@ export const BasicCardData: BasicCard[] = [
     plan: " ",
     remaining: 5,
   },
+  {
+    id: 5,
+    icon: IoMdImages,
+    title: "Remaining Voice Counts",
+    plan: " ",
+    remaining: 5,
+  },
 ];
 
 interface Template {
   id: number;
-  icon: IconType;
+  icon: string;
   title: string;
   url: string;
   bgcolor: string;
   color: string;
+  description: string;
 }
 
 export const templateData: Template[] = [
   {
+    id: 0,
+    icon: HelpWanted,
+    title: "Help Wanted Ad",
+    url: "/user/modules/marketing/help-wanted",
+    bgcolor: "#D2D2D2",
+    color: "#527490",
+    description: "Generate job wanting ads for your business with our AI tool.",
+  },
+  {
     id: 1,
-    icon: RiArticleFill,
-    title: " Article",
-    url: "modules/blog-content/article",
-    bgcolor: "#dcfce7",
-    color: "#16a34a",
+    icon: Business,
+    title: "Business Tagline",
+    url: "/user/modules/marketing/business-tagline",
+    bgcolor: "#FBD4B0",
+    color: "#966556",
+    description:
+      "Generate professional slogans for your business with our AI tool.",
   },
   {
     id: 2,
-    icon: LuSubtitles,
-    title: " Headline",
-    url: "modules/website/headline",
-    bgcolor: "#fee2e2",
-    color: "#ef4444",
+    icon: Article,
+    title: " Article",
+    url: "/user/modules/blog-content/article",
+    bgcolor: "#d89a84",
+    color: "#DA5723",
+    description:
+      "Generate unique articles by using keywords with our AI tool. ",
   },
   {
     id: 3,
-    icon: TbTargetArrow,
-    title: " Advertisement",
-    url: "modules/marketing/advertisement",
-    bgcolor: "#cffafe",
-    color: "#06b6d4",
+    icon: Social,
+    title: "Social Post",
+    url: "/user/modules/social-media/social-post",
+    bgcolor: "#e27886",
+    color: "#E2AE4A",
+    description:
+      "Generate social posts ready to be published with our AI tool. ",
   },
-  {
-    id: 4,
-    icon: MdOutlineFeaturedPlayList,
-    title: "Meta Description ",
-    url: "modules/website/meta-description",
-    bgcolor: "#fee2e2",
-    color: "#ef4444",
-  },
-  {
-    id: 5,
-    icon: TbArticle,
-    title: " Blog Post",
-    url: "modules/blog-content/blog-post",
-    bgcolor: "#dcfce7",
-    color: "#16a34a",
-  },
-  {
-    id: 6,
-    icon: TbArticle,
-    title: " Newsletter",
-    url: "modules/marketing/newsletter",
-    bgcolor: "#cffafe",
-    color: "#06b6d4",
-  },
+  // {
+  //   id: 3,
+  //   icon: TbArticle,
+  //   title: " Blog Post",
+  //   url: "/user/modules/blog-content/blog-post",
+  //   bgcolor: "#dcfce7",
+  //   color: "#16a34a",
+  // },
+  // {
+  //   id: 4,
+  //   icon: TbTargetArrow,
+  //   title: " Advertisement",
+  //   url: "/user/modules/marketing/advertisement",
+  //   bgcolor: "#cffafe",
+  //   color: "#06b6d4",
+  // },
 ];
 
 // BLOG CONTENT
@@ -520,7 +537,7 @@ export const Website: WebsiteBuilder[] = [
   {
     id: 2,
     icon: MdOutlineCallToAction,
-    title: "Call To Action",
+    title: "Call to Action",
     description:
       "Generate CTA lines based on the name and description of a product or service.",
     url: "/user/modules/website/call-to-action",
@@ -641,5 +658,77 @@ export const Course: CourseBuilder[] = [
     title: "Assignment Generator",
     description: "Generate assignment questions for your work!",
     url: "/user/modules/course-builder/assignment",
+  },
+];
+
+// YOUTUBE CONTENT GENERATION MODULE
+
+interface YoutubeGenerator {
+  id: number;
+  title: string;
+  output: string;
+}
+
+export const YoutubeContents: YoutubeGenerator[] = [
+  {
+    id: 1,
+    title: "Title",
+    output: "",
+  },
+  {
+    id: 3,
+    title: "Keywords",
+    output: "",
+  },
+  {
+    id: 2,
+    title: "Description",
+    output: "",
+  },
+
+  {
+    id: 4,
+    title: "Tags",
+    output: "",
+  },
+];
+
+export const Youtube: ContentData[] = [
+  {
+    id: 1,
+    icon: FaYoutube,
+    title: "Content Generator",
+    description:
+      "Generate title, description, keywords and tags based on your youtube video title.",
+    url: "/user/modules/youtube-content/content-generator",
+  },
+  {
+    id: 2,
+    icon: BsArrowsExpand,
+    title: "Video Summarizer",
+    description:
+      "Summarize any youtube video and experience full video within a second.",
+    url: "/user/modules/youtube-content/content-summarizer",
+  },
+];
+
+export const CHAT_STEPS = [
+  {
+    id: 1,
+    image: "/step1.png",
+    title: "Step 01",
+    description: "Enter your prompt & click the Generate button.",
+  },
+  {
+    id: 2,
+    image: "/step3.png",
+    title: "Step 03",
+    description: "Feel free to copy & share the response.",
+  },
+  {
+    id: 3,
+    image: "/step2.png",
+    title: "Step 02",
+    description: "Expect a more engaging & better-organized reply.",
   },
 ];

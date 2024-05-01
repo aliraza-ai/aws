@@ -1,91 +1,117 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import { PricingData } from "@/types";
 import cardsPlans from "@/utils/cardsPlans";
-import Image from "next/image";
 import Link from "next/link";
+import React, { useEffect, useState } from "react";
+import { BsRecord2 } from "react-icons/bs";
 import { FaChevronRight } from "react-icons/fa6";
-import { CheckIcon } from "../../../../public";
+import { pricingData as defaultPricingData } from "../../../constants";
+import Button from "@/components/Button";
 
-// Update PlanData interface to use PlanFeature
 interface PlanData {
-  plan_id: number;
-  price: string;
-  package: string;
-  currency: string;
-  features: string[];
-  duration: string;
-  link: string | null;
+  pricingData?: PricingData[];
 }
 
-const PricingCard: React.FC<{ card: PlanData }> = ({ card }) => {
+const PricingCard: React.FC<{ card: PricingData }> = ({ card }) => {
+  const renderCard = () => {
+    switch (card.id) {
+      case 0:
+        return <div className="p-4"></div>;
+      case 1:
+        return (
+          <div className="bg-gradient-to-r from-[rgb(62,55,65)] to-[#0d0d8daa] py-1 text-center text-1xl">
+            Preffered One
+          </div>
+        );
+      case 2:
+        return (
+          <div className="bg-gradient-to-r from-[rgb(57,98,222)] to-[#191c1f] py-1 text-center text-1xl">
+            Professionals& Business
+          </div>
+        );
+      default:
+        return null;
+    }
+  };
+
   return (
-    <div className="bg-[rgba(32,45,72,0.41)] border-1 border-white text-white text-opacity-70 shadow-lg rounded-xl py-10 px-5 md:px-10 space-y-5">
-      <div className="flex flex-col ">
-        <h2 className="text-2xl font-medium text-white">{card.package}</h2>
-        <div className="font-semibold text-4xl text-white ">
-          {card.price}
-          <span className="text-[16px] ">{card.currency}</span>
+    <div className={`bg-white/5 hover:bg-white/10 transition duration-500 md:max-w-[480px] sm:w-[50wh] w-[70wh] relative overflow-hidden border-[#FFFFFF14] text-white text-opacity-70 shadow-lg rounded-xl space-y-5 border ${card.id === 1 ? 'border-white md:scale-110' : 'border-white/20'} transition duration-300 `}>
+      {renderCard()}
+
+      <div className="absolute -bottom-4 -right-4 bg-[#ac7aeb] w-28 h-28 blur-[80px]"></div>
+      <div className="absolute -bottom-4 -right-4 bg-gray-800 w-16 h-16 blur-[30px]"></div>
+      <div className="absolute top-4 left-4 bg-[#9a58eb] w-16 h-16 blur-[50px]"></div>
+
+      <div className="w-full flex flex-col justify-between gap-5 relative 2xl:px-6 xl:px-5 lg:px-4 px-3">
+        {/* Card top */}
+        <div className="flex items-center lg:gap-3 gap-2">
+          <div className="xl:text-[40px] lg:text-[25px] text-xl text-white ">
+            {React.createElement(card.icon)}
+          </div>
+
+          <div>
+            <p className="!text-white xl:text-lg lg:text-base text-sm tracking-widest font-extralight">
+              {card.packagehint}
+            </p>
+            <p className="!text-white xl:text-2xl lg:text-xl text-lg tracking-widest font-bold pb-3">
+              {card.package}
+            </p>
+          </div>
         </div>
 
-        <div className="pt-4 text-slate-400">
-          <ul className="flex flex-col gap-4 ">
-            {card.features.map((feature, index) => (
+        {/* Card pricing */}
+        <p className="xl:text-5xl lg:text-4xl text-3xl !text-white/90">
+          <span>{card.price}</span>
+          <span className="text-base font-light pl-1">USD</span>
+          <span className="text-base font-extralight">/month</span>
+        </p>
+
+        <div className="flex justify-center py-3 w-full">
+          {card.id === 0 ? (
+            <Button title="Subscribed" btnType="button" className="btn pointer-events-none opacity-70" />
+          ) : (
+            <Link href={card.id === 0 ? "#" : card.link} className="w-full">
+              <Button
+                title={
+                  card.id === 0 ? "Subscribed" : "Subscribe now"
+                }
+                btnType="button"
+                className={`!w-full ${card.id === 0 ? "hidden" : ""
+                  }`}
+              />
+            </Link>
+          )}
+        </div>
+
+        <div className="py-6">
+          <ul className="flex flex-col gap-3">
+            {card.featuresName.map((featurename, index) => (
               <li
                 key={index}
-                className="flex gap-2 items-center text-[16px] w-full"
+                className="flex xl:gap-2 gap-1 items-start xl:text-base lg:text-sm text-xs font-light text-white w-full"
               >
-                <div className="saturate-[3] object-cover w-4 h-4">
-                  <Image
-                    src={CheckIcon}
-                    alt="Check Icon"
-                    width={20}
-                    height={20}
-                  />
+                <div className="saturate-[3] text-gray-400 lg:text-base text-sm mt-[5px]">
+                  <BsRecord2 />
                 </div>
-                {feature}
+                <div>{featurename}</div>
               </li>
             ))}
           </ul>
-        </div>
-
-        <div className="mt-12">
-          <div className="">
-            {card.plan_id === 0 ? (
-              <button className="w-full max-w-xs p-0.5 rounded-md flex items-center justify-center bg-gradient-to-r from-[rgba(247,15,255,1)] to-[#2C63FF] text-white py-2 cursor-not-allowed opacity-70">
-                <span className="opacity-80">Subscribed</span>
-              </button>
-            ) : (
-              <Link
-                href={
-                  card.plan_id === 0
-                    ? "#"
-                    : `/user/payment?planId=${card.plan_id}`
-                }
-              >
-                <button
-                  type="button"
-                  className="w-full max-w-xs p-0.5 rounded-md flex items-center justify-center bg-gradient-to-r from-[rgba(247,15,255,1)] to-[#2C63FF] text-white py-2 hover:opacity-75"
-                >
-                  Subscribe now
-                </button>
-              </Link>
-            )}
-          </div>
         </div>
       </div>
     </div>
   );
 };
 
-const PlanPage: React.FC<PlanData> = () => {
+const PlanPage: React.FC<PlanData> = ({ pricingData = defaultPricingData }) => {
   const [plans, setPlans] = useState<PlanData[] | null>(null);
 
   const fetchPlans = async () => {
     try {
       const res = await cardsPlans();
       if (res?.success) {
-        setPlans(res.data);
+        setPlans(res.data as PlanData[] | null);
       } else {
         console.error("Error fetching word count:", res.data);
       }
@@ -109,8 +135,8 @@ const PlanPage: React.FC<PlanData> = () => {
       <h2 className="text-3xl font-semibold p-2 pb-3">Plans</h2>
       <div className="flex flex-col items-center justify-center">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mt-4">
-          {plans?.map((card) => (
-            <PricingCard key={card.plan_id} card={card} />
+          {pricingData?.map((card) => (
+            <PricingCard key={card.id} card={card} />
           ))}
         </div>
       </div>

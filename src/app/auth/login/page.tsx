@@ -1,17 +1,16 @@
 "use client";
 
+import React, { useEffect, useState } from "react";
 import Button from "@/components/Button";
 import { useAuth } from "@/context/AuthContext";
 import loginUser from "@/utils/loginUser";
-import ReCAPTCHA from "react-google-recaptcha";
-import { verifyCaptcha } from "@/utils/verifyCaptcha";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React, { useEffect, useState, useRef } from "react";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { BiSolidLock } from "react-icons/bi";
 import { FaEnvelope } from "react-icons/fa";
 import Swal from "sweetalert2";
+import { LoginBg } from "../../../../public";
 
 interface LoginPageLayoutProps {
   children: React.ReactNode;
@@ -21,9 +20,6 @@ interface LoginPageLayoutProps {
 }
 
 const LoginPageLayout: React.FC<LoginPageLayoutProps | any> = () => {
-  const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
-  const recaptchaRef = useRef<ReCAPTCHA>(null);
-  const [isVerified, setIsverified] = useState<boolean>(false);
   const router = useRouter();
   const { setTokens, setNameLetter } = useAuth();
   const [email, setEmail] = useState<string>("");
@@ -66,23 +62,16 @@ const LoginPageLayout: React.FC<LoginPageLayoutProps | any> = () => {
           sessionStorage.setItem("name", result.name);
           sessionStorage.setItem("nameLetter", getFirstLetter(result.name));
           sessionStorage.setItem("userId", result.userId);
+          sessionStorage.setItem("userEmail", result.email);
 
           setTokens(result.token);
           setNameLetter(getFirstLetter(result.name));
-          // await Swal.fire({
-          //   icon: "success",
-          //   title: "Success",
-          //   text: "Login Successfully!",
-          // });
-          // setTimeout(function () {
-          //   Swal.close();
-          // }, 5000);
           router.push("/user/dashboard");
         } else {
           await Swal.fire({
             icon: "error",
             title: "Ooops...",
-            text: result.message,
+            text: `${result.message}`,
           });
         }
       }
@@ -100,101 +89,109 @@ const LoginPageLayout: React.FC<LoginPageLayoutProps | any> = () => {
   }, []);
 
   return (
-    <section className="w-full bg-contact py-16 bg-bottom bg-no-repeat bg-cover flex items-center justify-center">
-      <div className="container rounded shadow-lg md:max-w-xl mx-3">
-        <div className="h-full border-2 border-white border-opacity-10 w-full bg-slate-800 rounded-3xl bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 space-y-5 px-5 pt-5">
-          <form onSubmit={submitForm} autoComplete="off">
-            <div className="flex flex-col lg:p-5 p-0 gap-y-6 text-white">
-              <div className="text-center font-bold p-3 text-[20px] lg:text-4xl">
-                Sign In
-              </div>
-
-              <label className="flex items-center">
-                <div className="absolute lg:left-14 left-[2.5rem]">
-                  <FaEnvelope />
-                </div>
-                <input
-                  autoComplete="off"
-                  name="title"
-                  placeholder="Email"
-                  type="email"
-                  className="contact-input bg-gradient-to-b !pl-[48px] from-[#0F1333] to-[#1D203F] "
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-              </label>
-              {signInError?.email && (
-                <p className="!text-red-500 text-sm px-2">
-                  {signInError.email}
-                </p>
-              )}
-
-              <label className="flex items-center">
-                <div className="absolute lg:left-14 left-[2.5rem]">
-                  <BiSolidLock size={24} />
-                </div>
-                <input
-                  name="password"
-                  placeholder="Password"
-                  type={seePass}
-                  className="contact-input bg-gradient-to-b !pl-[48px] from-[#0F1333] to-[#1D203F] "
-                  value={password}
-                  onChange={(e) => {
-                    if (password === "") {
-                      setSeePass("password");
-                    }
-                    setPassword(e.target.value);
-                  }}
-                />
-                <div className="absolute right-[60px] cursor-pointer">
-                  {password === "" ? null : seePass === "text" ? (
-                    <AiFillEye
-                      size={24}
-                      onClick={() => setSeePass("password")}
-                    />
-                  ) : (
-                    <AiFillEyeInvisible
-                      size={24}
-                      onClick={() => setSeePass("text")}
-                    />
-                  )}
-                </div>
-              </label>
-              {signInError?.password && (
-                <p className="!text-red-500 text-sm px-2">
-                  {signInError.password}
-                </p>
-              )}
-
-              <Link href="/auth/forgot-password" className="w-[160px]">
-                <span className="text-pink-400">Forgot password?</span>
-              </Link>
-
-              <div className="flex w-full justify-center">
-                <Button
-                  title="Login"
-                  width="w-full"
-                  className="w-full"
-                  btnType="submit"
-                />
-              </div>
-              {/* {signInError?.error && (
-                  <p className="!text-red-500 text-sm px-2">
-                    {signInError.error}
-                  </p>
-                )} */}
-            </div>
-          </form>
-
-          <p className="pb-6 !m-0 text-center text-white lg:pt-0 pt-3">
-            Don&apos;t have an account?{" "}
-            <span className="text-pink-400">
-              <Link href="/auth/register">Register</Link>
-            </span>
-          </p>
+    <div className="h-screen w-full space-y-5 bg-slate-900">
+      <form
+        onSubmit={submitForm}
+        autoComplete="off"
+        className="h-screen w-full flex justify-end"
+      >
+        <Link
+          href="/"
+          className="absolute z-50 left-2 top-2 opacity-75 hover:opacity-100 text-white border rounded-3xl px-4 py-1"
+        >
+          Back
+        </Link>
+        <div className="w-full md:w-2/3 left-0 opacity-10 md:opacity-100 absolute h-screen object-cover">
+          <img src={LoginBg} alt="" className="w-full h-full object-cover rounded-l-lg filter brightness-75" />
         </div>
-      </div>
-    </section>
+        <div className="w-full z-10  md:w-1/3 h-screen flex items-center justify-center bg-transparent">
+          <div className="w-[80%] md:w-[70%] gap-y-6  flex flex-col text-white">
+            <div className="text-center gap-y-2 flex flex-col">
+              <h1 className="font-bold text-3xl md:text-4xl text-white">
+                Login
+              </h1>
+              <p>Start generating your thoughts with Intelliwriter.io</p>
+            </div>
+
+            <label className="w-full relative">
+              <div className="absolute left-[20px] top-12">
+                <FaEnvelope />
+              </div>
+              <p>Email</p>
+              <input
+                autoComplete="off"
+                name="title"
+                type="email"
+                placeholder="Enter your email"
+                className="contact-input bg-gradient-to-b !pl-12 !mt-1 md:from-[#111630] md:to-[#1d214c] 
+                from-[#000b1e] to-[#010208]  "
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </label>
+            {signInError?.email && (
+              <p className="!text-red-500 text-sm px-2">{signInError.email}</p>
+            )}
+
+            <label className="w-full relative">
+              <div className="absolute left-[20px] top-11">
+                <BiSolidLock size={24} />
+              </div>
+              <p>Password</p>
+              <input
+                name="password"
+                type={seePass}
+                placeholder="Enter your password"
+                className="contact-input !pl-12 !mt-1 bg-gradient-to-b  md:from-[#111630] md:to-[#1d214c] 
+                from-[#000b1e] to-[#010208] "
+                value={password}
+                onChange={(e) => {
+                  if (password === "") {
+                    setSeePass("password");
+                  }
+                  setPassword(e.target.value);
+                }}
+              />
+              <div className="absolute right-[7%] top-11 cursor-pointer">
+                {password === "" ? null : seePass === "text" ? (
+                  <AiFillEye size={24} onClick={() => setSeePass("password")} />
+                ) : (
+                  <AiFillEyeInvisible
+                    size={24}
+                    onClick={() => setSeePass("text")}
+                  />
+                )}
+              </div>
+            </label>
+            {signInError?.password && (
+              <p className="!text-red-500 text-sm px-2">
+                {signInError.password}
+              </p>
+            )}
+
+            <Link href="/auth/forgot-password" className="w-[160px]">
+              <span className="text-pink-400">Forgot password ?</span>
+            </Link>
+
+            <div className="flex w-full justify-center">
+              <Button
+                title="Login"
+                width="w-full"
+                className="w-full"
+                btnType="submit"
+              />
+            </div>
+
+            <p className="pb-6 !m-0 text-center text-white lg:pt-0 pt-3">
+              Don&apos;t have an account?{" "}
+              <span className="text-pink-400">
+                <Link href="/auth/register"> Register</Link>
+              </span>
+            </p>
+          </div>
+        </div>
+      </form>
+    </div>
   );
 };
 

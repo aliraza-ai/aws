@@ -42,7 +42,7 @@ const ModuleLayout = () => {
             </div>
 
             {/* Title */}
-            <h2 className="text-3xl font-semibold p-2 pb-3 capitalize">{pageTitle}</h2>
+            <h2 className="text-3xl font-medium p-2 pb-3 capitalize">{pageTitle}</h2>
           </div>
 
           <div className="flex w-full md:flex-row flex-col gap-5">

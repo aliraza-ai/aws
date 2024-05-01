@@ -1,21 +1,13 @@
 "use client";
 
-import { imageCount, updateImageCount } from "@/utils/imageCount";
-import axios from "axios";
-import Image from "next/image";
-import Link from "next/link";
-import React, { FormEvent, useEffect, useState } from "react";
-import { FaChevronRight } from "react-icons/fa6";
-import { FiEye, FiX } from "react-icons/fi";
-import { HiOutlineDownload } from "react-icons/hi";
-import { TbSend } from "react-icons/tb";
+import Button from "@/components/Button";
+import ImagesCollection from "@/components/ImagesCollection";
+import generateImages from "@/utils/generateImages";
+import cogoToast from "cogo-toast";
+import React, { useEffect, useRef, useState } from "react";
+import { BsSend } from "react-icons/bs";
+import { RiCameraLensLine } from "react-icons/ri";
 import Select from "react-select";
-
-type Image = {
-  id: number;
-  prompt: string;
-  images: string[];
-};
 
 type Option = {
   value: string;
@@ -23,189 +15,123 @@ type Option = {
 };
 
 const ImageGeneratorPages = () => {
-  const [messageID, setMessageID] = useState<string>("");
-  const [progress, setProgress] = useState<number>(0);
-  const [dots, setDots] = useState<number>(1);
-  const [waitResponse, setWaitResponse] = useState<boolean>(false);
-  const [progressImageUrls, setProgressImageUrls] = useState<Image[]>([]);
-  const [prompt, setPrompt] = useState<string>("");
-  const [count, setCount] = useState<number>(0);
+  const [activeTab, setActiveTab] = useState("All");
+  const [inputText, setInputText] = useState("");
+  const [progress, setProgress] = useState(0);
   const [selectedOption, setSelectedOption] = useState<Option>({
     value: "1:1",
     label: "1:1",
   });
-  const [buttonDisabled, setButtonDisabled] = useState<boolean>(false);
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
-  const [promptError, setPromptError] = useState<string>("");
-
-  const tokens = process.env.NEXT_PUBLIC_IMAGE_API_KEY as string;
-  const url1 = process.env.NEXT_PUBLIC_IMAGE_GENERATOR_URL1 as string;
-  const url2 = process.env.NEXT_PUBLIC_IMAGE_GENERATOR_URL2 as string;
-
-  const fetchImageCount = async () => {
-    const result = await imageCount();
-    if (result.success) {
-      setCount(Number(result.imageCount));
-    }
-  };
+  const [tabsHistory, setTabsHistory] = useState<string[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [images, setImages] = useState<string[]>([]);
+  const textAreaRef = useRef<HTMLTextAreaElement>(null);
+  const [showDefaultImages, setShowDefaultImages] = useState(true);
+  const [selectedImage, setSelectedImage] = useState<number | null>(null);
 
   useEffect(() => {
-    const storedProgressImageUrls =
-      typeof window !== "undefined"
-        ? sessionStorage.getItem("intelli_images")
-        : null;
-    fetchImageCount();
-    if (storedProgressImageUrls) {
-      setProgressImageUrls(JSON.parse(storedProgressImageUrls));
+    const storedHistory = localStorage.getItem("tabsHistory");
+    if (storedHistory) {
+      setTabsHistory(JSON.parse(storedHistory));
+    }
+
+    if (tabsHistory.length === 0) {
+      setActiveTab("All");
+    }
+
+    if (textAreaRef.current) {
+      textAreaRef.current.focus();
     }
   }, []);
 
-  const handleDownload = async (imageUrl: string) => {
+  const handleClearHistory = () => {
+    localStorage.removeItem("tabsHistory");
+    setTabsHistory([]);
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setInputText(e.target.value);
+  };
+
+  const handleGenerate = async () => {
+    setLoading(true);
+    const currentInputText = inputText;
+
     try {
-      const response = await axios.get(imageUrl, {
-        responseType: "arraybuffer",
+      const { success, response } = await generateImages({
+        prompt: inputText,
+        userId: sessionStorage.getItem("userId"),
+        aspectRatio: selectedOption.value,
       });
 
-      const blob = new Blob([response.data], {
-        type: response.headers["content-type"],
-      });
+      if (success) {
+        setProgress(0);
+        const imageUrls = response?.images;
+        setImages(imageUrls);
+        setShowDefaultImages(false);
+        setLoading(false);
+
+        setTabsHistory((prevHistory) => {
+          const updatedHistory = [...prevHistory, currentInputText];
+          localStorage.setItem("tabsHistory", JSON.stringify(updatedHistory));
+          return updatedHistory;
+        });
+        setInputText("");
+      } else {
+        cogoToast.error("Something went wrong. Please try again.");
+        setLoading(false);
+      }
+    } catch (error) {
+      cogoToast.error("Something went wrong. Please try again later.");
+      setLoading(false);
+    }
+  };
+
+  const handleTabChange = (tab: string, query?: string) => {
+    setActiveTab(tab);
+    if (tab === "All") {
+      setShowDefaultImages(true);
+    } else {
+      setShowDefaultImages(false);
+    }
+    if (query) {
+      setInputText(query);
+    } else {
+      setInputText("");
+    }
+    if (tab !== "All") {
+      handleGenerate();
+    }
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      handleGenerate();
+    }
+  };
+
+  const openModal = (index: number): void => {
+    setSelectedImage(index);
+  };
+
+  const closeModal = (): void => {
+    setSelectedImage(null);
+  };
+
+  const downloadImage = async (imageUrl: string): Promise<void> => {
+    try {
+      const response = await fetch(imageUrl);
+      const blob = await response.blob();
       const url = window.URL.createObjectURL(blob);
 
       const link = document.createElement("a");
       link.href = url;
-      link.download = `intelliwriter_ai`;
-      document.body.appendChild(link);
+      link.download = `intelliwriter_${Date.now()}.${blob.type.split("/")[1]}`;
       link.click();
-      document.body.removeChild(link);
-      window.URL.revokeObjectURL(url);
     } catch (error) {
       console.error("Error downloading image:", error);
-    }
-  };
-
-  const handlePreview = (imageUrl: string) => {
-    setSelectedImage(imageUrl);
-  };
-
-  const handleCloseModal = () => {
-    setSelectedImage(null);
-  };
-
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    if (count > 0) {
-      setWaitResponse(true);
-      setButtonDisabled(true);
-      const inputPrompt = e.currentTarget.querySelector("input")!.value
-      const inputValue =
-        inputPrompt +
-        ` --ar ${selectedOption.value}`;
-      setPrompt(e.currentTarget.querySelector("input")!.value);
-
-      try {
-          if(inputPrompt === ""){
-             setPromptError("Prompt is required!");
-          } else {
-        const response = await axios.post(
-          url1,
-          {
-            msg: inputValue,
-          },
-          {
-            maxBodyLength: Infinity,
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${tokens}`,
-            },
-          }
-        );
-        console.log(response.data.messageId)
-
-        setMessageID(response.data.messageId);
-        setPrompt(e.currentTarget.querySelector("input")!.value);
-         }
-      } catch (error) {
-        console.error(error);
-      }
-    } else {
-      setPromptError("Images Prompt Limit reached. Please upgrade!");
-    }
-  };
-
-  const generateImages = async () => {
-    try {
-      const response = await axios.get(`${url2}/${messageID}`, {
-        maxBodyLength: Infinity,
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${tokens}`,
-        },
-      });
-
-      setProgress(response.data.progress);
-
-      if (response.data.progress < 100) {
-        setTimeout(() => generateImages(), 1000);
-      } else {
-        setProgressImageUrls((prev) => [
-          ...prev,
-          {
-            id: progressImageUrls.length,
-            prompt: prompt,
-            images: response.data.response.imageUrls,
-          },
-        ]);
-
-        try {
-          const result = await updateImageCount();
-          if (result.success) {
-            setCount(Number(result.images_left));
-          } else {
-            setPromptError(result.message);
-          }
-        } catch (error: any) {
-          setPromptError(error.message);
-        }
-        setMessageID("");
-        setWaitResponse(false);
-        setProgress(0);
-        setButtonDisabled(false);
-        sessionStorage.setItem(
-          "intelli_images",
-          JSON.stringify(progressImageUrls)
-        );
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  useEffect(() => {
-    if (messageID !== "" && waitResponse) {
-      generateImages();
-    }
-    return () => {};
-  }, [messageID]);
-
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      setDots((prevDots) => (prevDots === 4 ? 1 : prevDots + 1));
-    }, 400);
-    return () => clearInterval(intervalId);
-  }, []);
-
-  const progressDone = (): string => {
-    if (progress >= 90) {
-      return "Almost done! 🙈";
-    } else if (progress >= 75) {
-      return "Finalizing image! 🤩";
-    } else if (progress >= 50) {
-      return "Processing on the query! 🙈";
-    } else if (progress >= 30) {
-      return "Start executing your prompt! 🤩";
-    } else {
-      return "Getting things ready! 😍";
+      // cogoToast.error("Failed to download image. Please try again later.");
     }
   };
 
@@ -227,153 +153,153 @@ const ImageGeneratorPages = () => {
   };
 
   return (
-    <div className="absolute top-14 right-0 md:px-20 md:py-5 p-6 w-full lg:w-[calc(100%-250px)] text-white">
-      <div className="flex justify-center w-full flex-col h-full text-white md:py-10 py-5 -mt-6">
-        {/* Prompt box */}
-        <div className="text-base text-slate-400 font-light p-2 flex items-center gap-2">
-          <Link href="/user/dashboard">Dashboard</Link>
-          <FaChevronRight className="text-sm" />
-          <Link href="/user/image-generator">Image Generator</Link>
-        </div>
-
-        <h2 className="text-3xl font-semibold p-2 pb-3">Image Generator</h2>
-
-        <div className=" w-full flex flex-col justify-between items-center gap-5 py-5">
-          {/* Prompt Form */}
-          <form
-            onSubmit={(e: FormEvent<HTMLFormElement>) => handleSubmit(e)}
-            className="w-full border border-gray-600 rounded-md bg-[rgba(32,45,72,0.41)]"
-          >
-            {/* Upper prompt field */}
-            <div className="w-full lg:p-5 p-3 border-b border-b-gray-600 flex md:flex-row flex-col gap-3 justify-between items-center">
-              <input
-                className="w-11/12 md:py-5 p-2 outline-none rounded-md bg-primary px-3"
-                placeholder="Describe your image, including objects, colors and locations!"
+    <div className=" h-screen overflow-y-hidden fixed top-14 right-0 md:px-20 md:py-5 p-6 w-full lg:w-[calc(100%-250px)] text-white flex">
+      <div className="flex flex-col w-full gap-4 relative">
+        <div className="tabs flex gap-4 items-center justify-between">
+          <div className="flex items-center gap-3 overflow-x-auto max-w-full scrollbar-hide">
+            <Tab
+              title="All"
+              onClick={() => handleTabChange("All")}
+              isActive={activeTab === "All"}
+            />
+            {tabsHistory.map((query, index) => (
+              <Tab
+                key={index}
+                title={query.slice(0, 12) + (query.length > 12 ? "..." : "")}
+                onClick={() => handleTabChange("History", query)}
+                isActive={activeTab === "History" && inputText === query}
               />
-              <button
-                type="submit"
-                className="bg-gradient-to-r from-[rgba(247,15,255,1)] to-[#2C63FF] font-semibold  px-4 py-2 rounded-md h-fit flex justify-between items-center gap-2 hover:opacity-90"
-                disabled={buttonDisabled}
-              >
-                {buttonDisabled ? (
-                  "Processing..."
-                ) : (
-                  <>
-                    Go <TbSend className="text-white text-xl" />
-                  </>
-                )}
-              </button>
-            </div>
+            ))}
+          </div>
 
-            {/* Lower portion */}
-            <div className="xl:w-1/3 lg:1/3 md:w-1/2 w-full p-5">
-              <div className="w-full flex md:flex-row flex-col gap-3 sm:justify-start justify-between items-center">
-                <label className="opacity-60 font-thin text-sm">
-                  Aspect Ratio
-                </label>
-                <Select
-                  className="w-[120px]"
-                  defaultValue={selectedOption}
-                  onChange={(e) => setSelectedOption(e as Option)}
-                  options={option}
-                  styles={styles}
-                />
+          <button
+            type="button"
+            onClick={handleClearHistory}
+            className="text-[16px] font-[600] border-2 border-cyan-50 px-[12px] py-[3px] rounded-[6px] "
+          >
+            Clear
+          </button>
+        </div>
+        <div className="w-full relative flex-grow">
+          {loading ? (
+            <>
+              <div className="grid grid-cols-4 gap-4 mt-3">
+                <div className="bg-[rgba(32,45,72,0.41)] w-full h-[350px] rounded-lg card-reload"></div>
+                <div className="bg-[rgba(32,45,72,0.41)] w-full h-[350px] rounded-lg card-reload"></div>
+                <div className="bg-[rgba(32,45,72,0.41)] w-full h-[350px] rounded-lg card-reload"></div>
+                <div className="bg-[rgba(32,45,72,0.41)] w-full h-[350px] rounded-lg card-reload"></div>
               </div>
-            </div>
-          </form>
-
-          <p className="!text-red-500 text-sm">{promptError}</p>
-
-          {/* Response box */}
-          {waitResponse && (
-            <div className="w-full flex flex-col items-center justify-center">
-              <div className="text-center flex items-center gap-2">
-                <span className="font-thin py-5">
-                  {progress}% - {progressDone()}
-                </span>
-                <div>
-                  {Array.from({ length: dots }).map((_, index) => (
-                    <span key={index}>.</span>
+            </>
+          ) : (
+            <>
+              {showDefaultImages ? (
+                <ImagesCollection />
+              ) : (
+                <div className="grid grid-cols-4 gap-4 mt-3">
+                  {images.map((imageUrl, index) => (
+                    <img
+                      key={index}
+                      src={imageUrl}
+                      alt={`Image ${index}`}
+                      className="w-full h-[350px] cursor-pointer rounded-[12px] "
+                      onClick={() => openModal(index)}
+                    />
                   ))}
                 </div>
-              </div>
-              <div className="flex items-center justify-center sm:w-fit w-full">
-                <div className="sm:grid w-full flex flex-col justify-center xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 lg:gap-10px gap-5 py-2">
-                  <div className="bg-[rgba(32,45,72,0.41)] lg:w-[235px] lg:h-[235px] md:w-[250px] md:h-[250px] sm:w-[220px] sm:h-[220px] w-full h-[350px] rounded-lg card-reload"></div>
-                  <div className="bg-[rgba(32,45,72,0.41)] lg:w-[235px] lg:h-[235px] md:w-[250px] md:h-[250px] sm:w-[220px] sm:h-[220px] w-full h-[350px] rounded-lg card-reload"></div>
-                  <div className="bg-[rgba(32,45,72,0.41)] lg:w-[235px] lg:h-[235px] md:w-[250px] md:h-[250px] sm:w-[220px] sm:h-[220px] w-full h-[350px] rounded-lg card-reload"></div>
-                  <div className="bg-[rgba(32,45,72,0.41)] lg:w-[235px] lg:h-[235px] md:w-[250px] md:h-[250px] sm:w-[220px] sm:h-[220px] w-full h-[350px] rounded-lg card-reload"></div>
+              )}
+            </>
+          )}
+        </div>
+        <div className="mt-4 bottom-[10%] absolute w-full">
+          <div className="relative">
+            <textarea
+              rows={1}
+              value={inputText}
+              ref={textAreaRef}
+              onChange={handleInputChange}
+              onKeyDown={(e) => handleKeyDown(e)}
+              className="w-full bottom-0 px-12 py-2 sm:py-4 h-16 rounded-[12px] flex text-white border bg-[#0f1021] focus:outline-none border-gradient-blue-purple scrollbar-hide"
+              placeholder="Describe your image, including objects and colors!"
+            ></textarea>
+
+            <div className="absolute inset-y-0 left-0 flex items-center pl-3">
+              <RiCameraLensLine className="text-[#a87fdb] text-2xl" />
+            </div>
+
+            <div className="absolute inset-y-0 right-0 flex items-center pr-3 space-x-4">
+              <Select
+                className="w-[120px]"
+                defaultValue={selectedOption}
+                onChange={(e) => setSelectedOption(e as Option)}
+                options={option}
+                styles={styles}
+              />
+              <button
+                type="button"
+                onClick={handleGenerate}
+                className="bg-gradient-to-bl transition-all duration-300 from-btnPrimary to-btnSecondary font-semibold p-[12px] rounded-md h-fit flex justify-between items-center gap-2 hover:opacity-90 "
+              >
+                <BsSend className="text-white text-lg" />
+              </button>
+            </div>
+            {selectedImage !== null && (
+              <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-75 flex items-center justify-center z-50">
+                <div
+                  className="max-w-2xl w-full relative"
+                  style={{ width: "800px", height: "600px" }}
+                >
+                  <img
+                    alt={`Image ${selectedImage}`}
+                    width={800}
+                    height={600}
+                    className="block h-full w-full rounded-lg object-cover object-center"
+                    src={images[selectedImage]}
+                  />
+                  <div className="absolute bottom-4 left-0 right-0 flex justify-between px-4">
+                    <button
+                      type="button"
+                      className="text-white bg-gray-700 px-4 py-2 rounded-lg hover:bg-gray-600 focus:outline-none"
+                      onClick={closeModal}
+                    >
+                      Close
+                    </button>
+                    <Button
+                      btnType="button"
+                      title="Download"
+                      className="!w-fit !rounded-lg"
+                      onClick={() => downloadImage(images[selectedImage])}
+                    />
+                  </div>
                 </div>
               </div>
-            </div>
-          )}
-
-          {progressImageUrls.length < 1
-            ? ""
-            : progressImageUrls
-                .slice()
-                .reverse()
-                .map((img) => (
-                  <div
-                    key={img.id}
-                    className="flex items-center justify-center flex-col gap-2"
-                  >
-                    <p className="opacity-70">&quot;{img.prompt}&quot;</p>
-                    <div className="sm:grid w-full flex flex-col xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 lg:gap-10px gap-5 py-2">
-                      {img.images.map((item, i) => (
-                        <div
-                          key={i}
-                          className="md:w-[220px] sm:w-[240px] w-full rounded-lg overflow-hidden relative group"
-                        >
-                          <img src={item} alt={`Image ${i}`} />
-                          <div className="w-full h-full absolute top-0 left-0 flex items-end justify-end gap-2 group-hover:opacity-100 opacity-0 transition-all duration-200 bg-gradient-to-t from-0% from-black/60 to-transparent p-3">
-                            <FiEye
-                              className="text-white text-2xl cursor-pointer"
-                              onClick={() => handlePreview(item)}
-                            />
-                            <HiOutlineDownload
-                              className="text-white text-2xl cursor-pointer"
-                              onClick={() => handleDownload(item)}
-                            />
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                ))}
-        </div>
-
-        {/* Image Preview Modal */}
-        {selectedImage && (
-          <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center z-50">
-            <div className="absolute top-0 left-0 w-full h-full bg-black opacity-50"></div>
-            <div className="md:h-4/5 md:w-auto w-4/5 relative z-10">
-              <div className="rounded-md md:max-w-screen-md w-full h-full overflow-hidden">
-                <img src={selectedImage} alt="Preview" />
-              </div>
-            </div>
-            <div
-              className="absolute top-2 right-2 cursor-pointer"
-              onClick={handleCloseModal}
-            >
-              <FiX className="text-white  p-2 rounded-full text-5xl" />
-            </div>
+            )}
           </div>
-        )}
+        </div>
       </div>
     </div>
   );
 };
 
+type TabProps = {
+  title: string;
+  isActive: boolean;
+  onClick: () => void;
+};
+
+const Tab: React.FC<TabProps> = ({ title, isActive, onClick }) => {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className={`px-4 whitespace-nowrap bg-gray-700 py-2 capitalize text-sm font-medium focus:outline-none rounded-[6px] ${
+        isActive
+          ? "bg-gradient-to-bl transition-all duration-300 from-btnPrimary to-btnSecondary text-white"
+          : "text-white"
+      }`}
+    >
+      {title}
+    </button>
+  );
+};
+
 export default ImageGeneratorPages;
-
-// import React from 'react'
-// import MaintenancePage from '@/components/Maintenance'
-
-// const page = () => {
-//   return (
-//     <div><MaintenancePage /></div>
-//   )
-// }
-
-// export default page
